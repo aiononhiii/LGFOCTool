@@ -49,7 +49,7 @@
     [formatter setTimeZone:timeZone];
     NSDate* date = [formatter dateFromString:timeStr];
     NSInteger timeSp = [[NSNumber numberWithDouble:[date timeIntervalSince1970]] integerValue];
-    NSLog(@"将某个时间字符串转化成 时间戳----timeSp:%ld", timeSp);
+//    NSLog(@"将某个时间字符串转化成 时间戳----timeSp:%ld", timeSp);
     return timeSp;
 }
 #define aYeay  (3600. * 24 * 365)
@@ -69,7 +69,7 @@
     }
     NSDate *currentDate = [NSDate date];
     NSTimeInterval currentDateStamp = [currentDate timeIntervalSince1970]; // 减去时差
-    NSInteger interval = currentDateStamp - timeStamp;
+    NSInteger interval = [NSNumber numberWithDouble:currentDateStamp].integerValue - timeStamp;
     if (interval < 60) {
         return @"刚刚";
     } else if (interval < 3600) {
