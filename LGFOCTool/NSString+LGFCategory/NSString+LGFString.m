@@ -30,7 +30,7 @@
 #pragma mark - 获取当前时间的 时间戳
 + (NSInteger)lgf_GetNowTimeStamp {
     NSInteger timeSp = [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] integerValue];
-    NSLog(@"获取当前时间的 时间戳----timeSp:%ld",(long)timeSp);
+    NSLog(@"获取当前时间的 时间戳----timeSp:%ld", timeSp);
     return timeSp;
 }
 
@@ -49,7 +49,7 @@
     [formatter setTimeZone:timeZone];
     NSDate* date = [formatter dateFromString:timeStr];
     NSInteger timeSp = [[NSNumber numberWithDouble:[date timeIntervalSince1970]] integerValue];
-    NSLog(@"将某个时间字符串转化成 时间戳----timeSp:%ld",(long)timeSp);
+    NSLog(@"将某个时间字符串转化成 时间戳----timeSp:%ld", timeSp);
     return timeSp;
 }
 #define aYeay  (3600. * 24 * 365)
