@@ -80,7 +80,6 @@ bundleName ? [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pa
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import <TargetConditionals.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreGraphics/CoreGraphics.h>
