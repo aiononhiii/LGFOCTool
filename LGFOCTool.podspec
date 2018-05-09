@@ -13,5 +13,5 @@ s.platform     = :ios
 s.platform     = :ios, "8.0"
 s.source   = { :git => "https://github.com/aiononhiii/LGFOCTool.git", :tag => s.version }
 s.framework  = "UIKit"
-s.source_files = "LGFOCTool/LGFOCTool/**/*.{h,m}","LGFOCTool/LGFOCTool/*.{h,m}"
+s.source_files = "LGFOCTool/LGFOCTool/**/*.{h,m}"
 end
