@@ -67,9 +67,8 @@
     if (timeStamp < 0) {
         return @"时间错误";
     }
-    NSDate *currentDate = [NSDate date];
-    NSTimeInterval currentDateStamp = [currentDate timeIntervalSince1970]; // 减去时差
-    NSInteger interval = [NSNumber numberWithDouble:currentDateStamp].integerValue - timeStamp;
+    NSInteger currentDateStamp = [self lgf_GetNowTimeStamp];
+    NSInteger interval = currentDateStamp - timeStamp;
     if (interval < 60) {
         return @"刚刚";
     } else if (interval < 3600) {
