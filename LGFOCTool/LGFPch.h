@@ -90,7 +90,6 @@ bundleName ? [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pa
 #import <CoreLocation/CoreLocation.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
-#import <CommonCrypto/CommonDigest.h>
 #endif
 
 //---------------------- 常用数据非空判断 ----------------------

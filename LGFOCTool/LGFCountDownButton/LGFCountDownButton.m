@@ -11,7 +11,7 @@
 
 @interface LGFCountDownButton ()
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, assign) int count;
 @end
 
 @implementation LGFCountDownButton
@@ -57,7 +57,7 @@
     return _lgf_Label;
 }
 
-- (void)lgf_TimeFailBeginFrom:(NSInteger)timeCount {
+- (void)lgf_TimeFailBeginFrom:(int)timeCount {
     self.count = timeCount;
     self.enabled = NO;
     // 加1个计时器
@@ -68,7 +68,7 @@
     if (self.count != 1) {
         self.count -= 1;
         self.enabled = NO;
-        self.lgf_Label.text = [NSString stringWithFormat:@"重新发送 %lds", self.count];
+        self.lgf_Label.text = [NSString stringWithFormat:@"重新发送 %ds", self.count];
         if (self.lgf_IsGray) {
             self.lgf_Label.textColor = _lgf_SelectTextColor;
             self.backgroundColor = _lgf_SelectColor;

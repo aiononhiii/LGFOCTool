@@ -18,7 +18,7 @@
 /**
  @param timeCount 秒数
  */
-- (void)lgf_TimeFailBeginFrom:(NSInteger)timeCount;
+- (void)lgf_TimeFailBeginFrom:(int)timeCount;
 
 #pragma mark - 点击后是否变灰 默认 YES
 
