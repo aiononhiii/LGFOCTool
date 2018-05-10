@@ -70,29 +70,29 @@
     NSInteger currentDateStamp = [self lgf_GetNowTimeStamp];
     NSInteger interval = [NSNumber numberWithDouble:currentDateStamp].integerValue - timeStamp;
     NSInteger time = 0;
-    if (interval < 60) {
-        return @"刚刚";
-    } else if (interval < 3600) {
-        time = interval / 60;
-        return [NSString stringWithFormat:@"%ld分钟前", time];
-    } else if (interval < 3600 * 24 && interval >= 3600) {
-        time = interval / 3600;
-        return [NSString stringWithFormat:@"%ld小时前", time];
-    }else if (interval < 3600 * 24 * 2 && interval >= 3600 * 24) {
-        return @"昨天";
-    } else if (interval < 3600 * 24 * 7 && interval > 3600 * 24 * 2) {
-        time = interval / (3600 * 24);
-        return [NSString stringWithFormat:@"%ld天前", time];
-    }  else if (interval < 3600 * 24 * 30 && interval >= 3600 * 24 * 7) {
-        time = interval / (3600 * 24 * 7);
-        return [NSString stringWithFormat:@"%ld周前", time];
-    } else if (interval < 3600 * 24 * 365 && interval >= 3600 * 24 * 30) {
-        time = interval / (3600 * 24 * 30);
-        return [NSString stringWithFormat:@"%ld个月前", time];
-    } else if (interval >= 3600 * 24 * 365) {
-        time = interval / (3600 * 24 * 365);
-        return [NSString stringWithFormat:@"%ld年前", time];
-    }
+//    if (interval < 60) {
+//        return @"刚刚";
+//    } else if (interval < 3600) {
+//        time = interval / 60;
+//        return [NSString stringWithFormat:@"%ld分钟前", time];
+//    } else if (interval < 3600 * 24 && interval >= 3600) {
+//        time = interval / 3600;
+//        return [NSString stringWithFormat:@"%ld小时前", time];
+//    }else if (interval < 3600 * 24 * 2 && interval >= 3600 * 24) {
+//        return @"昨天";
+//    } else if (interval < 3600 * 24 * 7 && interval > 3600 * 24 * 2) {
+//        time = interval / (3600 * 24);
+//        return [NSString stringWithFormat:@"%ld天前", time];
+//    }  else if (interval < 3600 * 24 * 30 && interval >= 3600 * 24 * 7) {
+//        time = interval / (3600 * 24 * 7);
+//        return [NSString stringWithFormat:@"%ld周前", time];
+//    } else if (interval < 3600 * 24 * 365 && interval >= 3600 * 24 * 30) {
+//        time = interval / (3600 * 24 * 30);
+//        return [NSString stringWithFormat:@"%ld个月前", time];
+//    } else if (interval >= 3600 * 24 * 365) {
+//        time = interval / (3600 * 24 * 365);
+//        return [NSString stringWithFormat:@"%ld年前", time];
+//    }
     return @"";
 }
 
