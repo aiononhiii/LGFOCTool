@@ -29,7 +29,7 @@
 
 #pragma mark - 获取当前时间的 时间戳
 + (NSInteger)lgf_GetNowTimeStamp {
-    NSInteger timeSp = [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] integerValue];
+    NSInteger timeSp = [[NSDate date] timeIntervalSince1970];
     NSLog(@"获取当前时间的 时间戳----timeSp:%ld", (long)timeSp);
     return timeSp;
 }
@@ -48,7 +48,7 @@
     NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
     [formatter setTimeZone:timeZone];
     NSDate* date = [formatter dateFromString:timeStr];
-    NSInteger timeSp = [[NSNumber numberWithDouble:[date timeIntervalSince1970]] integerValue];
+    NSInteger timeSp = [date timeIntervalSince1970];
     NSLog(@"将某个时间字符串转化成 时间戳----timeSp:%ld", (long)timeSp);
     return timeSp;
 }
@@ -68,7 +68,7 @@
         return @"时间错误";
     }
     NSInteger currentDateStamp = [self lgf_GetNowTimeStamp];
-    NSInteger interval = [NSNumber numberWithDouble:currentDateStamp].integerValue - timeStamp;
+    NSInteger interval = currentDateStamp - timeStamp;
     if (interval < 60) {
         return @"刚刚";
     } else if (interval < 3600) {
