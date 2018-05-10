@@ -30,7 +30,7 @@
 #pragma mark - 获取当前时间的 时间戳
 + (NSInteger)lgf_GetNowTimeStamp {
     NSInteger timeSp = [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] integerValue];
-    NSLog(@"获取当前时间的 时间戳----timeSp:%ld", timeSp);
+    NSLog(@"获取当前时间的 时间戳----timeSp:%ld", (long)timeSp);
     return timeSp;
 }
 
@@ -49,7 +49,7 @@
     [formatter setTimeZone:timeZone];
     NSDate* date = [formatter dateFromString:timeStr];
     NSInteger timeSp = [[NSNumber numberWithDouble:[date timeIntervalSince1970]] integerValue];
-//    NSLog(@"将某个时间字符串转化成 时间戳----timeSp:%ld", timeSp);
+    NSLog(@"将某个时间字符串转化成 时间戳----timeSp:%ld", (long)timeSp);
     return timeSp;
 }
 #define aYeay  (3600. * 24 * 365)
@@ -69,30 +69,23 @@
     }
     NSInteger currentDateStamp = [self lgf_GetNowTimeStamp];
     NSInteger interval = [NSNumber numberWithDouble:currentDateStamp].integerValue - timeStamp;
-    NSInteger time = 0;
-//    if (interval < 60) {
-//        return @"刚刚";
-//    } else if (interval < 3600) {
-//        time = interval / 60;
-//        return [NSString stringWithFormat:@"%ld分钟前", time];
-//    } else if (interval < 3600 * 24 && interval >= 3600) {
-//        time = interval / 3600;
-//        return [NSString stringWithFormat:@"%ld小时前", time];
-//    }else if (interval < 3600 * 24 * 2 && interval >= 3600 * 24) {
-//        return @"昨天";
-//    } else if (interval < 3600 * 24 * 7 && interval > 3600 * 24 * 2) {
-//        time = interval / (3600 * 24);
-//        return [NSString stringWithFormat:@"%ld天前", time];
-//    }  else if (interval < 3600 * 24 * 30 && interval >= 3600 * 24 * 7) {
-//        time = interval / (3600 * 24 * 7);
-//        return [NSString stringWithFormat:@"%ld周前", time];
-//    } else if (interval < 3600 * 24 * 365 && interval >= 3600 * 24 * 30) {
-//        time = interval / (3600 * 24 * 30);
-//        return [NSString stringWithFormat:@"%ld个月前", time];
-//    } else if (interval >= 3600 * 24 * 365) {
-//        time = interval / (3600 * 24 * 365);
-//        return [NSString stringWithFormat:@"%ld年前", time];
-//    }
+    if (interval < 60) {
+        return @"刚刚";
+    } else if (interval < 3600) {
+        return [NSString stringWithFormat:@"%ld分钟前", (long)(interval / 60)];
+    } else if (interval < 3600 * 24 && interval >= 3600) {
+        return [NSString stringWithFormat:@"%ld小时前", (long)(interval / 3600)];
+    }else if (interval < 3600 * 24 * 2 && interval >= 3600 * 24) {
+        return @"昨天";
+    } else if (interval < 3600 * 24 * 7 && interval > 3600 * 24 * 2) {
+        return [NSString stringWithFormat:@"%ld天前", (long)(interval / (3600 * 24))];
+    }  else if (interval < 3600 * 24 * 30 && interval >= 3600 * 24 * 7) {
+        return [NSString stringWithFormat:@"%ld周前", (long)(interval / (3600 * 24 * 7))];
+    } else if (interval < 3600 * 24 * 365 && interval >= 3600 * 24 * 30) {
+        return [NSString stringWithFormat:@"%ld个月前", (long)(interval / (3600 * 24 * 30))];
+    } else if (interval >= 3600 * 24 * 365) {
+        return [NSString stringWithFormat:@"%ld年前", (long)(interval / (3600 * 24 * 365))];
+    }
     return @"";
 }
 
@@ -130,21 +123,21 @@
     NSString *str = @"";
     if (unitType == lgf_OnlyQian) {
         if (num < 1000) {
-            str = [NSString stringWithFormat:@"%ld",num];
+            str = [NSString stringWithFormat:@"%ld",(long)num];
         } else {
             CGFloat countUse = num / 1000.0;
             str = [NSString stringWithFormat:@"%.1f%@",countUse ,unitStrType == lgf_SmallPinyin ? @"q" : unitStrType == lgf_BigPinyin ? @"Q" : @"千"];
         }
     } else if (unitType == lgf_OnlyWan) {
         if (num < 10000) {
-            str = [NSString stringWithFormat:@"%ld",num];
+            str = [NSString stringWithFormat:@"%ld",(long)num];
         } else {
             CGFloat countUse = num / 10000.0;
             str = [NSString stringWithFormat:@"%.1f%@",countUse ,unitStrType == lgf_SmallPinyin ? @"w" : unitStrType == lgf_BigPinyin ? @"W" : @"万"];
         }
     } else if (unitType == lgf_QianAndWan) {
         if (num < 1000) {
-            str = [NSString stringWithFormat:@"%ld",num];
+            str = [NSString stringWithFormat:@"%ld",(long)num];
         } else if (num < 10000) {
             CGFloat countUse = num / 1000.0;
             str = [NSString stringWithFormat:@"%.1f%@",countUse ,unitStrType == lgf_SmallPinyin ? @"q" : unitStrType == lgf_BigPinyin ? @"Q" : @"千"];
@@ -154,7 +147,7 @@
         }
     } else if (unitType == lgf_WanAndYi) {
         if (num < 10000) {
-            str = [NSString stringWithFormat:@"%ld",num];
+            str = [NSString stringWithFormat:@"%ld",(long)num];
         } else if (num < 100000000) {
             CGFloat countUse = num / 10000.0;
             str = [NSString stringWithFormat:@"%.1f%@",countUse ,unitStrType == lgf_SmallPinyin ? @"w" : unitStrType == lgf_BigPinyin ? @"W" : @"万"];
@@ -164,7 +157,7 @@
         }
     } else if (unitType == lgf_QianAndWanAndYi) {
         if (num < 1000) {
-            str = [NSString stringWithFormat:@"%ld",num];
+            str = [NSString stringWithFormat:@"%ld",(long)num];
         } else if (num < 10000) {
             CGFloat countUse = num / 1000.0;
             str = [NSString stringWithFormat:@"%.1f%@",countUse ,unitStrType == lgf_SmallPinyin ? @"q" : unitStrType == lgf_BigPinyin ? @"Q" : @"千"];
@@ -189,13 +182,13 @@
 + (NSString *)lgf_GetVideoTimeLength:(NSUInteger)timeLength delimit:(NSString *)delimit TimeFormatType:(lgf_TimeFormatType)TimeFormatType {
     NSString *str = @"";
     if (TimeFormatType == lgf_MS) {
-        str = [NSString stringWithFormat:@"%02ld%@%02ld", timeLength / 60, delimit, timeLength % 60];
+        str = [NSString stringWithFormat:@"%02ld%@%02ld", (long)(timeLength / 60), delimit, (long)(timeLength % 60)];
     } else if (TimeFormatType == lgf_HMS) {
-        str = [NSString stringWithFormat:@"%02ld%@%02ld%@%02ld", timeLength / 3600, delimit, (timeLength % 3600) / 60, delimit, timeLength % 60];
+        str = [NSString stringWithFormat:@"%02ld%@%02ld%@%02ld", (long)(timeLength / 3600), delimit, (long)((timeLength % 3600) / 60), delimit, (long)(timeLength % 60)];
     } else if (TimeFormatType == lgf_CCharacterMS) {
-        str = [NSString stringWithFormat:@"%02ld分%02ld秒", timeLength / 60 , timeLength % 60];
+        str = [NSString stringWithFormat:@"%02ld分%02ld秒", (long)(timeLength / 60) , (long)(timeLength % 60)];
     } else if (TimeFormatType == lgf_CCharacterHMS) {
-        str = [NSString stringWithFormat:@"%02ld点%02ld分%02ld秒", timeLength / 3600, (timeLength % 3600) / 60, timeLength % 60];
+        str = [NSString stringWithFormat:@"%02ld点%02ld分%02ld秒", (long)(timeLength / 3600), (long)((timeLength % 3600) / 60), (long)(timeLength % 60)];
     }
     return str;
 }
