@@ -12,6 +12,6 @@ s.requires_arc = true
 s.platform     = :ios
 s.platform     = :ios, "8.0"
 s.source   = { :git => "https://github.com/aiononhiii/LGFOCTool.git", :tag => s.version }
-s.framework  = "Foundation", "UIKit", "objc"
+s.framework  = "Foundation", "UIKit", "objc", "QuartzCore", "AssetsLibrary", "AVFoundation", "CoreGraphics", "CoreVideo", "CoreMedia", "CoreImage", "CoreLocation"
 s.source_files = "LGFOCTool/**/*.{h,m}"
 end

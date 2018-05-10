@@ -79,6 +79,14 @@ bundleName ? [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pa
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <CoreVideo/CoreVideo.h>
+#import <CoreMedia/CoreMedia.h>
+#import <CoreImage/CoreImage.h>
+#import <CoreLocation/CoreLocation.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
 #endif
