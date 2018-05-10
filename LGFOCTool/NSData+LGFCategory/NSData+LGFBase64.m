@@ -2,8 +2,8 @@
 //  NSData+LGFBase64.m
 //  LGFOCTool
 //
-//  Created by apple on 2018/5/2.
-//  Copyright © 2018年 来国锋. All rights reserved.
+//  Created by apple on 2017/5/2.
+//  Copyright © 2017年 来国锋. All rights reserved.
 //
 
 #import "NSData+LGFBase64.h"

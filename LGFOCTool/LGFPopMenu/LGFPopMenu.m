@@ -2,8 +2,8 @@
 //  LGFPopMenu.m
 //  LGFOCTool
 //
-//  Created by apple on 2018/5/9.
-//  Copyright © 2018年 来国锋. All rights reserved.
+//  Created by apple on 2017/5/9.
+//  Copyright © 2017年 来国锋. All rights reserved.
 //
 
 #import "LGFPopMenu.h"
