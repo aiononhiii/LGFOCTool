@@ -361,6 +361,15 @@
 			path = "NSString+LGFCategory";
 			sourceTree = "<group>";
 		};
+		1845E4CA20A3F62E00882152 /* LGFView */ = {
+			isa = PBXGroup;
+			children = (
+				1829CAB420A05DE400573974 /* LGFPopMenu */,
+				1829CAA3209FE27800573974 /* LGFCountDownButton */,
+			);
+			path = LGFView;
+			sourceTree = "<group>";
+		};
 		188DEFAA2094396B0014E4CA = {
 			isa = PBXGroup;
 			children = (
@@ -425,13 +434,12 @@
 		188DEFE820943A1F0014E4CA /* LGFOCTool */ = {
 			isa = PBXGroup;
 			children = (
+				1845E4CA20A3F62E00882152 /* LGFView */,
 				1829CAD320A14F3400573974 /* UIButton+LGFCategory */,
 				1829CACF20A1448F00573974 /* UIDevice+LGFCategory */,
 				1829CACB20A142AD00573974 /* UIFont+LGFCategory */,
 				1829CAC120A1380A00573974 /* UIWindow+LGFCategory */,
-				1829CAB420A05DE400573974 /* LGFPopMenu */,
 				1829CAA7209FED3000573974 /* UIView+LGFCategory */,
-				1829CAA3209FE27800573974 /* LGFCountDownButton */,
 				1829CA99209AD30600573974 /* UIViewController+LGFCategory */,
 				1829CA95209AB40700573974 /* UIImageView+LGFCategory */,
 				1829CA8B209A9DA200573974 /* UIImage+LGFCategory */,
