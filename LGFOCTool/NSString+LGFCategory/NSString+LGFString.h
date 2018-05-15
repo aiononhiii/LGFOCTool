@@ -88,5 +88,9 @@ typedef NS_ENUM(NSUInteger, lgf_TimeFormatType) {
 #pragma mark - 判断字符串是否包含 空格
 - (BOOL)lgf_IsContainBlank;
 
+#pragma mark - url Encode
+- (NSString*)lgf_UrlEncodedString;
 
+#pragma mark - url Decoded
+- (NSString*)lgf_UrlDecodedString;
 @end

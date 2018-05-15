@@ -22,36 +22,18 @@
         // 替换 viewDidLoad
         SEL viewDidLoad = @selector(viewDidLoad);
         SEL lgf_ViewDidLoad = @selector(lgf_ViewDidLoad);
-        [self lgf_MethodReplaceWithClass:class selOne:viewDidLoad selTwo:lgf_ViewDidLoad];
+        [class lgf_SwizzleMethod:viewDidLoad withMethod:lgf_ViewDidLoad];
         
         // 替换 viewDidAppear
         SEL viewDidAppear = @selector(viewDidAppear:);
         SEL lgf_ViewDidAppear = @selector(lgf_ViewDidAppear);
-        [self lgf_MethodReplaceWithClass:class selOne:viewDidAppear selTwo:lgf_ViewDidAppear];
+        [class lgf_SwizzleMethod:viewDidAppear withMethod:lgf_ViewDidAppear];
         
         // 替换 dealloc
         SEL dealloc = NSSelectorFromString(@"dealloc");
         SEL lgf_Dealloc = @selector(lgf_Dealloc);
-        [self lgf_MethodReplaceWithClass:class selOne:dealloc selTwo:lgf_Dealloc];
+        [class lgf_SwizzleMethod:dealloc withMethod:lgf_Dealloc];
     });
-}
-
-#pragma mark - 运行时方法替换
-/**
- @param class 方法所属的类
- @param selOne 被替换的方法
- @param selTwo 替换的方法
- */
-+ (void)lgf_MethodReplaceWithClass:(Class)class selOne:(SEL)selOne selTwo:(SEL)selTwo {
-    Method met_One = class_getInstanceMethod(class, selOne);
-    Method met_Two = class_getInstanceMethod(class, selTwo);
-    BOOL didAddMethod =
-    class_addMethod(class, selOne, method_getImplementation(met_Two), method_getTypeEncoding(met_Two));
-    if (didAddMethod) {
-        class_replaceMethod(class, selTwo, method_getImplementation(met_One), method_getTypeEncoding(met_One));
-    } else {
-        method_exchangeImplementations(met_One, met_Two);
-    }
 }
 
 - (void)lgf_ViewDidLoad {

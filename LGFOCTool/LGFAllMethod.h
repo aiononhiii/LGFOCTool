@@ -23,11 +23,4 @@
 #pragma mark - 返回可用系统内存容量
 + (CGFloat)lgf_GetDiskFreeSize;
 
-#pragma mark - 运行时方法替换
-/**
- @param class 方法所属的类
- @param selOne 被替换的方法
- @param selTwo 替换的方法
- */
-+ (void)lgf_MethodReplaceWithClass:(Class)class selOne:(SEL)selOne selTwo:(SEL)selTwo;
 @end

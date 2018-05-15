@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "UIButton+LGFImagePosition.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+//    -(kPermissionAccess)hasAccessToBluetoothLE;
+//    -(kPermissionAccess)hasAccessToCalendar;
+//    -(kPermissionAccess)hasAccessToContacts;
+//    -(kPermissionAccess)hasAccessToLocation;
+//    -(kPermissionAccess)hasAccessToPhotos;
+//    -(kPermissionAccess)hasAccessToReminders;
+    
     return YES;
 }
 

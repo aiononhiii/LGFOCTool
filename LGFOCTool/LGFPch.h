@@ -16,6 +16,8 @@
 #define NSLog(FORMAT, ...) nil
 #endif
 
+#define GKeyPath(objc,keyPath) @(((void)objc.keyPath,#keyPath))
+
 // 是否大于某个系统版本
 #define lgf_IOSSystemVersion(V) [[UIDevice currentDevice] systemVersion].floatValue >= (V)
 
@@ -89,6 +91,14 @@ bundleName ? [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pa
 #import <CoreLocation/CoreLocation.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <SystemConfiguration/CaptiveNetwork.h>
+#import <Photos/Photos.h>
+#import <CoreTelephony/CTCellularData.h>
+#import <AddressBook/AddressBook.h>
+#import <Contacts/Contacts.h>
+#import <HealthKit/HealthKit.h>
+#import <EventKit/EventKit.h>
 #endif
 
 //---------------------- 常用数据非空判断 ----------------------
@@ -218,3 +228,4 @@ return _instance;\
 #define lgf_GROUPMAIN(demo) dispatch_group_notify(dispatch_group_create(), dispatch_get_main_queue(), ^{demo});
 
 #endif /* LGFPch_h */
+

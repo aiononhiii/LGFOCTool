@@ -11,6 +11,8 @@
 
 @implementation LGFTopMessageView
 
+lgf_AllocOnlyOnceForM(LGFTopMessageView, shard);
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -81,22 +83,7 @@
         self.style.lgf_IconWidth = 0.0;
     }
     self.messageIcon.frame = CGRectMake(self.style.lgf_BetweenIconAndMessage, MAX(0, (self.lgf_height - self.style.lgf_IconWidth) / 2), self.style.lgf_IconWidth, self.style.lgf_IconWidth);
-    
     self.messageLabel.frame = CGRectMake(self.style.lgf_IconWidth + self.style.lgf_BetweenIconAndMessage * 2, MAX(0, (self.lgf_height - labelHeight) / 2), self.lgf_width - (self.style.lgf_BetweenIconAndMessage * 3 + self.messageIcon.lgf_width), labelHeight);
-}
-
-#pragma mark - 延迟从父视图上移除
-
-- (void)didMoveToSuperview {
-    [super didMoveToSuperview];
-    self.alpha = 1.0;
-    if (self.style.lgf_DimissDelay > 0) {
-        lgf_AFTER(self.style.lgf_DimissDelay + self.style.lgf_AnimateDuration, [self dismiss];);
-    } else {
-        if (self.style.lgf_MessageMode == lgf_Resize) {
-            lgf_AFTER(1.0 + self.style.lgf_AnimateDuration, [self dismiss];);
-        }
-    }
 }
 
 @end
@@ -139,15 +126,25 @@ static char TopMessageKey;
     
     // 动态加载 LGFTopMessageView 防止其他视图控制器添加无用属性
     LGFTopMessageView *topMessageV = objc_getAssociatedObject(self, &TopMessageKey);
-    if (!topMessageV) {
-        topMessageV = [[LGFTopMessageView alloc] initWithFrame:CGRectMake(0, startY - (style.lgf_TopBarSpacingHeight + labelHeight), CGRectGetWidth(self.view.bounds), style.lgf_TopBarSpacingHeight + labelHeight)];
-        objc_setAssociatedObject(self, &TopMessageKey, topMessageV, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        topMessageV.tapHandler = tapHandler;
-        topMessageV.style = style;
-        [self.view addSubview:topMessageV];
+    topMessageV = [LGFTopMessageView sharedshard];
+    topMessageV.frame = CGRectMake(0, startY - (style.lgf_TopBarSpacingHeight + labelHeight), CGRectGetWidth(self.view.bounds), style.lgf_TopBarSpacingHeight + labelHeight);
+    objc_setAssociatedObject(self, &TopMessageKey, topMessageV, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    topMessageV.tapHandler = tapHandler;
+    topMessageV.style = style;
+    [self.view addSubview:topMessageV];
+    
+    // 隐藏之前取消延迟
+    [NSObject cancelPreviousPerformRequestsWithTarget:topMessageV];
+    
+    // 延迟隐藏
+    if (style.lgf_DimissDelay > 0) {
+        [topMessageV performSelector:@selector(dismiss) withObject:nil afterDelay:style.lgf_DimissDelay + style.lgf_AnimateDuration];
+    } else {
+        if (style.lgf_MessageMode == lgf_Resize) {
+            [topMessageV performSelector:@selector(dismiss) withObject:nil afterDelay:1.0 + style.lgf_AnimateDuration];
+        }
     }
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
+    
     // 执行显示动画
     [UIView animateWithDuration:style.lgf_AnimateDuration animations:^{
         if (style.lgf_MessageMode == lgf_Resize) {
@@ -174,30 +171,25 @@ static char TopMessageKey;
 @implementation LGFTopMessageStyle
 
 - (instancetype)init {
-    if (self = [super init]) {
-        // 默认配置
-        self.lgf_MessageBackColor = [UIColor lgf_ColorWithHexString:@"FBF9FA"];
-        self.lgf_MessageTextColor = [UIColor blackColor];
-        self.lgf_MessageLabelFont = [UIFont systemFontOfSize:15];
-        self.lgf_MessageIcon = nil;
-        self.lgf_LabelMaxLine = 1;
-        self.lgf_MessageMode = lgf_Overlay;
-        self.lgf_DimissDelay = 2.0;
-        self.lgf_Message = @"";
-        self.lgf_IconWidth = 20.0;
-        self.lgf_BetweenIconAndMessage = 10.0;
-        self.lgf_AnimateDuration = 0.5;
-        self.lgf_TopBarSpacingHeight = 20.0;
-    }
+    self = [super init];
+    // 默认配置
+    self.lgf_MessageBackColor = [UIColor lgf_ColorWithHexString:@"FBF9FA"];
+    self.lgf_MessageTextColor = [UIColor blackColor];
+    self.lgf_MessageLabelFont = [UIFont systemFontOfSize:15];
+    self.lgf_MessageIcon = nil;
+    self.lgf_LabelMaxLine = 1;
+    self.lgf_MessageMode = lgf_Overlay;
+    self.lgf_DimissDelay = 2.0;
+    self.lgf_Message = @"";
+    self.lgf_IconWidth = 20.0;
+    self.lgf_BetweenIconAndMessage = 10.0;
+    self.lgf_AnimateDuration = 0.5;
+    self.lgf_TopBarSpacingHeight = 20.0;
     return self;
 }
 
 + (instancetype)na {
-    static LGFTopMessageStyle *style = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        style = [[LGFTopMessageStyle alloc] init];
-    });
+    LGFTopMessageStyle *style = [[LGFTopMessageStyle alloc] init];
     return style;
 }
 

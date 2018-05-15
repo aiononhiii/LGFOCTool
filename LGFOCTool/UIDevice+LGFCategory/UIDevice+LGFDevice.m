@@ -22,6 +22,8 @@
 #import <mach/mach.h>
 #import <mach/mach_host.h>
 #import <mach/processor_info.h>
+#import <ifaddrs.h>
+#import <arpa/inet.h>
 
 @implementation UIDevice (LGFDevice)
 
@@ -370,7 +372,7 @@
         printf("Error: sysctl, take 2");
         return NULL;
     }
-
+    
     ifm = (struct if_msghdr *)buf;
     sdl = (struct sockaddr_dl *)(ifm + 1);
     ptr = (unsigned char *)LLADDR(sdl);
@@ -418,62 +420,151 @@
     return [self lgf_GetSysInfo:HW_MEMSIZE];
 }
 
+#pragma mark - 返回电池电量
+
++ (float)lgf_BatteryQuantity {
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+    return [[UIDevice currentDevice] batteryLevel];
+}
+
 #pragma mark - 返回当前设备 CPU 型号
 
 + (NSUInteger)lgf_CpuNumber {
     return [self lgf_GetSysInfo:HW_NCPU];
 }
 
-#pragma mark - 获取手机内存总量, 返回的是字节数
+#pragma mark - 获取手机内存总容量, 返回的是字节数
 
-+ (NSUInteger)lgf_TotalMemoryBytes {
-    return [self lgf_GetSysInfo:HW_PHYSMEM];
++ (long long)lgf_TotalMemorySize {
+    return [NSProcessInfo processInfo].physicalMemory;
 }
 
-#pragma mark - 获取手机可用内存, 返回的是字节数
+#pragma mark - 获取手机内存可用容量, 返回的是字节数
 
-+ (NSUInteger)lgf_FreeMemoryBytes {
-    mach_port_t host_port = mach_host_self();
-    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
-    vm_size_t pagesize;
-    vm_statistics_data_t vm_stat;
-    
-    host_page_size(host_port, &pagesize);
-    if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
-        return 0;
++ (long long)lgf_FreeMemorySize {
+    vm_statistics_data_t vmStats;
+    mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;
+    kern_return_t kernReturn = host_statistics(mach_host_self(), HOST_VM_INFO, (host_info_t)&vmStats, &infoCount);
+    if (kernReturn != KERN_SUCCESS)
+    {
+        return NSNotFound;
     }
-    unsigned long mem_free = vm_stat.free_count * pagesize;
-    return mem_free;
+    return ((vm_page_size * vmStats.free_count + vm_page_size * vmStats.inactive_count));
+}
+
+#pragma mark - 获取手机内存已用容量, 返回的是字节数
+
++ (long long)lgf_UsedMemorySize {
+    task_basic_info_data_t taskInfo;
+    mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;
+    kern_return_t kernReturn = task_info(mach_task_self(),
+                                         TASK_BASIC_INFO,
+                                         (task_info_t)&taskInfo,
+                                         &infoCount);
+    
+    if (kernReturn != KERN_SUCCESS
+        ) {
+        return NSNotFound;
+    }
+    
+    return taskInfo.resident_size;
+}
+
+#pragma mark - 获取手机硬盘总容量, 返回的是字节数
+
++ (long long)lgf_TotalDiskSize {
+    struct statfs buf;
+    unsigned long long maxspace = -1;
+    if (statfs("/var", &buf) >= 0)
+    {
+        maxspace = (unsigned long long)(buf.f_bsize * buf.f_blocks);
+    }
+    return maxspace;
+}
+
+#pragma mark - 获取手机可用硬盘容量, 返回的是字节数
+
++ (long long)lgf_FreeDiskSize {
+    struct statfs buf;
+    unsigned long long freeSpace = -1;
+    if (statfs("/var", &buf) >= 0)
+    {
+        freeSpace = (unsigned long long)(buf.f_bsize * buf.f_bavail);
+    }
+    return freeSpace;
+}
+
+#pragma mark - 获取手机已用硬盘容量, 返回的是字节数
+
++ (long long)lgf_UsedDiskSize {
+    return [self lgf_TotalDiskSize] - [self lgf_FreeDiskSize];
+}
+
+#pragma mark - 获取手机可用内存,转换成可视字符串
+
++ (NSString *)lgf_DiskSizeToString:(unsigned long long)diskSize {
+    NSInteger KB = 1024;
+    NSInteger MB = KB*KB;
+    NSInteger GB = MB*KB;
+    
+    if (diskSize < 10) {
+        return @"0 B";
+    }else if (diskSize < KB) {
+        return @"< 1 KB";
+    }else if (diskSize < MB) {
+        return [NSString stringWithFormat:@"%.1fKB",((CGFloat)diskSize)/KB];
+    }else if (diskSize < GB) {
+        return [NSString stringWithFormat:@"%.1fMB",((CGFloat)diskSize)/MB];
+    }else   {
+        return [NSString stringWithFormat:@"%.1fGB",((CGFloat)diskSize)/GB];
+    }
+}
+
+#pragma mark - 取得当前网络环境IP地址
+
++ (NSString *)lgf_IPAddress {
+    NSString *address = @"error";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free memory
+    freeifaddrs(interfaces);
+    return address;
+}
+
+#pragma mark - 取得当前连接Wifi名字
+
++ (NSString *)lgf_WifiName {
+    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+    NSLog(@"Supported interfaces: %@", ifs);
+    NSDictionary *info = nil;
+    for (NSString *ifnam in ifs) {
+        info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+        if (info && [info count]) { break; }
+    }
+    return info[@"SSID"];
 }
 
 #pragma mark - 获取当前设备 UUID
 
 + (NSString *)lgf_DeviceUUID {
     return [UIDevice currentDevice].identifierForVendor.UUIDString;
-}
-
-#pragma mark - 获取手机硬盘空闲空间, 返回的是字节数
-
-+ (long long)lgf_FreeDiskSpaceBytes {
-    struct statfs buf;
-    long long freespace;
-    freespace = 0;
-    if ( statfs("/private/var", &buf) >= 0 ) {
-        freespace = (long long)buf.f_bsize * buf.f_bfree;
-    }
-    return freespace;
-}
-
-#pragma mark - 获取手机硬盘总空间, 返回的是字节数
-
-+ (long long)lgf_TotalDiskSpaceBytes {
-    struct statfs buf;
-    long long totalspace;
-    totalspace = 0;
-    if ( statfs("/private/var", &buf) >= 0 ) {
-        totalspace = (long long)buf.f_bsize * buf.f_blocks;
-    }
-    return totalspace;
 }
 
 #pragma mark - 是否打开手电筒

@@ -42,6 +42,21 @@
 		184235BA2099A9E50006483C /* NSString+LGFTextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235B92099A9E50006483C /* NSString+LGFTextSize.m */; };
 		184235BD2099B4120006483C /* NSString+LGFTrims.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235BC2099B4120006483C /* NSString+LGFTrims.m */; };
 		184235C02099B57F0006483C /* NSString+LGFBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235BF2099B57F0006483C /* NSString+LGFBase64.m */; };
+		1845E4D120A4296500882152 /* LGFAllPermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845E4D020A4296500882152 /* LGFAllPermissions.m */; };
+		18486BA120A58BB500C4F723 /* NSObject+LGFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA020A58BB500C4F723 /* NSObject+LGFModel.m */; };
+		18486BA420A58C7900C4F723 /* LGFClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA220A58C7800C4F723 /* LGFClassInfo.m */; };
+		18486BA720A58EB100C4F723 /* NSObject+LGFReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA620A58EB100C4F723 /* NSObject+LGFReflection.m */; };
+		18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */; };
+		18486BAE20A91A8300C4F723 /* LGFTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BAD20A91A8300C4F723 /* LGFTimer.m */; };
+		18486BB220A9237100C4F723 /* CLLocation+LGFCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB120A9237100C4F723 /* CLLocation+LGFCLLocation.m */; };
+		18486BB620A9250800C4F723 /* NSDictionary+LGFToJSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB520A9250800C4F723 /* NSDictionary+LGFToJSONString.m */; };
+		18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB920A9265000C4F723 /* NSArray+LGFToJSONString.m */; };
+		18486BBD20A9319D00C4F723 /* UIButton+LGFIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BBC20A9319D00C4F723 /* UIButton+LGFIndicator.m */; };
+		18486BC620A93DB200C4F723 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BC520A93DB200C4F723 /* NSObject+LGFRuntime.m */; };
+		18486BCD20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BCC20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m */; };
+		18486BD120A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BD020A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m */; };
+		18486BD420A993A600C4F723 /* UIView+LGFRotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BD320A993A600C4F723 /* UIView+LGFRotateAnimation.m */; };
+		1861A58420A5617200559623 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1861A58320A5617200559623 /* HealthKit.framework */; };
 		188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFB72094396C0014E4CA /* AppDelegate.m */; };
 		188DEFBB2094396C0014E4CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFBA2094396C0014E4CA /* ViewController.m */; };
 		188DEFBE2094396C0014E4CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188DEFBC2094396C0014E4CA /* Main.storyboard */; };
@@ -140,6 +155,36 @@
 		184235BC2099B4120006483C /* NSString+LGFTrims.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFTrims.m"; sourceTree = "<group>"; };
 		184235BE2099B57F0006483C /* NSString+LGFBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFBase64.h"; sourceTree = "<group>"; };
 		184235BF2099B57F0006483C /* NSString+LGFBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFBase64.m"; sourceTree = "<group>"; };
+		1845E4CF20A4296500882152 /* LGFAllPermissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAllPermissions.h; sourceTree = "<group>"; };
+		1845E4D020A4296500882152 /* LGFAllPermissions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFAllPermissions.m; sourceTree = "<group>"; };
+		18486B9F20A58BB500C4F723 /* NSObject+LGFModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFModel.h"; sourceTree = "<group>"; };
+		18486BA020A58BB500C4F723 /* NSObject+LGFModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFModel.m"; sourceTree = "<group>"; };
+		18486BA220A58C7800C4F723 /* LGFClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFClassInfo.m; sourceTree = "<group>"; };
+		18486BA320A58C7800C4F723 /* LGFClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFClassInfo.h; sourceTree = "<group>"; };
+		18486BA520A58EB100C4F723 /* NSObject+LGFReflection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFReflection.h"; sourceTree = "<group>"; };
+		18486BA620A58EB100C4F723 /* NSObject+LGFReflection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFReflection.m"; sourceTree = "<group>"; };
+		18486BA820A5917E00C4F723 /* NSObject+LGFKVOBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFKVOBlocks.h"; sourceTree = "<group>"; };
+		18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFKVOBlocks.m"; sourceTree = "<group>"; };
+		18486BAC20A91A8300C4F723 /* LGFTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFTimer.h; sourceTree = "<group>"; };
+		18486BAD20A91A8300C4F723 /* LGFTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFTimer.m; sourceTree = "<group>"; };
+		18486BB020A9237100C4F723 /* CLLocation+LGFCLLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+LGFCLLocation.h"; sourceTree = "<group>"; };
+		18486BB120A9237100C4F723 /* CLLocation+LGFCLLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LGFCLLocation.m"; sourceTree = "<group>"; };
+		18486BB420A9250800C4F723 /* NSDictionary+LGFToJSONString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LGFToJSONString.h"; sourceTree = "<group>"; };
+		18486BB520A9250800C4F723 /* NSDictionary+LGFToJSONString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LGFToJSONString.m"; sourceTree = "<group>"; };
+		18486BB820A9265000C4F723 /* NSArray+LGFToJSONString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LGFToJSONString.h"; sourceTree = "<group>"; };
+		18486BB920A9265000C4F723 /* NSArray+LGFToJSONString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LGFToJSONString.m"; sourceTree = "<group>"; };
+		18486BBB20A9319D00C4F723 /* UIButton+LGFIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LGFIndicator.h"; sourceTree = "<group>"; };
+		18486BBC20A9319D00C4F723 /* UIButton+LGFIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LGFIndicator.m"; sourceTree = "<group>"; };
+		18486BC420A93DB200C4F723 /* NSObject+LGFRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFRuntime.h"; sourceTree = "<group>"; };
+		18486BC520A93DB200C4F723 /* NSObject+LGFRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFRuntime.m"; sourceTree = "<group>"; };
+		18486BCB20A98E0C00C4F723 /* UIWebView+LGFClearCookies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWebView+LGFClearCookies.h"; sourceTree = "<group>"; };
+		18486BCC20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+LGFClearCookies.m"; sourceTree = "<group>"; };
+		18486BCF20A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+LGFTabBarAnimatedHidden.h"; sourceTree = "<group>"; };
+		18486BD020A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+LGFTabBarAnimatedHidden.m"; sourceTree = "<group>"; };
+		18486BD220A993A600C4F723 /* UIView+LGFRotateAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFRotateAnimation.h"; sourceTree = "<group>"; };
+		18486BD320A993A600C4F723 /* UIView+LGFRotateAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFRotateAnimation.m"; sourceTree = "<group>"; };
+		1861A58120A5617200559623 /* LGFOCTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LGFOCTool.entitlements; sourceTree = "<group>"; };
+		1861A58320A5617200559623 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		188DEFB32094396C0014E4CA /* LGFOCTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGFOCTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188DEFB62094396C0014E4CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188DEFB72094396C0014E4CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -166,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1861A58420A5617200559623 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +333,8 @@
 				1829CAC920A140A100573974 /* UIView+LGFViewController.m */,
 				1829CADD20A1703F00573974 /* UIView+LGFGSView.h */,
 				1829CADE20A1703F00573974 /* UIView+LGFGSView.m */,
+				18486BD220A993A600C4F723 /* UIView+LGFRotateAnimation.h */,
+				18486BD320A993A600C4F723 /* UIView+LGFRotateAnimation.m */,
 			);
 			path = "UIView+LGFCategory";
 			sourceTree = "<group>";
@@ -334,6 +382,8 @@
 			children = (
 				1829CAD420A14FB200573974 /* UIButton+LGFImagePosition.h */,
 				1829CAD520A14FB200573974 /* UIButton+LGFImagePosition.m */,
+				18486BBB20A9319D00C4F723 /* UIButton+LGFIndicator.h */,
+				18486BBC20A9319D00C4F723 /* UIButton+LGFIndicator.m */,
 			);
 			path = "UIButton+LGFCategory";
 			sourceTree = "<group>";
@@ -364,10 +414,97 @@
 		1845E4CA20A3F62E00882152 /* LGFView */ = {
 			isa = PBXGroup;
 			children = (
+				18486BAB20A91A5600C4F723 /* LGFTimer */,
 				1829CAB420A05DE400573974 /* LGFPopMenu */,
 				1829CAA3209FE27800573974 /* LGFCountDownButton */,
 			);
 			path = LGFView;
+			sourceTree = "<group>";
+		};
+		1845E4CB20A4270000882152 /* UIApplication+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "UIApplication+LGFCategory";
+			sourceTree = "<group>";
+		};
+		18486B9E20A58B9600C4F723 /* NSObject+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				18486BA320A58C7800C4F723 /* LGFClassInfo.h */,
+				18486BA220A58C7800C4F723 /* LGFClassInfo.m */,
+				18486B9F20A58BB500C4F723 /* NSObject+LGFModel.h */,
+				18486BA020A58BB500C4F723 /* NSObject+LGFModel.m */,
+				18486BA520A58EB100C4F723 /* NSObject+LGFReflection.h */,
+				18486BA620A58EB100C4F723 /* NSObject+LGFReflection.m */,
+				18486BA820A5917E00C4F723 /* NSObject+LGFKVOBlocks.h */,
+				18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */,
+				18486BC420A93DB200C4F723 /* NSObject+LGFRuntime.h */,
+				18486BC520A93DB200C4F723 /* NSObject+LGFRuntime.m */,
+			);
+			path = "NSObject+LGFCategory";
+			sourceTree = "<group>";
+		};
+		18486BAB20A91A5600C4F723 /* LGFTimer */ = {
+			isa = PBXGroup;
+			children = (
+				18486BAC20A91A8300C4F723 /* LGFTimer.h */,
+				18486BAD20A91A8300C4F723 /* LGFTimer.m */,
+			);
+			path = LGFTimer;
+			sourceTree = "<group>";
+		};
+		18486BAF20A9233A00C4F723 /* CLLocation+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				18486BB020A9237100C4F723 /* CLLocation+LGFCLLocation.h */,
+				18486BB120A9237100C4F723 /* CLLocation+LGFCLLocation.m */,
+			);
+			path = "CLLocation+LGFCategory";
+			sourceTree = "<group>";
+		};
+		18486BB320A924C300C4F723 /* NSDictionary+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				18486BB420A9250800C4F723 /* NSDictionary+LGFToJSONString.h */,
+				18486BB520A9250800C4F723 /* NSDictionary+LGFToJSONString.m */,
+			);
+			path = "NSDictionary+LGFCategory";
+			sourceTree = "<group>";
+		};
+		18486BB720A9263600C4F723 /* NSArray+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				18486BB820A9265000C4F723 /* NSArray+LGFToJSONString.h */,
+				18486BB920A9265000C4F723 /* NSArray+LGFToJSONString.m */,
+			);
+			path = "NSArray+LGFCategory";
+			sourceTree = "<group>";
+		};
+		18486BCA20A98DD900C4F723 /* UIWebView+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				18486BCB20A98E0C00C4F723 /* UIWebView+LGFClearCookies.h */,
+				18486BCC20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m */,
+			);
+			path = "UIWebView+LGFCategory";
+			sourceTree = "<group>";
+		};
+		18486BCE20A990EE00C4F723 /* UITabBarController+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				18486BCF20A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.h */,
+				18486BD020A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m */,
+			);
+			path = "UITabBarController+LGFCategory";
+			sourceTree = "<group>";
+		};
+		1861A58220A5617200559623 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1861A58320A5617200559623 /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		188DEFAA2094396B0014E4CA = {
@@ -377,6 +514,7 @@
 				188DEFCE2094396C0014E4CA /* LGFOCToolTests */,
 				188DEFD92094396C0014E4CA /* LGFOCToolUITests */,
 				188DEFB42094396C0014E4CA /* Products */,
+				1861A58220A5617200559623 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -393,6 +531,7 @@
 		188DEFB52094396C0014E4CA /* LGFOCTool */ = {
 			isa = PBXGroup;
 			children = (
+				1861A58120A5617200559623 /* LGFOCTool.entitlements */,
 				1829CAD720A1534A00573974 /* testIcon.png */,
 				188DF030209444F00014E4CA /* pullToRefresh.gif */,
 				188DEFE820943A1F0014E4CA /* LGFOCTool */,
@@ -434,6 +573,13 @@
 		188DEFE820943A1F0014E4CA /* LGFOCTool */ = {
 			isa = PBXGroup;
 			children = (
+				18486BCE20A990EE00C4F723 /* UITabBarController+LGFCategory */,
+				18486BCA20A98DD900C4F723 /* UIWebView+LGFCategory */,
+				18486BB720A9263600C4F723 /* NSArray+LGFCategory */,
+				18486BB320A924C300C4F723 /* NSDictionary+LGFCategory */,
+				18486BAF20A9233A00C4F723 /* CLLocation+LGFCategory */,
+				18486B9E20A58B9600C4F723 /* NSObject+LGFCategory */,
+				1845E4CB20A4270000882152 /* UIApplication+LGFCategory */,
 				1845E4CA20A3F62E00882152 /* LGFView */,
 				1829CAD320A14F3400573974 /* UIButton+LGFCategory */,
 				1829CACF20A1448F00573974 /* UIDevice+LGFCategory */,
@@ -453,6 +599,8 @@
 				188DF032209446020014E4CA /* LGFPch.h */,
 				1842359F20995EBC0006483C /* LGFAllMethod.h */,
 				184235A020995EBC0006483C /* LGFAllMethod.m */,
+				1845E4CF20A4296500882152 /* LGFAllPermissions.h */,
+				1845E4D020A4296500882152 /* LGFAllPermissions.m */,
 			);
 			name = LGFOCTool;
 			path = ../../LGFOCTool;
@@ -526,6 +674,11 @@
 					188DEFB22094396C0014E4CA = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					188DEFCA2094396C0014E4CA = {
 						CreatedOnToolsVersion = 9.2;
@@ -593,32 +746,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18486BA720A58EB100C4F723 /* NSObject+LGFReflection.m in Sources */,
+				18486BD420A993A600C4F723 /* UIView+LGFRotateAnimation.m in Sources */,
 				1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */,
 				1829CA89209A98A500573974 /* UIColor+LGFColor.m in Sources */,
+				18486BA120A58BB500C4F723 /* NSObject+LGFModel.m in Sources */,
 				188DEFBB2094396C0014E4CA /* ViewController.m in Sources */,
 				184235A120995EBC0006483C /* LGFAllMethod.m in Sources */,
+				18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */,
 				184235B02099994C0006483C /* NSString+LGFPinyin.m in Sources */,
 				1829CAAD209FEDC000573974 /* UIView+LGFExtension.m in Sources */,
+				18486BA420A58C7900C4F723 /* LGFClassInfo.m in Sources */,
+				18486BAE20A91A8300C4F723 /* LGFTimer.m in Sources */,
+				18486BB620A9250800C4F723 /* NSDictionary+LGFToJSONString.m in Sources */,
+				18486BBD20A9319D00C4F723 /* UIButton+LGFIndicator.m in Sources */,
 				1829CA84209A960900573974 /* UIColor+LGFGradient.m in Sources */,
 				1829CA98209AB43000573974 /* UIImageView+LGFImageView.m in Sources */,
 				1829CAB320A05CB500573974 /* PopViewController.m in Sources */,
 				1829CAA2209AD90500573974 /* FirstViewController.m in Sources */,
 				184235BA2099A9E50006483C /* NSString+LGFTextSize.m in Sources */,
 				1829CA8E209A9DD100573974 /* UIImage+LGFImage.m in Sources */,
+				1845E4D120A4296500882152 /* LGFAllPermissions.m in Sources */,
 				1829CACE20A142D500573974 /* UIFont+LGFLoadTTF.m in Sources */,
 				188DEFC62094396C0014E4CA /* main.m in Sources */,
+				18486BCD20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m in Sources */,
 				1829CAA6209FE2C900573974 /* LGFCountDownButton.m in Sources */,
 				184235B72099A6240006483C /* NSString+LGFRemoveEmoji.m in Sources */,
+				18486BB220A9237100C4F723 /* CLLocation+LGFCLLocation.m in Sources */,
 				1829CA7C2099B68F00573974 /* NSData+LGFBase64.m in Sources */,
 				1829CA9F209AD62000573974 /* UIViewController+LGFTopBarMessage.m in Sources */,
+				18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */,
 				1829CACA20A140A100573974 /* UIView+LGFViewController.m in Sources */,
 				1829CA9C209AD34D00573974 /* UIViewController+LGFVCLog.m in Sources */,
 				1829CA94209AB04200573974 /* UIImage+LGFPDFImage.m in Sources */,
 				1842359E209956E50006483C /* NSString+LGFString.m in Sources */,
+				18486BC620A93DB200C4F723 /* NSObject+LGFRuntime.m in Sources */,
 				188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */,
 				184235BD2099B4120006483C /* NSString+LGFTrims.m in Sources */,
 				184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */,
 				1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */,
+				18486BD120A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m in Sources */,
 				184235AA209982780006483C /* UITextField+LGFTextField.m in Sources */,
 				1829CAE820A2D67700573974 /* LGFPopMenu.m in Sources */,
 				184235AD209994D70006483C /* NSString+LGFHash.m in Sources */,
@@ -792,12 +959,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LGFOCTool/LGFOCTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96RN4L9K39;
 				INFOPLIST_FILE = LGFOCTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = lgf.lyb.LGFOCTool;
+				PRODUCT_BUNDLE_IDENTIFIER = lgf.LGFOCTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -807,12 +975,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LGFOCTool/LGFOCTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96RN4L9K39;
 				INFOPLIST_FILE = LGFOCTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = lgf.lyb.LGFOCTool;
+				PRODUCT_BUNDLE_IDENTIFIER = lgf.LGFOCTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

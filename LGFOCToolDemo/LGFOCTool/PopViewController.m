@@ -19,7 +19,6 @@
     return lgf_GetSBVC(PopViewController, @"Main", nil);
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

@@ -52,6 +52,7 @@ typedef NS_ENUM(NSUInteger, lgf_TopBarMessageMode) {
 @property (nonatomic, strong) UILabel *messageLabel;
 // 点击回调 Block
 @property (nonatomic, copy) dispatch_block_t tapHandler;
+lgf_AllocOnlyOnceForH(shard);
 @end
 
 #pragma mark - 提示view UIViewController 分类结合

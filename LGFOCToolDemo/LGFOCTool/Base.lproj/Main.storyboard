@@ -70,7 +70,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckY-Jb-F0f" customClass="LGFCountDownButton">
-                                <rect key="frame" x="95" y="84" width="130" height="34"/>
+                                <rect key="frame" x="120" y="164" width="105" height="34"/>
                                 <color key="backgroundColor" red="0.1151243263" green="0.63202034780000005" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="发送验证码"/>
                                 <userDefinedRuntimeAttributes>
@@ -101,13 +101,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdY-Q6-b6C">
-                                <rect key="frame" x="88" y="167" width="200" height="200"/>
+                                <rect key="frame" x="138" y="242" width="100" height="50"/>
                                 <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Lyh-le-pg5"/>
-                                    <constraint firstAttribute="width" constant="200" id="p6x-mn-vpD"/>
+                                    <constraint firstAttribute="height" constant="50" id="Lyh-le-pg5"/>
+                                    <constraint firstAttribute="width" constant="100" id="p6x-mn-vpD"/>
                                 </constraints>
-                                <state key="normal" title="Bu" image="testIcon.png">
+                                <state key="normal" title="Bu">
                                     <color key="titleColor" red="0.10460177900000001" green="0.76730488990000001" blue="0.70845564480000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
@@ -142,14 +142,19 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P0B-Po-fB5">
+                                <rect key="frame" x="16" y="132" width="95" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.60856541450000001" green="0.28456578360000001" blue="0.36523647110000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vdq-Uw-qZS" firstAttribute="top" secondItem="Kw3-m2-dAI" secondAttribute="bottom" constant="300" id="3zg-e8-Cp2"/>
-                            <constraint firstItem="ckY-Jb-F0f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="95" id="7ZX-ZG-wbg"/>
+                            <constraint firstItem="ckY-Jb-F0f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="120" id="7ZX-ZG-wbg"/>
                             <constraint firstAttribute="trailing" secondItem="ckY-Jb-F0f" secondAttribute="trailing" constant="150" id="94r-NV-B75"/>
                             <constraint firstAttribute="trailing" secondItem="vdq-Uw-qZS" secondAttribute="trailing" id="A35-1G-EZS"/>
-                            <constraint firstItem="ckY-Jb-F0f" firstAttribute="top" secondItem="Kw3-m2-dAI" secondAttribute="bottom" constant="20" id="Az1-ZT-Ssj"/>
+                            <constraint firstItem="ckY-Jb-F0f" firstAttribute="top" secondItem="Kw3-m2-dAI" secondAttribute="bottom" constant="100" id="Az1-ZT-Ssj"/>
                             <constraint firstItem="V2a-o9-mjj" firstAttribute="top" secondItem="vdq-Uw-qZS" secondAttribute="bottom" id="Dj9-kt-UBn"/>
                             <constraint firstItem="JdY-Q6-b6C" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Opv-YD-rTU"/>
                             <constraint firstItem="7iN-ax-Fqy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h0L-zZ-9JE"/>
@@ -166,11 +171,12 @@
                         <outlet property="testBtnTwo" destination="JdY-Q6-b6C" id="NmH-6f-RL6"/>
                         <outlet property="testCV" destination="vdq-Uw-qZS" id="8GB-Wu-3lW"/>
                         <outlet property="testImage" destination="7iN-ax-Fqy" id="9gN-3E-SI5"/>
+                        <outlet property="testview" destination="P0B-Po-fB5" id="JLg-gg-Tqk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1100" y="134"/>
+            <point key="canvasLocation" x="1100" y="133.5832083958021"/>
         </scene>
         <!--Pop View Controller-->
         <scene sceneID="WGp-Qu-7s3">
@@ -237,7 +243,4 @@
             <point key="canvasLocation" x="228" y="133.5832083958021"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="testIcon.png" width="162" height="162"/>
-    </resources>
 </document>

@@ -113,6 +113,10 @@ typedef enum {
 
 + (NSUInteger)lgf_RamSize;
 
+#pragma mark - 返回电池电量
+
++ (float)lgf_BatteryQuantity;
+
 #pragma mark - 返回当前设备 CPU 型号
 
 + (NSUInteger)lgf_CpuNumber;
@@ -125,25 +129,45 @@ typedef enum {
 
 + (BOOL)lgf_HasCamera;
 
-#pragma mark - 获取手机内存总量, 返回的是字节数
+#pragma mark - 获取手机内存总容量, 返回的是字节数
 
-+ (NSUInteger)lgf_TotalMemoryBytes;
++ (long long)lgf_TotalMemorySize;
 
-#pragma mark - 获取手机可用内存, 返回的是字节数
+#pragma mark - 获取手机内存可用容量, 返回的是字节数
 
-+ (NSUInteger)lgf_FreeMemoryBytes;
++ (long long)lgf_FreeMemorySize;
+
+#pragma mark - 获取手机内存已用容量, 返回的是字节数
+
++ (long long)lgf_UsedMemorySize;
+
+#pragma mark - 获取手机硬盘总容量, 返回的是字节数
+
++ (long long)lgf_TotalDiskSize;
+
+#pragma mark - 获取手机可用硬盘容量, 返回的是字节数
+
++ (long long)lgf_FreeDiskSize;
+
+#pragma mark - 获取手机已用硬盘容量, 返回的是字节数
+
++ (long long)lgf_UsedDiskSize;
+
+#pragma mark - 获取手机硬盘容量,转换成可视字符串
+
++ (NSString *)lgf_DiskSizeToString:(unsigned long long)fileSize;
+
+#pragma mark - 取得当前网络环境IP地址
+
++ (NSString *)lgf_IPAddress;
+
+#pragma mark - 取得当前连接Wifi名字
+
++ (NSString *)lgf_WifiName;
 
 #pragma mark - 获取当前设备 UUID
 
 + (NSString *)lgf_DeviceUUID;
-
-#pragma mark - 获取手机硬盘空闲空间, 返回的是字节数
-
-+ (long long)lgf_FreeDiskSpaceBytes;
-
-#pragma mark - 获取手机硬盘总空间, 返回的是字节数
-
-+ (long long)lgf_TotalDiskSpaceBytes;
 
 #pragma mark - 打开手电筒
 /**
@@ -152,3 +176,4 @@ typedef enum {
 + (void)lgf_TurnOnTheFlashlight:(BOOL)isOn;
 
 @end
+
