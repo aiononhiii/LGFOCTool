@@ -9,22 +9,20 @@
 #import "LGFTimer.h"
 
 @interface LGFTimer()
-{
-    BOOL isValid;
-    BOOL yesOrNo;
-}
 @property  NSTimeInterval ti;
 @property (nullable, weak) id atarget;
 @property (nullable, nonatomic, assign) SEL aSelector;
-@property (nullable, strong) id userInfo;
+@property (nullable, retain) id userInfo;
+@property (assign, nonatomic) BOOL isValid;
+@property (assign, nonatomic) BOOL yesOrNo;
 @end
 
 @implementation LGFTimer
 
 - (id)init{
     self = [super init];
-    isValid = YES;
-    yesOrNo = YES;
+    self.isValid = YES;
+    self.yesOrNo = YES;
     return self;
 }
 
@@ -58,10 +56,10 @@
 -(void)lgf_RepeatSelector{
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.ti * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        if (yesOrNo) {
+        if (self.yesOrNo) {
             [self.atarget performSelectorOnMainThread:self.aSelector withObject:self.userInfo waitUntilDone:NO];
         }
-        if (isValid) {
+        if (self.isValid) {
             [self lgf_RepeatSelector];
         }
     });
@@ -72,19 +70,19 @@
 
 
 - (void)lgf_TimerReStart {
-    yesOrNo = YES;
+    self.yesOrNo = YES;
 }
 
 #pragma mark - 暂停定时器
 
 - (void)lgf_TimerStop {
-    yesOrNo = NO;
+    self.yesOrNo = NO;
 }
 
 #pragma mark - 销毁定时器
 
 - (void)lgf_TimerInvalidate {
-    isValid = NO;
+    self.isValid = NO;
 }
 
 @end
