@@ -7,7 +7,6 @@
 //
 
 #import "LGFTimer.h"
-#import "LGFOCTool.h"
 
 @interface LGFTimer()
 {
@@ -17,7 +16,7 @@
 @property  NSTimeInterval ti;
 @property (nullable, weak) id atarget;
 @property (nullable, nonatomic, assign) SEL aSelector;
-@property (nullable, retain) id userInfo;
+@property (nullable, strong) id userInfo;
 @end
 
 @implementation LGFTimer
@@ -57,10 +56,8 @@
 }
 
 -(void)lgf_RepeatSelector{
-    @lgf_Weak(self);
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.ti * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        @lgf_Strong(self);
         if (yesOrNo) {
             [self.atarget performSelectorOnMainThread:self.aSelector withObject:self.userInfo waitUntilDone:NO];
         }
