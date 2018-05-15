@@ -54,6 +54,8 @@
 }
 
 -(void)lgf_RepeatSelector{
+#pragma clang diagnostic push
+#pragma clang diagnostic warning "-Wimplicit-retain-self"
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.ti * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         if (self.yesOrNo) {
@@ -63,7 +65,7 @@
             [self lgf_RepeatSelector];
         }
     });
-    
+#pragma clang diagnostic pop
 }
 
 #pragma mark - 开始定时器
