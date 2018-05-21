@@ -14,6 +14,19 @@
 /**
  @param maxLength 限制的长度
  */
-- (void)limitIncludeForLength:(NSUInteger)maxLength;
+- (void)lgf_LimitIncludeForLength:(NSUInteger)maxLength;
+
+#pragma mark - 关键字高亮
+/**
+ @param color 关键字高亮颜色
+ @param text 高亮关键字
+ */
+- (void)lgf_KeywordHighlightColor:(UIColor *)color text:(NSString *)text;
+/**
+ @param color 关键字高亮颜色
+ @param font 关键字字体
+ @param text 高亮关键字
+ */
+- (void)lgf_KeywordHighlightColor:(UIColor *)color font:(UIFont *)font text:(NSString *)text;
 
 @end

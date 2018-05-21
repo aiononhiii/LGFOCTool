@@ -49,17 +49,17 @@
 // 获取对应名字 storyboard
 #undef lgf_GetSBWithName
 #define lgf_GetSBWithName(sbStrName, bundleStrName)\
-[UIStoryboard storyboardWithName:sbStrName bundle:lgf_Bundle(bundleStrName)]
+[UIStoryboard storyboardWithName:(sbStrName) bundle:lgf_Bundle(bundleStrName)]
 
 // storyboard
 #undef lgf_GetSBVC
-#define lgf_GetSBVC(vcClass, sbStrName, bundleStrName)\
-[lgf_GetSBWithName((sbStrName), (bundleStrName)) instantiateViewControllerWithIdentifier:NSStringFromClass([vcClass class])]
+#define lgf_GetSBVC(classStr, bundleStrName)\
+[[UIStoryboard storyboardWithName:(classStr) bundle:[NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:(bundleStrName) ofType:@"bundle"]]] instantiateViewControllerWithIdentifier:(classStr)]
 
 // 资源文件 Bundle
 #undef lgf_Bundle
 #define lgf_Bundle(bundleName)\
-bundleName ? [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:bundleName ofType:@"bundle"]] ?: [NSBundle mainBundle] : [NSBundle mainBundle]
+[NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:bundleName ofType:@"bundle"]] ?: [NSBundle mainBundle]
 
 //---------------------- 常用系统信息获取 ----------------------
 

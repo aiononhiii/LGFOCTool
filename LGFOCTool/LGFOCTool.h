@@ -77,6 +77,8 @@
 #import "UIView+LGFGSView.h"
 // 添加旋转动画 可断点暂停
 #import "UIView+LGFRotateAnimation.h"
+// Toast提示
+#import "UIView+LGFToast.h"
 //------------------ UIButton 分类集合 ------------------
 // 设置按钮图片的位置
 #import "UIButton+LGFImagePosition.h"
@@ -103,6 +105,7 @@
 //------------------ NSArray 分类集合 --------------------
 // 数组转josn字符串
 #import "NSArray+LGFToJSONString.h"
+#import "NSMutableArray+LGFMutableArray.h"
 //------------------ UIWebView 分类集合 ------------------
 // UIWebView 清空 Cookies
 #import "UIWebView+LGFClearCookies.h"

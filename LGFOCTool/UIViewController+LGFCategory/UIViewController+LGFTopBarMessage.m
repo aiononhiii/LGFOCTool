@@ -126,9 +126,11 @@ static char TopMessageKey;
     
     // 动态加载 LGFTopMessageView 防止其他视图控制器添加无用属性
     LGFTopMessageView *topMessageV = objc_getAssociatedObject(self, &TopMessageKey);
-    topMessageV = [LGFTopMessageView sharedshard];
+    if (!topMessageV) {
+        topMessageV = [LGFTopMessageView sharedshard];
+        objc_setAssociatedObject(self, &TopMessageKey, topMessageV, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
     topMessageV.frame = CGRectMake(0, startY - (style.lgf_TopBarSpacingHeight + labelHeight), CGRectGetWidth(self.view.bounds), style.lgf_TopBarSpacingHeight + labelHeight);
-    objc_setAssociatedObject(self, &TopMessageKey, topMessageV, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     topMessageV.tapHandler = tapHandler;
     topMessageV.style = style;
     [self.view addSubview:topMessageV];

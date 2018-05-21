@@ -65,31 +65,32 @@ typedef void(^test)(NSString *ff, NSString *gg);
 //        NSLog(@"点击了")
 //    }];)
     
-
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    
-    
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage lgf_ColorImageWithCornerRadius:0.0 cornerColor:nil fillColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
 
+    
+    [self.view lgf_ShowToastActivity];
+    
+//    lgf_AFTER(3.0, [self.view lgf_HideToastActivity];);
     
     NSLog(@"%@",[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount]);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+//    [self.view lgf_ShowToastActivity];
     
-    LGFTopMessageStyle *style = [LGFTopMessageStyle na];
-    style.lgf_Message = @"来国锋发的消息息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息la的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我b发息我发的消息label发的消息l";
-//    style.lgf_MessageMode = lgf_Resize;
-    style.lgf_LabelMaxLine = 5;
-    style.lgf_IconWidth = 40;
-    style.lgf_MessageIcon = [UIImage imageNamed:@"testIcon"];
-    style.lgf_MessageLabelFont = [UIFont systemFontOfSize:15];
-    [self lgf_ShowTopMessageWithStyle:style withTapBlock:^{
-        NSLog(@"点击了")
-    }];
+//    lgf_AFTER(3.0, [self.view lgf_HideToastActivity];);
+//    LGFTopMessageStyle *style = [LGFTopMessageStyle na];
+//    style.lgf_Message = @"来国锋发的消息息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息la的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我b发息我发的消息label发的消息l";
+////    style.lgf_MessageMode = lgf_Resize;
+//    style.lgf_LabelMaxLine = 5;
+//    style.lgf_IconWidth = 40;
+//    style.lgf_MessageIcon = [UIImage imageNamed:@"testIcon"];
+//    style.lgf_MessageLabelFont = [UIFont systemFontOfSize:15];
+//    [self lgf_ShowTopMessageWithStyle:style withTapBlock:^{
+//        NSLog(@"点击了")
+//    }];
     
 }
 
@@ -148,6 +149,11 @@ typedef void(^test)(NSString *ff, NSString *gg);
     [self lgf_ShowTopMessageWithStyle:style withTapBlock:^{
         NSLog(@"点击了")
     }];
+    
+    
+//    [self.view lgf_ShowToastMessage:@"测试试试试我测试试我测试试我测试试试试试我测试试我测试试我测试试试试我测试试我测试试我测试试试试我测试试我测试试我测试试试试我测试试我测试试我测试试试试我测试试我测试试我测试我测试我知"];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
