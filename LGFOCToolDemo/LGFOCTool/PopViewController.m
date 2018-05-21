@@ -16,7 +16,7 @@
 @implementation PopViewController
 
 + (instancetype)GetSBVC {
-    return lgf_GetSBVC(PopViewController, @"Main", nil);
+    return lgf_GetSBVC(@"Main", nil);
 }
 
 - (void)viewDidLoad {

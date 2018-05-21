@@ -95,8 +95,6 @@
 #import "NSObject+LGFKVOBlocks.h"
 // 动态获取 类属性列表 方法列表 等等等
 #import "NSObject+LGFReflection.h"
-// JSON 数据解析
-#import "NSObject+LGFModel.h"
 // 动态方法添加／替换／判断等等
 #import "NSObject+LGFRuntime.h"
 //------------------ NSDictionary 分类集合 ---------------
