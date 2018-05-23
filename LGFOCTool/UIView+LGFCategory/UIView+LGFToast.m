@@ -54,10 +54,10 @@
     NSDictionary *attributes = @{NSFontAttributeName:textFont,
                                  NSParagraphStyleAttributeName:paragraph};
     CGSize textSize = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                  options:(NSStringDrawingUsesLineFragmentOrigin |
-                                           NSStringDrawingTruncatesLastVisibleLine)
-                               attributes:attributes
-                                  context:nil].size;
+                                         options:(NSStringDrawingUsesLineFragmentOrigin |
+                                                  NSStringDrawingTruncatesLastVisibleLine)
+                                      attributes:attributes
+                                         context:nil].size;
     return ceil(textSize.height);
 }
 
@@ -68,10 +68,10 @@
     NSDictionary *attributes = @{NSFontAttributeName:textFont,
                                  NSParagraphStyleAttributeName:paragraph};
     CGSize textSize = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, height)
-                                  options:(NSStringDrawingUsesLineFragmentOrigin |
-                                           NSStringDrawingTruncatesLastVisibleLine)
-                               attributes:attributes
-                                  context:nil].size;
+                                         options:(NSStringDrawingUsesLineFragmentOrigin |
+                                                  NSStringDrawingTruncatesLastVisibleLine)
+                                      attributes:attributes
+                                         context:nil].size;
     return ceil(textSize.width);
 }
 
@@ -288,7 +288,7 @@ static char LGFToastActivityKey;
     LGFToastViewWidth = MIN(LGFToastViewWidth, style.LGFMaxWidth) + style.LGFToastSpacing * 2;
     LGFToastViewHeight = LGFToastViewHeight + style.LGFToastSpacing * 2;
     LGFToastViewX = (self.frame.size.width / 2) - (LGFToastViewWidth / 2);
-
+    
     toastView.frame = CGRectMake(LGFToastViewX, LGFToastViewY, LGFToastViewWidth, LGFToastViewHeight);
     toastView.style = style;
     [self addSubview:toastView];
@@ -301,34 +301,40 @@ static char LGFToastActivityKey;
 #pragma mark - 菊花
 
 - (void)lgf_ShowToastActivity {
+    self.userInteractionEnabled = NO;
     UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
+    [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [activityBackView removeFromSuperview];
     if (!activityBackView) {
         activityBackView = [[UIView alloc] init];
-        objc_setAssociatedObject(self, &LGFToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        activityBackView.frame = self.bounds;
-        activityBackView.alpha = 0.0;
         activityBackView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
     }
     UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] init];
-    activityView.center = CGPointMake(activityBackView.bounds.size.width / 2, activityBackView.bounds.size.height / 2);
     activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     [activityView startAnimating];
     [activityBackView addSubview:activityView];
-    [self addSubview:activityBackView];
-    
-    [UIView animateWithDuration:0.1 animations:^{
-        activityBackView.alpha = 1.0;
-    }];
+    [self.superview addSubview:activityBackView];
+    activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
+    objc_setAssociatedObject(self, &LGFToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    [self.superview addConstraint:rightConstraint];
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    [self.superview addConstraint:leftConstraint];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    [self.superview addConstraint:topConstraint];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    [self.superview addConstraint:bottomConstraint];
+    [self.superview setNeedsLayout];
+    [self.superview layoutIfNeeded];
+    activityView.center = CGPointMake(activityBackView.bounds.size.width / 2, activityBackView.bounds.size.height / 2);
 }
 
 - (void)lgf_HideToastActivity {
+    self.userInteractionEnabled = YES;
     UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
     if (activityBackView) {
-        [UIView animateWithDuration:0.1 animations:^{
-            activityBackView.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [activityBackView removeFromSuperview];
-        }];
+        [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [activityBackView removeFromSuperview];
     }
 }
 

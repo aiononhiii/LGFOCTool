@@ -31,6 +31,7 @@
 		1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CADE20A1703F00573974 /* UIView+LGFGSView.m */; };
 		1829CAE820A2D67700573974 /* LGFPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAE720A2D67700573974 /* LGFPopMenu.m */; };
 		1829CAEB20A2D69400573974 /* LGFPopMenuStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */; };
+		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
 		1842359E209956E50006483C /* NSString+LGFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842359D209956E50006483C /* NSString+LGFString.m */; };
 		184235A120995EBC0006483C /* LGFAllMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235A020995EBC0006483C /* LGFAllMethod.m */; };
 		184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235A62099825D0006483C /* UITextView+LGFTextView.m */; };
@@ -134,6 +135,8 @@
 		1829CAE720A2D67700573974 /* LGFPopMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenu.m; sourceTree = "<group>"; };
 		1829CAE920A2D69400573974 /* LGFPopMenuStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPopMenuStyle.h; sourceTree = "<group>"; };
 		1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenuStyle.m; sourceTree = "<group>"; };
+		183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFCornerRadius.h"; sourceTree = "<group>"; };
+		183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFCornerRadius.m"; sourceTree = "<group>"; };
 		1842359C209956E50006483C /* NSString+LGFString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFString.h"; sourceTree = "<group>"; };
 		1842359D209956E50006483C /* NSString+LGFString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFString.m"; sourceTree = "<group>"; };
 		1842359F20995EBC0006483C /* LGFAllMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAllMethod.h; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 				18486BD320A993A600C4F723 /* UIView+LGFRotateAnimation.m */,
 				18486C2620AD60EF00C4F723 /* UIView+LGFToast.h */,
 				18486C2720AD60EF00C4F723 /* UIView+LGFToast.m */,
+				183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */,
+				183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */,
 			);
 			path = "UIView+LGFCategory";
 			sourceTree = "<group>";
@@ -797,6 +802,7 @@
 				188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */,
 				184235BD2099B4120006483C /* NSString+LGFTrims.m in Sources */,
 				184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */,
+				183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */,
 				1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */,
 				18486C2120AD46DA00C4F723 /* UILabel+LGFLable.m in Sources */,
 				18486BD120A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m in Sources */,
