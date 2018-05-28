@@ -64,7 +64,7 @@ typedef enum {
     IPAD_AIR_WIFI_CDMA,
     
     SIMULATOR
-} Hardware;
+} lgf_Hardware;
 
 
 @interface UIDevice (LGFDevice)
@@ -75,7 +75,7 @@ typedef enum {
 
 #pragma mark - 返回当前设备硬件 可读性枚举
 
-- (Hardware)lgf_Hardware;
+- (lgf_Hardware)lgf_Hardware;
 
 #pragma mark - 返回当前设备硬件 可读性字符串
 
@@ -87,7 +87,7 @@ typedef enum {
 
 #pragma mark - 当前设备如果性能优于 Hardware枚举选择的硬件设备 则返回YES
 
-- (BOOL)lgf_IsCurrentDeviceHardwareBetterThan:(Hardware)hardware;
+- (BOOL)lgf_IsCurrentDeviceHardwareBetterThan:(lgf_Hardware)hardware;
 
 #pragma mark - 返回当前设备最大支持图像的分辨率
 

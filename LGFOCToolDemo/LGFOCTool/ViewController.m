@@ -69,7 +69,7 @@ typedef void(^test)(NSString *ff, NSString *gg);
     [self.navigationController.navigationBar setBackgroundImage:[UIImage lgf_ColorImageWithCornerRadius:0.0 cornerColor:nil fillColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
 
     
-    [self.view lgf_ShowToastActivity];
+//    [self.view lgf_ShowToastActivity];
     
 //    lgf_AFTER(3.0, [self.view lgf_HideToastActivity];);
     

@@ -43,7 +43,7 @@
 
 #pragma mark - 返回当前设备硬件 可读性枚举
 
-- (Hardware)lgf_Hardware {
+- (lgf_Hardware)lgf_Hardware {
     NSString *hardware = [self lgf_HardwareString];
     if ([hardware isEqualToString:@"iPhone1,1"])    return IPHONE_2G;
     if ([hardware isEqualToString:@"iPhone1,2"])    return IPHONE_3G;
@@ -212,7 +212,7 @@
 }
 
 
-- (float)lgf_HardwareNumber:(Hardware)hardware {
+- (float)lgf_HardwareNumber:(lgf_Hardware)hardware {
     switch (hardware) {
         case IPHONE_2G: return 1.1f;
         case IPHONE_3G: return 1.2f;
@@ -264,7 +264,7 @@
 
 #pragma mark - 当前设备如果性能优于 Hardware枚举选择的硬件设备 则返回YES
 
-- (BOOL)lgf_IsCurrentDeviceHardwareBetterThan:(Hardware)hardware {
+- (BOOL)lgf_IsCurrentDeviceHardwareBetterThan:(lgf_Hardware)hardware {
     float otherHardware = [self lgf_HardwareNumber:hardware];
     float currentHardware = [self lgf_HardwareNumber:[self lgf_Hardware]];
     return currentHardware >= otherHardware;
