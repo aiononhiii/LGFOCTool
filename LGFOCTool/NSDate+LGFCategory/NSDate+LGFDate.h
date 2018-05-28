@@ -21,6 +21,14 @@
  */
 + (id)lgf_NeedDateFormat:(NSString*)DateFormat date:(id)date;
 
+#pragma mark - 根据时间戳自动格式化字符串
+/**
+ @param DateFormat 格式化类型
+ @param timeInterval 传入时间戳
+ @return 时间字符串
+ */
++ (id)lgf_NeedDateFormat:(NSString*)DateFormat timeInterval:(double)timeInterval;
+
 #pragma mark - 返回当前时间戳
 + (NSInteger)lgf_GetNowTimeStamp;
 

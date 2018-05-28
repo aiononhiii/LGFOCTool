@@ -10,7 +10,7 @@
 
 @implementation NSDate (LGFDate)
 
-#pragma mark - 自动格式化字符串
+#pragma mark - 自动格式化时间字符串
 /**
  @param DateFormat 格式化类型
  @param date 传入时间 NSDate 或 NSString（如果传的是字符串 DateFormat 必须和该字符串一致）
@@ -26,6 +26,16 @@
     } else {
         return [fmt dateFromString:date];
     }
+}
+
+#pragma mark - 根据时间戳自动格式化字符串
+/**
+ @param DateFormat 格式化类型
+ @param timeInterval 传入时间戳
+ @return 时间字符串
+ */
++ (id)lgf_NeedDateFormat:(NSString*)DateFormat timeInterval:(double)timeInterval {
+    return [self lgf_NeedDateFormat:DateFormat date:[NSDate dateWithTimeIntervalSince1970:timeInterval / 1000]];
 }
 
 #pragma mark - 返回当前时间戳

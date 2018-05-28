@@ -301,41 +301,45 @@ static char LGFToastActivityKey;
 #pragma mark - 菊花
 
 - (void)lgf_ShowToastActivity {
-    self.userInteractionEnabled = NO;
-    UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
-    [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [activityBackView removeFromSuperview];
-    if (!activityBackView) {
-        activityBackView = [[UIView alloc] init];
-        activityBackView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
-    }
-    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] init];
-    activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    [activityView startAnimating];
-    [activityBackView addSubview:activityView];
-    [self.superview addSubview:activityBackView];
-    activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
-    objc_setAssociatedObject(self, &LGFToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-    [self.superview addConstraint:rightConstraint];
-    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-    [self.superview addConstraint:leftConstraint];
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-    [self.superview addConstraint:topConstraint];
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    [self.superview addConstraint:bottomConstraint];
-    [self.superview setNeedsLayout];
-    [self.superview layoutIfNeeded];
-    activityView.center = CGPointMake(activityBackView.bounds.size.width / 2, activityBackView.bounds.size.height / 2);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.userInteractionEnabled = NO;
+        UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
+        [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [activityBackView removeFromSuperview];
+        if (!activityBackView) {
+            activityBackView = [[UIView alloc] init];
+            activityBackView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
+        }
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] init];
+        activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        [activityView startAnimating];
+        [activityBackView addSubview:activityView];
+        [self.superview addSubview:activityBackView];
+        activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
+        objc_setAssociatedObject(self, &LGFToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+        [self.superview addConstraint:rightConstraint];
+        NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+        [self.superview addConstraint:leftConstraint];
+        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+        [self.superview addConstraint:topConstraint];
+        NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+        [self.superview addConstraint:bottomConstraint];
+        [self.superview setNeedsLayout];
+        [self.superview layoutIfNeeded];
+        activityView.center = CGPointMake(activityBackView.bounds.size.width / 2, activityBackView.bounds.size.height / 2);
+    });
 }
 
 - (void)lgf_HideToastActivity {
-    self.userInteractionEnabled = YES;
-    UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
-    if (activityBackView) {
-        [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [activityBackView removeFromSuperview];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.userInteractionEnabled = YES;
+        UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
+        if (activityBackView) {
+            [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            [activityBackView removeFromSuperview];
+        }
+    });
 }
 
 @end

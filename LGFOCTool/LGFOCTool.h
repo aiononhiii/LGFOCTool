@@ -79,6 +79,8 @@
 #import "UIView+LGFRotateAnimation.h"
 // Toast提示
 #import "UIView+LGFToast.h"
+// 设置任意圆角
+#import "UIView+LGFCornerRadius.h"
 //------------------ UIButton 分类集合 ------------------
 // 设置按钮图片的位置
 #import "UIButton+LGFImagePosition.h"

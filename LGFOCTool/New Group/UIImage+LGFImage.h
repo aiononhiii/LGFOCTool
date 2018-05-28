@@ -64,4 +64,11 @@
  */
 + (CGSize)lgf_ScaleImage:(UIImage *)image withLength:(CGFloat)imageLength;
 
+#pragma mark - 获取图片主色调
+/**
+ @param image 要获取主色调的图片
+ @return 主色调
+ */
++ (UIColor*)lgf_MostColorWithImage:(UIImage*)image;
 @end
+
