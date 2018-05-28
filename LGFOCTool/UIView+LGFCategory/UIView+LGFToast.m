@@ -300,7 +300,7 @@ static char LGFToastActivityKey;
 
 #pragma mark - 菊花
 
-- (void)lgf_ShowToastActivity {
+- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.userInteractionEnabled = NO;
         UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
@@ -317,13 +317,13 @@ static char LGFToastActivityKey;
         [self.superview addSubview:activityBackView];
         activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
         objc_setAssociatedObject(self, &LGFToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+        NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:Insets.right];
         [self.superview addConstraint:rightConstraint];
-        NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+        NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:Insets.left];
         [self.superview addConstraint:leftConstraint];
-        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:Insets.top];
         [self.superview addConstraint:topConstraint];
-        NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+        NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:Insets.bottom];
         [self.superview addConstraint:bottomConstraint];
         [self.superview setNeedsLayout];
         [self.superview layoutIfNeeded];

@@ -54,17 +54,17 @@ typedef NS_ENUM(NSUInteger, LGFToastImagePosition) {
 // Toast文字
 @property (copy, nonatomic) NSString *LGFToastMessage;
 // Toast文字字体
-@property (strong, nonatomic) UIFont *LGFToastMessageFont;
+@property (nonatomic, strong) UIFont *LGFToastMessageFont;
 // Toast文字颜色
-@property (strong, nonatomic) UIColor *LGFToastMessageTextColor;
+@property (nonatomic, strong) UIColor *LGFToastMessageTextColor;
 // Toast图片
-@property (strong, nonatomic) UIImage *LGFToastImage;
+@property (nonatomic, strong) UIImage *LGFToastImage;
 // Toast位置
 @property (assign, nonatomic) LGFToastPosition LGFToastPosition;
 // 图片相对于文字位置
 @property (assign, nonatomic) LGFToastImagePosition LGFToastImagePosition;
 // Toast背景色
-@property (strong, nonatomic) UIColor *LGFToastBackColor;
+@property (nonatomic, strong) UIColor *LGFToastBackColor;
 // Toast圆角
 @property (assign, nonatomic) CGFloat LGFToastCornerRadius;
 // Toast消失动画时间
@@ -91,9 +91,9 @@ typedef NS_ENUM(NSUInteger, LGFToastImagePosition) {
 @end
 
 @interface LGFToastView : UIView
-@property (strong, nonatomic) LGFToastStyle *style;
-@property (strong, nonatomic) UIImageView *image;
-@property (strong, nonatomic) UILabel *message;
+@property (nonatomic, strong) LGFToastStyle *style;
+@property (nonatomic, strong) UIImageView *image;
+@property (nonatomic, strong) UILabel *message;
 lgf_AllocOnlyOnceForH(ToastView);
 @end
 
@@ -107,7 +107,7 @@ lgf_AllocOnlyOnceForH(ToastView);
 - (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image;
 - (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image duration:(NSTimeInterval)duration;
 
-- (void)lgf_ShowToastActivity;
+- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets;
 - (void)lgf_HideToastActivity;
 
 @end
