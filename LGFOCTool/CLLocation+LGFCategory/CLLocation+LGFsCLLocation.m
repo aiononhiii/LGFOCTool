@@ -2,7 +2,7 @@
 //  CLLocation+LGFCLLocation.m
 //  LGFOCTool
 //
-//  Created by apple on 2018/5/28.
+//  Created by apple on 2018/5/14.
 //  Copyright © 2018年 来国锋. All rights reserved.
 //
 
@@ -56,8 +56,8 @@ void lgf_transform_bear_paw_2_mars(double lat, double lng, double* tarLat, doubl
 @end
 
 
-const double lgf_a = 6378245.0;
-const double lgf_ee = 0.00669342162296594323;
+const double a = 6378245.0;
+const double ee = 0.00669342162296594323;
 
 bool lgf_transform_sino_out_china(double lat, double lon) {
     if (lon < 72.004 || lon > 137.8347)
@@ -93,28 +93,28 @@ void lgf_transform_earth_2_mars(double lat, double lng, double* tarLat, double* 
     double dLon = lgf_transform_earth_2_mars_lng(lng - 105.0, lat - 35.0);
     double radLat = lat / 180.0 * M_PI;
     double magic = sin(radLat);
-    magic = 1 - lgf_ee * magic * magic;
+    magic = 1 - ee * magic * magic;
     double sqrtMagic = sqrt(magic);
-    dLat = (dLat * 180.0) / ((lgf_a * (1 - lgf_ee)) / (magic * sqrtMagic) * M_PI);
-    dLon = (dLon * 180.0) / (lgf_a / sqrtMagic * cos(radLat) * M_PI);
+    dLat = (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * M_PI);
+    dLon = (dLon * 180.0) / (a / sqrtMagic * cos(radLat) * M_PI);
     *tarLat = lat + dLat;
     *tarLng = lng + dLon;
 }
 
-const double lgf_pi = M_PI * 3000.0 / 180.0;
+const double x_pi = M_PI * 3000.0 / 180.0;
 
 void lgf_transform_mars_2_bear_paw(double gg_lat, double gg_lon, double *bd_lat, double *bd_lon) {
     double x = gg_lon, y = gg_lat;
-    double z = sqrt(x * x + y * y) + 0.00002 * sin(y * lgf_pi);
-    double theta = atan2(y, x) + 0.000003 * cos(x * lgf_pi);
+    double z = sqrt(x * x + y * y) + 0.00002 * sin(y * x_pi);
+    double theta = atan2(y, x) + 0.000003 * cos(x * x_pi);
     *bd_lon = z * cos(theta) + 0.0065;
     *bd_lat = z * sin(theta) + 0.006;
 }
 
 void lgf_transform_bear_paw_2_mars(double bd_lat, double bd_lon, double *gg_lat, double *gg_lon) {
     double x = bd_lon - 0.0065, y = bd_lat - 0.006;
-    double z = sqrt(x * x + y * y) - 0.00002 * sin(y * lgf_pi);
-    double theta = atan2(y, x) - 0.000003 * cos(x * lgf_pi);
+    double z = sqrt(x * x + y * y) - 0.00002 * sin(y * x_pi);
+    double theta = atan2(y, x) - 0.000003 * cos(x * x_pi);
     *gg_lon = z * cos(theta);
     *gg_lat = z * sin(theta);
 }

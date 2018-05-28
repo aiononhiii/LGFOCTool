@@ -33,6 +33,7 @@
 		1829CAEB20A2D69400573974 /* LGFPopMenuStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */; };
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
 		183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */; };
+		183C684A20BC003100F0E243 /* CLLocation+LGFCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684920BC003100F0E243 /* CLLocation+LGFCLLocation.m */; };
 		1842359E209956E50006483C /* NSString+LGFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842359D209956E50006483C /* NSString+LGFString.m */; };
 		184235A120995EBC0006483C /* LGFAllMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235A020995EBC0006483C /* LGFAllMethod.m */; };
 		184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235A62099825D0006483C /* UITextView+LGFTextView.m */; };
@@ -48,7 +49,7 @@
 		18486BA720A58EB100C4F723 /* NSObject+LGFReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA620A58EB100C4F723 /* NSObject+LGFReflection.m */; };
 		18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */; };
 		18486BAE20A91A8300C4F723 /* LGFTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BAD20A91A8300C4F723 /* LGFTimer.m */; };
-		18486BB220A9237100C4F723 /* CLLocation+LGFCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB120A9237100C4F723 /* CLLocation+LGFCLLocation.m */; };
+		18486BB220A9237100C4F723 /* CLLocation+LGFsCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB120A9237100C4F723 /* CLLocation+LGFsCLLocation.m */; };
 		18486BB620A9250800C4F723 /* NSDictionary+LGFToJSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB520A9250800C4F723 /* NSDictionary+LGFToJSONString.m */; };
 		18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB920A9265000C4F723 /* NSArray+LGFToJSONString.m */; };
 		18486BBD20A9319D00C4F723 /* UIButton+LGFIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BBC20A9319D00C4F723 /* UIButton+LGFIndicator.m */; };
@@ -139,6 +140,8 @@
 		183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFCornerRadius.m"; sourceTree = "<group>"; };
 		183C683F20BBFC6A00F0E243 /* NSObject+LGFRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFRuntime.h"; sourceTree = "<group>"; };
 		183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFRuntime.m"; sourceTree = "<group>"; };
+		183C684820BC003100F0E243 /* CLLocation+LGFCLLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+LGFCLLocation.h"; sourceTree = "<group>"; };
+		183C684920BC003100F0E243 /* CLLocation+LGFCLLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LGFCLLocation.m"; sourceTree = "<group>"; };
 		1842359C209956E50006483C /* NSString+LGFString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFString.h"; sourceTree = "<group>"; };
 		1842359D209956E50006483C /* NSString+LGFString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFString.m"; sourceTree = "<group>"; };
 		1842359F20995EBC0006483C /* LGFAllMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAllMethod.h; sourceTree = "<group>"; };
@@ -169,8 +172,8 @@
 		18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFKVOBlocks.m"; sourceTree = "<group>"; };
 		18486BAC20A91A8300C4F723 /* LGFTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFTimer.h; sourceTree = "<group>"; };
 		18486BAD20A91A8300C4F723 /* LGFTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFTimer.m; sourceTree = "<group>"; };
-		18486BB020A9237100C4F723 /* CLLocation+LGFCLLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+LGFCLLocation.h"; sourceTree = "<group>"; };
-		18486BB120A9237100C4F723 /* CLLocation+LGFCLLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LGFCLLocation.m"; sourceTree = "<group>"; };
+		18486BB020A9237100C4F723 /* CLLocation+LGFsCLLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+LGFsCLLocation.h"; sourceTree = "<group>"; };
+		18486BB120A9237100C4F723 /* CLLocation+LGFsCLLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LGFsCLLocation.m"; sourceTree = "<group>"; };
 		18486BB420A9250800C4F723 /* NSDictionary+LGFToJSONString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LGFToJSONString.h"; sourceTree = "<group>"; };
 		18486BB520A9250800C4F723 /* NSDictionary+LGFToJSONString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LGFToJSONString.m"; sourceTree = "<group>"; };
 		18486BB820A9265000C4F723 /* NSArray+LGFToJSONString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LGFToJSONString.h"; sourceTree = "<group>"; };
@@ -463,8 +466,10 @@
 		18486BAF20A9233A00C4F723 /* CLLocation+LGFCategory */ = {
 			isa = PBXGroup;
 			children = (
-				18486BB020A9237100C4F723 /* CLLocation+LGFCLLocation.h */,
-				18486BB120A9237100C4F723 /* CLLocation+LGFCLLocation.m */,
+				18486BB020A9237100C4F723 /* CLLocation+LGFsCLLocation.h */,
+				18486BB120A9237100C4F723 /* CLLocation+LGFsCLLocation.m */,
+				183C684820BC003100F0E243 /* CLLocation+LGFCLLocation.h */,
+				183C684920BC003100F0E243 /* CLLocation+LGFCLLocation.m */,
 			);
 			path = "CLLocation+LGFCategory";
 			sourceTree = "<group>";
@@ -788,10 +793,11 @@
 				183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */,
 				1829CACE20A142D500573974 /* UIFont+LGFLoadTTF.m in Sources */,
 				188DEFC62094396C0014E4CA /* main.m in Sources */,
+				183C684A20BC003100F0E243 /* CLLocation+LGFCLLocation.m in Sources */,
 				18486BCD20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m in Sources */,
 				1829CAA6209FE2C900573974 /* LGFCountDownButton.m in Sources */,
 				184235B72099A6240006483C /* NSString+LGFRemoveEmoji.m in Sources */,
-				18486BB220A9237100C4F723 /* CLLocation+LGFCLLocation.m in Sources */,
+				18486BB220A9237100C4F723 /* CLLocation+LGFsCLLocation.m in Sources */,
 				1829CA7C2099B68F00573974 /* NSData+LGFBase64.m in Sources */,
 				1829CA9F209AD62000573974 /* UIViewController+LGFTopBarMessage.m in Sources */,
 				18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */,

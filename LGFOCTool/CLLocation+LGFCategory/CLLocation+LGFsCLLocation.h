@@ -2,7 +2,7 @@
 //  CLLocation+LGFCLLocation.h
 //  LGFOCTool
 //
-//  Created by apple on 2018/5/28.
+//  Created by apple on 2018/5/14.
 //  Copyright © 2018年 来国锋. All rights reserved.
 //
 
