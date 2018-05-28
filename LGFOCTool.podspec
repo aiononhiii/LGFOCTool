@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name        = "LGFOCTool"
-s.version     = "1.1.0"
+s.version     = "1.1.1"
 s.summary     = "LGFOCTool"
 s.homepage    = "https://github.com/aiononhiii/LGFOCTool.git"
 s.license     = { :type => 'MIT', :file => 'LICENSE' }

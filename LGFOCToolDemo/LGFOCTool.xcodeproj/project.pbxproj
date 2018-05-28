@@ -32,6 +32,7 @@
 		1829CAE820A2D67700573974 /* LGFPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAE720A2D67700573974 /* LGFPopMenu.m */; };
 		1829CAEB20A2D69400573974 /* LGFPopMenuStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */; };
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
+		183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */; };
 		1842359E209956E50006483C /* NSString+LGFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842359D209956E50006483C /* NSString+LGFString.m */; };
 		184235A120995EBC0006483C /* LGFAllMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235A020995EBC0006483C /* LGFAllMethod.m */; };
 		184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235A62099825D0006483C /* UITextView+LGFTextView.m */; };
@@ -51,7 +52,6 @@
 		18486BB620A9250800C4F723 /* NSDictionary+LGFToJSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB520A9250800C4F723 /* NSDictionary+LGFToJSONString.m */; };
 		18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BB920A9265000C4F723 /* NSArray+LGFToJSONString.m */; };
 		18486BBD20A9319D00C4F723 /* UIButton+LGFIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BBC20A9319D00C4F723 /* UIButton+LGFIndicator.m */; };
-		18486BC620A93DB200C4F723 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BC520A93DB200C4F723 /* NSObject+LGFRuntime.m */; };
 		18486BCD20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BCC20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m */; };
 		18486BD120A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BD020A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m */; };
 		18486BD420A993A600C4F723 /* UIView+LGFRotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BD320A993A600C4F723 /* UIView+LGFRotateAnimation.m */; };
@@ -137,6 +137,8 @@
 		1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenuStyle.m; sourceTree = "<group>"; };
 		183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFCornerRadius.h"; sourceTree = "<group>"; };
 		183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFCornerRadius.m"; sourceTree = "<group>"; };
+		183C683F20BBFC6A00F0E243 /* NSObject+LGFRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFRuntime.h"; sourceTree = "<group>"; };
+		183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFRuntime.m"; sourceTree = "<group>"; };
 		1842359C209956E50006483C /* NSString+LGFString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFString.h"; sourceTree = "<group>"; };
 		1842359D209956E50006483C /* NSString+LGFString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFString.m"; sourceTree = "<group>"; };
 		1842359F20995EBC0006483C /* LGFAllMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAllMethod.h; sourceTree = "<group>"; };
@@ -175,8 +177,6 @@
 		18486BB920A9265000C4F723 /* NSArray+LGFToJSONString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LGFToJSONString.m"; sourceTree = "<group>"; };
 		18486BBB20A9319D00C4F723 /* UIButton+LGFIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LGFIndicator.h"; sourceTree = "<group>"; };
 		18486BBC20A9319D00C4F723 /* UIButton+LGFIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LGFIndicator.m"; sourceTree = "<group>"; };
-		18486BC420A93DB200C4F723 /* NSObject+LGFRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFRuntime.h"; sourceTree = "<group>"; };
-		18486BC520A93DB200C4F723 /* NSObject+LGFRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFRuntime.m"; sourceTree = "<group>"; };
 		18486BCB20A98E0C00C4F723 /* UIWebView+LGFClearCookies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWebView+LGFClearCookies.h"; sourceTree = "<group>"; };
 		18486BCC20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+LGFClearCookies.m"; sourceTree = "<group>"; };
 		18486BCF20A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+LGFTabBarAnimatedHidden.h"; sourceTree = "<group>"; };
@@ -445,8 +445,8 @@
 				18486BA620A58EB100C4F723 /* NSObject+LGFReflection.m */,
 				18486BA820A5917E00C4F723 /* NSObject+LGFKVOBlocks.h */,
 				18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */,
-				18486BC420A93DB200C4F723 /* NSObject+LGFRuntime.h */,
-				18486BC520A93DB200C4F723 /* NSObject+LGFRuntime.m */,
+				183C683F20BBFC6A00F0E243 /* NSObject+LGFRuntime.h */,
+				183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */,
 			);
 			path = "NSObject+LGFCategory";
 			sourceTree = "<group>";
@@ -785,6 +785,7 @@
 				184235BA2099A9E50006483C /* NSString+LGFTextSize.m in Sources */,
 				1829CA8E209A9DD100573974 /* UIImage+LGFImage.m in Sources */,
 				1845E4D120A4296500882152 /* LGFAllPermissions.m in Sources */,
+				183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */,
 				1829CACE20A142D500573974 /* UIFont+LGFLoadTTF.m in Sources */,
 				188DEFC62094396C0014E4CA /* main.m in Sources */,
 				18486BCD20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m in Sources */,
@@ -798,7 +799,6 @@
 				1829CA9C209AD34D00573974 /* UIViewController+LGFVCLog.m in Sources */,
 				1829CA94209AB04200573974 /* UIImage+LGFPDFImage.m in Sources */,
 				1842359E209956E50006483C /* NSString+LGFString.m in Sources */,
-				18486BC620A93DB200C4F723 /* NSObject+LGFRuntime.m in Sources */,
 				188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */,
 				184235BD2099B4120006483C /* NSString+LGFTrims.m in Sources */,
 				184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */,

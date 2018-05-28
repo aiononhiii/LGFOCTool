@@ -2,14 +2,13 @@
 //  NSObject+LGFRuntime.m
 //  LGFOCTool
 //
-//  Created by apple on 2018/5/14.
+//  Created by apple on 2018/5/28.
 //  Copyright © 2018年 来国锋. All rights reserved.
 //
 
 #import "NSObject+LGFRuntime.h"
-#import <objc/runtime.h>
 
-BOOL method_swizzle(Class klass, SEL origSel, SEL altSel) {
+BOOL lgf_Method_swizzle(Class klass, SEL origSel, SEL altSel) {
     if (!klass) return NO;
     Method __block origMethod, __block altMethod;
     void (^find_methods)(void) = ^{
@@ -42,14 +41,14 @@ BOOL method_swizzle(Class klass, SEL origSel, SEL altSel) {
     return YES;
 }
 
-void method_append(Class toClass, Class fromClass, SEL selector) {
+void lgf_Method_append(Class toClass, Class fromClass, SEL selector) {
     if (!toClass || !fromClass || !selector) return;
     Method method = class_getInstanceMethod(fromClass, selector);
     if (!method) return;
     class_addMethod(toClass, method_getName(method), method_getImplementation(method), method_getTypeEncoding(method));
 }
 
-void method_replace(Class toClass, Class fromClass, SEL selector) {
+void lgf_Method_replace(Class toClass, Class fromClass, SEL selector) {
     if (!toClass || !fromClass || ! selector) return;
     Method method = class_getInstanceMethod(fromClass, selector);
     if (!method) return;
@@ -64,7 +63,7 @@ void method_replace(Class toClass, Class fromClass, SEL selector) {
  @param newMethod 替换的方法
  */
 + (void)lgf_SwizzleMethod:(SEL)originalMethod withMethod:(SEL)newMethod {
-    method_swizzle(self.class, originalMethod, newMethod);
+    lgf_Method_swizzle(self.class, originalMethod, newMethod);
 }
 
 #pragma mark - 动态添加一个新方法
@@ -73,7 +72,7 @@ void method_replace(Class toClass, Class fromClass, SEL selector) {
  @param klass 添加方法的类
  */
 + (void)lgf_AppendMethod:(SEL)newMethod fromClass:(Class)klass {
-    method_append(self.class, klass, newMethod);
+    lgf_Method_append(self.class, klass, newMethod);
 }
 
 #pragma mark - 替换某个对象的方法
@@ -82,7 +81,7 @@ void method_replace(Class toClass, Class fromClass, SEL selector) {
  @param klass 要替换的方法 的类.
  */
 + (void)lgf_ReplaceMethod:(SEL)method fromClass:(Class)klass {
-    method_replace(self.class, klass, method);
+    lgf_Method_replace(self.class, klass, method);
 }
 
 #pragma mark - Check whether the receiver implements or inherits a specified method up to and exluding a particular class in hierarchy.

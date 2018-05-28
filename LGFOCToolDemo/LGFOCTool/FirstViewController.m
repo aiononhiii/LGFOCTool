@@ -16,7 +16,7 @@
 @implementation FirstViewController
 
 + (instancetype)GetSBVC {
-    return lgf_GetSBVC(@"Main", nil);
+    return lgf_GetSBVC(@"Main", @"Main", nil);
 }
 
 - (void)viewDidLoad {

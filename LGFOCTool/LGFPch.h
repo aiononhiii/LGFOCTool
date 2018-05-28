@@ -53,8 +53,8 @@
 
 // storyboard
 #undef lgf_GetSBVC
-#define lgf_GetSBVC(classStr, bundleStrName)\
-[[UIStoryboard storyboardWithName:(classStr) bundle:[NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:(bundleStrName) ofType:@"bundle"]]] instantiateViewControllerWithIdentifier:(classStr)]
+#define lgf_GetSBVC(classStr, sbStr, bundleStrName)\
+[[UIStoryboard storyboardWithName:(sbStr) bundle:[NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:(bundleStrName) ofType:@"bundle"]]] instantiateViewControllerWithIdentifier:(classStr)]
 
 // 资源文件 Bundle
 #undef lgf_Bundle

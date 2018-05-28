@@ -2,11 +2,12 @@
 //  NSObject+LGFRuntime.h
 //  LGFOCTool
 //
-//  Created by apple on 2018/5/14.
+//  Created by apple on 2018/5/28.
 //  Copyright © 2018年 来国锋. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "LGFOCTool.h"
 
 @interface NSObject (LGFRuntime)
 
@@ -61,5 +62,6 @@
  @return YES if one of super classes in hierarchy responds a specified selector.
  */
 + (BOOL)lgf_InstancesRespondToSelector:(SEL)selector untilClass:(Class)stopClass;
+
 
 @end
