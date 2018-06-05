@@ -11,7 +11,7 @@
 @implementation NSString (LGFRegex)
 
 #pragma mark - 正则相关
-- (BOOL)isValidateByRegex:(NSString *)regex {
+- (BOOL)lgf_IsValidateByRegex:(NSString *)regex {
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [pre evaluateWithObject:self];
 }
@@ -44,50 +44,50 @@
 #pragma mark - 邮箱的有效性
 - (BOOL)lgf_IsEmailAddress {
     NSString *emailRegex = @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    return [self isValidateByRegex:emailRegex];
+    return [self lgf_IsValidateByRegex:emailRegex];
 }
 
 #pragma mark - 身份证有效性
 - (BOOL)lgf_IsIdentityCardNum {
     NSString *regex2 = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
-    return [self isValidateByRegex:regex2];
+    return [self lgf_IsValidateByRegex:regex2];
 }
 
 #pragma mark - 车牌号的有效性
 - (BOOL)lgf_IsCarNumber {
     //车牌号:湘K-DE829 香港车牌号码:粤Z-J499港
     NSString *carRegex = @"^[\u4e00-\u9fff]{1}[a-zA-Z]{1}[-][a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fff]$";//其中\u4e00-\u9fa5表示unicode编码中汉字已编码部分，\u9fa5-\u9fff是保留部分，将来可能会添加
-    return [self isValidateByRegex:carRegex];
+    return [self lgf_IsValidateByRegex:carRegex];
 }
 
 #pragma mark - Mac地址有效性
 - (BOOL)lgf_IsMacAddress {
     NSString * macAddRegex = @"([A-Fa-f\\d]{2}:){5}[A-Fa-f\\d]{2}";
-    return  [self isValidateByRegex:macAddRegex];
+    return  [self lgf_IsValidateByRegex:macAddRegex];
 }
 
 #pragma mark - 网址有效性
 - (BOOL)lgf_IsValidUrl {
     NSString *regex = @"^((http)|(https))+:[^\\s]+\\.[^\\s]*$";
-    return [self isValidateByRegex:regex];
+    return [self lgf_IsValidateByRegex:regex];
 }
 
 #pragma mark - 字符串全部是汉字
 - (BOOL)lgf_IsValidChinese {
     NSString *chineseRegex = @"^[\u4e00-\u9fa5]+$";
-    return [self isValidateByRegex:chineseRegex];
+    return [self lgf_IsValidateByRegex:chineseRegex];
 }
 
 #pragma mark - 邮政编码有效性
 - (BOOL)lgf_IsValidPostalcode {
     NSString *postalRegex = @"^[0-8]\\d{5}(?!\\d)$";
-    return [self isValidateByRegex:postalRegex];
+    return [self lgf_IsValidateByRegex:postalRegex];
 }
 
 #pragma mark - 工商税号有效性
 - (BOOL)lgf_IsValidTaxNo {
     NSString *taxNoRegex = @"[0-9]\\d{13}([0-9]|X)$";
-    return [self isValidateByRegex:taxNoRegex];
+    return [self lgf_IsValidateByRegex:taxNoRegex];
 }
 
 #pragma mark - 账号特殊判断
@@ -108,7 +108,7 @@
     NSString *first = firstCannotBeDigtal ? @"^[a-zA-Z_]" : @"";
     
     NSString *regex = [NSString stringWithFormat:@"%@[%@A-Za-z0-9_]{%d,%d}", first, hanzi, (int)(minLenth-1), (int)(maxLenth-1)];
-    return [self isValidateByRegex:regex];
+    return [self lgf_IsValidateByRegex:regex];
 }
 
 #pragma mark - 账号特殊判断 是否符合最小长度、最长长度，是否包含中文,数字，字母，其他字符，首字母是否可以为数字
@@ -137,7 +137,7 @@
     NSString *letterRegex = containLetter ? @"(?=(.*[a-zA-Z].*){1})" : @"";
     NSString *characterRegex = [NSString stringWithFormat:@"(?:%@[%@A-Za-z0-9%@]+)", first, hanzi, containOtherCharacter ? containOtherCharacter : @""];
     NSString *regex = [NSString stringWithFormat:@"%@%@%@%@", lengthRegex, digtalRegex, letterRegex, characterRegex];
-    return [self isValidateByRegex:regex];
+    return [self lgf_IsValidateByRegex:regex];
 }
 
 #pragma mark - 精确的身份证号码有效性检测

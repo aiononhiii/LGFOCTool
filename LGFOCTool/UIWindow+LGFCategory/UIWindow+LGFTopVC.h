@@ -12,9 +12,9 @@
 
 #pragma mark - 获取顶层控制器
 
-- (UIViewController*) topMostController;
+- (UIViewController*)lgf_TopMostController;
 
 #pragma mark - 获取当前选中控制器
 
-- (UIViewController*)currentViewController;
+- (UIViewController*)lgf_CurrentViewController;
 @end

@@ -12,7 +12,7 @@
 
 #pragma mark - 获取顶层控制器
 
-- (UIViewController*) topMostController {
+- (UIViewController*)lgf_TopMostController {
     UIViewController *topController = [self rootViewController];
     while ([topController presentedViewController])	topController = [topController presentedViewController];
     return topController;
@@ -20,8 +20,8 @@
 
 #pragma mark - 获取当前选中控制器
 
-- (UIViewController*)currentViewController {
-    UIViewController *currentViewController = [self topMostController];
+- (UIViewController*)lgf_CurrentViewController {
+    UIViewController *currentViewController = [self lgf_TopMostController];
     while ([currentViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)currentViewController topViewController])
     currentViewController = [(UINavigationController*)currentViewController topViewController];
     return currentViewController;

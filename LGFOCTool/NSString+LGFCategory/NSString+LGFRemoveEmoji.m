@@ -16,7 +16,7 @@
     [self enumerateSubstringsInRange:NSMakeRange(0, [self length])
                              options:NSStringEnumerationByComposedCharacterSequences
                           usingBlock: ^(NSString* substring, NSRange substringRange, NSRange enclosingRange, BOOL* stop) {
-                              if ([substring containEmoji]) {
+                              if ([substring lgf_ContainEmoji]) {
                                   *stop = YES;
                                   result = YES;
                               }
@@ -30,14 +30,14 @@
     [self enumerateSubstringsInRange:NSMakeRange(0, [self length])
                              options:NSStringEnumerationByComposedCharacterSequences
                           usingBlock: ^(NSString* substring, NSRange substringRange, NSRange enclosingRange, BOOL* stop) {
-                              [buffer appendString:([substring containEmoji])? @"": substring];
+                              [buffer appendString:([substring lgf_ContainEmoji])? @"": substring];
                           }];
     return buffer;
 }
 
 
 // 根据从Unicode官网找到的资料，匹配三字节Unicode
-- (BOOL)emojiInUnicode:(short)code {
+- (BOOL)lgf_EmojiInUnicode:(short)code {
     if (code == 0x0023
         || code == 0x002A
         || (code >= 0x0030 && code <= 0x0039)
@@ -135,13 +135,13 @@
 }
 
 // 另外还有很古老的一套Emoji，采用Unicode私有区域，现在基本没用了，不过还是过滤下
-- (BOOL)emojiInSoftBankUnicode:(short)code {
+- (BOOL)lgf_EmojiInSoftBankUnicode:(short)code {
     return ((code >> 8) >= 0xE0 && (code >> 8) <= 0xE5 && (Byte)(code & 0xFF) < 0x60);
 }
 
 
 // 是否包含表情
-- (BOOL)containEmoji {
+- (BOOL)lgf_ContainEmoji {
     NSUInteger len = [self lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
     if (len < 3) {// 大于2个字符需要验证Emoji(有些Emoji仅三个字符)
         return NO;
@@ -168,7 +168,7 @@
             v = v << 6;
             v |= bts[i + 2] & 0x3F;
             // NSLog(@"%02X%02X", (Byte)(v >> 8), (Byte)(v & 0xFF));
-            if ([self emojiInSoftBankUnicode:v] || [self emojiInUnicode:v]) {
+            if ([self lgf_EmojiInSoftBankUnicode:v] || [self lgf_EmojiInUnicode:v]) {
                 return YES;
             }
             i += 2;
@@ -183,3 +183,4 @@
 }
 
 @end
+
