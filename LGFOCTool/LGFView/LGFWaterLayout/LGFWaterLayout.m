@@ -68,12 +68,12 @@ static const UIEdgeInsets lgf_DefaultUIEdgeInsets = {0, 0, 0, 0};      // 默认
     UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     
     // collectionView的宽度
-    CGFloat collectionViewW = self.collectionView.frame.size.width;
+    CGFloat collectionViewW = [self.delegate lgf_cellHeightInWaterLayout:self indexPath:indexPath].width;
     // cell的宽度
     CGFloat w = (collectionViewW - self.lgf_EdgeInsets.left - self.lgf_EdgeInsets.right -
                  self.lgf_ColumnMargin * (self.lgf_ColumnCount - 1)) / self.lgf_ColumnCount;
     // cell的高度
-    CGFloat h = [self.delegate lgf_cellHeightInWaterLayout:self indexPath:indexPath];
+    CGFloat h = [self.delegate lgf_cellHeightInWaterLayout:self indexPath:indexPath].height;
     
     // cell应该拼接的列数
     NSInteger destColumn = 0;

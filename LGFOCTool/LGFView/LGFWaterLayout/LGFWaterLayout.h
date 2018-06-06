@@ -31,7 +31,7 @@
  @param indexPath 当前 cell 的 indexPath
  @return cell高度
  */
-- (CGFloat)lgf_cellHeightInWaterLayout:(LGFWaterLayout *)waterLayout indexPath:(NSIndexPath *)indexPath;
+- (CGSize)lgf_cellHeightInWaterLayout:(LGFWaterLayout *)waterLayout indexPath:(NSIndexPath *)indexPath;
 
 @end
 
