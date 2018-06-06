@@ -8,6 +8,7 @@
 
 #import "UIView+LGFGSView.h"
 #import <objc/runtime.h>
+#import "LGFOCTool.h"
 
 static const char *lgf_ViewNameKey = "lgf_ViewNameKey";
 static const char *lgf_CornerRadiusKey = "lgf_CornerRadiusKey";
@@ -17,6 +18,7 @@ static const char *lgf_ShadowColorKey = "lgf_ShadowColorKey";
 static const char *lgf_ShadowRadiusKey = "lgf_ShadowRadiusKey";
 static const char *lgf_ShadowOffsetKey = "lgf_ShadowOffsetKey";
 static const char *lgf_ShadowOpacityKey = "lgf_ShadowOpacityKey";
+static const char *lgf_IsRandomBackColorKey = "lgf_IsRandomBackColor";
 
 @implementation UIView (LGFGSView)
 
@@ -28,6 +30,7 @@ static const char *lgf_ShadowOpacityKey = "lgf_ShadowOpacityKey";
 @dynamic lgf_ShadowRadius;
 @dynamic lgf_ShadowOffset;
 @dynamic lgf_ShadowOpacity;
+@dynamic lgf_IsRandomBackColor;
 
 #pragma mark - 控件唯一名字(通常用于确定某一个特殊的view)
 
@@ -116,4 +119,18 @@ static const char *lgf_ShadowOpacityKey = "lgf_ShadowOpacityKey";
     self.layer.shadowOpacity = lgf_ShadowOpacity;
 }
 
+#pragma mark - 是否随机背景色 通常用于调试UI
+
+- (BOOL)lgf_IsRandomBackColor {
+    return [objc_getAssociatedObject(self, &lgf_IsRandomBackColorKey) boolValue];
+}
+
+- (void)setLgf_IsRandomBackColor:(BOOL)lgf_IsRandomBackColor {
+    objc_setAssociatedObject(self, &lgf_IsRandomBackColorKey, [NSNumber numberWithBool:lgf_IsRandomBackColor], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (lgf_IsRandomBackColor) {
+        self.backgroundColor = lgf_RandomColor;
+    }
+}
+
 @end
+

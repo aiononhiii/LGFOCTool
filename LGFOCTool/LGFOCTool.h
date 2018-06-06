@@ -23,8 +23,8 @@
 #import "LGFCountDownButton.h"
 // 优化后的定时器
 #import "LGFTimer.h"
-// Pop 菜单
-
+// 瀑布流Layout
+#import "LGFWaterLayout.h"
 
 //******************************** 分类 **********************************
 //------------------ NSString 分类集合 -----------------

@@ -31,6 +31,7 @@
 		1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CADE20A1703F00573974 /* UIView+LGFGSView.m */; };
 		1829CAE820A2D67700573974 /* LGFPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAE720A2D67700573974 /* LGFPopMenu.m */; };
 		1829CAEB20A2D69400573974 /* LGFPopMenuStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */; };
+		183A674D20C7B28200CDED30 /* LGFWaterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A674C20C7B28200CDED30 /* LGFWaterLayout.m */; };
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
 		183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */; };
 		183C684A20BC003100F0E243 /* CLLocation+LGFCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684920BC003100F0E243 /* CLLocation+LGFCLLocation.m */; };
@@ -135,6 +136,8 @@
 		1829CAE720A2D67700573974 /* LGFPopMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenu.m; sourceTree = "<group>"; };
 		1829CAE920A2D69400573974 /* LGFPopMenuStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPopMenuStyle.h; sourceTree = "<group>"; };
 		1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenuStyle.m; sourceTree = "<group>"; };
+		183A674B20C7B28200CDED30 /* LGFWaterLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFWaterLayout.h; sourceTree = "<group>"; };
+		183A674C20C7B28200CDED30 /* LGFWaterLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFWaterLayout.m; sourceTree = "<group>"; };
 		183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFCornerRadius.h"; sourceTree = "<group>"; };
 		183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFCornerRadius.m"; sourceTree = "<group>"; };
 		183C683F20BBFC6A00F0E243 /* NSObject+LGFRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFRuntime.h"; sourceTree = "<group>"; };
@@ -398,6 +401,15 @@
 			path = "UIButton+LGFCategory";
 			sourceTree = "<group>";
 		};
+		183A674A20C7B28200CDED30 /* LGFWaterLayout */ = {
+			isa = PBXGroup;
+			children = (
+				183A674B20C7B28200CDED30 /* LGFWaterLayout.h */,
+				183A674C20C7B28200CDED30 /* LGFWaterLayout.m */,
+			);
+			path = LGFWaterLayout;
+			sourceTree = "<group>";
+		};
 		184235B420999DA80006483C /* NSString+LGFCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +436,7 @@
 		1845E4CA20A3F62E00882152 /* LGFView */ = {
 			isa = PBXGroup;
 			children = (
+				183A674A20C7B28200CDED30 /* LGFWaterLayout */,
 				18486BAB20A91A5600C4F723 /* LGFTimer */,
 				1829CAB420A05DE400573974 /* LGFPopMenu */,
 				1829CAA3209FE27800573974 /* LGFCountDownButton */,
@@ -774,6 +787,7 @@
 				18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */,
 				184235B02099994C0006483C /* NSString+LGFPinyin.m in Sources */,
 				1829CAAD209FEDC000573974 /* UIView+LGFExtension.m in Sources */,
+				183A674D20C7B28200CDED30 /* LGFWaterLayout.m in Sources */,
 				18486BAE20A91A8300C4F723 /* LGFTimer.m in Sources */,
 				18486BB620A9250800C4F723 /* NSDictionary+LGFToJSONString.m in Sources */,
 				18486BBD20A9319D00C4F723 /* UIButton+LGFIndicator.m in Sources */,

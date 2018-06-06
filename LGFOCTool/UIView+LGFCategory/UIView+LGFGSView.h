@@ -42,4 +42,9 @@
 
 @property (assign , nonatomic) IBInspectable float lgf_ShadowOpacity;
 
+#pragma mark - 是否随机背景色 通常用于调试UI
+
+@property (assign , nonatomic) IBInspectable BOOL lgf_IsRandomBackColor;
+
 @end
+
