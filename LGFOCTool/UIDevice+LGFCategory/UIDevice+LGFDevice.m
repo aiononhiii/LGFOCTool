@@ -8,393 +8,530 @@
 
 #import "UIDevice+LGFDevice.h"
 #import "LGFOCTool.h"
-
-#include <sys/types.h>
+#include <sys/socket.h>
 #include <sys/sysctl.h>
-
-#import <sys/socket.h>
-#import <sys/param.h>
-#import <sys/mount.h>
-#import <sys/stat.h>
-#import <sys/utsname.h>
-#import <net/if.h>
-#import <net/if_dl.h>
-#import <mach/mach.h>
-#import <mach/mach_host.h>
-#import <mach/processor_info.h>
-#import <ifaddrs.h>
-#import <arpa/inet.h>
+#include <net/if.h>
+#include <net/if_dl.h>
+#include <mach/mach.h>
+#include <arpa/inet.h>
+#include <ifaddrs.h>
+#import "LGFCategoriesMacro.h"
+#import <SystemConfiguration/CaptiveNetwork.h>
 
 @implementation UIDevice (LGFDevice)
 
-#pragma mark - 返回当前设备硬件 系统默认字符串
-
-- (NSString*)lgf_HardwareString {
-    int name[] = {CTL_HW,HW_MACHINE};
-    size_t size = 100;
-    sysctl(name, 2, NULL, &size, NULL, 0); // getting size of answer
-    char *hw_machine = malloc(size);
-    
-    sysctl(name, 2, hw_machine, &size, NULL, 0);
-    NSString *hardware = [NSString stringWithUTF8String:hw_machine];
-    free(hw_machine);
-    return hardware;
++ (double)lgf_SystemVersion {
+    static double version;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        version = [UIDevice currentDevice].systemVersion.doubleValue;
+    });
+    return version;
 }
 
-#pragma mark - 返回当前设备硬件 可读性枚举
-
-- (lgf_Hardware)lgf_Hardware {
-    NSString *hardware = [self lgf_HardwareString];
-    if ([hardware isEqualToString:@"iPhone1,1"])    return lgf_IPHONE_2G;
-    if ([hardware isEqualToString:@"iPhone1,2"])    return lgf_IPHONE_3G;
-    if ([hardware isEqualToString:@"iPhone2,1"])    return lgf_IPHONE_3GS;
-    if ([hardware isEqualToString:@"iPhone3,1"])    return lgf_IPHONE_4;
-    if ([hardware isEqualToString:@"iPhone3,2"])    return lgf_IPHONE_4;
-    if ([hardware isEqualToString:@"iPhone3,3"])    return lgf_IPHONE_4_CDMA;
-    if ([hardware isEqualToString:@"iPhone4,1"])    return lgf_IPHONE_4S;
-    if ([hardware isEqualToString:@"iPhone5,1"])    return lgf_IPHONE_5;
-    if ([hardware isEqualToString:@"iPhone5,2"])    return lgf_IPHONE_5_CDMA_GSM;
-    if ([hardware isEqualToString:@"iPhone5,3"])    return lgf_IPHONE_5C;
-    if ([hardware isEqualToString:@"iPhone5,4"])    return lgf_IPHONE_5C_CDMA_GSM;
-    if ([hardware isEqualToString:@"iPhone6,1"])    return lgf_IPHONE_5S;
-    if ([hardware isEqualToString:@"iPhone6,2"])    return lgf_IPHONE_5S_CDMA_GSM;
-    
-    if ([hardware isEqualToString:@"iPhone7,1"])    return lgf_IPHONE_6_PLUS;
-    if ([hardware isEqualToString:@"iPhone7,2"])    return lgf_IPHONE_6;
-    
-    if ([hardware isEqualToString:@"iPod1,1"])      return lgf_IPOD_TOUCH_1G;
-    if ([hardware isEqualToString:@"iPod2,1"])      return lgf_IPOD_TOUCH_2G;
-    if ([hardware isEqualToString:@"iPod3,1"])      return lgf_IPOD_TOUCH_3G;
-    if ([hardware isEqualToString:@"iPod4,1"])      return lgf_IPOD_TOUCH_4G;
-    if ([hardware isEqualToString:@"iPod5,1"])      return lgf_IPOD_TOUCH_5G;
-    
-    if ([hardware isEqualToString:@"iPad1,1"])      return lgf_IPAD;
-    if ([hardware isEqualToString:@"iPad1,2"])      return lgf_IPAD_3G;
-    if ([hardware isEqualToString:@"iPad2,1"])      return lgf_IPAD_2_WIFI;
-    if ([hardware isEqualToString:@"iPad2,2"])      return lgf_IPAD_2;
-    if ([hardware isEqualToString:@"iPad2,3"])      return lgf_IPAD_2_CDMA;
-    if ([hardware isEqualToString:@"iPad2,4"])      return lgf_IPAD_2;
-    if ([hardware isEqualToString:@"iPad2,5"])      return lgf_IPAD_MINI_WIFI;
-    if ([hardware isEqualToString:@"iPad2,6"])      return lgf_IPAD_MINI;
-    if ([hardware isEqualToString:@"iPad2,7"])      return lgf_IPAD_MINI_WIFI_CDMA;
-    if ([hardware isEqualToString:@"iPad3,1"])      return lgf_IPAD_3_WIFI;
-    if ([hardware isEqualToString:@"iPad3,2"])      return lgf_IPAD_3_WIFI_CDMA;
-    if ([hardware isEqualToString:@"iPad3,3"])      return lgf_IPAD_3;
-    if ([hardware isEqualToString:@"iPad3,4"])      return lgf_IPAD_4_WIFI;
-    if ([hardware isEqualToString:@"iPad3,5"])      return lgf_IPAD_4;
-    if ([hardware isEqualToString:@"iPad3,6"])      return lgf_IPAD_4_GSM_CDMA;
-    if ([hardware isEqualToString:@"iPad4,1"])      return lgf_IPAD_AIR_WIFI;
-    if ([hardware isEqualToString:@"iPad4,2"])      return lgf_IPAD_AIR_WIFI_GSM;
-    if ([hardware isEqualToString:@"iPad4,3"])      return lgf_IPAD_AIR_WIFI_CDMA;
-    if ([hardware isEqualToString:@"iPad4,4"])      return lgf_IPAD_MINI_RETINA_WIFI;
-    if ([hardware isEqualToString:@"iPad4,5"])      return lgf_IPAD_MINI_RETINA_WIFI_CDMA;
-    
-    
-    if ([hardware isEqualToString:@"i386"])         return lgf_SIMULATOR;
-    if ([hardware isEqualToString:@"x86_64"])       return lgf_SIMULATOR;
-    return lgf_NOT_AVAILABLE;
+- (BOOL)lgf_IsPad {
+    static dispatch_once_t one;
+    static BOOL pad;
+    dispatch_once(&one, ^{
+        pad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+    });
+    return pad;
 }
 
-#pragma mark - 返回当前设备硬件 可读性字符串
-
-- (NSString*)lgf_HardwareDescription {
-    NSString *hardware = [self lgf_HardwareString];
-    if ([hardware isEqualToString:@"iPhone1,1"])    return @"iPhone 2G";
-    if ([hardware isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
-    if ([hardware isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
-    if ([hardware isEqualToString:@"iPhone3,1"])    return @"iPhone 4 (GSM)";
-    if ([hardware isEqualToString:@"iPhone3,2"])    return @"iPhone 4 (GSM Rev. A)";
-    if ([hardware isEqualToString:@"iPhone3,3"])    return @"iPhone 4 (CDMA)";
-    if ([hardware isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
-    if ([hardware isEqualToString:@"iPhone5,1"])    return @"iPhone 5 (GSM)";
-    if ([hardware isEqualToString:@"iPhone5,2"])    return @"iPhone 5 (Global)";
-    if ([hardware isEqualToString:@"iPhone5,3"])    return @"iPhone 5C (GSM)";
-    if ([hardware isEqualToString:@"iPhone5,4"])    return @"iPhone 5C (Global)";
-    if ([hardware isEqualToString:@"iPhone6,1"])    return @"iPhone 5S (GSM)";
-    if ([hardware isEqualToString:@"iPhone6,2"])    return @"iPhone 5S (Global)";
-    
-    if ([hardware isEqualToString:@"iPhone7,1"])    return @"iPhone 6 Plus";
-    if ([hardware isEqualToString:@"iPhone7,2"])    return @"iPhone 6";
-    
-    if ([hardware isEqualToString:@"iPod1,1"])      return @"iPod Touch (1 Gen)";
-    if ([hardware isEqualToString:@"iPod2,1"])      return @"iPod Touch (2 Gen)";
-    if ([hardware isEqualToString:@"iPod3,1"])      return @"iPod Touch (3 Gen)";
-    if ([hardware isEqualToString:@"iPod4,1"])      return @"iPod Touch (4 Gen)";
-    if ([hardware isEqualToString:@"iPod5,1"])      return @"iPod Touch (5 Gen)";
-    
-    if ([hardware isEqualToString:@"iPad1,1"])      return @"iPad (WiFi)";
-    if ([hardware isEqualToString:@"iPad1,2"])      return @"iPad 3G";
-    if ([hardware isEqualToString:@"iPad2,1"])      return @"iPad 2 (WiFi)";
-    if ([hardware isEqualToString:@"iPad2,2"])      return @"iPad 2 (GSM)";
-    if ([hardware isEqualToString:@"iPad2,3"])      return @"iPad 2 (CDMA)";
-    if ([hardware isEqualToString:@"iPad2,4"])      return @"iPad 2 (WiFi Rev. A)";
-    if ([hardware isEqualToString:@"iPad2,5"])      return @"iPad Mini (WiFi)";
-    if ([hardware isEqualToString:@"iPad2,6"])      return @"iPad Mini (GSM)";
-    if ([hardware isEqualToString:@"iPad2,7"])      return @"iPad Mini (CDMA)";
-    if ([hardware isEqualToString:@"iPad3,1"])      return @"iPad 3 (WiFi)";
-    if ([hardware isEqualToString:@"iPad3,2"])      return @"iPad 3 (CDMA)";
-    if ([hardware isEqualToString:@"iPad3,3"])      return @"iPad 3 (Global)";
-    if ([hardware isEqualToString:@"iPad3,4"])      return @"iPad 4 (WiFi)";
-    if ([hardware isEqualToString:@"iPad3,5"])      return @"iPad 4 (CDMA)";
-    if ([hardware isEqualToString:@"iPad3,6"])      return @"iPad 4 (Global)";
-    if ([hardware isEqualToString:@"iPad4,1"])      return @"iPad Air (WiFi)";
-    if ([hardware isEqualToString:@"iPad4,2"])      return @"iPad Air (WiFi+GSM)";
-    if ([hardware isEqualToString:@"iPad4,3"])      return @"iPad Air (WiFi+CDMA)";
-    if ([hardware isEqualToString:@"iPad4,4"])      return @"iPad Mini Retina (WiFi)";
-    if ([hardware isEqualToString:@"iPad4,5"])      return @"iPad Mini Retina (WiFi+CDMA)";
-    if ([hardware isEqualToString:@"i386"])         return @"Simulator";
-    if ([hardware isEqualToString:@"x86_64"])       return @"Simulator";
-    
-    NSLog(@"This is a device which is not listed in this category. Please visit https://github.com/inderkumarrathore/UIDevice-Hardware and add a comment there.");
-    NSLog(@"Your device hardware string is: %@", hardware);
-    if ([hardware hasPrefix:@"iPhone"]) return @"iPhone";
-    if ([hardware hasPrefix:@"iPod"]) return @"iPod";
-    if ([hardware hasPrefix:@"iPad"]) return @"iPad";
-    return nil;
+- (BOOL)lgf_IsSimulator {
+    static dispatch_once_t one;
+    static BOOL simu;
+    dispatch_once(&one, ^{
+        simu = NSNotFound != [[self model] rangeOfString:@"Simulator"].location;
+    });
+    return simu;
 }
 
-#pragma mark - 如果一些设备未标注支持网络类型 则手动描述 并返回可读性字符串
-
-- (NSString*)lgf_HardwareSimpleDescription {
-    NSString *hardware = [self lgf_HardwareString];
-    if ([hardware isEqualToString:@"iPhone1,1"])    return @"iPhone 2G";
-    if ([hardware isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
-    if ([hardware isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
-    if ([hardware isEqualToString:@"iPhone3,1"])    return @"iPhone 4";
-    if ([hardware isEqualToString:@"iPhone3,2"])    return @"iPhone 4";
-    if ([hardware isEqualToString:@"iPhone3,3"])    return @"iPhone 4";
-    if ([hardware isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
-    if ([hardware isEqualToString:@"iPhone5,1"])    return @"iPhone 5";
-    if ([hardware isEqualToString:@"iPhone5,2"])    return @"iPhone 5";
-    if ([hardware isEqualToString:@"iPhone5,3"])    return @"iPhone 5C";
-    if ([hardware isEqualToString:@"iPhone5,4"])    return @"iPhone 5C";
-    if ([hardware isEqualToString:@"iPhone6,1"])    return @"iPhone 5S";
-    if ([hardware isEqualToString:@"iPhone6,2"])    return @"iPhone 5S";
+- (BOOL)lgf_IsJailbroken {
+    if ([self lgf_IsSimulator]) return NO; // Dont't check simulator
     
-    if ([hardware isEqualToString:@"iPod1,1"])      return @"iPod Touch (1 Gen)";
-    if ([hardware isEqualToString:@"iPod2,1"])      return @"iPod Touch (2 Gen)";
-    if ([hardware isEqualToString:@"iPod3,1"])      return @"iPod Touch (3 Gen)";
-    if ([hardware isEqualToString:@"iPod4,1"])      return @"iPod Touch (4 Gen)";
-    if ([hardware isEqualToString:@"iPod5,1"])      return @"iPod Touch (5 Gen)";
+    // iOS9 URL Scheme query changed ...
+    // NSURL *cydiaURL = [NSURL URLWithString:@"cydia://package"];
+    // if ([[UIApplication sharedApplication] canOpenURL:cydiaURL]) return YES;
     
-    if ([hardware isEqualToString:@"iPad1,1"])      return @"iPad";
-    if ([hardware isEqualToString:@"iPad1,2"])      return @"iPad";
-    if ([hardware isEqualToString:@"iPad2,1"])      return @"iPad 2";
-    if ([hardware isEqualToString:@"iPad2,2"])      return @"iPad 2";
-    if ([hardware isEqualToString:@"iPad2,3"])      return @"iPad 2";
-    if ([hardware isEqualToString:@"iPad2,4"])      return @"iPad 2";
-    if ([hardware isEqualToString:@"iPad2,5"])      return @"iPad Mini";
-    if ([hardware isEqualToString:@"iPad2,6"])      return @"iPad Mini";
-    if ([hardware isEqualToString:@"iPad2,7"])      return @"iPad Mini";
-    if ([hardware isEqualToString:@"iPad3,1"])      return @"iPad 3";
-    if ([hardware isEqualToString:@"iPad3,2"])      return @"iPad 3";
-    if ([hardware isEqualToString:@"iPad3,3"])      return @"iPad 3";
-    if ([hardware isEqualToString:@"iPad3,4"])      return @"iPad 4";
-    if ([hardware isEqualToString:@"iPad3,5"])      return @"iPad 4";
-    if ([hardware isEqualToString:@"iPad3,6"])      return @"iPad 4";
-    if ([hardware isEqualToString:@"iPad4,1"])      return @"iPad Air";
-    if ([hardware isEqualToString:@"iPad4,2"])      return @"iPad Air";
-    if ([hardware isEqualToString:@"iPad4,3"])      return @"iPad Air";
-    if ([hardware isEqualToString:@"iPad4,4"])      return @"iPad Mini Retina";
-    if ([hardware isEqualToString:@"iPad4,5"])      return @"iPad Mini Retina";
-    
-    if ([hardware isEqualToString:@"i386"])         return @"Simulator";
-    if ([hardware isEqualToString:@"x86_64"])       return @"Simulator";
-    
-    NSLog(@"This is a device which is not listed in this category. Please visit https://github.com/inderkumarrathore/UIDevice-Hardware and add a comment there.");
-    NSLog(@"Your device hardware string is: %@", hardware);
-    
-    if ([hardware hasPrefix:@"iPhone"]) return @"iPhone";
-    if ([hardware hasPrefix:@"iPod"]) return @"iPod";
-    if ([hardware hasPrefix:@"iPad"]) return @"iPad";
-    
-    return nil;
-}
-
-
-- (float)lgf_HardwareNumber:(lgf_Hardware)hardware {
-    switch (hardware) {
-        case lgf_IPHONE_2G: return 1.1f;
-        case lgf_IPHONE_3G: return 1.2f;
-        case lgf_IPHONE_3GS: return 2.1f;
-        case lgf_IPHONE_4:    return 3.1f;
-        case lgf_IPHONE_4_CDMA:    return 3.3f;
-        case lgf_IPHONE_4S:    return 4.1f;
-        case lgf_IPHONE_5:    return 5.1f;
-        case lgf_IPHONE_5_CDMA_GSM:    return 5.2f;
-        case lgf_IPHONE_5C:    return 5.3f;
-        case lgf_IPHONE_5C_CDMA_GSM:    return 5.4f;
-        case lgf_IPHONE_5S:    return 6.1f;
-        case lgf_IPHONE_5S_CDMA_GSM:    return 6.2f;
-            
-        case lgf_IPHONE_6:         return 7.2f;
-        case lgf_IPHONE_6_PLUS:    return 7.1f;
-            
-        case lgf_IPOD_TOUCH_1G:    return 1.1f;
-        case lgf_IPOD_TOUCH_2G:    return 2.1f;
-        case lgf_IPOD_TOUCH_3G:    return 3.1f;
-        case lgf_IPOD_TOUCH_4G:    return 4.1f;
-        case lgf_IPOD_TOUCH_5G:    return 5.1f;
-            
-        case lgf_IPAD:    return 1.1f;
-        case lgf_IPAD_3G:    return 1.2f;
-        case lgf_IPAD_2_WIFI:    return 2.1f;
-        case lgf_IPAD_2:    return 2.2f;
-        case lgf_IPAD_2_CDMA:    return 2.3f;
-        case lgf_IPAD_MINI_WIFI:    return 2.5f;
-        case lgf_IPAD_MINI:    return 2.6f;
-        case lgf_IPAD_MINI_WIFI_CDMA:    return 2.7f;
-        case lgf_IPAD_3_WIFI:    return 3.1f;
-        case lgf_IPAD_3_WIFI_CDMA:    return 3.2f;
-        case lgf_IPAD_3:    return 3.3f;
-        case lgf_IPAD_4_WIFI:    return 3.4f;
-        case lgf_IPAD_4:    return 3.5f;
-        case lgf_IPAD_4_GSM_CDMA:    return 3.6f;
-        case lgf_IPAD_AIR_WIFI:    return 4.1f;
-        case lgf_IPAD_AIR_WIFI_GSM:    return 4.2f;
-        case lgf_IPAD_AIR_WIFI_CDMA:    return 4.3f;
-        case lgf_IPAD_MINI_RETINA_WIFI:    return 4.4f;
-        case lgf_IPAD_MINI_RETINA_WIFI_CDMA:    return 4.5f;
-            
-        case lgf_SIMULATOR:    return 100.0f;
-        case lgf_NOT_AVAILABLE:    return 200.0f;
+    NSArray *paths = @[@"/Applications/Cydia.app",
+                       @"/private/var/lib/apt/",
+                       @"/private/var/lib/cydia",
+                       @"/private/var/stash"];
+    for (NSString *path in paths) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) return YES;
     }
-    return 200.0f; //Device is not available
-}
-
-#pragma mark - 当前设备如果性能优于 Hardware枚举选择的硬件设备 则返回YES
-
-- (BOOL)lgf_IsCurrentDeviceHardwareBetterThan:(lgf_Hardware)hardware {
-    float otherHardware = [self lgf_HardwareNumber:hardware];
-    float currentHardware = [self lgf_HardwareNumber:[self lgf_Hardware]];
-    return currentHardware >= otherHardware;
-}
-
-#pragma mark - 返回当前设备最大支持图像的分辨率
-
-- (CGSize)lgf_BackCameraStillImageResolutionInPixels {
-    switch ([self lgf_Hardware]) {
-        case lgf_IPHONE_2G:
-        case lgf_IPHONE_3G:
-            return CGSizeMake(1600, 1200);
-            break;
-        case lgf_IPHONE_3GS:
-            return CGSizeMake(2048, 1536);
-            break;
-        case lgf_IPHONE_4:
-        case lgf_IPHONE_4_CDMA:
-        case lgf_IPAD_3_WIFI:
-        case lgf_IPAD_3_WIFI_CDMA:
-        case lgf_IPAD_3:
-        case lgf_IPAD_4_WIFI:
-        case lgf_IPAD_4:
-        case lgf_IPAD_4_GSM_CDMA:
-            return CGSizeMake(2592, 1936);
-            break;
-        case lgf_IPHONE_4S:
-        case lgf_IPHONE_5:
-        case lgf_IPHONE_5_CDMA_GSM:
-        case lgf_IPHONE_5C:
-        case lgf_IPHONE_5C_CDMA_GSM:
-            return CGSizeMake(3264, 2448);
-            break;
-            
-        case lgf_IPOD_TOUCH_4G:
-            return CGSizeMake(960, 720);
-            break;
-        case lgf_IPOD_TOUCH_5G:
-            return CGSizeMake(2440, 1605);
-            break;
-            
-        case lgf_IPAD_2_WIFI:
-        case lgf_IPAD_2:
-        case lgf_IPAD_2_CDMA:
-            return CGSizeMake(872, 720);
-            break;
-            
-        case lgf_IPAD_MINI_WIFI:
-        case lgf_IPAD_MINI:
-        case lgf_IPAD_MINI_WIFI_CDMA:
-            return CGSizeMake(1820, 1304);
-            break;
-        default:
-            NSLog(@"We have no resolution for your device's camera listed in this category. Please, make photo with back camera of your device, get its resolution in pixels (via Preview Cmd+I for example) and add a comment to this repository on GitHub.com in format Device = Hpx x Wpx.");
-            NSLog(@"Your device is: %@", [self lgf_HardwareDescription]);
-            break;
+    
+    FILE *bash = fopen("/bin/bash", "r");
+    if (bash != NULL) {
+        fclose(bash);
+        return YES;
     }
-    return CGSizeZero;
-}
-
-#pragma mark - 如果当前设备是iPhone并且具有 4 显示，则此方法返回 YES
-
-- (BOOL)lgf_IsIphoneWith4inchDisplay {
-    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone) {
-        double height = [[UIScreen mainScreen] bounds].size.height;
-        if (fabs(height-568.0f) < DBL_EPSILON) {
-            return YES;
-        }
+    
+    NSString *path = [NSString stringWithFormat:@"/private/%@", [NSString lgf_StringWithUUID]];
+    if ([@"test" writeToFile : path atomically : YES encoding : NSUTF8StringEncoding error : NULL]) {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+        return YES;
     }
+    
     return NO;
 }
 
-#pragma mark - 返回 MAC 地址
-
-+ (NSString *)lgf_MacAddress {
-    int                 mib[6];
-    size_t              len;
-    char                *buf;
-    unsigned char       *ptr;
-    struct if_msghdr    *ifm;
-    struct sockaddr_dl  *sdl;
-    
-    mib[0] = CTL_NET;
-    mib[1] = AF_ROUTE;
-    mib[2] = 0;
-    mib[3] = AF_LINK;
-    mib[4] = NET_RT_IFLIST;
-    
-    if((mib[5] = if_nametoindex("en0")) == 0) {
-        printf("Error: if_nametoindex error\n");
-        return NULL;
-    }
-    
-    if(sysctl(mib, 6, NULL, &len, NULL, 0) < 0) {
-        printf("Error: sysctl, take 1\n");
-        return NULL;
-    }
-    
-    if((buf = malloc(len)) == NULL) {
-        printf("Could not allocate memory. Rrror!\n");
-        return NULL;
-    }
-    
-    if(sysctl(mib, 6, buf, &len, NULL, 0) < 0) {
-        printf("Error: sysctl, take 2");
-        return NULL;
-    }
-    
-    ifm = (struct if_msghdr *)buf;
-    sdl = (struct sockaddr_dl *)(ifm + 1);
-    ptr = (unsigned char *)LLADDR(sdl);
-    NSString *outstring = [NSString stringWithFormat:@"%02X:%02X:%02X:%02X:%02X:%02X",
-                           *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
-    free(buf);
-    return outstring;
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+- (BOOL)lgf_CanMakePhoneCalls {
+    __block BOOL can;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        can = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]];
+    });
+    return can;
 }
+#endif
 
-#pragma mark - 获取当前手机iOS系统的版本号
-
-+ (NSString *)lgf_SystemVersion {
-    return [[UIDevice currentDevice] systemVersion];
-}
-
-#pragma mark - 判断当前系统是否有摄像头
-
-+ (BOOL)lgf_HasCamera {
+- (BOOL)lgf_CanMakeCamera {
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
 }
 
-+ (NSUInteger)lgf_GetSysInfo:(uint)typeSpecifier {
+- (NSString *)lgf_IpAddressWithIfaName:(NSString *)name {
+    if (name.length == 0) return nil;
+    NSString *address = nil;
+    struct ifaddrs *addrs = NULL;
+    if (getifaddrs(&addrs) == 0) {
+        struct ifaddrs *addr = addrs;
+        while (addr) {
+            if ([[NSString stringWithUTF8String:addr->ifa_name] isEqualToString:name]) {
+                sa_family_t family = addr->ifa_addr->sa_family;
+                switch (family) {
+                    case AF_INET: { // IPv4
+                        char str[INET_ADDRSTRLEN] = {0};
+                        inet_ntop(family, &(((struct sockaddr_in *)addr->ifa_addr)->sin_addr), str, sizeof(str));
+                        if (strlen(str) > 0) {
+                            address = [NSString stringWithUTF8String:str];
+                        }
+                    } break;
+                        
+                    case AF_INET6: { // IPv6
+                        char str[INET6_ADDRSTRLEN] = {0};
+                        inet_ntop(family, &(((struct sockaddr_in6 *)addr->ifa_addr)->sin6_addr), str, sizeof(str));
+                        if (strlen(str) > 0) {
+                            address = [NSString stringWithUTF8String:str];
+                        }
+                    }
+                        
+                    default: break;
+                }
+                if (address) break;
+            }
+            addr = addr->ifa_next;
+        }
+    }
+    freeifaddrs(addrs);
+    return address;
+}
+
+- (NSString *)lgf_IpAddressWIFI {
+    return [self lgf_IpAddressWithIfaName:@"en0"];
+}
+
+- (NSString *)lgf_IpAddressCell {
+    return [self lgf_IpAddressWithIfaName:@"pdp_ip0"];
+}
+
+- (NSString *)lgf_WifiName {
+    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+    NSLog(@"Supported interfaces: %@", ifs);
+    NSDictionary *info = nil;
+    for (NSString *ifnam in ifs) {
+        info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+        if (info && [info count]) { break; }
+    }
+    return info[@"SSID"];
+}
+
+typedef struct {
+    uint64_t en_in;
+    uint64_t en_out;
+    uint64_t pdp_ip_in;
+    uint64_t pdp_ip_out;
+    uint64_t awdl_in;
+    uint64_t awdl_out;
+} lgf_net_interface_counter;
+
+
+static uint64_t lgf_net_counter_add(uint64_t counter, uint64_t bytes) {
+    if (bytes < (counter % 0xFFFFFFFF)) {
+        counter += 0xFFFFFFFF - (counter % 0xFFFFFFFF);
+        counter += bytes;
+    } else {
+        counter = bytes;
+    }
+    return counter;
+}
+
+static uint64_t lgf_net_counter_get_by_type(lgf_net_interface_counter *counter, lgf_NetworkTrafficType type) {
+    uint64_t bytes = 0;
+    if (type & lgf_NetworkTrafficTypeWWANSent) bytes += counter->pdp_ip_out;
+    if (type & lgf_NetworkTrafficTypeWWANReceived) bytes += counter->pdp_ip_in;
+    if (type & lgf_NetworkTrafficTypeWIFISent) bytes += counter->en_out;
+    if (type & lgf_NetworkTrafficTypeWIFIReceived) bytes += counter->en_in;
+    if (type & lgf_NetworkTrafficTypeAWDLSent) bytes += counter->awdl_out;
+    if (type & lgf_NetworkTrafficTypeAWDLReceived) bytes += counter->awdl_in;
+    return bytes;
+}
+
+static lgf_net_interface_counter lgf_get_net_interface_counter() {
+    static dispatch_semaphore_t lock;
+    static NSMutableDictionary *sharedInCounters;
+    static NSMutableDictionary *sharedOutCounters;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInCounters = [NSMutableDictionary new];
+        sharedOutCounters = [NSMutableDictionary new];
+        lock = dispatch_semaphore_create(1);
+    });
+    
+    lgf_net_interface_counter counter = {0};
+    struct ifaddrs *addrs;
+    const struct ifaddrs *cursor;
+    if (getifaddrs(&addrs) == 0) {
+        cursor = addrs;
+        dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
+        while (cursor) {
+            if (cursor->ifa_addr->sa_family == AF_LINK) {
+                const struct if_data *data = cursor->ifa_data;
+                NSString *name = cursor->ifa_name ? [NSString stringWithUTF8String:cursor->ifa_name] : nil;
+                if (name) {
+                    uint64_t counter_in = ((NSNumber *)sharedInCounters[name]).unsignedLongLongValue;
+                    counter_in = lgf_net_counter_add(counter_in, data->ifi_ibytes);
+                    sharedInCounters[name] = @(counter_in);
+                    
+                    uint64_t counter_out = ((NSNumber *)sharedOutCounters[name]).unsignedLongLongValue;
+                    counter_out = lgf_net_counter_add(counter_out, data->ifi_obytes);
+                    sharedOutCounters[name] = @(counter_out);
+                    
+                    if ([name hasPrefix:@"en"]) {
+                        counter.en_in += counter_in;
+                        counter.en_out += counter_out;
+                    } else if ([name hasPrefix:@"awdl"]) {
+                        counter.awdl_in += counter_in;
+                        counter.awdl_out += counter_out;
+                    } else if ([name hasPrefix:@"pdp_ip"]) {
+                        counter.pdp_ip_in += counter_in;
+                        counter.pdp_ip_out += counter_out;
+                    }
+                }
+            }
+            cursor = cursor->ifa_next;
+        }
+        dispatch_semaphore_signal(lock);
+        freeifaddrs(addrs);
+    }
+    
+    return counter;
+}
+
+- (uint64_t)lgf_GetNetworkTrafficBytes:(lgf_NetworkTrafficType)types {
+    lgf_net_interface_counter counter = lgf_get_net_interface_counter();
+    return lgf_net_counter_get_by_type(&counter, types);
+}
+
+- (NSString *)lgf_MachineModel {
+    static dispatch_once_t one;
+    static NSString *model;
+    dispatch_once(&one, ^{
+        size_t size;
+        sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+        char *machine = malloc(size);
+        sysctlbyname("hw.machine", machine, &size, NULL, 0);
+        model = [NSString stringWithUTF8String:machine];
+        free(machine);
+    });
+    return model;
+}
+
+- (NSString *)lgf_MachineModelName {
+    static dispatch_once_t one;
+    static NSString *name;
+    dispatch_once(&one, ^{
+        NSString *model = [self lgf_MachineModel];
+        if (!model) return;
+        NSDictionary *dic = @{
+                              @"Watch1,1" : @"Apple Watch 38mm",
+                              @"Watch1,2" : @"Apple Watch 42mm",
+                              @"Watch2,3" : @"Apple Watch Series 2 38mm",
+                              @"Watch2,4" : @"Apple Watch Series 2 42mm",
+                              @"Watch2,6" : @"Apple Watch Series 1 38mm",
+                              @"Watch2,7" : @"Apple Watch Series 1 42mm",
+                              
+                              @"iPod1,1" : @"iPod touch 1",
+                              @"iPod2,1" : @"iPod touch 2",
+                              @"iPod3,1" : @"iPod touch 3",
+                              @"iPod4,1" : @"iPod touch 4",
+                              @"iPod5,1" : @"iPod touch 5",
+                              @"iPod7,1" : @"iPod touch 6",
+                              
+                              @"iPhone1,1" : @"iPhone 1G",
+                              @"iPhone1,2" : @"iPhone 3G",
+                              @"iPhone2,1" : @"iPhone 3GS",
+                              @"iPhone3,1" : @"iPhone 4 (GSM)",
+                              @"iPhone3,2" : @"iPhone 4",
+                              @"iPhone3,3" : @"iPhone 4 (CDMA)",
+                              @"iPhone4,1" : @"iPhone 4S",
+                              @"iPhone5,1" : @"iPhone 5",
+                              @"iPhone5,2" : @"iPhone 5",
+                              @"iPhone5,3" : @"iPhone 5c",
+                              @"iPhone5,4" : @"iPhone 5c",
+                              @"iPhone6,1" : @"iPhone 5s",
+                              @"iPhone6,2" : @"iPhone 5s",
+                              @"iPhone7,1" : @"iPhone 6 Plus",
+                              @"iPhone7,2" : @"iPhone 6",
+                              @"iPhone8,1" : @"iPhone 6s",
+                              @"iPhone8,2" : @"iPhone 6s Plus",
+                              @"iPhone8,4" : @"iPhone SE",
+                              @"iPhone9,1" : @"iPhone 7",
+                              @"iPhone9,2" : @"iPhone 7 Plus",
+                              @"iPhone9,3" : @"iPhone 7",
+                              @"iPhone9,4" : @"iPhone 7 Plus",
+                              
+                              @"iPad1,1" : @"iPad 1",
+                              @"iPad2,1" : @"iPad 2 (WiFi)",
+                              @"iPad2,2" : @"iPad 2 (GSM)",
+                              @"iPad2,3" : @"iPad 2 (CDMA)",
+                              @"iPad2,4" : @"iPad 2",
+                              @"iPad2,5" : @"iPad mini 1",
+                              @"iPad2,6" : @"iPad mini 1",
+                              @"iPad2,7" : @"iPad mini 1",
+                              @"iPad3,1" : @"iPad 3 (WiFi)",
+                              @"iPad3,2" : @"iPad 3 (4G)",
+                              @"iPad3,3" : @"iPad 3 (4G)",
+                              @"iPad3,4" : @"iPad 4",
+                              @"iPad3,5" : @"iPad 4",
+                              @"iPad3,6" : @"iPad 4",
+                              @"iPad4,1" : @"iPad Air",
+                              @"iPad4,2" : @"iPad Air",
+                              @"iPad4,3" : @"iPad Air",
+                              @"iPad4,4" : @"iPad mini 2",
+                              @"iPad4,5" : @"iPad mini 2",
+                              @"iPad4,6" : @"iPad mini 2",
+                              @"iPad4,7" : @"iPad mini 3",
+                              @"iPad4,8" : @"iPad mini 3",
+                              @"iPad4,9" : @"iPad mini 3",
+                              @"iPad5,1" : @"iPad mini 4",
+                              @"iPad5,2" : @"iPad mini 4",
+                              @"iPad5,3" : @"iPad Air 2",
+                              @"iPad5,4" : @"iPad Air 2",
+                              @"iPad6,3" : @"iPad Pro (9.7 inch)",
+                              @"iPad6,4" : @"iPad Pro (9.7 inch)",
+                              @"iPad6,7" : @"iPad Pro (12.9 inch)",
+                              @"iPad6,8" : @"iPad Pro (12.9 inch)",
+                              
+                              @"AppleTV2,1" : @"Apple TV 2",
+                              @"AppleTV3,1" : @"Apple TV 3",
+                              @"AppleTV3,2" : @"Apple TV 3",
+                              @"AppleTV5,3" : @"Apple TV 4",
+                              
+                              @"i386" : @"Simulator x86",
+                              @"x86_64" : @"Simulator x64",
+                              };
+        name = dic[model];
+        if (!name) name = model;
+    });
+    return name;
+}
+
+- (NSDate *)lgf_SystemUptime {
+    NSTimeInterval time = [[NSProcessInfo processInfo] systemUptime];
+    return [[NSDate alloc] initWithTimeIntervalSinceNow:(0 - time)];
+}
+
+- (int64_t)lgf_DiskSpace {
+    NSError *error = nil;
+    NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
+    if (error) return -1;
+    int64_t space =  [[attrs objectForKey:NSFileSystemSize] longLongValue];
+    if (space < 0) space = -1;
+    return space;
+}
+
+- (int64_t)lgf_DiskSpaceFree {
+    NSError *error = nil;
+    NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
+    if (error) return -1;
+    int64_t space =  [[attrs objectForKey:NSFileSystemFreeSize] longLongValue];
+    if (space < 0) space = -1;
+    return space;
+}
+
+- (int64_t)lgf_DiskSpaceUsed {
+    int64_t total = self.lgf_DiskSpace;
+    int64_t free = self.lgf_DiskSpaceFree;
+    if (total < 0 || free < 0) return -1;
+    int64_t used = total - free;
+    if (used < 0) used = -1;
+    return used;
+}
+
+- (int64_t)lgf_MemoryTotal {
+    int64_t mem = [[NSProcessInfo processInfo] physicalMemory];
+    if (mem < -1) mem = -1;
+    return mem;
+}
+
+- (int64_t)lgf_MemoryUsed {
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return page_size * (vm_stat.active_count + vm_stat.inactive_count + vm_stat.wire_count);
+}
+
+- (int64_t)lgf_MemoryFree {
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.free_count * page_size;
+}
+
+- (int64_t)lgf_MemoryActive {
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.active_count * page_size;
+}
+
+- (int64_t)lgf_MemoryInactive {
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.inactive_count * page_size;
+}
+
+- (int64_t)lgf_MemoryWired {
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.wire_count * page_size;
+}
+
+- (int64_t)lgf_MemoryPurgable {
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.purgeable_count * page_size;
+}
+
+- (NSUInteger)lgf_CpuCount {
+    return [NSProcessInfo processInfo].activeProcessorCount;
+}
+
+- (float)lgf_BatteryQuantity {
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+    return [[UIDevice currentDevice] batteryLevel];
+}
+
+- (NSUInteger)lgf_CpuNumber {
+    return [self lgf_GetSysInfo:HW_NCPU];
+}
+
+- (float)lgf_CpuUsage {
+    float cpu = 0;
+    NSArray *cpus = [self lgf_CpuUsagePerProcessor];
+    if (cpus.count == 0) return -1;
+    for (NSNumber *n in cpus) {
+        cpu += n.floatValue;
+    }
+    return cpu;
+}
+
+- (NSArray *)lgf_CpuUsagePerProcessor {
+    processor_info_array_t _cpuInfo, _prevCPUInfo = nil;
+    mach_msg_type_number_t _numCPUInfo, _numPrevCPUInfo = 0;
+    unsigned _numCPUs;
+    NSLock *_cpuUsageLock;
+    
+    int _mib[2U] = { CTL_HW, HW_NCPU };
+    size_t _sizeOfNumCPUs = sizeof(_numCPUs);
+    int _status = sysctl(_mib, 2U, &_numCPUs, &_sizeOfNumCPUs, NULL, 0U);
+    if (_status)
+        _numCPUs = 1;
+    
+    _cpuUsageLock = [[NSLock alloc] init];
+    
+    natural_t _numCPUsU = 0U;
+    kern_return_t err = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &_numCPUsU, &_cpuInfo, &_numCPUInfo);
+    if (err == KERN_SUCCESS) {
+        [_cpuUsageLock lock];
+        
+        NSMutableArray *cpus = [NSMutableArray new];
+        for (unsigned i = 0U; i < _numCPUs; ++i) {
+            Float32 _inUse, _total;
+            if (_prevCPUInfo) {
+                _inUse = (
+                          (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER]   - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER])
+                          + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM] - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM])
+                          + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE]   - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE])
+                          );
+                _total = _inUse + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE] - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE]);
+            } else {
+                _inUse = _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER] + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM] + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE];
+                _total = _inUse + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE];
+            }
+            [cpus addObject:@(_inUse / _total)];
+        }
+        
+        [_cpuUsageLock unlock];
+        if (_prevCPUInfo) {
+            size_t prevCpuInfoSize = sizeof(integer_t) * _numPrevCPUInfo;
+            vm_deallocate(mach_task_self(), (vm_address_t)_prevCPUInfo, prevCpuInfoSize);
+        }
+        return cpus;
+    } else {
+        return nil;
+    }
+}
+
+- (NSUInteger)lgf_GetSysInfo:(uint)typeSpecifier {
     size_t size = sizeof(int);
     int result;
     int mib[2] = {CTL_HW, typeSpecifier};
@@ -402,107 +539,20 @@
     return (NSUInteger)result;
 }
 
-#pragma mark - 返回当前设备 CPU 频率
-
-+ (NSUInteger)lgf_CpuFrequency {
-    return [self lgf_GetSysInfo:HW_CPU_FREQ];
-}
-
-#pragma mark - 返回当前设备 BUS 频率
-
-+ (NSUInteger)lgf_BusFrequency {
-    return [self lgf_GetSysInfo:HW_BUS_FREQ];
-}
-
-#pragma mark - 返回当前设备 RAM(运行内存) 大小
-
-+ (NSUInteger)lgf_RamSize {
-    return [self lgf_GetSysInfo:HW_MEMSIZE];
-}
-
-#pragma mark - 返回电池电量
-
-+ (float)lgf_BatteryQuantity {
-    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
-    return [[UIDevice currentDevice] batteryLevel];
-}
-
-#pragma mark - 返回当前设备 CPU 型号
-
-+ (NSUInteger)lgf_CpuNumber {
-    return [self lgf_GetSysInfo:HW_NCPU];
-}
-
-#pragma mark - 获取手机内存总容量, 返回的是字节数
-
-+ (long long)lgf_TotalMemorySize {
-    return [NSProcessInfo processInfo].physicalMemory;
-}
-
-#pragma mark - 获取手机内存可用容量, 返回的是字节数
-
-+ (long long)lgf_FreeMemorySize {
-    vm_statistics_data_t vmStats;
-    mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;
-    kern_return_t kernReturn = host_statistics(mach_host_self(), HOST_VM_INFO, (host_info_t)&vmStats, &infoCount);
-    if (kernReturn != KERN_SUCCESS)
-    {
-        return NSNotFound;
++ (void)lgf_TurnOnTheFlashlight:(BOOL)isOn {
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device hasTorch]) {
+        [device lockForConfiguration:nil];
+        if (isOn) {
+            [device setTorchMode:AVCaptureTorchModeOn];//手电筒打开
+        } else {
+            [device setTorchMode:AVCaptureTorchModeOff];//手电筒关闭
+        }
+        [device unlockForConfiguration];
     }
-    return ((vm_page_size * vmStats.free_count + vm_page_size * vmStats.inactive_count));
 }
 
-#pragma mark - 获取手机内存已用容量, 返回的是字节数
-
-+ (long long)lgf_UsedMemorySize {
-    task_basic_info_data_t taskInfo;
-    mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;
-    kern_return_t kernReturn = task_info(mach_task_self(),
-                                         TASK_BASIC_INFO,
-                                         (task_info_t)&taskInfo,
-                                         &infoCount);
-    
-    if (kernReturn != KERN_SUCCESS
-        ) {
-        return NSNotFound;
-    }
-    
-    return taskInfo.resident_size;
-}
-
-#pragma mark - 获取手机硬盘总容量, 返回的是字节数
-
-+ (long long)lgf_TotalDiskSize {
-    struct statfs buf;
-    unsigned long long maxspace = -1;
-    if (statfs("/var", &buf) >= 0)
-    {
-        maxspace = (unsigned long long)(buf.f_bsize * buf.f_blocks);
-    }
-    return maxspace;
-}
-
-#pragma mark - 获取手机可用硬盘容量, 返回的是字节数
-
-+ (long long)lgf_FreeDiskSize {
-    struct statfs buf;
-    unsigned long long freeSpace = -1;
-    if (statfs("/var", &buf) >= 0)
-    {
-        freeSpace = (unsigned long long)(buf.f_bsize * buf.f_bavail);
-    }
-    return freeSpace;
-}
-
-#pragma mark - 获取手机已用硬盘容量, 返回的是字节数
-
-+ (long long)lgf_UsedDiskSize {
-    return [self lgf_TotalDiskSize] - [self lgf_FreeDiskSize];
-}
-
-#pragma mark - 获取手机可用内存,转换成可视字符串
-
-+ (NSString *)lgf_DiskSizeToString:(unsigned long long)diskSize {
++ (NSString *)lgf_DiskSizeToString:(int64_t)diskSize {
     NSInteger KB = 1024;
     NSInteger MB = KB*KB;
     NSInteger GB = MB*KB;
@@ -517,68 +567,6 @@
         return [NSString stringWithFormat:@"%.1fMB",((CGFloat)diskSize)/MB];
     }else   {
         return [NSString stringWithFormat:@"%.1fGB",((CGFloat)diskSize)/GB];
-    }
-}
-
-#pragma mark - 取得当前网络环境IP地址
-
-+ (NSString *)lgf_IPAddress {
-    NSString *address = @"error";
-    struct ifaddrs *interfaces = NULL;
-    struct ifaddrs *temp_addr = NULL;
-    int success = 0;
-    // retrieve the current interfaces - returns 0 on success
-    success = getifaddrs(&interfaces);
-    if (success == 0) {
-        // Loop through linked list of interfaces
-        temp_addr = interfaces;
-        while(temp_addr != NULL) {
-            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-                // Check if interface is en0 which is the wifi connection on the iPhone
-                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-                    // Get NSString from C String
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
-                }
-            }
-            temp_addr = temp_addr->ifa_next;
-        }
-    }
-    // Free memory
-    freeifaddrs(interfaces);
-    return address;
-}
-
-#pragma mark - 取得当前连接Wifi名字
-
-+ (NSString *)lgf_WifiName {
-    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
-    NSLog(@"Supported interfaces: %@", ifs);
-    NSDictionary *info = nil;
-    for (NSString *ifnam in ifs) {
-        info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-        if (info && [info count]) { break; }
-    }
-    return info[@"SSID"];
-}
-
-#pragma mark - 获取当前设备 UUID
-
-+ (NSString *)lgf_DeviceUUID {
-    return [UIDevice currentDevice].identifierForVendor.UUIDString;
-}
-
-#pragma mark - 是否打开手电筒
-
-+ (void)lgf_TurnOnTheFlashlight:(BOOL)isOn {
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if ([device hasTorch]) {
-        [device lockForConfiguration:nil];
-        if (isOn) {
-            [device setTorchMode:AVCaptureTorchModeOn];//手电筒打开
-        } else {
-            [device setTorchMode:AVCaptureTorchModeOff];//手电筒关闭
-        }
-        [device unlockForConfiguration];
     }
 }
 

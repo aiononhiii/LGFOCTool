@@ -12,7 +12,7 @@
 @implementation NSObject (LGFReflection)
 
 - (NSString *)lgf_ClassName {
-    return NSStringFromClass([self class]);
+    return [NSString stringWithUTF8String:class_getName([self class])];
 }
 
 - (NSString *)lgf_SuperClassName {
@@ -553,6 +553,28 @@
         }
     }
     return result;
+}
+
+- (id)lgf_DeepCopy {
+    id obj = nil;
+    @try {
+        obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+    }
+    return obj;
+}
+
+- (id)lgf_DeepCopyWithArchiver:(Class)archiver unarchiver:(Class)unarchiver {
+    id obj = nil;
+    @try {
+        obj = [unarchiver unarchiveObjectWithData:[archiver archivedDataWithRootObject:self]];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+    }
+    return obj;
 }
 
 @end

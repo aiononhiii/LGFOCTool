@@ -63,10 +63,6 @@
 
 //---------------------- 常用系统信息获取 ----------------------
 
-// app版本
-#undef lgf_AppVersion
-#define lgf_AppVersion [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleShortVersionString"]
-
 // 设备模型数据
 #undef lgf_DeviceModel
 #define lgf_DeviceModel [UIDevice currentDevice].model
@@ -157,6 +153,12 @@
 #endif
 #endif
 
+//---------------------- 创建类快捷设置 ----------------------
+#ifndef lgf_SYNTH_DUMMY_CLASS
+#define lgf_SYNTH_DUMMY_CLASS(_name_) \
+@interface lgf_SYNTH_DUMMY_CLASS_ ## _name_ : NSObject @end \
+@implementation lgf_SYNTH_DUMMY_CLASS_ ## _name_ @end
+#endif
 //---------------------- 单列快捷设置 ----------------------
 
 // 添加到 .h 文件

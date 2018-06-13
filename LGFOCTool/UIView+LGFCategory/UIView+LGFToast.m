@@ -190,12 +190,14 @@ static char LGFToastActivityKey;
 - (void)lgf_ShowToastMessage:(NSString *)message {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastMessage = message;
+    style.LGFToastImage = nil;
     [self lgf_ShowToastStyle:style];
 }
 
 - (void)lgf_ShowToastMessage:(NSString *)message duration:(NSTimeInterval)duration {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastMessage = message;
+    style.LGFToastImage = nil;
     style.LGFDuration = duration;
     [self lgf_ShowToastStyle:style];
 }
@@ -203,12 +205,14 @@ static char LGFToastActivityKey;
 - (void)lgf_ShowToastImage:(UIImage *)image {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastImage = image;
+    style.LGFToastMessage = nil;
     [self lgf_ShowToastStyle:style];
 }
 
 - (void)lgf_ShowToastImage:(UIImage *)image duration:(NSTimeInterval)duration {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastImage = image;
+    style.LGFToastMessage = nil;
     style.LGFDuration = duration;
     [self lgf_ShowToastStyle:style];
 }

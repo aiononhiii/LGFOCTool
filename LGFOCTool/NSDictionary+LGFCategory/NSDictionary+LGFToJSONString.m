@@ -14,21 +14,23 @@
 #pragma mark - 字典转 JSON字符串
 
 - (NSString *)lgf_DictionaryToJson {
-    NSString * str = @"{";
-    int i = 0;
-    for ( NSString * key in self.allKeys ) {
-        NSString * value = self[key];
-        NSString * content = [NSString stringWithFormat:@"'%@':'%@'", key, value];
-        str = [str stringByAppendingString:content];
-        i ++;
-        if (i == self.allKeys.count) {
-            break;
-        } else {
-            str = [str stringByAppendingString:@","];
-        }
+    if ([NSJSONSerialization isValidJSONObject:self]) {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
+        NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return json;
     }
-    str = [str stringByAppendingString:@"}"];
-    return str;
+    return nil;
+}
+
+- (NSString *)lgf_DictionaryToJsonPrettyString {
+    if ([NSJSONSerialization isValidJSONObject:self]) {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return json;
+    }
+    return nil;
 }
 
 #pragma mark - 字典转 JSON字符串

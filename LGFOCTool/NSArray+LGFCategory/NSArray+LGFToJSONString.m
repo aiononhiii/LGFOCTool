@@ -13,15 +13,23 @@
 #pragma mark - 数组转 JSON字符串
 
 - (NSString *)lgf_ArrayToJson {
-    NSString *json = nil;
-    NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
-    if(!error) {
-        json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([NSJSONSerialization isValidJSONObject:self]) {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
+        NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         return json;
-    } else {
-        return error.localizedDescription;
     }
+    return nil;
+}
+
+- (NSString *)lgf_ArrayToJsonPrettyString {
+    if ([NSJSONSerialization isValidJSONObject:self]) {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return json;
+    }
+    return nil;
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UITextField (LGFTextField)
 
 #pragma mark - UITextField输入长度限制
@@ -29,4 +31,15 @@
  */
 - (void)lgf_KeywordHighlightColor:(UIColor *)color font:(UIFont *)font text:(NSString *)text;
 
+#pragma mark - 设置所有选中的文字
+- (void)lgf_SelectAllText;
+
+#pragma mark - 在所选范围内设置文本
+/**
+   @param range 文档中选定文本的范围。
+ */
+- (void)lgf_SetSelectedRange:(NSRange)range;
+
 @end
+
+NS_ASSUME_NONNULL_END

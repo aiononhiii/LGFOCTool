@@ -7,95 +7,68 @@
 //
 
 #import "NSString+LGFHash.h"
-#import <CommonCrypto/CommonDigest.h>
-#import <CommonCrypto/CommonHMAC.h>
+#import "NSData+LGFHash.h"
 
 @implementation NSString (LGFHash)
 
-#pragma mark -  md5 加密
-- (NSString *)lgf_MD5String {
-    const char *string = self.UTF8String;
-    int length = (int)strlen(string);
-    unsigned char bytes[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(string, length, bytes);
-    return [self lgf_StringFromBytes:bytes length:CC_MD5_DIGEST_LENGTH];
+- (NSString *)lgf_Md2String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Md2String];
 }
 
-#pragma mark -  sha1 加密
-- (NSString *)lgf_SHA1String {
-    const char *string = self.UTF8String;
-    int length = (int)strlen(string);
-    unsigned char bytes[CC_SHA1_DIGEST_LENGTH];
-    CC_SHA1(string, length, bytes);
-    return [self lgf_StringFromBytes:bytes length:CC_SHA1_DIGEST_LENGTH];
+- (NSString *)lgf_Md4String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Md4String];
 }
 
-#pragma mark -  sha256 加密
-- (NSString *)lgf_SHA256String {
-    const char *string = self.UTF8String;
-    int length = (int)strlen(string);
-    unsigned char bytes[CC_SHA256_DIGEST_LENGTH];
-    CC_SHA256(string, length, bytes);
-    return [self lgf_StringFromBytes:bytes length:CC_SHA256_DIGEST_LENGTH];
+- (NSString *)lgf_Md5String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Md5String];
 }
 
-#pragma mark -  sha512 加密
-- (NSString *)lgf_SHA512String {
-    const char *string = self.UTF8String;
-    int length = (int)strlen(string);
-    unsigned char bytes[CC_SHA512_DIGEST_LENGTH];
-    CC_SHA512(string, length, bytes);
-    return [self lgf_StringFromBytes:bytes length:CC_SHA512_DIGEST_LENGTH];
+- (NSString *)lgf_Sha1String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Sha1String];
 }
 
-#pragma mark - HMAC+MD5 加密
+- (NSString *)lgf_Sha224String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Sha224String];
+}
+
+- (NSString *)lgf_Sha256String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Sha256String];
+}
+
+- (NSString *)lgf_Sha384String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Sha384String];
+}
+
+- (NSString *)lgf_Sha512String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Sha512String];
+}
+
+- (NSString *)lgf_Crc32String {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_Crc32String];
+}
+
 - (NSString *)lgf_HmacMD5StringWithKey:(NSString *)key {
-    return [self lgf_HmacStringUsingAlg:kCCHmacAlgMD5 withKey:key];
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_HmacMD5StringWithKey:key];
 }
 
-#pragma mark - HMAC+SHA1 加密
 - (NSString *)lgf_HmacSHA1StringWithKey:(NSString *)key {
-    return [self lgf_HmacStringUsingAlg:kCCHmacAlgSHA1 withKey:key];
-    
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_HmacSHA1StringWithKey:key];
 }
 
-#pragma mark - HMAC+SHA256 加密
+- (NSString *)lgf_HmacSHA224StringWithKey:(NSString *)key {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_HmacSHA224StringWithKey:key];
+}
+
 - (NSString *)lgf_HmacSHA256StringWithKey:(NSString *)key {
-    return [self lgf_HmacStringUsingAlg:kCCHmacAlgSHA256 withKey:key];
-    
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_HmacSHA256StringWithKey:key];
 }
 
-#pragma mark - HMAC+SHA512 加密
+- (NSString *)lgf_HmacSHA384StringWithKey:(NSString *)key {
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_HmacSHA384StringWithKey:key];
+}
+
 - (NSString *)lgf_HmacSHA512StringWithKey:(NSString *)key {
-    return [self lgf_HmacStringUsingAlg:kCCHmacAlgSHA512 withKey:key];
-    
-}
-
-#pragma mark - Helpers
-- (NSString *)lgf_HmacStringUsingAlg:(CCHmacAlgorithm)alg withKey:(NSString *)key {
-    size_t size;
-    switch (alg) {
-        case kCCHmacAlgMD5: size = CC_MD5_DIGEST_LENGTH; break;
-        case kCCHmacAlgSHA1: size = CC_SHA1_DIGEST_LENGTH; break;
-        case kCCHmacAlgSHA224: size = CC_SHA224_DIGEST_LENGTH; break;
-        case kCCHmacAlgSHA256: size = CC_SHA256_DIGEST_LENGTH; break;
-        case kCCHmacAlgSHA384: size = CC_SHA384_DIGEST_LENGTH; break;
-        case kCCHmacAlgSHA512: size = CC_SHA512_DIGEST_LENGTH; break;
-        default: return nil;
-    }
-    
-    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *messageData = [self dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableData *mutableData = [NSMutableData dataWithLength:size];
-    CCHmac(alg, keyData.bytes, keyData.length, messageData.bytes, messageData.length, mutableData.mutableBytes);
-    return [self lgf_StringFromBytes:(unsigned char *)mutableData.bytes length:(int)mutableData.length];
-}
-
-- (NSString *)lgf_StringFromBytes:(unsigned char *)bytes length:(int)length {
-    NSMutableString *mutableString = @"".mutableCopy;
-    for (int i = 0; i < length; i++)
-        [mutableString appendFormat:@"%02x", bytes[i]];
-    return [NSString stringWithString:mutableString];
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lgf_HmacSHA512StringWithKey:key];
 }
 
 @end

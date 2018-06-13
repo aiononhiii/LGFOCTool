@@ -7,6 +7,9 @@
 //
 
 #import "NSString+LGFString.h"
+#import "NSNumber+LGFNumber.h"
+#import "NSString+LGFRegex.h"
+#import "NSData+LGFEncodeDecode.h"
 
 @implementation NSString (LGFString)
 
@@ -253,5 +256,121 @@
     return (!decodedString) ? @"" : [decodedString stringByReplacingOccurrencesOfString:@"+" withString:@" "];
 }
 
+- (NSString *)lgf_StringByTrim {
+    NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    return [self stringByTrimmingCharactersInSet:set];
+}
+
++ (NSString *)lgf_StringWithUUID {
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    return (__bridge_transfer NSString *)string;
+}
+
++ (NSString *)lgf_StringWithUTF32Char:(UTF32Char)char32 {
+    char32 = NSSwapHostIntToLittle(char32);
+    return [[NSString alloc] initWithBytes:&char32 length:4 encoding:NSUTF32LittleEndianStringEncoding];
+}
+
++ (NSString *)lgf_StringWithUTF32Chars:(const UTF32Char *)char32 length:(NSUInteger)length {
+    return [[NSString alloc] initWithBytes:(const void *)char32
+                                    length:length * 4
+                                  encoding:NSUTF32LittleEndianStringEncoding];
+}
+
+- (void)lgf_EnumerateUTF32CharInRange:(NSRange)range usingBlock:(void (^)(UTF32Char char32, NSRange range, BOOL *stop))block {
+    NSString *str = self;
+    if (range.location != 0 || range.length != self.length) {
+        str = [self substringWithRange:range];
+    }
+    NSUInteger len = [str lengthOfBytesUsingEncoding:NSUTF32StringEncoding] / 4;
+    UTF32Char *char32 = (UTF32Char *)[str cStringUsingEncoding:NSUTF32LittleEndianStringEncoding];
+    if (len == 0 || char32 == NULL) return;
+    
+    NSUInteger location = 0;
+    BOOL stop = NO;
+    NSRange subRange;
+    UTF32Char oneChar;
+    
+    for (NSUInteger i = 0; i < len; i++) {
+        oneChar = char32[i];
+        subRange = NSMakeRange(location, oneChar > 0xFFFF ? 2 : 1);
+        block(oneChar, subRange, &stop);
+        if (stop) return;
+        location += subRange.length;
+    }
+}
+
+- (NSString *)lgf_StringByAppendingNameScale:(CGFloat)scale {
+    if (fabs(scale - 1) <= __FLT_EPSILON__ || self.length == 0 || [self hasSuffix:@"/"]) return self.copy;
+    return [self stringByAppendingFormat:@"@%@x", @(scale)];
+}
+
+- (NSString *)lgf_StringByAppendingPathScale:(CGFloat)scale {
+    if (fabs(scale - 1) <= __FLT_EPSILON__ || self.length == 0 || [self hasSuffix:@"/"]) return self.copy;
+    NSString *ext = self.pathExtension;
+    NSRange extRange = NSMakeRange(self.length - ext.length, 0);
+    if (ext.length > 0) extRange.location -= 1;
+    NSString *scaleStr = [NSString stringWithFormat:@"@%@x", @(scale)];
+    return [self stringByReplacingCharactersInRange:extRange withString:scaleStr];
+}
+
+- (CGFloat)lgf_PathScale {
+    if (self.length == 0 || [self hasSuffix:@"/"]) return 1;
+    NSString *name = self.stringByDeletingPathExtension;
+    __block CGFloat scale = 1;
+    [name lgf_EnumerateRegexMatches:@"@[0-9]+\\.?[0-9]*x$" options:NSRegularExpressionAnchorsMatchLines usingBlock: ^(NSString *match, NSRange matchRange, BOOL *stop) {
+        scale = [match substringWithRange:NSMakeRange(1, match.length - 2)].doubleValue;
+    }];
+    return scale;
+}
+
+- (BOOL)lgf_IsNotBlank {
+    NSCharacterSet *blank = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    for (NSInteger i = 0; i < self.length; ++i) {
+        unichar c = [self characterAtIndex:i];
+        if (![blank characterIsMember:c]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)lgf_ContainsString:(NSString *)string {
+    if (string == nil) return NO;
+    return [self rangeOfString:string].location != NSNotFound;
+}
+
+- (BOOL)lgf_ContainsCharacterSet:(NSCharacterSet *)set {
+    if (set == nil) return NO;
+    return [self rangeOfCharacterFromSet:set].location != NSNotFound;
+}
+
+- (NSNumber *)lgf_NumberValue {
+    return [NSNumber lgf_NumberWithString:self];
+}
+
+- (NSData *)lgf_DataValue {
+    return [self dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (NSRange)lgf_RangeOfAll {
+    return NSMakeRange(0, self.length);
+}
+
+- (id)lgf_JsonValueDecoded {
+    return [[self lgf_DataValue] lgf_JsonValueDecoded];
+}
+
++ (NSString *)lgf_StringNamed:(NSString *)name {
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@""];
+    NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+    if (!str) {
+        path = [[NSBundle mainBundle] pathForResource:name ofType:@"txt"];
+        str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+    }
+    return str;
+}
 
 @end

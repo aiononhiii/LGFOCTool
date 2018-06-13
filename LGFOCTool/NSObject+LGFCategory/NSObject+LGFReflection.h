@@ -8,7 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (LGFReflection)
+
+#pragma mark - 用`NSKeyedArchiver`和``NSKeyedUnarchiver``返回实例的一个副本 如果发生错误则返回nil
+- (nullable id)lgf_DeepCopy;
+
+#pragma mark - 返回实例的副本，使用归档程序和解析程序 如果发生错误则返回nil
+/**
+ @param archiver   NSKeyedArchiver类或任何继承的类。
+ @param unarchiver NSKeyedUnarchiver clsas或任何继承的类。
+ */
+- (nullable id)lgf_DeepCopyWithArchiver:(Class)archiver unarchiver:(Class)unarchiver;
 
 #pragma mark - 类名
 
@@ -63,3 +75,5 @@
 - (BOOL)lgf_HasIvarForKey:(NSString*)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

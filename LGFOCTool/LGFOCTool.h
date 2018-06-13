@@ -18,6 +18,9 @@
 // 所有权限配置
 #import "LGFAllPermissions.h"
 
+// 基于AFN的网络请求封装
+#import "LGFReqest.h"
+
 //****************************** 自定义控件 *******************************
 // 倒计时按钮 用于发送验证码
 #import "LGFCountDownButton.h"
@@ -29,7 +32,7 @@
 //******************************** 分类 **********************************
 //------------------ NSString 分类集合 -----------------
 #import "NSString+LGFString.h"
-// 字符串加密
+// NSString 加密
 #import "NSString+LGFHash.h"
 // 字符串拼音处理
 #import "NSString+LGFPinyin.h"
@@ -41,12 +44,22 @@
 #import "NSString+LGFTextSize.h"
 // js html 字符串处理
 #import "NSString+LGFTrims.h"
-// 转 Base64 字符串
-#import "NSString+LGFBase64.h"
+// NSString 编码解码
+#import "NSString+LGFEncodeDecode.h"
+// NSString NSNumber兼容
+#import "NSString+LGFNSNumberCompatible.h"
 //------------------ NSDate 分类集合 --------------------
 #import "NSDate+LGFDate.h"
 //------------------ NSData 分类集合 --------------------
-#import "NSData+LGFBase64.h"
+#import "NSData+LGFData.h"
+// NSData 压缩解压
+#import "NSData+LGFInflateDeflate.h"
+// NSData 编码解码
+#import "NSData+LGFEncodeDecode.h"
+// NSData AES加密解密
+#import "NSData+LGFEncryptDecrypt.h"
+// NSData 加密
+#import "NSData+LGFHash.h"
 //------------------ UIColor 分类集合 -------------------
 #import "UIColor+LGFColor.h"
 // 获取渐变色
@@ -72,7 +85,6 @@
 //------------------ UIView 分类集合 --------------------
 #import "UIView+LGFExtension.h"
 // 获取当前view的ViewController
-#import "UIView+LGFViewController.h"
 // 为故事版添加可勾选属性
 #import "UIView+LGFGSView.h"
 // 添加旋转动画 可断点暂停
@@ -99,13 +111,19 @@
 #import "NSObject+LGFReflection.h"
 // 动态方法添加／替换／判断等等
 #import "NSObject+LGFRuntime.h"
+// 动态属性对象添加
+#import "NSObject+LGFAssociateValue.h"
+#import "NSObject+LGFPerformSelector.h"
 //------------------ NSDictionary 分类集合 ---------------
 // 字典转josn字符串
 #import "NSDictionary+LGFToJSONString.h"
+#import "NSDictionary+LGFDictionary.h"
+#import "NSMutableDictionary+LGFMutableDictionary.h"
 //------------------ NSArray 分类集合 --------------------
 // 数组转josn字符串
 #import "NSArray+LGFToJSONString.h"
 #import "NSMutableArray+LGFMutableArray.h"
+#import "NSArray+LGFArray.h"
 //------------------ UIWebView 分类集合 ------------------
 // UIWebView 清空 Cookies
 #import "UIWebView+LGFClearCookies.h"
@@ -115,5 +133,29 @@
 //------------------ UITabBarController 分类集合 ---------
 // 动画显示隐藏 TabBar
 #import "UITabBarController+LGFTabBarAnimatedHidden.h"
+//------------------ NSKeyedUnarchiver 分类集合 ---------
+// NSKeyedUnarchiver 解档引用回调异常
+#import "NSKeyedUnarchiver+LGFKeyedUnarchiver.h"
+//------------------ NSNotificationCenter 分类集合 ---------
+// 在主线程上发送通知 如果当前线程是主线程，则通知被同步发布 否则 发布为异步
+#import "NSNotificationCenter+OnMainThread.h"
+//------------------ NSTimer 分类集合 ---------
+// NSTimer Block 触发
+#import "NSTimer+LGFBlockTimer.h"
+//------------------ UIApplication 分类集合 ---------
+#import "UIApplication+LGFApplication.h"
+//------------------ UIFont 分类集合 ---------
+#import "UIFont+LGFFont.h"
+//------------------ UIBezierPath 分类集合 ---------
+// 文字转 UIBezierPath
+#import "UIBezierPath+LGFBezierPath.h"
+//------------------ UIGestureRecognizer 分类集合 ---------
+// UIGestureRecognizer Block 触发
+#import "UIGestureRecognizer+LGFBlockGestureRecognizer.h"
+//------------------ UITableView 分类集合 ---------
+#import "UITableView+LGFTableView.h"
+//------------------ UIScrollView 分类集合 ---------
+#import "UIScrollView+LGFScrollView.h"
+
 
 #endif /* LGFOCTool_h */

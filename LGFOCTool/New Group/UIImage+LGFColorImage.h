@@ -10,6 +10,9 @@
 
 @interface UIImage (LGFColorImage)
 
+#pragma mark - 生成一个颜色可缩放图像
++ (UIImage *)lgf_ColorImageWithFillColor:(UIColor *)fillColor;
+
 #pragma mark - 生成一个平面颜色圆角可缩放图像
 /**
  @param cornerRadius 圆角半径

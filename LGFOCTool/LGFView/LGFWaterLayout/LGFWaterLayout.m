@@ -14,7 +14,9 @@
 @property (nonatomic, assign) NSInteger lgf_NoneDoubleTime;                                       // 没有生成大尺寸次数
 @property (nonatomic, assign) NSInteger lgf_LastDoubleIndex;                                      // 最后一次大尺寸的列数
 @property (nonatomic, assign) NSInteger lgf_LastFixIndex;                                         // 最后一次对齐矫正列数
-- (CGFloat)lgf_ColumnCount;     // 列数
+@property (nonatomic, assign) CGFloat lgf_WaterContentHeight;
+@property (nonatomic, assign) CGFloat lgf_NotWaterContentHeight;
+- (int)lgf_ColumnCount;     // 列数
 - (CGFloat)lgf_ColumnMargin;    // 列边距
 - (CGFloat)lgf_RowMargin;       // 行边距
 - (UIEdgeInsets)lgf_EdgeInsets; // collectionView边距
@@ -32,8 +34,7 @@ static const UIEdgeInsets lgf_DefaultUIEdgeInsets = {0, 0, 0, 0};      // 默认
 #pragma mark - 布局计算
 // collectionView 首次布局和之后重新布局的时候会调用
 // 并不是每次滑动都调用，只有在数据源变化的时候才调用
-- (void)prepareLayout
-{
+- (void)prepareLayout {
     // 重写必须调用super方法
     [super prepareLayout];
     
@@ -57,31 +58,36 @@ static const UIEdgeInsets lgf_DefaultUIEdgeInsets = {0, 0, 0, 0};      // 默认
 }
 
 // 返回布局属性，一个UICollectionViewLayoutAttributes对象数组
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
-{
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     return self.lgf_AttrsArray;
 }
 
 // 计算布局属性
-- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     
-    // collectionView的宽度
-    CGFloat collectionViewW = [self.delegate lgf_cellHeightInWaterLayout:self indexPath:indexPath].width;
-    // cell的宽度
-    CGFloat w = (collectionViewW - self.lgf_EdgeInsets.left - self.lgf_EdgeInsets.right -
-                 self.lgf_ColumnMargin * (self.lgf_ColumnCount - 1)) / self.lgf_ColumnCount;
-    // cell的高度
-    CGFloat h = [self.delegate lgf_cellHeightInWaterLayout:self indexPath:indexPath].height;
+    // cell的Size
+    CGSize cellSize = [self.delegate lgf_cellSizeInWaterLayout:self indexPath:indexPath];
+    
+    // 列数
+    int columnCount = self.lgf_ColumnCount;
+    
+    // 根据index判断是否执行瀑布流
+    if (indexPath.item < [self.delegate lgf_StartWaterLayoutIndex]) {
+        attrs.frame = CGRectMake(0, self.lgf_NotWaterContentHeight, cellSize.width, cellSize.height);
+        self.lgf_NotWaterContentHeight += cellSize.height;
+        for (int i = 0; i < columnCount; i++) {
+            self.lgf_ColumnHeights[i] = @(self.lgf_NotWaterContentHeight);
+        }
+        return attrs;
+    }
     
     // cell应该拼接的列数
     NSInteger destColumn = 0;
     
-    // 高度最小的列数高度
+    // 取得当前最大高度
     CGFloat minColumnHeight = [self.lgf_ColumnHeights[0] doubleValue];
-    // 获取高度最小的列数
-    for (NSInteger i = 1; i < self.lgf_ColumnCount; i++) {
+    for (int i = 0; i < columnCount; i++) {
         CGFloat columnHeight = [self.lgf_ColumnHeights[i] doubleValue];
         if (minColumnHeight > columnHeight) {
             minColumnHeight = columnHeight;
@@ -89,67 +95,30 @@ static const UIEdgeInsets lgf_DefaultUIEdgeInsets = {0, 0, 0, 0};      // 默认
         }
     }
     
-    // 计算cell的x
+    CGFloat w = (cellSize.width - self.lgf_EdgeInsets.left - self.lgf_EdgeInsets.right - self.lgf_ColumnMargin * (self.lgf_ColumnCount - 1)) / self.lgf_ColumnCount;
+    CGFloat h = cellSize.height;
     CGFloat x = self.lgf_EdgeInsets.left + destColumn * (w + self.lgf_ColumnMargin);
-    // 计算cell的y
     CGFloat y = minColumnHeight;
-    if (y != self.lgf_EdgeInsets.top) {
-        y += self.lgf_RowMargin;
-    }
+    if (minColumnHeight != self.lgf_EdgeInsets.top) y += self.lgf_RowMargin;
     
-    //    // 随机数，用来随机生成大尺寸cell
-    //    NSUInteger randomOfWhetherDouble = arc4random() % 100;
-    //    // 判断是否放大
-    //    if (destColumn < self.columnCount - 1                               // 放大的列数不能是最后一列（最后一列方法超出屏幕）
-    //        && _noneDoubleTime >= 1                                         // 如果前个cell有放大就不放大，防止连续出现两个放大
-    //        && (randomOfWhetherDouble >= 45 || _noneDoubleTime >= 8)        // 45%几率可能放大，如果累计8次没有放大，那么满足放大条件就放大
-    //        && [self.columnHeights[destColumn] doubleValue] == [self.columnHeights[destColumn + 1] doubleValue] // 当前列的顶部和下一列的顶部要对齐
-    //        && _lastDoubleIndex != destColumn) {             // 最后一次放大的列不等当前列，防止出现连续两列出现放大不美观
-    //        _noneDoubleTime = 0;
-    //        _lastDoubleIndex = destColumn;
-    //        // 重定义当前cell的布局:宽度*2,高度*2
-    //        attrs.frame = CGRectMake(x, y, w * 2 + self.columnMargin, h * 2 + self.rowMargin);
-    //        // 当前cell列的高度就是当前cell的最大Y值
-    //        self.columnHeights[destColumn] = @(CGRectGetMaxY(attrs.frame));
-    //        // 当前cell列下一列的高度也是当前cell的最大Y值，因为cell宽度*2,占两列
-    //        self.columnHeights[destColumn + 1] = @(CGRectGetMaxY(attrs.frame));
-    //        return attrs;
-    //    }
-    // 正常cell的布局
-    if (_lgf_NoneDoubleTime <= 3 || _lgf_LastFixIndex == destColumn) {                     // 如果没有放大次数小于3且当前列等于上次矫正的列，就不矫正
-        attrs.frame = CGRectMake(x, y, w, h);
-    } else if (self.lgf_ColumnHeights.count > destColumn + 1                         // 越界判断
-               && y + h - [self.lgf_ColumnHeights[destColumn + 1] doubleValue] < w * 0.1) { // 当前cell填充后和上一列的高度偏差不超过cell最大高度的10%，就和下一列对齐
-        attrs.frame = CGRectMake(x, y, w, [self.lgf_ColumnHeights[destColumn + 1] doubleValue] - y);
-        _lgf_LastFixIndex = destColumn;
-    } else if (destColumn >= 1                                                   // 越界判断
-               && y + h - [self.lgf_ColumnHeights[destColumn - 1] doubleValue] < w * 0.1) { // 当前cell填充后和上上列的高度偏差不超过cell最大高度的10%，就和下一列对齐
-        attrs.frame = CGRectMake(x, y, w, [self.lgf_ColumnHeights[destColumn - 1] doubleValue] - y);
-        _lgf_LastFixIndex = destColumn;
-    } else {
-        attrs.frame = CGRectMake(x, y, w, h);
-    }
-    // 当前cell列的高度就是当前cell的最大Y值
+    attrs.frame = CGRectMake(x, y, w, h);
+    
+    // 配置总ContentSize
     self.lgf_ColumnHeights[destColumn] = @(CGRectGetMaxY(attrs.frame));
-    _lgf_NoneDoubleTime += 1;
-    // 返回计算获取的布局
+    CGFloat columnHeight = [self.lgf_ColumnHeights[destColumn] doubleValue];
+    if (self.lgf_WaterContentHeight < columnHeight) self.lgf_WaterContentHeight = columnHeight;
+    
     return attrs;
 }
 
 #pragma mark - 返回collectionView的ContentSize
+
 - (CGSize)collectionViewContentSize {
-    // collectionView的contentSize的高度等于所有列高度中最大的值
-    CGFloat maxColumnHeight = [self.lgf_ColumnHeights[0] doubleValue];
-    for (NSInteger i = 1; i < self.lgf_ColumnCount; i++) {
-        CGFloat columnHeight = [self.lgf_ColumnHeights[i] doubleValue];
-        if (maxColumnHeight < columnHeight) {
-            maxColumnHeight = columnHeight;
-        }
-    }
-    return CGSizeMake(0, maxColumnHeight + self.lgf_EdgeInsets.bottom);
+    return CGSizeMake(0, self.lgf_WaterContentHeight + self.lgf_EdgeInsets.bottom);
 }
 
-#pragma mark - 懒加载
+#pragma mark - 部分懒加载和取值方法
+
 - (NSMutableArray *)lgf_AttrsArray {
     if (!_lgf_AttrsArray) {
         _lgf_AttrsArray = [NSMutableArray array];
@@ -172,7 +141,7 @@ static const UIEdgeInsets lgf_DefaultUIEdgeInsets = {0, 0, 0, 0};      // 默认
     }
 }
 
-- (CGFloat)lgf_ColumnCount {
+- (int)lgf_ColumnCount {
     if ([self.delegate respondsToSelector:@selector(lgf_ColumnCountInWaterLayout:)]) {
         return [self.delegate lgf_ColumnCountInWaterLayout:self];
     } else {
@@ -197,3 +166,4 @@ static const UIEdgeInsets lgf_DefaultUIEdgeInsets = {0, 0, 0, 0};      // 默认
 }
 
 @end
+

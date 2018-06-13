@@ -11,6 +11,11 @@
 #import "LGFOCTool.h"
 #import "FirstViewController.h"
 #import "PopViewController.h"
+#import "YDFMFMHistoryCVCell.h"
+#import "UIImageView+WebCache.h"
+#import "YYWebImage.h"
+#import "MJRefresh.h"
+#import "YYCache.h"
 
 typedef void(^test)(NSString *ff, NSString *gg);
 @interface ViewController ()
@@ -21,9 +26,17 @@ typedef void(^test)(NSString *ff, NSString *gg);
 @property (weak, nonatomic) IBOutlet UICollectionView *testCV;
 @property (copy, nonatomic) test tt;
 @property (strong, nonatomic) NSMutableArray *aaaa;
+@property (strong, nonatomic) NSMutableArray *historyData;
 @end
 
 @implementation ViewController
+
+- (NSMutableArray *)historyData {
+    if (!_historyData) {
+        _historyData = [NSMutableArray new];
+    }
+    return _historyData;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,9 +48,30 @@ typedef void(^test)(NSString *ff, NSString *gg);
         [self.aaaa removeAllObjects];
     };
     
+    
+    
     [self.testBtnTwo lgf_ShowGrayIndicator];
     
     lgf_AFTER(5.0, [self.testBtnTwo lgf_HideIndicator];);
+    
+    LGFNetworkHeader *model = [LGFNetworkHeader sharedHeader];
+    model.appId = @"10002";
+    model.AppUserId = @"1141150";
+    model.lat = @"30.178021";
+    model.lon = @"120.205129";
+    model.password = @"123456";
+    model.version = @"1.1.5";
+    model.locationID = @"3371";
+    model.locationName = @"滨江区";
+    model.platform = @"ios";
+    model.token = @"97d2b45683fd473fbadd9904dfc8d243";
+    model.nickname = @"18358173172";
+    model.icon = @"http://7xk3oj.com2.z0.glb.qiniucdn.com/E4BB1891726631C75A2C8C895CC83DA6";
+    
+    [LGFNetwork sharedNetwork].lgf_Host = @"http://brain.readyidu.com:8666";
+    [LGFNetwork sharedNetwork].lgf_Header = model;
+    
+    
     
     
 //
@@ -74,6 +108,40 @@ typedef void(^test)(NSString *ff, NSString *gg);
 //    lgf_AFTER(3.0, [self.view lgf_HideToastActivity];);
     
     NSLog(@"%@",[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount]);
+    
+    _testCV.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+}
+
+- (void)loadData {
+    YYImageCache *cache = [YYWebImageManager sharedManager].cache;
+    // 清空缓存
+    [cache.memoryCache removeAllObjects];
+    [cache.diskCache removeAllObjects];
+    [self.historyData removeAllObjects];
+    NSDictionary *dic = @{@"userId" : @"1141150",
+                          @"type" : @(0),
+                          @"pageNo" : @(1),
+                          @"pageSize" : @(40)
+                          };
+    [LGFReqest lgf_Request:lgf_GET url:@"fmHistorical/list" param:dic completed:^(NSDictionary *data, NSError *error) {
+        [self.testCV.mj_header endRefreshing];
+        if (!error) {
+            NSLog(@"%@", data);
+            NSArray *rows = data[@"rows"];
+            for (NSDictionary *dict in rows) {
+                [self.historyData addObject:[NSDictionary lgf_DictFromString:dict[@"albumOrColumnOrRadioJson"]]];
+            }
+            [self.testCV reloadData];
+            LGFTopMessageStyle *style = [LGFTopMessageStyle na];
+            style.lgf_MessageBackColor = [UIColor redColor];
+            style.lgf_MessageTextColor = [UIColor whiteColor];
+            style.lgf_Message = [NSString stringWithFormat:@"已获取%ld条最新数据", (long)rows.count];
+            style.lgf_MessageLabelFont = [UIFont systemFontOfSize:15];
+            [self lgf_ShowTopMessageWithStyle:style withTapBlock:^{}];
+            return;
+        }
+        [self.view lgf_ShowToastMessage:error.localizedDescription];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -164,7 +232,7 @@ typedef void(^test)(NSString *ff, NSString *gg);
 #pragma mark - Collection View DataSource And Delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 10;
+    return self.historyData.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -175,8 +243,13 @@ typedef void(^test)(NSString *ff, NSString *gg);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell =  lgf_CVGetCell(collectionView, UICollectionViewCell, indexPath);
-    cell.backgroundColor = lgf_RandomColor;
+    YDFMFMHistoryCVCell *cell =  lgf_CVGetCell(collectionView, YDFMFMHistoryCVCell, indexPath);
+    NSDictionary *dict = self.historyData[indexPath.item];
+    [cell.coverUrlMiddle yy_setImageWithURL:[NSURL URLWithString:dict[@"cover_url_middle"]] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionSetImageWithFadeAnimation];
+    cell.title.text = dict[@"album_title"];
+    cell.intro.text = dict[@"album_intro"];
+    cell.playCount.text = [NSString lgf_GetNumStrWithNum:[dict[@"play_count"] integerValue] unitType:lgf_OnlyWan unitStrType:lgf_CCharacter];
+    cell.includeTrackCount.text = [NSString stringWithFormat:@"%@集", dict[@"include_track_count"]];
     return cell;
 }
 

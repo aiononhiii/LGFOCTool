@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSArray (LGFToJSONString)
 
 #pragma mark - 数组转 JSON字符串
+- (nullable NSString *)lgf_ArrayToJson;
 
-- (NSString *)lgf_ArrayToJson;
+#pragma mark - 数组转 格式化JSON字符串
+- (nullable NSString *)lgf_ArrayToJsonPrettyString;
 
 @end
+
+NS_ASSUME_NONNULL_END

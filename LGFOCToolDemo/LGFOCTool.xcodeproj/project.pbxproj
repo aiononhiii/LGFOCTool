@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1829CA7C2099B68F00573974 /* NSData+LGFBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA7B2099B68F00573974 /* NSData+LGFBase64.m */; };
+		1829795720D0AC6E005DB4B7 /* UIControl+LGFControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829795620D0AC6E005DB4B7 /* UIControl+LGFControl.m */; };
+		1829795B20D0AE81005DB4B7 /* UIScreen+LGFScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829795A20D0AE81005DB4B7 /* UIScreen+LGFScreen.m */; };
 		1829CA7F2099B8C000573974 /* NSDate+LGFDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA7E2099B8C000573974 /* NSDate+LGFDate.m */; };
 		1829CA84209A960900573974 /* UIColor+LGFGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA83209A960900573974 /* UIColor+LGFGradient.m */; };
 		1829CA89209A98A500573974 /* UIColor+LGFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA88209A98A500573974 /* UIColor+LGFColor.m */; };
@@ -23,8 +24,6 @@
 		1829CAB320A05CB500573974 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAB220A05CB500573974 /* PopViewController.m */; };
 		1829CAC420A1383600573974 /* UIWindow+LGFTopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAC320A1383600573974 /* UIWindow+LGFTopVC.m */; };
 		1829CAC720A13F3F00573974 /* UIViewController+LGFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAC620A13F3F00573974 /* UIViewController+LGFViewController.m */; };
-		1829CACA20A140A100573974 /* UIView+LGFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAC920A140A100573974 /* UIView+LGFViewController.m */; };
-		1829CACE20A142D500573974 /* UIFont+LGFLoadTTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CACD20A142D500573974 /* UIFont+LGFLoadTTF.m */; };
 		1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAD120A144C100573974 /* UIDevice+LGFDevice.m */; };
 		1829CAD620A14FB200573974 /* UIButton+LGFImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAD520A14FB200573974 /* UIButton+LGFImagePosition.m */; };
 		1829CAD820A1534B00573974 /* testIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1829CAD720A1534A00573974 /* testIcon.png */; };
@@ -35,6 +34,29 @@
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
 		183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */; };
 		183C684A20BC003100F0E243 /* CLLocation+LGFCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684920BC003100F0E243 /* CLLocation+LGFCLLocation.m */; };
+		183DA8B120C916BD00E09819 /* YDFMFMHistoryCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8B020C916BD00E09819 /* YDFMFMHistoryCVCell.m */; };
+		183DA8B420CA1B1800E09819 /* NSArray+LGFArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8B320CA1B1800E09819 /* NSArray+LGFArray.m */; };
+		183DA8B720CA1CC200E09819 /* NSData+LGFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8B620CA1CC200E09819 /* NSData+LGFData.m */; };
+		183DA8BA20CA1DD400E09819 /* NSData+LGFHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8B920CA1DD400E09819 /* NSData+LGFHash.m */; };
+		183DA8BD20CA22B500E09819 /* NSData+LGFInflateDeflate.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8BC20CA22B500E09819 /* NSData+LGFInflateDeflate.m */; };
+		183DA8C020CA22C800E09819 /* NSData+LGFEncodeDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8BF20CA22C800E09819 /* NSData+LGFEncodeDecode.m */; };
+		183DA8C320CA2E3D00E09819 /* NSData+LGFEncryptDecrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8C220CA2E3D00E09819 /* NSData+LGFEncryptDecrypt.m */; };
+		183DA8C620CA508500E09819 /* NSDictionary+LGFDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8C520CA508500E09819 /* NSDictionary+LGFDictionary.m */; };
+		183DA8C920CA511C00E09819 /* NSMutableDictionary+LGFMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8C820CA511C00E09819 /* NSMutableDictionary+LGFMutableDictionary.m */; };
+		183DA8CC20CA62C200E09819 /* NSString+LGFEncodeDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8CB20CA62C200E09819 /* NSString+LGFEncodeDecode.m */; };
+		183DA8CF20CA69A500E09819 /* NSString+LGFNSNumberCompatible.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8CE20CA69A400E09819 /* NSString+LGFNSNumberCompatible.m */; };
+		183DA8D320CA6A6300E09819 /* NSNumber+LGFNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8D220CA6A6300E09819 /* NSNumber+LGFNumber.m */; };
+		183DA8D720CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8D620CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m */; };
+		183DA8DB20CA82CB00E09819 /* NSNotificationCenter+OnMainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8DA20CA82CB00E09819 /* NSNotificationCenter+OnMainThread.m */; };
+		183DA8DE20CE0F2300E09819 /* NSObject+LGFAssociateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8DD20CE0F2300E09819 /* NSObject+LGFAssociateValue.m */; };
+		183DA8E120CE112100E09819 /* NSObject+LGFPerformSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8E020CE112100E09819 /* NSObject+LGFPerformSelector.m */; };
+		183DA8E920CE205200E09819 /* NSTimer+LGFBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8E820CE205200E09819 /* NSTimer+LGFBlockTimer.m */; };
+		183DA8ED20CE231300E09819 /* UIApplication+LGFApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8EC20CE231300E09819 /* UIApplication+LGFApplication.m */; };
+		183DA8F120CE3D6700E09819 /* UIBezierPath+LGFBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8F020CE3D6700E09819 /* UIBezierPath+LGFBezierPath.m */; };
+		183DA8F520CE407300E09819 /* UIFont+LGFFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8F420CE407300E09819 /* UIFont+LGFFont.m */; };
+		183DA8F920CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8F820CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m */; };
+		183DA8FD20CE59D900E09819 /* UITableView+LGFTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA8FC20CE59D900E09819 /* UITableView+LGFTableView.m */; };
+		183DA90120CE617300E09819 /* UIScrollView+LGFScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DA90020CE617300E09819 /* UIScrollView+LGFScrollView.m */; };
 		1842359E209956E50006483C /* NSString+LGFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842359D209956E50006483C /* NSString+LGFString.m */; };
 		184235A120995EBC0006483C /* LGFAllMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235A020995EBC0006483C /* LGFAllMethod.m */; };
 		184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235A62099825D0006483C /* UITextView+LGFTextView.m */; };
@@ -45,7 +67,6 @@
 		184235B72099A6240006483C /* NSString+LGFRemoveEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235B62099A6240006483C /* NSString+LGFRemoveEmoji.m */; };
 		184235BA2099A9E50006483C /* NSString+LGFTextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235B92099A9E50006483C /* NSString+LGFTextSize.m */; };
 		184235BD2099B4120006483C /* NSString+LGFTrims.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235BC2099B4120006483C /* NSString+LGFTrims.m */; };
-		184235C02099B57F0006483C /* NSString+LGFBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235BF2099B57F0006483C /* NSString+LGFBase64.m */; };
 		1845E4D120A4296500882152 /* LGFAllPermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845E4D020A4296500882152 /* LGFAllPermissions.m */; };
 		18486BA720A58EB100C4F723 /* NSObject+LGFReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA620A58EB100C4F723 /* NSObject+LGFReflection.m */; };
 		18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */; };
@@ -59,6 +80,9 @@
 		18486C2120AD46DA00C4F723 /* UILabel+LGFLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486C2020AD46DA00C4F723 /* UILabel+LGFLable.m */; };
 		18486C2820AD60EF00C4F723 /* UIView+LGFToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486C2720AD60EF00C4F723 /* UIView+LGFToast.m */; };
 		18486CEC20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486CEB20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.m */; };
+		18490C0D20C8D6C0000243DD /* LGFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 18490C0C20C8D6C0000243DD /* LGFNetwork.m */; };
+		18490C1320C8E17A000243DD /* LGFReqest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18490C1220C8E17A000243DD /* LGFReqest.m */; };
+		18490C1620C90A91000243DD /* LGFNetworkHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18490C1520C90A91000243DD /* LGFNetworkHeader.m */; };
 		1861A58420A5617200559623 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1861A58320A5617200559623 /* HealthKit.framework */; };
 		188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFB72094396C0014E4CA /* AppDelegate.m */; };
 		188DEFBB2094396C0014E4CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFBA2094396C0014E4CA /* ViewController.m */; };
@@ -69,6 +93,7 @@
 		188DEFD02094396C0014E4CA /* LGFOCToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFCF2094396C0014E4CA /* LGFOCToolTests.m */; };
 		188DEFDB2094396C0014E4CA /* LGFOCToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFDA2094396C0014E4CA /* LGFOCToolUITests.m */; };
 		188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */ = {isa = PBXBuildFile; fileRef = 188DF030209444F00014E4CA /* pullToRefresh.gif */; };
+		EC6896CDD46AEDCC2E374A8F /* libPods-LGFOCTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 074678BA67CE112506AD20E4 /* libPods-LGFOCTool.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,8 +114,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1829CA7A2099B68F00573974 /* NSData+LGFBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+LGFBase64.h"; sourceTree = "<group>"; };
-		1829CA7B2099B68F00573974 /* NSData+LGFBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+LGFBase64.m"; sourceTree = "<group>"; };
+		074678BA67CE112506AD20E4 /* libPods-LGFOCTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGFOCTool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1829795520D0AC6E005DB4B7 /* UIControl+LGFControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+LGFControl.h"; sourceTree = "<group>"; };
+		1829795620D0AC6E005DB4B7 /* UIControl+LGFControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+LGFControl.m"; sourceTree = "<group>"; };
+		1829795920D0AE81005DB4B7 /* UIScreen+LGFScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScreen+LGFScreen.h"; sourceTree = "<group>"; };
+		1829795A20D0AE81005DB4B7 /* UIScreen+LGFScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+LGFScreen.m"; sourceTree = "<group>"; };
 		1829CA7D2099B8C000573974 /* NSDate+LGFDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+LGFDate.h"; sourceTree = "<group>"; };
 		1829CA7E2099B8C000573974 /* NSDate+LGFDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LGFDate.m"; sourceTree = "<group>"; };
 		1829CA82209A960900573974 /* UIColor+LGFGradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+LGFGradient.h"; sourceTree = "<group>"; };
@@ -121,10 +149,6 @@
 		1829CAC320A1383600573974 /* UIWindow+LGFTopVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LGFTopVC.m"; sourceTree = "<group>"; };
 		1829CAC520A13F3E00573974 /* UIViewController+LGFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LGFViewController.h"; sourceTree = "<group>"; };
 		1829CAC620A13F3F00573974 /* UIViewController+LGFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LGFViewController.m"; sourceTree = "<group>"; };
-		1829CAC820A140A100573974 /* UIView+LGFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFViewController.h"; sourceTree = "<group>"; };
-		1829CAC920A140A100573974 /* UIView+LGFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFViewController.m"; sourceTree = "<group>"; };
-		1829CACC20A142D500573974 /* UIFont+LGFLoadTTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+LGFLoadTTF.h"; sourceTree = "<group>"; };
-		1829CACD20A142D500573974 /* UIFont+LGFLoadTTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+LGFLoadTTF.m"; sourceTree = "<group>"; };
 		1829CAD020A144C100573974 /* UIDevice+LGFDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LGFDevice.h"; sourceTree = "<group>"; };
 		1829CAD120A144C100573974 /* UIDevice+LGFDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LGFDevice.m"; sourceTree = "<group>"; };
 		1829CAD420A14FB200573974 /* UIButton+LGFImagePosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LGFImagePosition.h"; sourceTree = "<group>"; };
@@ -144,6 +168,53 @@
 		183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFRuntime.m"; sourceTree = "<group>"; };
 		183C684820BC003100F0E243 /* CLLocation+LGFCLLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+LGFCLLocation.h"; sourceTree = "<group>"; };
 		183C684920BC003100F0E243 /* CLLocation+LGFCLLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LGFCLLocation.m"; sourceTree = "<group>"; };
+		183DA8AF20C916BC00E09819 /* YDFMFMHistoryCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDFMFMHistoryCVCell.h; sourceTree = "<group>"; };
+		183DA8B020C916BD00E09819 /* YDFMFMHistoryCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDFMFMHistoryCVCell.m; sourceTree = "<group>"; };
+		183DA8B220CA1B1800E09819 /* NSArray+LGFArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LGFArray.h"; sourceTree = "<group>"; };
+		183DA8B320CA1B1800E09819 /* NSArray+LGFArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LGFArray.m"; sourceTree = "<group>"; };
+		183DA8B520CA1CC200E09819 /* NSData+LGFData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+LGFData.h"; sourceTree = "<group>"; };
+		183DA8B620CA1CC200E09819 /* NSData+LGFData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+LGFData.m"; sourceTree = "<group>"; };
+		183DA8B820CA1DD400E09819 /* NSData+LGFHash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+LGFHash.h"; sourceTree = "<group>"; };
+		183DA8B920CA1DD400E09819 /* NSData+LGFHash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+LGFHash.m"; sourceTree = "<group>"; };
+		183DA8BB20CA22B500E09819 /* NSData+LGFInflateDeflate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+LGFInflateDeflate.h"; sourceTree = "<group>"; };
+		183DA8BC20CA22B500E09819 /* NSData+LGFInflateDeflate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+LGFInflateDeflate.m"; sourceTree = "<group>"; };
+		183DA8BE20CA22C800E09819 /* NSData+LGFEncodeDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+LGFEncodeDecode.h"; sourceTree = "<group>"; };
+		183DA8BF20CA22C800E09819 /* NSData+LGFEncodeDecode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+LGFEncodeDecode.m"; sourceTree = "<group>"; };
+		183DA8C120CA2E3D00E09819 /* NSData+LGFEncryptDecrypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+LGFEncryptDecrypt.h"; sourceTree = "<group>"; };
+		183DA8C220CA2E3D00E09819 /* NSData+LGFEncryptDecrypt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+LGFEncryptDecrypt.m"; sourceTree = "<group>"; };
+		183DA8C420CA508500E09819 /* NSDictionary+LGFDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LGFDictionary.h"; sourceTree = "<group>"; };
+		183DA8C520CA508500E09819 /* NSDictionary+LGFDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LGFDictionary.m"; sourceTree = "<group>"; };
+		183DA8C720CA511C00E09819 /* NSMutableDictionary+LGFMutableDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+LGFMutableDictionary.h"; sourceTree = "<group>"; };
+		183DA8C820CA511C00E09819 /* NSMutableDictionary+LGFMutableDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+LGFMutableDictionary.m"; sourceTree = "<group>"; };
+		183DA8CA20CA62C200E09819 /* NSString+LGFEncodeDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFEncodeDecode.h"; sourceTree = "<group>"; };
+		183DA8CB20CA62C200E09819 /* NSString+LGFEncodeDecode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFEncodeDecode.m"; sourceTree = "<group>"; };
+		183DA8CD20CA69A400E09819 /* NSString+LGFNSNumberCompatible.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFNSNumberCompatible.h"; sourceTree = "<group>"; };
+		183DA8CE20CA69A400E09819 /* NSString+LGFNSNumberCompatible.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFNSNumberCompatible.m"; sourceTree = "<group>"; };
+		183DA8D120CA6A6300E09819 /* NSNumber+LGFNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+LGFNumber.h"; sourceTree = "<group>"; };
+		183DA8D220CA6A6300E09819 /* NSNumber+LGFNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+LGFNumber.m"; sourceTree = "<group>"; };
+		183DA8D520CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSKeyedUnarchiver+LGFKeyedUnarchiver.h"; sourceTree = "<group>"; };
+		183DA8D620CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedUnarchiver+LGFKeyedUnarchiver.m"; sourceTree = "<group>"; };
+		183DA8D920CA82CB00E09819 /* NSNotificationCenter+OnMainThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OnMainThread.h"; sourceTree = "<group>"; };
+		183DA8DA20CA82CB00E09819 /* NSNotificationCenter+OnMainThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+OnMainThread.m"; sourceTree = "<group>"; };
+		183DA8DC20CE0F2300E09819 /* NSObject+LGFAssociateValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFAssociateValue.h"; sourceTree = "<group>"; };
+		183DA8DD20CE0F2300E09819 /* NSObject+LGFAssociateValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFAssociateValue.m"; sourceTree = "<group>"; };
+		183DA8DF20CE112100E09819 /* NSObject+LGFPerformSelector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFPerformSelector.h"; sourceTree = "<group>"; };
+		183DA8E020CE112100E09819 /* NSObject+LGFPerformSelector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFPerformSelector.m"; sourceTree = "<group>"; };
+		183DA8E520CE170600E09819 /* LGFCategoriesMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFCategoriesMacro.h; sourceTree = "<group>"; };
+		183DA8E720CE205200E09819 /* NSTimer+LGFBlockTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+LGFBlockTimer.h"; sourceTree = "<group>"; };
+		183DA8E820CE205200E09819 /* NSTimer+LGFBlockTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+LGFBlockTimer.m"; sourceTree = "<group>"; };
+		183DA8EB20CE231300E09819 /* UIApplication+LGFApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LGFApplication.h"; sourceTree = "<group>"; };
+		183DA8EC20CE231300E09819 /* UIApplication+LGFApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LGFApplication.m"; sourceTree = "<group>"; };
+		183DA8EF20CE3D6700E09819 /* UIBezierPath+LGFBezierPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+LGFBezierPath.h"; sourceTree = "<group>"; };
+		183DA8F020CE3D6700E09819 /* UIBezierPath+LGFBezierPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+LGFBezierPath.m"; sourceTree = "<group>"; };
+		183DA8F320CE407300E09819 /* UIFont+LGFFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+LGFFont.h"; sourceTree = "<group>"; };
+		183DA8F420CE407300E09819 /* UIFont+LGFFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+LGFFont.m"; sourceTree = "<group>"; };
+		183DA8F720CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+LGFBlockGestureRecognizer.h"; sourceTree = "<group>"; };
+		183DA8F820CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+LGFBlockGestureRecognizer.m"; sourceTree = "<group>"; };
+		183DA8FB20CE59D900E09819 /* UITableView+LGFTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LGFTableView.h"; sourceTree = "<group>"; };
+		183DA8FC20CE59D900E09819 /* UITableView+LGFTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LGFTableView.m"; sourceTree = "<group>"; };
+		183DA8FF20CE617300E09819 /* UIScrollView+LGFScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LGFScrollView.h"; sourceTree = "<group>"; };
+		183DA90020CE617300E09819 /* UIScrollView+LGFScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LGFScrollView.m"; sourceTree = "<group>"; };
 		1842359C209956E50006483C /* NSString+LGFString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFString.h"; sourceTree = "<group>"; };
 		1842359D209956E50006483C /* NSString+LGFString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFString.m"; sourceTree = "<group>"; };
 		1842359F20995EBC0006483C /* LGFAllMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAllMethod.h; sourceTree = "<group>"; };
@@ -164,8 +235,6 @@
 		184235B92099A9E50006483C /* NSString+LGFTextSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFTextSize.m"; sourceTree = "<group>"; };
 		184235BB2099B4120006483C /* NSString+LGFTrims.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFTrims.h"; sourceTree = "<group>"; };
 		184235BC2099B4120006483C /* NSString+LGFTrims.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFTrims.m"; sourceTree = "<group>"; };
-		184235BE2099B57F0006483C /* NSString+LGFBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFBase64.h"; sourceTree = "<group>"; };
-		184235BF2099B57F0006483C /* NSString+LGFBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFBase64.m"; sourceTree = "<group>"; };
 		1845E4CF20A4296500882152 /* LGFAllPermissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAllPermissions.h; sourceTree = "<group>"; };
 		1845E4D020A4296500882152 /* LGFAllPermissions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFAllPermissions.m; sourceTree = "<group>"; };
 		18486BA520A58EB100C4F723 /* NSObject+LGFReflection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFReflection.h"; sourceTree = "<group>"; };
@@ -192,6 +261,12 @@
 		18486C2720AD60EF00C4F723 /* UIView+LGFToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFToast.m"; sourceTree = "<group>"; };
 		18486CEA20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+LGFMutableArray.h"; sourceTree = "<group>"; };
 		18486CEB20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+LGFMutableArray.m"; sourceTree = "<group>"; };
+		18490C0B20C8D6C0000243DD /* LGFNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFNetwork.h; sourceTree = "<group>"; };
+		18490C0C20C8D6C0000243DD /* LGFNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFNetwork.m; sourceTree = "<group>"; };
+		18490C1120C8E17A000243DD /* LGFReqest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFReqest.h; sourceTree = "<group>"; };
+		18490C1220C8E17A000243DD /* LGFReqest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFReqest.m; sourceTree = "<group>"; };
+		18490C1420C90A91000243DD /* LGFNetworkHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFNetworkHeader.h; sourceTree = "<group>"; };
+		18490C1520C90A91000243DD /* LGFNetworkHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFNetworkHeader.m; sourceTree = "<group>"; };
 		1861A58120A5617200559623 /* LGFOCTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LGFOCTool.entitlements; sourceTree = "<group>"; };
 		1861A58320A5617200559623 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		188DEFB32094396C0014E4CA /* LGFOCTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGFOCTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +288,8 @@
 		188DEFE920943A500014E4CA /* LGFOCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFOCTool.h; sourceTree = "<group>"; };
 		188DF030209444F00014E4CA /* pullToRefresh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pullToRefresh.gif; sourceTree = "<group>"; };
 		188DF032209446020014E4CA /* LGFPch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPch.h; sourceTree = "<group>"; };
+		19E77F694E9E2EDB3CE6DED2 /* Pods-LGFOCTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFOCTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool.release.xcconfig"; sourceTree = "<group>"; };
+		DED3068F201CEC3DB21EA974 /* Pods-LGFOCTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFOCTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1861A58420A5617200559623 /* HealthKit.framework in Frameworks */,
+				EC6896CDD46AEDCC2E374A8F /* libPods-LGFOCTool.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,11 +319,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1829795420D0AC42005DB4B7 /* UIControl+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				1829795520D0AC6E005DB4B7 /* UIControl+LGFControl.h */,
+				1829795620D0AC6E005DB4B7 /* UIControl+LGFControl.m */,
+			);
+			path = "UIControl+LGFCategory";
+			sourceTree = "<group>";
+		};
+		1829795820D0AE64005DB4B7 /* UIScreen+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				1829795920D0AE81005DB4B7 /* UIScreen+LGFScreen.h */,
+				1829795A20D0AE81005DB4B7 /* UIScreen+LGFScreen.m */,
+			);
+			path = "UIScreen+LGFCategory";
+			sourceTree = "<group>";
+		};
 		1829CA792099B67300573974 /* NSData+LGFCategory */ = {
 			isa = PBXGroup;
 			children = (
-				1829CA7A2099B68F00573974 /* NSData+LGFBase64.h */,
-				1829CA7B2099B68F00573974 /* NSData+LGFBase64.m */,
+				183DA8B520CA1CC200E09819 /* NSData+LGFData.h */,
+				183DA8B620CA1CC200E09819 /* NSData+LGFData.m */,
+				183DA8B820CA1DD400E09819 /* NSData+LGFHash.h */,
+				183DA8B920CA1DD400E09819 /* NSData+LGFHash.m */,
+				183DA8BB20CA22B500E09819 /* NSData+LGFInflateDeflate.h */,
+				183DA8BC20CA22B500E09819 /* NSData+LGFInflateDeflate.m */,
+				183DA8BE20CA22C800E09819 /* NSData+LGFEncodeDecode.h */,
+				183DA8BF20CA22C800E09819 /* NSData+LGFEncodeDecode.m */,
+				183DA8C120CA2E3D00E09819 /* NSData+LGFEncryptDecrypt.h */,
+				183DA8C220CA2E3D00E09819 /* NSData+LGFEncryptDecrypt.m */,
 			);
 			path = "NSData+LGFCategory";
 			sourceTree = "<group>";
@@ -338,8 +442,6 @@
 			children = (
 				1829CAAB209FEDC000573974 /* UIView+LGFExtension.h */,
 				1829CAAC209FEDC000573974 /* UIView+LGFExtension.m */,
-				1829CAC820A140A100573974 /* UIView+LGFViewController.h */,
-				1829CAC920A140A100573974 /* UIView+LGFViewController.m */,
 				1829CADD20A1703F00573974 /* UIView+LGFGSView.h */,
 				1829CADE20A1703F00573974 /* UIView+LGFGSView.m */,
 				18486BD220A993A600C4F723 /* UIView+LGFRotateAnimation.h */,
@@ -375,8 +477,8 @@
 		1829CACB20A142AD00573974 /* UIFont+LGFCategory */ = {
 			isa = PBXGroup;
 			children = (
-				1829CACC20A142D500573974 /* UIFont+LGFLoadTTF.h */,
-				1829CACD20A142D500573974 /* UIFont+LGFLoadTTF.m */,
+				183DA8F320CE407300E09819 /* UIFont+LGFFont.h */,
+				183DA8F420CE407300E09819 /* UIFont+LGFFont.m */,
 			);
 			path = "UIFont+LGFCategory";
 			sourceTree = "<group>";
@@ -410,6 +512,88 @@
 			path = LGFWaterLayout;
 			sourceTree = "<group>";
 		};
+		183DA8D020CA6A4200E09819 /* NSNumber+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8D120CA6A6300E09819 /* NSNumber+LGFNumber.h */,
+				183DA8D220CA6A6300E09819 /* NSNumber+LGFNumber.m */,
+			);
+			path = "NSNumber+LGFCategory";
+			sourceTree = "<group>";
+		};
+		183DA8D420CA7B2100E09819 /* NSKeyedUnarchiver+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8D520CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.h */,
+				183DA8D620CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m */,
+			);
+			path = "NSKeyedUnarchiver+LGFCategory";
+			sourceTree = "<group>";
+		};
+		183DA8D820CA828C00E09819 /* NSNotificationCenter+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8D920CA82CB00E09819 /* NSNotificationCenter+OnMainThread.h */,
+				183DA8DA20CA82CB00E09819 /* NSNotificationCenter+OnMainThread.m */,
+			);
+			path = "NSNotificationCenter+LGFCategory";
+			sourceTree = "<group>";
+		};
+		183DA8E620CE203900E09819 /* NSTimer+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8E720CE205200E09819 /* NSTimer+LGFBlockTimer.h */,
+				183DA8E820CE205200E09819 /* NSTimer+LGFBlockTimer.m */,
+			);
+			path = "NSTimer+LGFCategory";
+			sourceTree = "<group>";
+		};
+		183DA8EA20CE22D100E09819 /* UIApplication+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8EB20CE231300E09819 /* UIApplication+LGFApplication.h */,
+				183DA8EC20CE231300E09819 /* UIApplication+LGFApplication.m */,
+			);
+			name = "UIApplication+LGFCategory";
+			path = "New Group3";
+			sourceTree = "<group>";
+		};
+		183DA8EE20CE3D4B00E09819 /* UIBezierPath+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8EF20CE3D6700E09819 /* UIBezierPath+LGFBezierPath.h */,
+				183DA8F020CE3D6700E09819 /* UIBezierPath+LGFBezierPath.m */,
+			);
+			path = "UIBezierPath+LGFCategory";
+			sourceTree = "<group>";
+		};
+		183DA8F620CE522900E09819 /* UIGestureRecognizer+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8F720CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.h */,
+				183DA8F820CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m */,
+			);
+			path = "UIGestureRecognizer+LGFCategory";
+			sourceTree = "<group>";
+		};
+		183DA8FA20CE59AB00E09819 /* UITableView+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8FB20CE59D900E09819 /* UITableView+LGFTableView.h */,
+				183DA8FC20CE59D900E09819 /* UITableView+LGFTableView.m */,
+			);
+			path = "UITableView+LGFCategory";
+			sourceTree = "<group>";
+		};
+		183DA8FE20CE615500E09819 /* UIScrollView+LGFCategory */ = {
+			isa = PBXGroup;
+			children = (
+				183DA8FF20CE617300E09819 /* UIScrollView+LGFScrollView.h */,
+				183DA90020CE617300E09819 /* UIScrollView+LGFScrollView.m */,
+			);
+			path = "UIScrollView+LGFCategory";
+			sourceTree = "<group>";
+		};
 		184235B420999DA80006483C /* NSString+LGFCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,8 +611,10 @@
 				184235B92099A9E50006483C /* NSString+LGFTextSize.m */,
 				184235BB2099B4120006483C /* NSString+LGFTrims.h */,
 				184235BC2099B4120006483C /* NSString+LGFTrims.m */,
-				184235BE2099B57F0006483C /* NSString+LGFBase64.h */,
-				184235BF2099B57F0006483C /* NSString+LGFBase64.m */,
+				183DA8CA20CA62C200E09819 /* NSString+LGFEncodeDecode.h */,
+				183DA8CB20CA62C200E09819 /* NSString+LGFEncodeDecode.m */,
+				183DA8CD20CA69A400E09819 /* NSString+LGFNSNumberCompatible.h */,
+				183DA8CE20CA69A400E09819 /* NSString+LGFNSNumberCompatible.m */,
 			);
 			path = "NSString+LGFCategory";
 			sourceTree = "<group>";
@@ -444,22 +630,20 @@
 			path = LGFView;
 			sourceTree = "<group>";
 		};
-		1845E4CB20A4270000882152 /* UIApplication+LGFCategory */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "UIApplication+LGFCategory";
-			sourceTree = "<group>";
-		};
 		18486B9E20A58B9600C4F723 /* NSObject+LGFCategory */ = {
 			isa = PBXGroup;
 			children = (
+				183DA8E520CE170600E09819 /* LGFCategoriesMacro.h */,
 				18486BA520A58EB100C4F723 /* NSObject+LGFReflection.h */,
 				18486BA620A58EB100C4F723 /* NSObject+LGFReflection.m */,
 				18486BA820A5917E00C4F723 /* NSObject+LGFKVOBlocks.h */,
 				18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */,
 				183C683F20BBFC6A00F0E243 /* NSObject+LGFRuntime.h */,
 				183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */,
+				183DA8DC20CE0F2300E09819 /* NSObject+LGFAssociateValue.h */,
+				183DA8DD20CE0F2300E09819 /* NSObject+LGFAssociateValue.m */,
+				183DA8DF20CE112100E09819 /* NSObject+LGFPerformSelector.h */,
+				183DA8E020CE112100E09819 /* NSObject+LGFPerformSelector.m */,
 			);
 			path = "NSObject+LGFCategory";
 			sourceTree = "<group>";
@@ -487,6 +671,10 @@
 			children = (
 				18486BB420A9250800C4F723 /* NSDictionary+LGFToJSONString.h */,
 				18486BB520A9250800C4F723 /* NSDictionary+LGFToJSONString.m */,
+				183DA8C420CA508500E09819 /* NSDictionary+LGFDictionary.h */,
+				183DA8C520CA508500E09819 /* NSDictionary+LGFDictionary.m */,
+				183DA8C720CA511C00E09819 /* NSMutableDictionary+LGFMutableDictionary.h */,
+				183DA8C820CA511C00E09819 /* NSMutableDictionary+LGFMutableDictionary.m */,
 			);
 			path = "NSDictionary+LGFCategory";
 			sourceTree = "<group>";
@@ -498,6 +686,8 @@
 				18486BB920A9265000C4F723 /* NSArray+LGFToJSONString.m */,
 				18486CEA20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.h */,
 				18486CEB20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.m */,
+				183DA8B220CA1B1800E09819 /* NSArray+LGFArray.h */,
+				183DA8B320CA1B1800E09819 /* NSArray+LGFArray.m */,
 			);
 			path = "NSArray+LGFCategory";
 			sourceTree = "<group>";
@@ -530,10 +720,24 @@
 			path = "New Group1";
 			sourceTree = "<group>";
 		};
+		18490C0A20C8D672000243DD /* LGFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				18490C0B20C8D6C0000243DD /* LGFNetwork.h */,
+				18490C0C20C8D6C0000243DD /* LGFNetwork.m */,
+				18490C1120C8E17A000243DD /* LGFReqest.h */,
+				18490C1220C8E17A000243DD /* LGFReqest.m */,
+				18490C1420C90A91000243DD /* LGFNetworkHeader.h */,
+				18490C1520C90A91000243DD /* LGFNetworkHeader.m */,
+			);
+			path = LGFNetworking;
+			sourceTree = "<group>";
+		};
 		1861A58220A5617200559623 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				1861A58320A5617200559623 /* HealthKit.framework */,
+				074678BA67CE112506AD20E4 /* libPods-LGFOCTool.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -546,6 +750,7 @@
 				188DEFD92094396C0014E4CA /* LGFOCToolUITests */,
 				188DEFB42094396C0014E4CA /* Products */,
 				1861A58220A5617200559623 /* Frameworks */,
+				826795C97548B8A5183DE73F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -570,6 +775,8 @@
 				188DEFB72094396C0014E4CA /* AppDelegate.m */,
 				188DEFB92094396C0014E4CA /* ViewController.h */,
 				188DEFBA2094396C0014E4CA /* ViewController.m */,
+				183DA8AF20C916BC00E09819 /* YDFMFMHistoryCVCell.h */,
+				183DA8B020C916BD00E09819 /* YDFMFMHistoryCVCell.m */,
 				1829CAA0209AD90500573974 /* FirstViewController.h */,
 				1829CAA1209AD90500573974 /* FirstViewController.m */,
 				1829CAB120A05CB500573974 /* PopViewController.h */,
@@ -604,6 +811,18 @@
 		188DEFE820943A1F0014E4CA /* LGFOCTool */ = {
 			isa = PBXGroup;
 			children = (
+				1829795820D0AE64005DB4B7 /* UIScreen+LGFCategory */,
+				1829795420D0AC42005DB4B7 /* UIControl+LGFCategory */,
+				183DA8FE20CE615500E09819 /* UIScrollView+LGFCategory */,
+				183DA8FA20CE59AB00E09819 /* UITableView+LGFCategory */,
+				183DA8F620CE522900E09819 /* UIGestureRecognizer+LGFCategory */,
+				183DA8EE20CE3D4B00E09819 /* UIBezierPath+LGFCategory */,
+				183DA8EA20CE22D100E09819 /* UIApplication+LGFCategory */,
+				183DA8E620CE203900E09819 /* NSTimer+LGFCategory */,
+				183DA8D820CA828C00E09819 /* NSNotificationCenter+LGFCategory */,
+				183DA8D420CA7B2100E09819 /* NSKeyedUnarchiver+LGFCategory */,
+				183DA8D020CA6A4200E09819 /* NSNumber+LGFCategory */,
+				18490C0A20C8D672000243DD /* LGFNetworking */,
 				18486C1E20AD46AF00C4F723 /* UILable+LGFCategory */,
 				18486BCE20A990EE00C4F723 /* UITabBarController+LGFCategory */,
 				18486BCA20A98DD900C4F723 /* UIWebView+LGFCategory */,
@@ -611,7 +830,6 @@
 				18486BB320A924C300C4F723 /* NSDictionary+LGFCategory */,
 				18486BAF20A9233A00C4F723 /* CLLocation+LGFCategory */,
 				18486B9E20A58B9600C4F723 /* NSObject+LGFCategory */,
-				1845E4CB20A4270000882152 /* UIApplication+LGFCategory */,
 				1845E4CA20A3F62E00882152 /* LGFView */,
 				1829CAD320A14F3400573974 /* UIButton+LGFCategory */,
 				1829CACF20A1448F00573974 /* UIDevice+LGFCategory */,
@@ -638,6 +856,15 @@
 			path = ../../LGFOCTool;
 			sourceTree = "<group>";
 		};
+		826795C97548B8A5183DE73F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DED3068F201CEC3DB21EA974 /* Pods-LGFOCTool.debug.xcconfig */,
+				19E77F694E9E2EDB3CE6DED2 /* Pods-LGFOCTool.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -645,9 +872,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 188DEFDF2094396C0014E4CA /* Build configuration list for PBXNativeTarget "LGFOCTool" */;
 			buildPhases = (
+				AD9D18D6924E2152B4914F48 /* [CP] Check Pods Manifest.lock */,
 				188DEFAF2094396C0014E4CA /* Sources */,
 				188DEFB02094396C0014E4CA /* Frameworks */,
 				188DEFB12094396C0014E4CA /* Resources */,
+				9C5A04DA3126C90EF4EAE375 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -700,7 +929,7 @@
 		188DEFAB2094396B0014E4CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "来国锋";
 				TargetAttributes = {
 					188DEFB22094396C0014E4CA = {
@@ -773,21 +1002,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9C5A04DA3126C90EF4EAE375 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD9D18D6924E2152B4914F48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LGFOCTool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		188DEFAF2094396C0014E4CA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1829795720D0AC6E005DB4B7 /* UIControl+LGFControl.m in Sources */,
 				18486BA720A58EB100C4F723 /* NSObject+LGFReflection.m in Sources */,
 				18486BD420A993A600C4F723 /* UIView+LGFRotateAnimation.m in Sources */,
 				1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */,
 				1829CA89209A98A500573974 /* UIColor+LGFColor.m in Sources */,
 				188DEFBB2094396C0014E4CA /* ViewController.m in Sources */,
+				183DA8F120CE3D6700E09819 /* UIBezierPath+LGFBezierPath.m in Sources */,
+				183DA8CC20CA62C200E09819 /* NSString+LGFEncodeDecode.m in Sources */,
 				184235A120995EBC0006483C /* LGFAllMethod.m in Sources */,
 				18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */,
+				183DA90120CE617300E09819 /* UIScrollView+LGFScrollView.m in Sources */,
 				184235B02099994C0006483C /* NSString+LGFPinyin.m in Sources */,
+				183DA8C620CA508500E09819 /* NSDictionary+LGFDictionary.m in Sources */,
 				1829CAAD209FEDC000573974 /* UIView+LGFExtension.m in Sources */,
 				183A674D20C7B28200CDED30 /* LGFWaterLayout.m in Sources */,
+				183DA8CF20CA69A500E09819 /* NSString+LGFNSNumberCompatible.m in Sources */,
 				18486BAE20A91A8300C4F723 /* LGFTimer.m in Sources */,
 				18486BB620A9250800C4F723 /* NSDictionary+LGFToJSONString.m in Sources */,
 				18486BBD20A9319D00C4F723 /* UIButton+LGFIndicator.m in Sources */,
@@ -797,40 +1071,58 @@
 				1829CAA2209AD90500573974 /* FirstViewController.m in Sources */,
 				18486CEC20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.m in Sources */,
 				184235BA2099A9E50006483C /* NSString+LGFTextSize.m in Sources */,
+				183DA8DB20CA82CB00E09819 /* NSNotificationCenter+OnMainThread.m in Sources */,
+				183DA8BA20CA1DD400E09819 /* NSData+LGFHash.m in Sources */,
+				183DA8C320CA2E3D00E09819 /* NSData+LGFEncryptDecrypt.m in Sources */,
+				183DA8C020CA22C800E09819 /* NSData+LGFEncodeDecode.m in Sources */,
 				1829CA8E209A9DD100573974 /* UIImage+LGFImage.m in Sources */,
+				183DA8B120C916BD00E09819 /* YDFMFMHistoryCVCell.m in Sources */,
+				183DA8F520CE407300E09819 /* UIFont+LGFFont.m in Sources */,
 				1845E4D120A4296500882152 /* LGFAllPermissions.m in Sources */,
 				183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */,
-				1829CACE20A142D500573974 /* UIFont+LGFLoadTTF.m in Sources */,
 				188DEFC62094396C0014E4CA /* main.m in Sources */,
+				183DA8DE20CE0F2300E09819 /* NSObject+LGFAssociateValue.m in Sources */,
 				183C684A20BC003100F0E243 /* CLLocation+LGFCLLocation.m in Sources */,
 				18486BCD20A98E0C00C4F723 /* UIWebView+LGFClearCookies.m in Sources */,
 				1829CAA6209FE2C900573974 /* LGFCountDownButton.m in Sources */,
+				183DA8ED20CE231300E09819 /* UIApplication+LGFApplication.m in Sources */,
+				183DA8B720CA1CC200E09819 /* NSData+LGFData.m in Sources */,
 				184235B72099A6240006483C /* NSString+LGFRemoveEmoji.m in Sources */,
-				1829CA7C2099B68F00573974 /* NSData+LGFBase64.m in Sources */,
 				1829CA9F209AD62000573974 /* UIViewController+LGFTopBarMessage.m in Sources */,
 				18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */,
-				1829CACA20A140A100573974 /* UIView+LGFViewController.m in Sources */,
 				1829CA9C209AD34D00573974 /* UIViewController+LGFVCLog.m in Sources */,
 				1829CA94209AB04200573974 /* UIImage+LGFPDFImage.m in Sources */,
 				1842359E209956E50006483C /* NSString+LGFString.m in Sources */,
 				188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */,
+				18490C1620C90A91000243DD /* LGFNetworkHeader.m in Sources */,
 				184235BD2099B4120006483C /* NSString+LGFTrims.m in Sources */,
 				184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */,
+				183DA8B420CA1B1800E09819 /* NSArray+LGFArray.m in Sources */,
 				183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */,
 				1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */,
+				183DA8FD20CE59D900E09819 /* UITableView+LGFTableView.m in Sources */,
+				183DA8E920CE205200E09819 /* NSTimer+LGFBlockTimer.m in Sources */,
+				183DA8C920CA511C00E09819 /* NSMutableDictionary+LGFMutableDictionary.m in Sources */,
 				18486C2120AD46DA00C4F723 /* UILabel+LGFLable.m in Sources */,
 				18486BD120A9913A00C4F723 /* UITabBarController+LGFTabBarAnimatedHidden.m in Sources */,
+				1829795B20D0AE81005DB4B7 /* UIScreen+LGFScreen.m in Sources */,
+				183DA8D720CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m in Sources */,
 				184235AA209982780006483C /* UITextField+LGFTextField.m in Sources */,
 				1829CAE820A2D67700573974 /* LGFPopMenu.m in Sources */,
 				184235AD209994D70006483C /* NSString+LGFHash.m in Sources */,
+				183DA8F920CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m in Sources */,
+				183DA8BD20CA22B500E09819 /* NSData+LGFInflateDeflate.m in Sources */,
 				1829CAEB20A2D69400573974 /* LGFPopMenuStyle.m in Sources */,
 				1829CA91209A9E0100573974 /* UIImage+LGFColorImage.m in Sources */,
 				1829CA7F2099B8C000573974 /* NSDate+LGFDate.m in Sources */,
 				184235B320999D7D0006483C /* NSString+LGFRegex.m in Sources */,
+				18490C0D20C8D6C0000243DD /* LGFNetwork.m in Sources */,
 				1829CAC720A13F3F00573974 /* UIViewController+LGFViewController.m in Sources */,
 				18486C2820AD60EF00C4F723 /* UIView+LGFToast.m in Sources */,
-				184235C02099B57F0006483C /* NSString+LGFBase64.m in Sources */,
+				183DA8D320CA6A6300E09819 /* NSNumber+LGFNumber.m in Sources */,
+				18490C1320C8E17A000243DD /* LGFReqest.m in Sources */,
 				1829CAC420A1383600573974 /* UIWindow+LGFTopVC.m in Sources */,
+				183DA8E120CE112100E09819 /* NSObject+LGFPerformSelector.m in Sources */,
 				1829CAD620A14FB200573974 /* UIButton+LGFImagePosition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -900,6 +1192,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -907,6 +1200,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -955,6 +1249,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -962,6 +1257,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -992,6 +1288,7 @@
 		};
 		188DEFE02094396C0014E4CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DED3068F201CEC3DB21EA974 /* Pods-LGFOCTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = LGFOCTool/LGFOCTool.entitlements;
@@ -1008,6 +1305,7 @@
 		};
 		188DEFE12094396C0014E4CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19E77F694E9E2EDB3CE6DED2 /* Pods-LGFOCTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = LGFOCTool/LGFOCTool.entitlements;

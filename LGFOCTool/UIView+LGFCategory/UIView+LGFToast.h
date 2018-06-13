@@ -7,35 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#define lgf_AllocOnlyOnceForH(methodName) + (instancetype)shared##methodName
-#define lgf_AllocOnlyOnceForM(name,methodName) static name* _instance;\
-+ (instancetype)allocWithZone:(struct _NSZone *)zone\
-{\
-static dispatch_once_t onceToken;\
-dispatch_once(&onceToken, ^{\
-_instance = [super allocWithZone:zone];\
-});\
-return _instance;\
-}\
-+ (instancetype)shared##methodName{\
-return [[name alloc] init];\
-}\
-- (instancetype)init{\
-static dispatch_once_t onceToken;\
-dispatch_once(&onceToken, ^{\
-_instance = [super init];\
-});\
-return _instance;\
-}\
-- (instancetype)copyWithZone:(NSZone *)zone\
-{\
-return _instance;\
-}\
-- (instancetype)mutableCopyWithZone:(NSZone *)zone\
-{\
-return _instance;\
-}
+#import "LGFOCTool.h"
 
 typedef NS_ENUM(NSUInteger, LGFToastPosition) {
     LGFToastCenter,

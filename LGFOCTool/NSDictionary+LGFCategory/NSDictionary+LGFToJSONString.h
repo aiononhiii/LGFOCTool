@@ -8,22 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSDictionary (LGFToJSONString)
 
 #pragma mark - 字典转 JSON字符串
 
-- (NSString *)lgf_DictionaryToJson;
+- (nullable NSString *)lgf_DictionaryToJson;
+
+#pragma mark - 字典转 格式化JSON字符串
+- (nullable NSString *)lgf_DictionaryToJsonPrettyString;
 
 #pragma mark - 字典转 JSON字符串
 
-- (NSString *)lgf_DictionaryToJsonTwo;
+- (nullable NSString *)lgf_DictionaryToJsonTwo;
 
 #pragma mark - 字典转 urlEncoded字符串
 
-- (NSString *)lgf_UrlEncodedKeyValueString;
+- (nullable NSString *)lgf_UrlEncodedKeyValueString;
 
 #pragma mark - JSON字符串转字典
 
-+ (NSDictionary *)lgf_DictFromString:(NSString *)jsonString;
++ (nullable NSDictionary *)lgf_DictFromString:(NSString *)jsonString;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -164,4 +164,40 @@
 #pragma mark - 是否是浮点型
 - (BOOL)lgf_IsPureFloat;
 
+#pragma mark - 是否可以匹配某个正则表达式
+/**
+ @param regex  正则表达式
+ @param options  要报告的匹配选项.
+ @return 如果可以匹配正则表达式 返回 YES 反之 NO.
+ */
+- (BOOL)lgf_MatchesRegex:(NSString *)regex options:(NSRegularExpressionOptions)options;
+
+#pragma mark - 匹配正则表达式，并使用匹配中的每个对象执行给定的块
+/**
+ @param regex    正则表达式
+ @param options  要报告的匹配选项
+ @param block    要应用于匹配数组中元素的块
+ 该块有四个参数:
+ match: 匹配子字符串.
+ matchRange: 匹配选项.
+ stop: 对布尔值的引用。 该块可以设置值
+   设置为YES以停止进一步处理阵列。 停止
+   论点是一个唯一的论点。 你只应该设置
+   这个布尔值在块内为YES.
+ */
+- (void)lgf_EnumerateRegexMatches:(NSString *)regex
+                      options:(NSRegularExpressionOptions)options
+                   usingBlock:(void (^)(NSString *match, NSRange matchRange, BOOL *stop))block;
+
+#pragma mark - 返回一个新的字符串，其中包含用模板字符串替换的正则表达式
+/**
+ @param regex       正则表达式
+ @param options     要报告的匹配选项
+ @param replacement 替换匹配实例时使用的替换模板
+ @return 匹配正则表达式的字符串，由模板字符串替换
+ */
+- (NSString *)lgf_StringByReplacingRegex:(NSString *)regex
+                             options:(NSRegularExpressionOptions)options
+                          withString:(NSString *)replacement;
+
 @end
