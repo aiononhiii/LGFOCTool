@@ -7,7 +7,7 @@
 //
 
 #import "NSObject+LGFPerformSelector.h"
-#import "YYCategoriesMacro.h"
+#import "LGFCategoriesMacro.h"
 
 @implementation NSObject (LGFPerformSelector)
 

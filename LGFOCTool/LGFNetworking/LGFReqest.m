@@ -21,10 +21,10 @@
     if (method == lgf_GET) {
         // GET
         [[LGFNetwork sharedNetwork] lgf_GET:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSDictionary *json_dic = (NSDictionary*)responseObject;
-            NSData *data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
-            NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"\n<<-----------返回--------------------\n Url == %@\n Response == %@\n", url, dataStr);
+//            NSDictionary *json_dic = (NSDictionary*)responseObject;
+//            NSData *data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
+//            NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//            NSLog(@"\n<<-----------返回--------------------\n Url == %@\n Response == %@\n", url, dataStr);
             if ((!responseObject[@"errorCode"] || [responseObject[@"errorCode"] integerValue] != 200 )) {
                 // 无返回参数, 但返回code不等于200
                 NSString *errorMessage = responseObject[@"errorMessage"] ?: @"请求出了点问题哦, 请稍后重试";
@@ -62,10 +62,10 @@
     } else if (method == lgf_POST) {
         // POST
         [[LGFNetwork sharedNetwork] lgf_POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSDictionary *json_dic = (NSDictionary*)responseObject;
-            NSData *data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
-            NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"\n<<-----------返回--------------------\n Url == %@\n Response == %@\n", url, dataStr);
+//            NSDictionary *json_dic = (NSDictionary*)responseObject;
+//            NSData *data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
+//            NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//            NSLog(@"\n<<-----------返回--------------------\n Url == %@\n Response == %@\n", url, dataStr);
             if ((!responseObject[@"errorCode"] || [responseObject[@"errorCode"] integerValue] != 200 )) {
                 // 无返回参数, 但返回code不等于200
                 NSString *errorMessage = responseObject[@"errorMessage"] ?: @"请求出了点问题哦, 请稍后重试";
