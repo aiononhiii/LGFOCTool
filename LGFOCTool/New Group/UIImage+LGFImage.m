@@ -14,7 +14,12 @@
 #import <Accelerate/Accelerate.h>
 #import <CoreText/CoreText.h>
 #import <objc/runtime.h>
-#import "YYCGUtilities.h"
+//#import "YYCGUtilities.h"
+
+/// Convert degrees to radians.
+static inline CGFloat lgf_DegreesToRadians(CGFloat degrees) {
+    return degrees * M_PI / 180;
+}
 
 @implementation UIImage (LGFImage)
 
@@ -348,11 +353,11 @@
 }
 
 - (UIImage *)lgf_ImageByRotateLeft90 {
-    return [self lgf_ImageByRotate:DegreesToRadians(90) fitSize:YES];
+    return [self lgf_ImageByRotate:lgf_DegreesToRadians(90) fitSize:YES];
 }
 
 - (UIImage *)lgf_ImageByRotateRight90 {
-    return [self lgf_ImageByRotate:DegreesToRadians(-90) fitSize:YES];
+    return [self lgf_ImageByRotate:lgf_DegreesToRadians(-90) fitSize:YES];
 }
 
 - (UIImage *)lgf_ImageByRotate180 {
