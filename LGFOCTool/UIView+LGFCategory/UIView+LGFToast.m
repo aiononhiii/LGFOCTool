@@ -22,7 +22,7 @@
         self.LGFToastBackColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.7];
         self.LGFToastCornerRadius = 5.0;
         self.LGFDismissDuration = 0.3;
-        self.LGFDuration = 2.0;
+        self.LGFDuration = 0.5;
         self.LGFCancelSuperGesture = YES;
         self.LGFMessageImageSpacing = 5.0;
         self.LGFToastSpacing = 10.0;
@@ -187,52 +187,52 @@ lgf_AllocOnlyOnceForM(LGFToastView, ToastView);
 static char LGFToastViewKey;
 static char LGFToastActivityKey;
 
-- (void)lgf_ShowToastMessage:(NSString *)message {
+- (void)lgf_ShowToastMessage:(NSString *)message completion:(void (^ __nullable)(void))completion {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastMessage = message;
     style.LGFToastImage = nil;
-    [self lgf_ShowToastStyle:style];
+    [self lgf_ShowToastStyle:style completion:completion];
 }
 
-- (void)lgf_ShowToastMessage:(NSString *)message duration:(NSTimeInterval)duration {
+- (void)lgf_ShowToastMessage:(NSString *)message duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastMessage = message;
     style.LGFToastImage = nil;
     style.LGFDuration = duration;
-    [self lgf_ShowToastStyle:style];
+    [self lgf_ShowToastStyle:style completion:completion];
 }
 
-- (void)lgf_ShowToastImage:(UIImage *)image {
+- (void)lgf_ShowToastImage:(UIImage *)image completion:(void (^ __nullable)(void))completion {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastImage = image;
     style.LGFToastMessage = nil;
-    [self lgf_ShowToastStyle:style];
+    [self lgf_ShowToastStyle:style completion:completion];
 }
 
-- (void)lgf_ShowToastImage:(UIImage *)image duration:(NSTimeInterval)duration {
+- (void)lgf_ShowToastImage:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastImage = image;
     style.LGFToastMessage = nil;
     style.LGFDuration = duration;
-    [self lgf_ShowToastStyle:style];
+    [self lgf_ShowToastStyle:style completion:completion];
 }
 
-- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image {
+- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image completion:(void (^ __nullable)(void))completion {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastMessage = message;
     style.LGFToastImage = image;
-    [self lgf_ShowToastStyle:style];
+    [self lgf_ShowToastStyle:style completion:completion];
 }
 
-- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image duration:(NSTimeInterval)duration {
+- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion {
     LGFToastStyle *style = [LGFToastStyle shard];
     style.LGFToastMessage = message;
     style.LGFToastImage = image;
     style.LGFDuration = duration;
-    [self lgf_ShowToastStyle:style];
+    [self lgf_ShowToastStyle:style completion:completion];
 }
 
-- (void)lgf_ShowToastStyle:(LGFToastStyle *)style {
+- (void)lgf_ShowToastStyle:(LGFToastStyle *)style completion:(void (^ __nullable)(void))completion {
     
     if (style.LGFToastMessage.length == 0 && !style.LGFToastImage) {
         return;
@@ -300,6 +300,11 @@ static char LGFToastActivityKey;
     [NSObject cancelPreviousPerformRequestsWithTarget:toastView];
     if (style.LGFCancelSuperGesture) self.userInteractionEnabled = NO;
     [toastView performSelector:@selector(dismiss) withObject:nil afterDelay:style.LGFDuration];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((style.LGFDuration + style.LGFDismissDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (completion) {
+            completion();
+        }
+    });
 }
 
 #pragma mark - 菊花

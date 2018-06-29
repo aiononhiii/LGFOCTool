@@ -71,13 +71,13 @@ lgf_AllocOnlyOnceForH(ToastView);
 
 @interface UIView (LGFToast)
 
-- (void)lgf_ShowToastStyle:(LGFToastStyle *)style;
-- (void)lgf_ShowToastMessage:(NSString *)message;
-- (void)lgf_ShowToastMessage:(NSString *)message duration:(NSTimeInterval)duration;
-- (void)lgf_ShowToastImage:(UIImage *)image;
-- (void)lgf_ShowToastImage:(UIImage *)image duration:(NSTimeInterval)duration;
-- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image;
-- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image duration:(NSTimeInterval)duration;
+- (void)lgf_ShowToastStyle:(LGFToastStyle *)style completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowToastMessage:(NSString *)message completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowToastMessage:(NSString *)message duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowToastImage:(UIImage *)image completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowToastImage:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion;
 
 - (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets;
 - (void)lgf_HideToastActivity;

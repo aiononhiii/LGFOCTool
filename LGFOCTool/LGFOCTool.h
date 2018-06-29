@@ -28,6 +28,10 @@
 #import "LGFTimer.h"
 // 瀑布流Layout
 #import "LGFWaterLayout.h"
+// 从相册选取图片
+#import "LGFUploadImage.h"
+// 显示当前 FPS 的Label
+#import "LGFFPSLabel.h"
 
 //******************************** 分类 **********************************
 //------------------ NSString 分类集合 -----------------
@@ -156,6 +160,9 @@
 #import "UITableView+LGFTableView.h"
 //------------------ UIScrollView 分类集合 ---------
 #import "UIScrollView+LGFScrollView.h"
-
+//------------------ UIScreen 分类集合 ---------
+#import "UIScreen+LGFScreen.h"
+//------------------ UIControl 分类集合 ---------
+#import "UIControl+LGFControl.h"
 
 #endif /* LGFOCTool_h */

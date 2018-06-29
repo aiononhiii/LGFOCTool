@@ -9,6 +9,32 @@
 #import <Foundation/Foundation.h>
 #import "LGFOCTool.h"
 
+// 相册              NSPhotoLibraryUsageDescription
+
+// 相机              NSCameraUsageDescription
+
+// 麦克风             NSMicrophoneUsageDescription
+
+// 位置              NSLocationUsageDescription
+
+// 在使用期间访问位置   NSLocationWhenInUseUsageDescription
+
+// 始终访问位置        NSLocationAlwaysUsageDescription
+
+// 日历              NSCalendarsUsageDescription
+
+// 提醒事项           NSRemindersUsageDescription
+
+// 运动与健身         NSMotionUsageDescription
+
+// 健康更新           NSHealthUpdateUsageDescription
+
+// 健康分享           NSHealthShareUsageDescription
+
+// 蓝牙              NSBluetoothPeripheralUsageDescription
+
+// 媒体资料库         NSAppleMusicUsageDescription
+
 typedef NS_ENUM(NSUInteger, lgf_LocationPermissionType) {
     lgf_Always,// 始终
     lgf_WhenInUse,// 应用开启时

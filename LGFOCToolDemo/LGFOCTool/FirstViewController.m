@@ -8,15 +8,16 @@
 
 #import "FirstViewController.h"
 #import "LGFOCTool.h"
+#import "ViewController.h"
+#import "UINavigationController+LGFAnimatedTransition.h"
 
 @interface FirstViewController ()
-
 @end
 
 @implementation FirstViewController
 
 + (instancetype)GetSBVC {
-    return lgf_GetSBVC(@"Main", @"Main", nil);
+    return lgf_GetSBVC(ViewController, @"Main", nil);
 }
 
 - (void)viewDidLoad {
@@ -24,19 +25,14 @@
     
 }
 
+- (IBAction)goViewController:(UIButton *)sender {
+    ViewController *vc = [ViewController GetSBVC];
+    [self.navigationController pushViewController:vc animated:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

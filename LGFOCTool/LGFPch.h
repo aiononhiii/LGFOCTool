@@ -46,15 +46,15 @@
 #undef lgf_UserDefaults
 #define lgf_Defaults [NSUserDefaults standardUserDefaults]
 
-// 获取对应名字 storyboard
-#undef lgf_GetSBWithName
-#define lgf_GetSBWithName(sbStrName, bundleStrName)\
-[UIStoryboard storyboardWithName:(sbStrName) bundle:lgf_Bundle(bundleStrName)]
-
 // storyboard
 #undef lgf_GetSBVC
-#define lgf_GetSBVC(classStr, sbStr, bundleStrName)\
-[[UIStoryboard storyboardWithName:(sbStr) bundle:[NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:(bundleStrName) ofType:@"bundle"]]] instantiateViewControllerWithIdentifier:(classStr)]
+#define lgf_GetSBVC(className, storyboardStr, bundleStr)\
+[lgf_GetSBWithName(storyboardStr, bundleStr) instantiateViewControllerWithIdentifier:(NSStringFromClass([className class]))]
+
+// 获取对应名字 storyboard
+#undef lgf_GetSBWithName
+#define lgf_GetSBWithName(storyboardStr, bundleStr)\
+[UIStoryboard storyboardWithName:(storyboardStr) bundle:lgf_Bundle(bundleStr)]
 
 // 资源文件 Bundle
 #undef lgf_Bundle
@@ -159,11 +159,22 @@
 @interface lgf_SYNTH_DUMMY_CLASS_ ## _name_ : NSObject @end \
 @implementation lgf_SYNTH_DUMMY_CLASS_ ## _name_ @end
 #endif
+//---------------------- 获取 Storyboard VC 快捷设置 ----------------------
+#undef lgf_SBViewControllerForH
+#define lgf_SBViewControllerForH + (instancetype)lgf_SBViewController
+#undef lgf_SBViewControllerForM
+#define lgf_SBViewControllerForM(className, storyboardStr, bundleStr) \
++ (instancetype)lgf_SBViewController\
+{\
+return lgf_GetSBVC(className, storyboardStr, bundleStr);\
+}
 //---------------------- 单列快捷设置 ----------------------
 
 // 添加到 .h 文件
+#undef lgf_AllocOnlyOnceForH
 #define lgf_AllocOnlyOnceForH(methodName) + (instancetype)shared##methodName
 // 添加到 .m 文件
+#undef lgf_AllocOnlyOnceForM
 #define lgf_AllocOnlyOnceForM(name,methodName) static name* _instance;\
 + (instancetype)allocWithZone:(struct _NSZone *)zone\
 {\

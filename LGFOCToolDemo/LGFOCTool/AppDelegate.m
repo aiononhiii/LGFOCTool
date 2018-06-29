@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "UIButton+LGFImagePosition.h"
+#import "UINavigationController+LGFAnimatedTransition.h"
+#import "LGFFPSLabel.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +27,8 @@
 //    -(kPermissionAccess)hasAccessToLocation;
 //    -(kPermissionAccess)hasAccessToPhotos;
 //    -(kPermissionAccess)hasAccessToReminders;
+    
+    [UINavigationController lgf_AnimatedTransitionIsUse:YES showDuration:0.5 modalDuration:0.7];
     
     return YES;
 }

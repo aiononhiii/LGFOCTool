@@ -1,0 +1,1 @@
+../../../LGFTransition/LGFTransition/UINavigationController+LGFAnimatedTransition.h

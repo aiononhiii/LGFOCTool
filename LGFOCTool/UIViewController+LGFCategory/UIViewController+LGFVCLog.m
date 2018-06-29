@@ -26,7 +26,7 @@
         
         // 替换 viewDidAppear
         SEL viewDidAppear = @selector(viewDidAppear:);
-        SEL lgf_ViewDidAppear = @selector(lgf_ViewDidAppear);
+        SEL lgf_ViewDidAppear = @selector(lgf_ViewDidAppear:);
         [class lgf_SwizzleMethod:viewDidAppear withMethod:lgf_ViewDidAppear];
         
         // 替换 dealloc
@@ -37,15 +37,18 @@
 }
 
 - (void)lgf_ViewDidLoad {
-    NSLog(@"LGF的控制器:%@ --- 已经走 ViewDidLoad", self);
+    NSLog(@"LGF的控制器:%@ --- 已经走 ViewDidLoad", NSStringFromClass([self class]));
+    [self lgf_ViewDidLoad];
 }
 
-- (void)lgf_ViewDidAppear {
-    NSLog(@"LGF的控制器:%@ --- 已经走 viewDidAppear 全部加载完毕", self);
+- (void)lgf_ViewDidAppear:(BOOL)animated {
+    NSLog(@"LGF的控制器:%@ --- 已经走 viewDidAppear 全部加载完毕", NSStringFromClass([self class]));
+    [self lgf_ViewDidAppear:animated];
 }
 
 - (void)lgf_Dealloc {
-    NSLog(@"LGF的控制器:%@ --- 已经释放", self);
+    NSLog(@"LGF的控制器:%@ --- 已经释放", NSStringFromClass([self class]));
+    [self lgf_Dealloc];
 }
 
 @end

@@ -14,4 +14,5 @@ target 'LGFOCTool' do
     pod 'YYAsyncLayer'
     pod 'YYCategories'
     pod 'MJRefresh'
+    pod 'LGFTransition'
 end

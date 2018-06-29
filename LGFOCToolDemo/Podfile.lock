@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - LGFTransition (0.0.9)
   - MJRefresh (3.1.15.3)
   - SDWebImage (4.4.0):
     - SDWebImage/Core (= 4.4.0)
@@ -35,6 +36,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - LGFTransition
   - MJRefresh
   - SDWebImage
   - YYAsyncLayer
@@ -47,6 +49,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - LGFTransition
     - MJRefresh
     - SDWebImage
     - YYAsyncLayer
@@ -60,6 +63,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  LGFTransition: 4ae14d52e5787f3a514c8701ffe7cfdd524b95da
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   SDWebImage: b534502786e43dde36dfcaee89356fe6df30e203
   YYAsyncLayer: df6b01ebc695c5f6b4c15dd5c23fa3e081eb25c0
@@ -71,6 +75,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 068e9268bc956b7dd1c6424a67fe856838b66987
+PODFILE CHECKSUM: ae574e14bebef2d59bdb8d5edb10bc52f3c975c2
 
 COCOAPODS: 1.5.3

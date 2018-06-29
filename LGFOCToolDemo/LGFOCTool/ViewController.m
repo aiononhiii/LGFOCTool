@@ -10,12 +10,13 @@
 #import "UIViewController+LGFVCLog.h"
 #import "LGFOCTool.h"
 #import "FirstViewController.h"
-#import "PopViewController.h"
 #import "YDFMFMHistoryCVCell.h"
 #import "UIImageView+WebCache.h"
 #import "YYWebImage.h"
 #import "MJRefresh.h"
 #import "YYCache.h"
+//#import "UINavigationController+FDFullscreenPopGesture.h"
+#import "UINavigationController+LGFAnimatedTransition.h"
 
 typedef void(^test)(NSString *ff, NSString *gg);
 @interface ViewController ()
@@ -31,6 +32,14 @@ typedef void(^test)(NSString *ff, NSString *gg);
 
 @implementation ViewController
 
++ (instancetype)GetSBVC {
+    return lgf_GetSBVC(ViewController, @"Main", @"LGFOCTool");
+}
+
+- (void)dealloc {
+    NSLog(@"已经释放完毕");
+}
+
 - (NSMutableArray *)historyData {
     if (!_historyData) {
         _historyData = [NSMutableArray new];
@@ -40,15 +49,23 @@ typedef void(^test)(NSString *ff, NSString *gg);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+//    LGFTopMessageStyle *style = [LGFTopMessageStyle na];
+//    style.lgf_Message = @"来国锋发的消息息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息la的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我b发息我发的消息label发的消息l";
+//    //    style.lgf_MessageMode = lgf_Resize;
+//    style.lgf_LabelMaxLine = 5;
+//    style.lgf_IconWidth = 40;
+//    style.lgf_MessageIcon = [UIImage imageNamed:@"testIcon"];
+//    style.lgf_MessageLabelFont = [UIFont systemFontOfSize:15];
+//    [self lgf_ShowTopMessageWithStyle:style withTapBlock:^{
+//        NSLog(@"点击了")
+//    }];
     
     @lgf_Weak(self);
     self.tt = ^(NSString *ff, NSString *gg) {
         @lgf_Strong(self);
         [self.aaaa removeAllObjects];
     };
-    
-    
     
     [self.testBtnTwo lgf_ShowGrayIndicator];
     
@@ -72,7 +89,8 @@ typedef void(^test)(NSString *ff, NSString *gg);
     [LGFNetwork sharedNetwork].lgf_Header = model;
     
     
-    
+    LGFFPSLabel *fps = [[LGFFPSLabel alloc] initWithFrame:CGRectMake(10, [UIScreen mainScreen].bounds.size.height - 300, 80, 30)];
+    [self.view addSubview:fps];
     
 //
 //    lgf_AFTER(2.0, LGFTopMessageStyle *style = [LGFTopMessageStyle na];
@@ -140,25 +158,16 @@ typedef void(^test)(NSString *ff, NSString *gg);
             [self lgf_ShowTopMessageWithStyle:style withTapBlock:^{}];
             return;
         }
-        [self.view lgf_ShowToastMessage:error.localizedDescription];
+        [self.view lgf_ShowToastMessage:error.localizedDescription completion:nil];
     }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [self.view lgf_ShowToastActivity];
-    
+//    [self.view lgf_ShowToastActivity:UIEdgeInsetsMake(0, 0, 0, 0)];
+//
 //    lgf_AFTER(3.0, [self.view lgf_HideToastActivity];);
-//    LGFTopMessageStyle *style = [LGFTopMessageStyle na];
-//    style.lgf_Message = @"来国锋发的消息息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息la的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我b发息我发的消息label发的消息l";
-////    style.lgf_MessageMode = lgf_Resize;
-//    style.lgf_LabelMaxLine = 5;
-//    style.lgf_IconWidth = 40;
-//    style.lgf_MessageIcon = [UIImage imageNamed:@"testIcon"];
-//    style.lgf_MessageLabelFont = [UIFont systemFontOfSize:15];
-//    [self lgf_ShowTopMessageWithStyle:style withTapBlock:^{
-//        NSLog(@"点击了")
-//    }];
+    
     
 }
 
@@ -203,9 +212,7 @@ typedef void(^test)(NSString *ff, NSString *gg);
     [healthStore executeQuery:sampleQuery];
 }
 
-- (void)dealloc {
-    NSLog(@"123123");
-}
+
 - (IBAction)testBtnClick:(LGFCountDownButton *)sender {
     LGFTopMessageStyle *style = [LGFTopMessageStyle na];
     style.lgf_Message = @"来国锋发的消息息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息la的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我b发息我发的消息label发的消息l";
@@ -218,11 +225,20 @@ typedef void(^test)(NSString *ff, NSString *gg);
         NSLog(@"点击了")
     }];
     
+    [self.navigationController popViewControllerAnimated:YES];
     
 //    [self.view lgf_ShowToastMessage:@"测试试试试我测试试我测试试我测试试试试试我测试试我测试试我测试试试试我测试试我测试试我测试试试试我测试试我测试试我测试试试试我测试试我测试试我测试试试试我测试试我测试试我测试我测试我知"];
     
     
 }
+
+- (IBAction)goCP:(UIButton *)sender {
+    [[LGFUploadImage sharedLGFUploadImage] lgf_GetSystemPhotoWithVC:self title:@"从相册获取图片" returnImage:^(UIImage *image) {
+        [self.view lgf_ShowToastMessage:[NSString stringWithFormat:@"%@", image] duration:2.0 completion:nil];
+    }];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
