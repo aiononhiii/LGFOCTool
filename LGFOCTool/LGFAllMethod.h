@@ -11,6 +11,9 @@
 
 @interface LGFAllMethod : NSObject
 
+#pragma mark - 滚动 scrollView 顶部 topView 自动隐藏
++ (void)lgf_ScrollHideForTopView:(UIView *)topView hideHeight:(CGFloat)hideHeight scrollView:(UIScrollView *)scrollView animateDuration:(NSTimeInterval)animateDuration;
+
 #pragma mark - 根据PNG图片url获取PNG图片尺寸
 + (CGSize)lgf_GetPNGImageSizeWithUrl:(NSURL *)url;
 

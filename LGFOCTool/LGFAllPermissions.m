@@ -179,7 +179,6 @@ lgf_AllocOnlyOnceForM(LGFAllPermissions, shard);
             lgf_HaveBlock(block, YES);
         }
     }
-    
 }
 
 #pragma mark - 通讯录权限

@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vdq-Uw-qZS">
-                                <rect key="frame" x="0.0" y="364" width="375" height="303"/>
+                                <rect key="frame" x="0.0" y="320" width="375" height="347"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ngZ-kE-iQs">
                                     <size key="itemSize" width="375" height="95"/>
@@ -199,14 +199,14 @@
                                 </connections>
                             </collectionView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7iN-ax-Fqy">
-                                <rect key="frame" x="137" y="124" width="100" height="100"/>
+                                <rect key="frame" x="137" y="80" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="D6O-d7-vgG"/>
                                     <constraint firstAttribute="height" constant="100" id="uVi-dO-yt2"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckY-Jb-F0f" customClass="LGFCountDownButton">
-                                <rect key="frame" x="120" y="164" width="105" height="34"/>
+                                <rect key="frame" x="120" y="120" width="105" height="34"/>
                                 <color key="backgroundColor" red="0.1151243263" green="0.63202034780000005" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="发送验证码"/>
                                 <userDefinedRuntimeAttributes>
@@ -231,6 +231,9 @@
                                     <userDefinedRuntimeAttribute type="size" keyPath="lgf_ShadowOffset">
                                         <size key="value" width="1" height="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lgf_ImagePosition">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="testBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SQN-6f-DXQ"/>
@@ -248,7 +251,7 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ou-n3-qdU">
-                                <rect key="frame" x="302" y="84" width="50" height="50"/>
+                                <rect key="frame" x="302" y="40" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="BfV-wd-ATU"/>
@@ -282,6 +285,17 @@
                                 <rect key="frame" x="16" y="132" width="95" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.60856541450000001" green="0.28456578360000001" blue="0.36523647110000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lgf_GFromColor">
+                                        <color key="value" red="0.28244481569143115" green="0.7194641452439976" blue="0.94067762310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lgf_GToColor">
+                                        <color key="value" red="0.16046072659999999" green="0.56387629530000005" blue="0.16479387049999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lgf_GWidth">
+                                        <real key="value" value="888"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2X-NM-Xzy">
                                 <rect key="frame" x="33" y="233" width="31" height="30"/>
@@ -311,6 +325,24 @@
                                     <segue destination="TX6-JN-bBA" kind="show" id="cAD-He-Wn2"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcS-Fe-Coh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="p99-SZ-5Qi"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lgf_GFromColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lgf_GToColor">
+                                        <color key="value" red="0.94067762310000003" green="0.22819167809999999" blue="0.43303469570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lgf_GWidth">
+                                        <real key="value" value="888"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -322,8 +354,11 @@
                             <constraint firstItem="ckY-Jb-F0f" firstAttribute="top" secondItem="Kw3-m2-dAI" secondAttribute="bottom" constant="100" id="Az1-ZT-Ssj"/>
                             <constraint firstItem="V2a-o9-mjj" firstAttribute="top" secondItem="vdq-Uw-qZS" secondAttribute="bottom" id="Dj9-kt-UBn"/>
                             <constraint firstItem="JdY-Q6-b6C" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Opv-YD-rTU"/>
+                            <constraint firstItem="ZcS-Fe-Coh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="XLw-jI-u72"/>
+                            <constraint firstItem="ZcS-Fe-Coh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eN8-Am-72N"/>
                             <constraint firstItem="7iN-ax-Fqy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h0L-zZ-9JE"/>
                             <constraint firstAttribute="trailing" secondItem="9Ou-n3-qdU" secondAttribute="trailing" constant="23" id="pE1-rY-Vxr"/>
+                            <constraint firstAttribute="trailing" secondItem="ZcS-Fe-Coh" secondAttribute="trailing" id="pQ0-cl-0co"/>
                             <constraint firstItem="JdY-Q6-b6C" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sFq-6Y-5S8"/>
                             <constraint firstAttribute="bottom" secondItem="LeQ-Jf-Cx8" secondAttribute="bottom" id="tJR-4o-BcF"/>
                             <constraint firstItem="vdq-Uw-qZS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uL7-GH-YTq"/>
@@ -332,6 +367,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MiC-a8-qAg"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="testBtn" destination="ckY-Jb-F0f" id="EBo-9g-16k"/>
                         <outlet property="testBtnTwo" destination="JdY-Q6-b6C" id="NmH-6f-RL6"/>

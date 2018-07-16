@@ -48,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)lgf_ScrollToRightAnimated:(BOOL)animated;
 
+#pragma mark - 取得 UIScrollView 分页 index
+- (NSInteger)lgf_GetScrollPageIndex;
 @end
 
 NS_ASSUME_NONNULL_END

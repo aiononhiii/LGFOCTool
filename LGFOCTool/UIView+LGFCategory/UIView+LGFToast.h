@@ -37,6 +37,10 @@ typedef NS_ENUM(NSUInteger, LGFToastImagePosition) {
 @property (assign, nonatomic) LGFToastImagePosition LGFToastImagePosition;
 // Toast背景色
 @property (nonatomic, strong) UIColor *LGFToastBackColor;
+// 边框颜色
+@property (nonatomic, strong) UIColor *LGFToastBorderColor;
+// 边框粗细
+@property (assign, nonatomic) CGFloat LGFToastBorderWidth;
 // Toast圆角
 @property (assign, nonatomic) CGFloat LGFToastCornerRadius;
 // Toast消失动画时间
@@ -46,7 +50,8 @@ typedef NS_ENUM(NSUInteger, LGFToastImagePosition) {
 // 图片文字间隔
 @property (assign, nonatomic) CGFloat LGFMessageImageSpacing;
 // 四边距离
-@property (assign, nonatomic) CGFloat LGFToastSpacing;
+@property (assign, nonatomic) CGFloat LGFToastTopBottomSpacing;
+@property (assign, nonatomic) CGFloat LGFToastLeftRightSpacing;
 // Toast最大宽度
 @property (assign, nonatomic) CGFloat LGFMaxWidth;
 // Toast最大高度

@@ -104,6 +104,11 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 对数组中的对象进行随机排序
 - (void)lgf_Shuffle;
 
+#pragma mark - 快速创建一个相同元素的数组
+- (NSMutableArray *)lgf_CreatDentical:(id)object count:(NSInteger)count;
+
+#pragma mark - 创建一个index数组
+- (NSMutableArray *)lgf_CreatIndexArr:(NSInteger)count;
 @end
 
 NS_ASSUME_NONNULL_END

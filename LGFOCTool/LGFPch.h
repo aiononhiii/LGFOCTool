@@ -39,17 +39,21 @@
 #define lgf_Application [UIApplication sharedApplication]
 
 // 通知中心
-#undef lgf_NotificationCenter
+#undef lgf_NCenter
 #define lgf_NCenter [NSNotificationCenter defaultCenter]
 
 // NSUserDefaults 缓存
-#undef lgf_UserDefaults
+#undef lgf_Defaults
 #define lgf_Defaults [NSUserDefaults standardUserDefaults]
 
 // storyboard
 #undef lgf_GetSBVC
 #define lgf_GetSBVC(className, storyboardStr, bundleStr)\
 [lgf_GetSBWithName(storyboardStr, bundleStr) instantiateViewControllerWithIdentifier:(NSStringFromClass([className class]))]
+
+// xib
+#undef lgf_GetXibView
+#define lgf_GetXibView(className, bundleStr) [lgf_Bundle(bundleStr) loadNibNamed:NSStringFromClass([className class]) owner:self options:nil].firstObject;
 
 // 获取对应名字 storyboard
 #undef lgf_GetSBWithName

@@ -108,4 +108,20 @@
     }
 }
 
+- (NSMutableArray *)lgf_CreatDentical:(id)object count:(NSInteger)count {
+    [self removeAllObjects];
+    for (int i = 0; i < count; i++) {
+        [self addObject:object];
+    }
+    return self;
+}
+
+- (NSMutableArray *)lgf_CreatIndexArr:(NSInteger)count {
+    [self removeAllObjects];
+    for (int i = 0; i < count; i++) {
+        [self addObject:[NSString stringWithFormat:@"%d", i]];
+    }
+    return self;
+}
+
 @end

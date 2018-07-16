@@ -18,6 +18,8 @@
 //#import "UINavigationController+FDFullscreenPopGesture.h"
 #import "UINavigationController+LGFAnimatedTransition.h"
 
+#import "SBTestViewController.h"
+
 typedef void(^test)(NSString *ff, NSString *gg);
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *testBtnTwo;
@@ -31,6 +33,8 @@ typedef void(^test)(NSString *ff, NSString *gg);
 @end
 
 @implementation ViewController
+
+lgf_AllocOnlyOnceForM(ViewController, ViewController);
 
 + (instancetype)GetSBVC {
     return lgf_GetSBVC(ViewController, @"Main", @"LGFOCTool");
@@ -49,7 +53,7 @@ typedef void(^test)(NSString *ff, NSString *gg);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+//    _testview.backgroundColor = [UIColor lgf_GradientFromColor:[UIColor greenColor] toColor:[UIColor redColor] width:_testview.lgf_width];
 //    LGFTopMessageStyle *style = [LGFTopMessageStyle na];
 //    style.lgf_Message = @"来国锋发的消息息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息la的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我b发息我发的消息label发的消息l";
 //    //    style.lgf_MessageMode = lgf_Resize;
@@ -236,6 +240,10 @@ typedef void(^test)(NSString *ff, NSString *gg);
     [[LGFUploadImage sharedLGFUploadImage] lgf_GetSystemPhotoWithVC:self title:@"从相册获取图片" returnImage:^(UIImage *image) {
         [self.view lgf_ShowToastMessage:[NSString stringWithFormat:@"%@", image] duration:2.0 completion:nil];
     }];
+//    SBTestViewController *vc =[SBTestViewController lgf_SBViewController];
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
+//    
 }
 
 

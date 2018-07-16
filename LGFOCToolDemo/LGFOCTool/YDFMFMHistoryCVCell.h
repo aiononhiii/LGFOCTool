@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface YDFMFMHistoryCVCell : UICollectionViewCell
 + (instancetype)cellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
 @property (weak, nonatomic) IBOutlet UIImageView *coverUrlMiddle;

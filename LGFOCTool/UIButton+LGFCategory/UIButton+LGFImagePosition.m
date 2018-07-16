@@ -7,6 +7,7 @@
 //
 
 #import "UIButton+LGFImagePosition.h"
+#import <objc/runtime.h>
 
 @implementation UIButton (LGFImagePosition)
 

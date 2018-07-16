@@ -15,4 +15,5 @@ target 'LGFOCTool' do
     pod 'YYCategories'
     pod 'MJRefresh'
     pod 'LGFTransition'
+    pod 'LGFPageTitle'
 end

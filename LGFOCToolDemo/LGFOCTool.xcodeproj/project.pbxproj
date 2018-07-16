@@ -87,7 +87,15 @@
 		18490C0D20C8D6C0000243DD /* LGFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 18490C0C20C8D6C0000243DD /* LGFNetwork.m */; };
 		18490C1320C8E17A000243DD /* LGFReqest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18490C1220C8E17A000243DD /* LGFReqest.m */; };
 		18490C1620C90A91000243DD /* LGFNetworkHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18490C1520C90A91000243DD /* LGFNetworkHeader.m */; };
+		18585E9220ECE7960084D5C1 /* SBTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18585E9120ECE7960084D5C1 /* SBTestViewController.m */; };
+		18585E9420ECE7A10084D5C1 /* SBTestViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18585E9320ECE7A10084D5C1 /* SBTestViewController.storyboard */; };
+		18585E9720ECEF440084D5C1 /* SBtestCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18585E9620ECEF440084D5C1 /* SBtestCollectionViewCell.m */; };
 		1861A58420A5617200559623 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1861A58320A5617200559623 /* HealthKit.framework */; };
+		188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225EB20EDB3BE0004DBC6 /* OneViewController.m */; };
+		188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */; };
+		188225F120EDB5120004DBC6 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225F020EDB5120004DBC6 /* TwoViewController.m */; };
+		188225F320EDB5190004DBC6 /* TwoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188225F220EDB5190004DBC6 /* TwoViewController.storyboard */; };
+		188227C220F0696D0004DBC6 /* testimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 188227C120F0696D0004DBC6 /* testimage.png */; };
 		188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFB72094396C0014E4CA /* AppDelegate.m */; };
 		188DEFBB2094396C0014E4CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFBA2094396C0014E4CA /* ViewController.m */; };
 		188DEFBE2094396C0014E4CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188DEFBC2094396C0014E4CA /* Main.storyboard */; };
@@ -279,8 +287,20 @@
 		18490C1220C8E17A000243DD /* LGFReqest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFReqest.m; sourceTree = "<group>"; };
 		18490C1420C90A91000243DD /* LGFNetworkHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFNetworkHeader.h; sourceTree = "<group>"; };
 		18490C1520C90A91000243DD /* LGFNetworkHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFNetworkHeader.m; sourceTree = "<group>"; };
+		18585E9020ECE7960084D5C1 /* SBTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBTestViewController.h; sourceTree = "<group>"; };
+		18585E9120ECE7960084D5C1 /* SBTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBTestViewController.m; sourceTree = "<group>"; };
+		18585E9320ECE7A10084D5C1 /* SBTestViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SBTestViewController.storyboard; sourceTree = "<group>"; };
+		18585E9520ECEF440084D5C1 /* SBtestCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBtestCollectionViewCell.h; sourceTree = "<group>"; };
+		18585E9620ECEF440084D5C1 /* SBtestCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBtestCollectionViewCell.m; sourceTree = "<group>"; };
 		1861A58120A5617200559623 /* LGFOCTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LGFOCTool.entitlements; sourceTree = "<group>"; };
 		1861A58320A5617200559623 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		188225EA20EDB3BE0004DBC6 /* OneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
+		188225EB20EDB3BE0004DBC6 /* OneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
+		188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OneViewController.storyboard; sourceTree = "<group>"; };
+		188225EF20EDB5120004DBC6 /* TwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
+		188225F020EDB5120004DBC6 /* TwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
+		188225F220EDB5190004DBC6 /* TwoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TwoViewController.storyboard; sourceTree = "<group>"; };
+		188227C120F0696D0004DBC6 /* testimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testimage.png; sourceTree = "<group>"; };
 		188DEFB32094396C0014E4CA /* LGFOCTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGFOCTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188DEFB62094396C0014E4CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188DEFB72094396C0014E4CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -808,6 +828,7 @@
 		188DEFB52094396C0014E4CA /* LGFOCTool */ = {
 			isa = PBXGroup;
 			children = (
+				188227C120F0696D0004DBC6 /* testimage.png */,
 				1861A58120A5617200559623 /* LGFOCTool.entitlements */,
 				1829CAD720A1534A00573974 /* testIcon.png */,
 				188DF030209444F00014E4CA /* pullToRefresh.gif */,
@@ -829,6 +850,17 @@
 				188DEFC12094396C0014E4CA /* LaunchScreen.storyboard */,
 				188DEFC42094396C0014E4CA /* Info.plist */,
 				188DEFC52094396C0014E4CA /* main.m */,
+				18585E9020ECE7960084D5C1 /* SBTestViewController.h */,
+				18585E9120ECE7960084D5C1 /* SBTestViewController.m */,
+				18585E9320ECE7A10084D5C1 /* SBTestViewController.storyboard */,
+				18585E9520ECEF440084D5C1 /* SBtestCollectionViewCell.h */,
+				18585E9620ECEF440084D5C1 /* SBtestCollectionViewCell.m */,
+				188225EA20EDB3BE0004DBC6 /* OneViewController.h */,
+				188225EB20EDB3BE0004DBC6 /* OneViewController.m */,
+				188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */,
+				188225EF20EDB5120004DBC6 /* TwoViewController.h */,
+				188225F020EDB5120004DBC6 /* TwoViewController.m */,
+				188225F220EDB5190004DBC6 /* TwoViewController.storyboard */,
 			);
 			path = LGFOCTool;
 			sourceTree = "<group>";
@@ -1024,9 +1056,13 @@
 			files = (
 				1829CAD820A1534B00573974 /* testIcon.png in Resources */,
 				188DEFC32094396C0014E4CA /* LaunchScreen.storyboard in Resources */,
+				18585E9420ECE7A10084D5C1 /* SBTestViewController.storyboard in Resources */,
 				188DEFC02094396C0014E4CA /* Assets.xcassets in Resources */,
+				188225F320EDB5190004DBC6 /* TwoViewController.storyboard in Resources */,
+				188227C220F0696D0004DBC6 /* testimage.png in Resources */,
 				188DEFBE2094396C0014E4CA /* Main.storyboard in Resources */,
 				188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */,
+				188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,10 +1090,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/LGFPageTitle/LGFPageTitle.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LGFPageTitle.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1103,6 +1141,7 @@
 				18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */,
 				183DA90120CE617300E09819 /* UIScrollView+LGFScrollView.m in Sources */,
 				184235B02099994C0006483C /* NSString+LGFPinyin.m in Sources */,
+				18585E9720ECEF440084D5C1 /* SBtestCollectionViewCell.m in Sources */,
 				183DA8C620CA508500E09819 /* NSDictionary+LGFDictionary.m in Sources */,
 				1829CAAD209FEDC000573974 /* UIView+LGFExtension.m in Sources */,
 				183A674D20C7B28200CDED30 /* LGFWaterLayout.m in Sources */,
@@ -1114,6 +1153,7 @@
 				1829CA84209A960900573974 /* UIColor+LGFGradient.m in Sources */,
 				1829CA98209AB43000573974 /* UIImageView+LGFImageView.m in Sources */,
 				18486CEC20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.m in Sources */,
+				188225F120EDB5120004DBC6 /* TwoViewController.m in Sources */,
 				184235BA2099A9E50006483C /* NSString+LGFTextSize.m in Sources */,
 				183DA8DB20CA82CB00E09819 /* NSNotificationCenter+OnMainThread.m in Sources */,
 				183DA8BA20CA1DD400E09819 /* NSData+LGFHash.m in Sources */,
@@ -1162,8 +1202,10 @@
 				1829CA91209A9E0100573974 /* UIImage+LGFColorImage.m in Sources */,
 				1829CA7F2099B8C000573974 /* NSDate+LGFDate.m in Sources */,
 				184235B320999D7D0006483C /* NSString+LGFRegex.m in Sources */,
+				18585E9220ECE7960084D5C1 /* SBTestViewController.m in Sources */,
 				18490C0D20C8D6C0000243DD /* LGFNetwork.m in Sources */,
 				1829CAC720A13F3F00573974 /* UIViewController+LGFViewController.m in Sources */,
+				188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */,
 				1829796020D0CA26005DB4B7 /* LGFUploadImage.m in Sources */,
 				18486C2820AD60EF00C4F723 /* UIView+LGFToast.m in Sources */,
 				183DA8D320CA6A6300E09819 /* NSNumber+LGFNumber.m in Sources */,

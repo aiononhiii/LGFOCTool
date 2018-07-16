@@ -22,10 +22,13 @@
         self.LGFToastBackColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.7];
         self.LGFToastCornerRadius = 5.0;
         self.LGFDismissDuration = 0.3;
+        self.LGFToastBorderWidth = 0.0;
+        self.LGFToastBorderColor = [UIColor lgf_ColorWithHexString:@"F0F0F0"];
         self.LGFDuration = 0.5;
         self.LGFCancelSuperGesture = YES;
         self.LGFMessageImageSpacing = 5.0;
-        self.LGFToastSpacing = 10.0;
+        self.LGFToastTopBottomSpacing = 10.0;
+        self.LGFToastLeftRightSpacing = 10.0;
         self.LGFToastImageSize = CGSizeMake(50.0, 50.0);
         self.LGFMaxWidth = [UIScreen mainScreen].bounds.size.width * 0.3;
         self.LGFMaxHeight = [UIScreen mainScreen].bounds.size.height * 0.8;
@@ -112,9 +115,12 @@ lgf_AllocOnlyOnceForM(LGFToastView, ToastView);
     self.message.text = style.LGFToastMessage;
     self.message.font = style.LGFToastMessageFont;
     self.message.textColor = style.LGFToastMessageTextColor;
+    self.message.textAlignment = NSTextAlignmentCenter;
     self.message.numberOfLines = 0;
     self.layer.cornerRadius = style.LGFToastCornerRadius;
     self.backgroundColor = style.LGFToastBackColor;
+    self.layer.borderColor = style.LGFToastBorderColor.CGColor;
+    self.layer.borderWidth = style.LGFToastBorderWidth;
     self.alpha = 1.0;
 }
 
@@ -125,49 +131,49 @@ lgf_AllocOnlyOnceForM(LGFToastView, ToastView);
         switch (self.style.LGFToastImagePosition) {
             case LGFToastImageTop:
                 self.image.frame = CGRectMake((self.frame.size.width / 2) - (self.style.LGFToastImageSize.width / 2),
-                                              self.style.LGFToastSpacing,
+                                              self.style.LGFToastTopBottomSpacing,
                                               self.style.LGFToastImageSize.width,
                                               self.style.LGFToastImageSize.height);
-                self.message.frame = CGRectMake(self.style.LGFToastSpacing,
-                                                self.style.LGFToastSpacing + self.style.LGFToastImageSize.height + self.style.LGFMessageImageSpacing,
-                                                self.frame.size.width - (self.style.LGFToastSpacing * 2),
-                                                self.frame.size.height - (self.style.LGFToastSpacing * 2) - self.image.frame.size.height - self.style.LGFMessageImageSpacing);
+                self.message.frame = CGRectMake(self.style.LGFToastLeftRightSpacing,
+                                                self.style.LGFToastTopBottomSpacing + self.style.LGFToastImageSize.height + self.style.LGFMessageImageSpacing,
+                                                self.frame.size.width - (self.style.LGFToastLeftRightSpacing * 2),
+                                                self.frame.size.height - (self.style.LGFToastTopBottomSpacing * 2) - self.image.frame.size.height - self.style.LGFMessageImageSpacing);
                 break;
             case LGFToastImageBottom:
                 self.image.frame = CGRectMake((self.frame.size.width / 2) - (self.style.LGFToastImageSize.width / 2),
-                                              self.frame.size.height - self.style.LGFToastImageSize.height - self.style.LGFToastSpacing,
+                                              self.frame.size.height - self.style.LGFToastImageSize.height - self.style.LGFToastLeftRightSpacing,
                                               self.style.LGFToastImageSize.width,
                                               self.style.LGFToastImageSize.height);
-                self.message.frame = CGRectMake(self.style.LGFToastSpacing,
-                                                self.style.LGFToastSpacing,
-                                                self.frame.size.width - (self.style.LGFToastSpacing * 2),
-                                                self.frame.size.height - (self.style.LGFToastSpacing * 2) - self.image.frame.size.height - self.style.LGFMessageImageSpacing);
+                self.message.frame = CGRectMake(self.style.LGFToastLeftRightSpacing,
+                                                self.style.LGFToastTopBottomSpacing,
+                                                self.frame.size.width - (self.style.LGFToastLeftRightSpacing * 2),
+                                                self.frame.size.height - (self.style.LGFToastTopBottomSpacing * 2) - self.image.frame.size.height - self.style.LGFMessageImageSpacing);
                 break;
             case LGFToastImageLeft:
-                self.image.frame = CGRectMake(self.style.LGFToastSpacing,
+                self.image.frame = CGRectMake(self.style.LGFToastLeftRightSpacing,
                                               (self.frame.size.height / 2) - (self.style.LGFToastImageSize.height / 2),
                                               self.style.LGFToastImageSize.width,
                                               self.style.LGFToastImageSize.height);
-                self.message.frame = CGRectMake(self.style.LGFToastSpacing + self.image.frame.size.width + self.style.LGFMessageImageSpacing,
-                                                self.style.LGFToastSpacing,
-                                                self.frame.size.width - (self.style.LGFToastSpacing * 2) - self.image.frame.size.width - self.style.LGFMessageImageSpacing,
-                                                self.frame.size.height - (self.style.LGFToastSpacing * 2));
+                self.message.frame = CGRectMake(self.style.LGFToastLeftRightSpacing + self.image.frame.size.width + self.style.LGFMessageImageSpacing,
+                                                self.style.LGFToastTopBottomSpacing,
+                                                self.frame.size.width - (self.style.LGFToastLeftRightSpacing * 2) - self.image.frame.size.width - self.style.LGFMessageImageSpacing,
+                                                self.frame.size.height - (self.style.LGFToastTopBottomSpacing * 2));
                 break;
             case LGFToastImageRight:
-                self.image.frame = CGRectMake(self.frame.size.width - self.style.LGFToastImageSize.width - self.style.LGFToastSpacing,
+                self.image.frame = CGRectMake(self.frame.size.width - self.style.LGFToastImageSize.width - self.style.LGFToastLeftRightSpacing,
                                               (self.frame.size.height / 2) - (self.style.LGFToastImageSize.height / 2),
                                               self.style.LGFToastImageSize.width,
                                               self.style.LGFToastImageSize.height);
-                self.message.frame = CGRectMake(self.style.LGFToastSpacing,
-                                                self.style.LGFToastSpacing,
-                                                self.frame.size.width - (self.style.LGFToastSpacing * 2) - self.image.frame.size.width - self.style.LGFMessageImageSpacing,
-                                                self.frame.size.height - (self.style.LGFToastSpacing * 2));
+                self.message.frame = CGRectMake(self.style.LGFToastLeftRightSpacing,
+                                                self.style.LGFToastTopBottomSpacing,
+                                                self.frame.size.width - (self.style.LGFToastLeftRightSpacing * 2) - self.image.frame.size.width - self.style.LGFToastLeftRightSpacing,
+                                                self.frame.size.height - (self.style.LGFToastTopBottomSpacing * 2));
                 break;
             default:
                 break;
         }
     } else {
-        self.message.frame = CGRectMake(self.style.LGFToastSpacing,  self.style.LGFToastSpacing, self.frame.size.width - (self.style.LGFToastSpacing * 2), self.frame.size.height - (self.style.LGFToastSpacing * 2));
+        self.message.frame = CGRectMake(self.style.LGFToastLeftRightSpacing,  self.style.LGFToastTopBottomSpacing, self.frame.size.width - (self.style.LGFToastLeftRightSpacing * 2), self.frame.size.height - (self.style.LGFToastTopBottomSpacing * 2));
     }
 }
 
@@ -250,7 +256,7 @@ static char LGFToastActivityKey;
     if (LGFToastViewWidth >= style.LGFMaxWidth) {
         CGFloat realHeight = [style lgf_HeightWithText:style.LGFToastMessage font:style.LGFToastMessageFont width:style.LGFMaxWidth];
         if (LGFToastViewHeight < realHeight) {
-            LGFToastViewHeight = MIN(realHeight, style.LGFMaxHeight);
+            LGFToastViewHeight = MAX(realHeight, style.LGFMaxHeight);
         }
     }
     CGFloat LGFToastViewY;
@@ -289,8 +295,8 @@ static char LGFToastActivityKey;
             break;
     }
     
-    LGFToastViewWidth = MIN(LGFToastViewWidth, style.LGFMaxWidth) + style.LGFToastSpacing * 2;
-    LGFToastViewHeight = LGFToastViewHeight + style.LGFToastSpacing * 2;
+    LGFToastViewWidth = MAX(LGFToastViewWidth, style.LGFMaxWidth) + style.LGFMessageImageSpacing * 2;
+    LGFToastViewHeight = LGFToastViewHeight + style.LGFToastTopBottomSpacing * 2;
     LGFToastViewX = (self.frame.size.width / 2) - (LGFToastViewWidth / 2);
     
     toastView.frame = CGRectMake(LGFToastViewX, LGFToastViewY, LGFToastViewWidth, LGFToastViewHeight);

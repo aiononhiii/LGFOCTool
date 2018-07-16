@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="LGFPageTitleView" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="GHP-zd-GkA" customClass="LGFPageTitleView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="38" y="61"/>
+        </scrollView>
+        <view contentMode="scaleToFill" id="rZZ-Bw-cq2" customClass="LGFTitleButton">
+            <rect key="frame" x="0.0" y="0.0" width="225" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OT8-FR-WL0">
+                    <rect key="frame" x="112.5" y="65" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" id="Nmm-Xe-9lh"/>
+                        <constraint firstAttribute="height" id="s0g-9T-Psh"/>
+                    </constraints>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDr-FA-TxX">
+                    <rect key="frame" x="112.5" y="65" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" id="Mox-Vp-n1e"/>
+                        <constraint firstAttribute="height" id="btZ-er-hv3"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QxB-h4-50x">
+                    <rect key="frame" x="112.5" y="65" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" id="Mn5-FP-z6U"/>
+                        <constraint firstAttribute="height" id="eLY-Nb-dF1"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SfD-et-6uo">
+                    <rect key="frame" x="112" y="65" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="7yO-aa-fgy"/>
+                        <constraint firstAttribute="width" id="aDX-3z-Uoo"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBo-x1-pVh">
+                    <rect key="frame" x="112.5" y="65" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" id="Dnv-9e-t82"/>
+                        <constraint firstAttribute="height" id="MTV-11-h1e"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="cBo-x1-pVh" firstAttribute="centerX" secondItem="rZZ-Bw-cq2" secondAttribute="centerX" id="ET8-Ad-8XR"/>
+                <constraint firstItem="SfD-et-6uo" firstAttribute="centerX" secondItem="rZZ-Bw-cq2" secondAttribute="centerX" id="Fmd-6F-5kj"/>
+                <constraint firstItem="OT8-FR-WL0" firstAttribute="leading" secondItem="oDr-FA-TxX" secondAttribute="trailing" id="KTa-tl-qaI"/>
+                <constraint firstItem="QxB-h4-50x" firstAttribute="leading" secondItem="OT8-FR-WL0" secondAttribute="trailing" id="NhS-RZ-8gf"/>
+                <constraint firstItem="cBo-x1-pVh" firstAttribute="top" secondItem="OT8-FR-WL0" secondAttribute="bottom" id="QI9-hG-QUC"/>
+                <constraint firstItem="OT8-FR-WL0" firstAttribute="top" secondItem="SfD-et-6uo" secondAttribute="bottom" id="cEd-Wa-KPd"/>
+                <constraint firstItem="oDr-FA-TxX" firstAttribute="centerY" secondItem="rZZ-Bw-cq2" secondAttribute="centerY" id="dTf-GO-P7O"/>
+                <constraint firstItem="OT8-FR-WL0" firstAttribute="centerY" secondItem="rZZ-Bw-cq2" secondAttribute="centerY" id="mMQ-9L-dYX"/>
+                <constraint firstItem="QxB-h4-50x" firstAttribute="centerY" secondItem="rZZ-Bw-cq2" secondAttribute="centerY" id="mTf-mn-q34"/>
+                <constraint firstItem="OT8-FR-WL0" firstAttribute="centerX" secondItem="rZZ-Bw-cq2" secondAttribute="centerX" id="pKd-fS-iLF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bottom_image" destination="cBo-x1-pVh" id="eWL-AO-gcl"/>
+                <outlet property="bottom_image_height" destination="MTV-11-h1e" id="q0a-wm-ahk"/>
+                <outlet property="bottom_image_spacing" destination="QI9-hG-QUC" id="Yrc-2q-EG0"/>
+                <outlet property="bottom_image_width" destination="Dnv-9e-t82" id="6cX-Ba-UBp"/>
+                <outlet property="left_image" destination="oDr-FA-TxX" id="7dg-gC-hrh"/>
+                <outlet property="left_image_height" destination="btZ-er-hv3" id="zIU-nB-fS2"/>
+                <outlet property="left_image_spacing" destination="KTa-tl-qaI" id="Hgw-Ci-XxH"/>
+                <outlet property="left_image_width" destination="Mox-Vp-n1e" id="S2w-rY-urR"/>
+                <outlet property="right_image" destination="QxB-h4-50x" id="cz6-C4-PaS"/>
+                <outlet property="right_image_height" destination="eLY-Nb-dF1" id="IxZ-vu-OyQ"/>
+                <outlet property="right_image_spacing" destination="NhS-RZ-8gf" id="qIl-31-JKX"/>
+                <outlet property="right_image_width" destination="Mn5-FP-z6U" id="xKk-DX-RUN"/>
+                <outlet property="title" destination="OT8-FR-WL0" id="6Is-Gf-jPq"/>
+                <outlet property="title_center_x" destination="pKd-fS-iLF" id="UJP-YN-MFP"/>
+                <outlet property="title_center_y" destination="mMQ-9L-dYX" id="06L-SD-xUW"/>
+                <outlet property="title_height" destination="s0g-9T-Psh" id="p5s-qr-hLq"/>
+                <outlet property="title_width" destination="Nmm-Xe-9lh" id="3IC-fM-034"/>
+                <outlet property="top_image" destination="SfD-et-6uo" id="hkg-Gf-mMw"/>
+                <outlet property="top_image_height" destination="7yO-aa-fgy" id="0Kq-LX-Er3"/>
+                <outlet property="top_image_spacing" destination="cEd-Wa-KPd" id="aL8-OP-Zpg"/>
+                <outlet property="top_image_width" destination="aDX-3z-Uoo" id="aQP-DB-555"/>
+            </connections>
+            <point key="canvasLocation" x="-38.5" y="217"/>
+        </view>
+        <view contentMode="scaleToFill" restorationIdentifier="LGFTitleLine" id="sdG-Pd-zz9" customClass="LGFTitleLine">
+            <rect key="frame" x="0.0" y="0.0" width="119" height="1"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-91" y="349"/>
+        </view>
+    </objects>
+</document>

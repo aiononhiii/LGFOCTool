@@ -50,4 +50,9 @@
     [self setContentOffset:off animated:animated];
 }
 
+- (NSInteger)lgf_GetScrollPageIndex {
+    NSInteger index = self.contentOffset.x / (NSInteger)self.bounds.size.width;
+    return index;
+}
+
 @end

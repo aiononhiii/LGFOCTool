@@ -18,7 +18,11 @@ static const char *lgf_ShadowColorKey = "lgf_ShadowColorKey";
 static const char *lgf_ShadowRadiusKey = "lgf_ShadowRadiusKey";
 static const char *lgf_ShadowOffsetKey = "lgf_ShadowOffsetKey";
 static const char *lgf_ShadowOpacityKey = "lgf_ShadowOpacityKey";
-static const char *lgf_IsRandomBackColorKey = "lgf_IsRandomBackColor";
+static const char *lgf_IsRandomBackColorKey = "lgf_IsRandomBackColorKey";
+static const char *lgf_GFromColorKey = "lgf_GFromColorKey";
+static const char *lgf_GToColorKey = "lgf_GToColorKey";
+static const char *lgf_GWidthKey = "lgf_GWidthKey";
+static const char *lgf_GHeightKey = "lgf_GHeightKey";
 
 @implementation UIView (LGFGSView)
 
@@ -31,15 +35,19 @@ static const char *lgf_IsRandomBackColorKey = "lgf_IsRandomBackColor";
 @dynamic lgf_ShadowOffset;
 @dynamic lgf_ShadowOpacity;
 @dynamic lgf_IsRandomBackColor;
+@dynamic lgf_GFromColor;
+@dynamic lgf_GToColor;
+@dynamic lgf_GWidth;
+@dynamic lgf_GHeight;
 
 #pragma mark - 控件唯一名字(通常用于确定某一个特殊的view)
 
 - (NSString *)lgf_ViewName {
-    return objc_getAssociatedObject(self, lgf_ViewNameKey);
+    return objc_getAssociatedObject(self, &lgf_ViewNameKey);
 }
 
 - (void)setLgf_ViewName:(NSString *)lgf_ViewName {
-    objc_setAssociatedObject(self, &lgf_ViewNameKey, lgf_ViewName, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_ViewNameKey, lgf_ViewName, OBJC_ASSOCIATION_COPY);
 }
 
 #pragma mark - 圆角
@@ -129,6 +137,60 @@ static const char *lgf_IsRandomBackColorKey = "lgf_IsRandomBackColor";
     objc_setAssociatedObject(self, &lgf_IsRandomBackColorKey, [NSNumber numberWithBool:lgf_IsRandomBackColor], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (lgf_IsRandomBackColor) {
         self.backgroundColor = lgf_RandomColor;
+    }
+}
+
+#pragma mark - 是否使用渐变背景色
+
+- (UIColor *)lgf_GFromColor {
+    return objc_getAssociatedObject(self, &lgf_GFromColorKey);
+}
+
+- (void)setLgf_GFromColor:(UIColor *)lgf_GFromColor {
+    objc_setAssociatedObject(self, &lgf_GFromColorKey, lgf_GFromColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)lgf_GToColor {
+    return objc_getAssociatedObject(self, &lgf_GToColorKey);
+}
+
+- (void)setLgf_GToColor:(UIColor *)lgf_GToColor {
+    objc_setAssociatedObject(self, &lgf_GToColorKey, lgf_GToColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)lgf_GWidth {
+    return [objc_getAssociatedObject(self, &lgf_GWidthKey) floatValue];
+}
+
+- (void)setLgf_GWidth:(CGFloat)lgf_GWidth {
+    objc_setAssociatedObject(self, &lgf_GWidthKey, [NSNumber numberWithFloat:lgf_GWidth], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (lgf_GWidth && lgf_GWidth > 0) {
+        CGFloat gwidth;
+        if (self.lgf_GWidth == 888) {
+            [self.superview layoutIfNeeded];
+            gwidth = self.lgf_width;
+        } else {
+            gwidth = lgf_GWidth;
+        }
+        self.backgroundColor = [UIColor lgf_GradientFromColor:self.lgf_GFromColor toColor:self.lgf_GToColor width:gwidth];
+    }
+}
+
+- (CGFloat)lgf_GHeight {
+    return [objc_getAssociatedObject(self, &lgf_GHeightKey) floatValue];
+}
+
+- (void)setLgf_GHeight:(CGFloat)lgf_GHeight {
+    objc_setAssociatedObject(self, &lgf_GHeightKey, [NSNumber numberWithFloat:lgf_GHeight], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (lgf_GHeight && lgf_GHeight > 0) {
+        CGFloat gheight;
+        if (self.lgf_GHeight == 888) {
+            [self.superview layoutIfNeeded];
+            gheight = self.lgf_height;
+        } else {
+            gheight = lgf_GHeight;
+        }
+        self.backgroundColor = [UIColor lgf_GradientFromColor:self.lgf_GFromColor toColor:self.lgf_GToColor height:gheight];
     }
 }
 

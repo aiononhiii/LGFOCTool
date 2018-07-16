@@ -10,6 +10,27 @@
 
 @implementation LGFAllMethod
 
++ (void)lgf_ScrollHideForTopView:(UIView *)topView hideHeight:(CGFloat)hideHeight scrollView:(UIScrollView *)scrollView animateDuration:(NSTimeInterval)animateDuration {
+    CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
+    [UIView animateWithDuration:animateDuration animations:^{
+        if (translation.y > 0) {
+            if (topView.transform.ty == -hideHeight) {
+                topView.transform = CGAffineTransformIdentity;
+            }
+        } else if (translation.y < 0) {
+            if (scrollView.contentOffset.y > hideHeight) {
+                if (topView.transform.ty == 0) {
+                    topView.transform = CGAffineTransformMakeTranslation(0, -hideHeight);
+                }
+            } else {
+                if (topView.transform.ty == -hideHeight) {
+                    topView.transform = CGAffineTransformIdentity;
+                }
+            }
+        }
+    }];
+}
+
 #pragma mark - 根据PNG图片url获取PNG图片尺寸
 + (CGSize)lgf_GetPNGImageSizeWithUrl:(NSURL *)url {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];

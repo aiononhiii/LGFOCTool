@@ -46,5 +46,15 @@
 
 @property (assign , nonatomic) IBInspectable BOOL lgf_IsRandomBackColor;
 
+#pragma mark - 是否使用渐变背景色
+
+@property (strong , nonatomic) IBInspectable UIColor *lgf_GFromColor;
+
+@property (strong , nonatomic) IBInspectable UIColor *lgf_GToColor;
+
+@property (assign , nonatomic) IBInspectable CGFloat lgf_GWidth;
+
+@property (assign , nonatomic) IBInspectable CGFloat lgf_GHeight;
+
 @end
 
