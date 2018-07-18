@@ -7,6 +7,7 @@
 //
 
 #import "LGFAllMethod.h"
+#import "LGFOCTool.h"
 
 @implementation LGFAllMethod
 
@@ -29,6 +30,27 @@
             }
         }
     }];
+}
+
++ (void)lgf_SortCellWithGesture:(UILongPressGestureRecognizer *)sender collectionView:(UICollectionView *)collectionView cellHeight:(CGFloat)cellHeight {
+    CGPoint point = [sender locationInView:collectionView];
+    NSIndexPath *indexPath = [collectionView indexPathForItemAtPoint:point];
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+            if (!indexPath) { break; }
+            BOOL canMove = [collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
+            if (!canMove) { break; }
+            break;
+        case UIGestureRecognizerStateChanged:
+            [collectionView updateInteractiveMovementTargetPosition:CGPointMake(MIN(MAX(cellHeight, point.x), collectionView.frame.size.width - cellHeight), MIN(MAX(cellHeight, point.y), collectionView.frame.size.height - cellHeight))];
+            break;
+        case UIGestureRecognizerStateEnded:
+            [collectionView endInteractiveMovement];
+            break;
+        default:
+            [collectionView cancelInteractiveMovement];
+            break;
+    }
 }
 
 #pragma mark - 根据PNG图片url获取PNG图片尺寸

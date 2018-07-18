@@ -32,8 +32,6 @@
 		1829CAD620A14FB200573974 /* UIButton+LGFImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAD520A14FB200573974 /* UIButton+LGFImagePosition.m */; };
 		1829CAD820A1534B00573974 /* testIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1829CAD720A1534A00573974 /* testIcon.png */; };
 		1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CADE20A1703F00573974 /* UIView+LGFGSView.m */; };
-		1829CAE820A2D67700573974 /* LGFPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAE720A2D67700573974 /* LGFPopMenu.m */; };
-		1829CAEB20A2D69400573974 /* LGFPopMenuStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */; };
 		183A674D20C7B28200CDED30 /* LGFWaterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A674C20C7B28200CDED30 /* LGFWaterLayout.m */; };
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
 		183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */; };
@@ -176,10 +174,6 @@
 		1829CAD720A1534A00573974 /* testIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testIcon.png; sourceTree = "<group>"; };
 		1829CADD20A1703F00573974 /* UIView+LGFGSView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFGSView.h"; sourceTree = "<group>"; };
 		1829CADE20A1703F00573974 /* UIView+LGFGSView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFGSView.m"; sourceTree = "<group>"; };
-		1829CAE620A2D67700573974 /* LGFPopMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPopMenu.h; sourceTree = "<group>"; };
-		1829CAE720A2D67700573974 /* LGFPopMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenu.m; sourceTree = "<group>"; };
-		1829CAE920A2D69400573974 /* LGFPopMenuStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPopMenuStyle.h; sourceTree = "<group>"; };
-		1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenuStyle.m; sourceTree = "<group>"; };
 		183A674B20C7B28200CDED30 /* LGFWaterLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFWaterLayout.h; sourceTree = "<group>"; };
 		183A674C20C7B28200CDED30 /* LGFWaterLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFWaterLayout.m; sourceTree = "<group>"; };
 		183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFCornerRadius.h"; sourceTree = "<group>"; };
@@ -516,10 +510,6 @@
 		1829CAB420A05DE400573974 /* LGFPopMenu */ = {
 			isa = PBXGroup;
 			children = (
-				1829CAE620A2D67700573974 /* LGFPopMenu.h */,
-				1829CAE720A2D67700573974 /* LGFPopMenu.m */,
-				1829CAE920A2D69400573974 /* LGFPopMenuStyle.h */,
-				1829CAEA20A2D69400573974 /* LGFPopMenuStyle.m */,
 			);
 			path = LGFPopMenu;
 			sourceTree = "<group>";
@@ -1194,11 +1184,9 @@
 				1829795B20D0AE81005DB4B7 /* UIScreen+LGFScreen.m in Sources */,
 				183DA8D720CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m in Sources */,
 				184235AA209982780006483C /* UITextField+LGFTextField.m in Sources */,
-				1829CAE820A2D67700573974 /* LGFPopMenu.m in Sources */,
 				184235AD209994D70006483C /* NSString+LGFHash.m in Sources */,
 				183DA8F920CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m in Sources */,
 				183DA8BD20CA22B500E09819 /* NSData+LGFInflateDeflate.m in Sources */,
-				1829CAEB20A2D69400573974 /* LGFPopMenuStyle.m in Sources */,
 				1829CA91209A9E0100573974 /* UIImage+LGFColorImage.m in Sources */,
 				1829CA7F2099B8C000573974 /* NSDate+LGFDate.m in Sources */,
 				184235B320999D7D0006483C /* NSString+LGFRegex.m in Sources */,
