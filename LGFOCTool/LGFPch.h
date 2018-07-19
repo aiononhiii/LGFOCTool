@@ -118,9 +118,13 @@
 [collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([cellClass class]) bundle:bundle] forCellWithReuseIdentifier:NSStringFromClass([cellClass class])];
 
 //---------------------- 初始化 CollectionViewCell ----------------------
-#undef lgf_CollectionViewGetCell
+#undef lgf_CVGetCell
 #define lgf_CVGetCell(collectionView, cellClass, indexPath)\
 [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cellClass class]) forIndexPath:indexPath];
+#undef lgf_CVGetReusableView
+#define lgf_CVGetReusableView(collectionView, kind, cellClass, indexPath)\
+[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([cellClass class]) forIndexPath:indexPath];
+
 
 //---------------------- Block 引用控制 ----------------------
 // 判断 block 是否被引用
