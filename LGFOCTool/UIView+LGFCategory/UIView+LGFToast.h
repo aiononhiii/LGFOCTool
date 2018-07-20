@@ -50,8 +50,7 @@ typedef NS_ENUM(NSUInteger, LGFToastImagePosition) {
 // 图片文字间隔
 @property (assign, nonatomic) CGFloat LGFMessageImageSpacing;
 // 四边距离
-@property (assign, nonatomic) CGFloat LGFToastTopBottomSpacing;
-@property (assign, nonatomic) CGFloat LGFToastLeftRightSpacing;
+@property (assign, nonatomic) CGFloat LGFToastSpacing;
 // Toast最大宽度
 @property (assign, nonatomic) CGFloat LGFMaxWidth;
 // Toast最大高度
