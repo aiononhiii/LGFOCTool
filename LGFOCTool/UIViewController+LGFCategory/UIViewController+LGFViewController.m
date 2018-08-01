@@ -16,4 +16,12 @@
     return [self isViewLoaded] && self.view.window;
 }
 
+- (void)lgf_RemoveAllChildViewController {
+    for (UIViewController *vc in self.childViewControllers) {
+        [vc willMoveToParentViewController:nil];
+        [vc.view removeFromSuperview];
+        [vc removeFromParentViewController];
+    }
+}
+
 @end

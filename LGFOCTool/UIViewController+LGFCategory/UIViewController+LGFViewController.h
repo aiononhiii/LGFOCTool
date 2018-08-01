@@ -14,4 +14,7 @@
 
 - (BOOL)lgf_IsVisible;
 
+#pragma mark - 删除所有子控制器
+- (void)lgf_RemoveAllChildViewController;
+
 @end

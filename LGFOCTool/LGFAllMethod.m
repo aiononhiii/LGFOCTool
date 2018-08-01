@@ -32,29 +32,39 @@
     }];
 }
 
-+ (void)lgf_SortCellWithGesture:(UILongPressGestureRecognizer *)sender collectionView:(UICollectionView *)collectionView cellHeight:(CGFloat)cellHeight {
-    if (lgf_IOSSystemVersion(9.0)) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-        CGPoint point = [sender locationInView:collectionView];
-        NSIndexPath *indexPath = [collectionView indexPathForItemAtPoint:point];
-        switch (sender.state) {
-            case UIGestureRecognizerStateBegan:
-                if (!indexPath) { break; }
-                BOOL canMove = [collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
-                if (!canMove) { break; }
-                break;
-            case UIGestureRecognizerStateChanged:
-                [collectionView updateInteractiveMovementTargetPosition:CGPointMake(MIN(MAX(cellHeight, point.x), collectionView.frame.size.width - cellHeight), MIN(MAX(cellHeight, point.y), collectionView.frame.size.height - cellHeight))];
-                break;
-            case UIGestureRecognizerStateEnded:
-                [collectionView endInteractiveMovement];
-                break;
-            default:
-                [collectionView cancelInteractiveMovement];
-                break;
-        }
-#pragma clang diagnostic pop
+static UICollectionViewCell *lgf_MoveCell;
+
++ (void)lgf_SortCellWithGesture:(UILongPressGestureRecognizer *)sender collectionView:(UICollectionView *)collectionView fixedHorizontal:(BOOL)fixedHorizontal fixedVertical:(BOOL)fixedVertical {
+    CGPoint point = [sender locationInView:collectionView];
+    NSIndexPath *indexPath;
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+            indexPath = [collectionView indexPathForItemAtPoint:point];
+            lgf_MoveCell = [collectionView cellForItemAtIndexPath:indexPath];
+            lgf_MoveCell.alpha = 0.7;
+            for (UIView *view in lgf_MoveCell.subviews) {
+                view.alpha = 0.7;
+            }
+            if (!indexPath) { break; }
+            [collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
+            break;
+        case UIGestureRecognizerStateChanged:
+            [collectionView updateInteractiveMovementTargetPosition:CGPointMake(fixedHorizontal ? MIN(MAX((lgf_MoveCell.lgf_width / 2), point.x), collectionView.contentSize.width - (lgf_MoveCell.lgf_width / 2)) : point.x, fixedVertical ? MIN(MAX((lgf_MoveCell.lgf_height / 2), point.y), collectionView.contentSize.height - (lgf_MoveCell.lgf_height / 2)) : point.y)];
+            break;
+        case UIGestureRecognizerStateEnded:
+            lgf_MoveCell.alpha = 1.0;
+            for (UIView *view in lgf_MoveCell.subviews) {
+                view.alpha = 1.0;
+            }
+            [collectionView endInteractiveMovement];
+            break;
+        default:
+            lgf_MoveCell.alpha = 1.0;
+            for (UIView *view in lgf_MoveCell.subviews) {
+                view.alpha = 1.0;
+            }
+            [collectionView cancelInteractiveMovement];
+            break;
     }
 }
 

@@ -15,7 +15,7 @@
 + (void)lgf_ScrollHideForTopView:(UIView *)topView hideHeight:(CGFloat)hideHeight scrollView:(UIScrollView *)scrollView animateDuration:(NSTimeInterval)animateDuration;
 
 #pragma mark - collectionview 长按cell排序方法
-+ (void)lgf_SortCellWithGesture:(UILongPressGestureRecognizer *)sender collectionView:(UICollectionView *)collectionView cellHeight:(CGFloat)cellHeight;
++ (void)lgf_SortCellWithGesture:(UILongPressGestureRecognizer *)sender collectionView:(UICollectionView *)collectionView fixedHorizontal:(BOOL)fixedHorizontal fixedVertical:(BOOL)fixedVertical;
 
 #pragma mark - 根据PNG图片url获取PNG图片尺寸
 + (CGSize)lgf_GetPNGImageSizeWithUrl:(NSURL *)url;

@@ -122,8 +122,8 @@
 #define lgf_CVGetCell(collectionView, cellClass, indexPath)\
 [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cellClass class]) forIndexPath:indexPath];
 #undef lgf_CVGetReusableView
-#define lgf_CVGetReusableView(collectionView, kind, cellClass, indexPath)\
-[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([cellClass class]) forIndexPath:indexPath];
+#define lgf_CVGetReusableView(collectionView, kind, identifier, indexPath)\
+[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
 
 
 //---------------------- Block 引用控制 ----------------------
@@ -175,6 +175,15 @@
 + (instancetype)lgf_SBViewController\
 {\
 return lgf_GetSBVC(className, storyboardStr, bundleStr);\
+}
+//---------------------- 获取 Xib View 快捷设置 ----------------------
+#undef lgf_XibViewForH
+#define lgf_XibViewForH + (instancetype)xibShare
+#undef lgf_XibViewForM
+#define lgf_XibViewForM(className, bundleStr) \
++ (instancetype)xibShare\
+{\
+return lgf_GetXibView(className, bundleStr);\
 }
 //---------------------- 单列快捷设置 ----------------------
 

@@ -12,6 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (LGFImage)
 
+#pragma mark - 更具gif图片名字取得gif图片数组
+/**
+ @param gifNameInBoundle gif图片名字
+ @return gif图片数组
+ */
++ (NSArray *)lgf_ImagesWithGif:(NSString *)gifNameInBoundle;
+
 #pragma mark - 截图指定view成图片
 /**
  @param view 要截图的 截图
@@ -146,10 +153,10 @@ NS_ASSUME_NONNULL_BEGIN
                         足够的记忆）。
  */
 - (nullable UIImage *)lgf_ImageByBlurRadius:(CGFloat)blurRadius
-                              tintColor:(nullable UIColor *)tintColor
-                               tintMode:(CGBlendMode)tintBlendMode
-                             saturation:(CGFloat)saturation
-                              maskImage:(nullable UIImage *)maskImage;
+                                  tintColor:(nullable UIColor *)tintColor
+                                   tintMode:(CGBlendMode)tintBlendMode
+                                 saturation:(CGFloat)saturation
+                                  maskImage:(nullable UIImage *)maskImage;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -23,6 +23,21 @@ static inline CGFloat lgf_DegreesToRadians(CGFloat degrees) {
 
 @implementation UIImage (LGFImage)
 
++ (NSArray *)lgf_ImagesWithGif:(NSString *)gifNameInBoundle {
+    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:gifNameInBoundle withExtension:@"gif"];
+    
+    CGImageSourceRef gifSource = CGImageSourceCreateWithURL((CFURLRef)fileUrl, NULL);
+    size_t gifCount = CGImageSourceGetCount(gifSource);
+    NSMutableArray *frames = [[NSMutableArray alloc]init];
+    for (size_t i = 0; i< gifCount; i++) {
+        CGImageRef imageRef = CGImageSourceCreateImageAtIndex(gifSource, i, NULL);
+        UIImage *image = [UIImage imageWithCGImage:imageRef];
+        [frames addObject:image];
+        CGImageRelease(imageRef);
+    }
+    return frames;
+}
+
 #pragma mark - 截图指定view成图片
 /**
  @param view 要截图的 截图
@@ -422,10 +437,10 @@ static inline CGFloat lgf_DegreesToRadians(CGFloat degrees) {
 }
 
 - (UIImage *)lgf_ImageByBlurRadius:(CGFloat)blurRadius
-                     tintColor:(UIColor *)tintColor
-                      tintMode:(CGBlendMode)tintBlendMode
-                    saturation:(CGFloat)saturation
-                     maskImage:(UIImage *)maskImage {
+                         tintColor:(UIColor *)tintColor
+                          tintMode:(CGBlendMode)tintBlendMode
+                        saturation:(CGFloat)saturation
+                         maskImage:(UIImage *)maskImage {
     if (self.size.width < 1 || self.size.height < 1) {
         NSLog(@"UIImage+YYAdd error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", self.size.width, self.size.height, self);
         return nil;
@@ -583,10 +598,10 @@ static void _lgf_cleanupBuffer(void *userData, void *buf_data) {
 
 // Helper function to add tint and mask.
 - (UIImage *)_lgf_mergeImageRef:(CGImageRef)effectCGImage
-                     tintColor:(UIColor *)tintColor
-                 tintBlendMode:(CGBlendMode)tintBlendMode
-                     maskImage:(UIImage *)maskImage
-                        opaque:(BOOL)opaque {
+                      tintColor:(UIColor *)tintColor
+                  tintBlendMode:(CGBlendMode)tintBlendMode
+                      maskImage:(UIImage *)maskImage
+                         opaque:(BOOL)opaque {
     BOOL hasTint = tintColor != nil && CGColorGetAlpha(tintColor.CGColor) > __FLT_EPSILON__;
     BOOL hasMask = maskImage != nil;
     CGSize size = self.size;

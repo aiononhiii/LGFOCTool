@@ -228,20 +228,20 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *  @brief How many columns for this layout.
  *  @discussion Default: 2
  */
-@property (nonatomic, assign) NSInteger columnCount;
+@property (nonatomic, assign) IBInspectable NSInteger columnCount;
 
 /**
  *  @brief The minimum spacing to use between successive columns.
  *  @discussion Default: 10.0
  */
-@property (nonatomic, assign) CGFloat minimumColumnSpacing;
+@property (nonatomic, assign) IBInspectable CGFloat minimumColumnSpacing;
 
 /**
  *  @brief The minimum spacing to use between items in the same column.
  *  @discussion Default: 10.0
  *  @note This spacing is not applied to the space between header and columns or between columns and footer.
  */
-@property (nonatomic, assign) CGFloat minimumInteritemSpacing;
+@property (nonatomic, assign) IBInspectable CGFloat minimumInteritemSpacing;
 
 /**
  *  @brief Height for section header
