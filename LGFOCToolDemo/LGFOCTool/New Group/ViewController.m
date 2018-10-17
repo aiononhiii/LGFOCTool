@@ -170,7 +170,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
 
 - (IBAction)showToast:(UIButton *)sender {
     LGFToastStyle *style = [LGFToastStyle lgf];
-    style.lgf_ToastImageName = @"cargif";
+    style.lgf_ToastImageName = @"2";
     style.lgf_ToastImageSize = CGSizeMake(30, 30);
     style.lgf_Duration = CGFLOAT_MAX;
     style.lgf_ToastMessage = @"加载中...";

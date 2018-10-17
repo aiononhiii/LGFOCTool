@@ -16,19 +16,36 @@
 #define NSLog(FORMAT, ...) nil
 #endif
 
+#undef GKeyPath
 #define GKeyPath(objc,keyPath) @(((void)objc.keyPath,#keyPath))
 
 // 是否大于某个系统版本
+#undef lgf_IOSSystemVersion
 #define lgf_IOSSystemVersion(V) [[UIDevice currentDevice] systemVersion].floatValue >= (V)
 
 // RGB颜色
+#undef lgf_RGBColor
 #define lgf_RGBColor(R, G, B, A) [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:A]
 
 //随机色
+#undef lgf_RandomColor
 #define lgf_RandomColor lgf_RGBColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), 1.0)
 
 // 设置字号
+#undef lgf_Font
 #define lgf_Font(fontSize) [UIFont systemFontOfSize:fontSize]
+
+// 设置粗体字号
+#undef lgf_BoldFont
+#define lgf_BoldFont(fontSize) [UIFont systemFontOfSize:fontSize]
+
+// 设置图片
+#undef lgf_Image
+#define lgf_Image(imageName) [UIImage imageNamed:imageName]
+
+// 设置 Hex 颜色
+#undef lgf_HexColor
+#define lgf_HexColor(hexStr) [UIColor lgf_ColorWithHexString:hexStr]
 
 // 系统电池栏小菊花
 #undef lgf_NWA
@@ -44,6 +61,16 @@
 
 #undef lgf_MainScreen
 #define lgf_MainScreen [UIScreen mainScreen].bounds
+
+// Log 输出
+#undef lgf_LogContentOffset
+#define lgf_LogContentOffset(scrollView) NSLog(@"%f", scrollView.contentOffset.y)
+
+// SDWebImage
+#undef lgf_SDImage
+#define lgf_SDImage(imageView, imageUrl) [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+#undef lgf_SDAnimatedImage
+#define lgf_SDAnimatedImage(imageView, imageData) [imageView setAnimatedImage:[FLAnimatedImage animatedImageWithGIFData:imageData]];
 
 // NSUserDefaults 缓存
 #undef lgf_Defaults

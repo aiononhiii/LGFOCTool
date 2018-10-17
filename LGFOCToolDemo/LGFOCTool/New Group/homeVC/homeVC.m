@@ -38,15 +38,12 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-//    NSString *filePath = [[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource:@"2.gif" ofType:nil];
-//    NSData *imageData = [NSData dataWithContentsOfFile:filePath];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538308168299&di=497b679e09cd7cd8529850084c83e852&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F902397dda144ad34610f98c4dba20cf430ad85c4.jpg"]]];
-    self.backImageVIew.animatedImage = image;
+    
     CGFloat totalHeight = 1040;
     [self.homeCV setContentInset:UIEdgeInsetsMake(totalHeight, 0, 0, 0)];
     [self.homeCV lgf_ScrollToTop];
@@ -56,14 +53,18 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
     ref_header.ignoredScrollViewContentInsetTop = 1040;
     ref_header.stateLabel.textColor = [UIColor whiteColor];
     ref_header.lastUpdatedTimeLabel.textColor = [UIColor whiteColor];
-    [self.homeCV lgf_SetGifHeader:ref_header gifName:@"timg12" gifSize:CGSizeMake(100, 60)];
+    [self.homeCV lgf_SetGifHeader:ref_header gifName:@"2" gifSize:CGSizeMake(60, 60)];
     self.homeCV.lgf_Footer = LGFMJFooter(self, @selector(loadmoredata));
     
-    [self.bannerImageView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg"]];
-    [self.categoryImageView1 sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538302421141&di=0d22c3c9b9b07e790c403b5a56d06b0e&imgtype=0&src=http%3A%2F%2Fd9.yihaodianimg.com%2FN08%2FM01%2F71%2F9E%2FChEi1lfHyFSATUjzAAFoXElsuZ859000.jpg"]];
-    [self.categoryImageView2 sd_setImageWithURL:[NSURL URLWithString:@"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2473898977,3579373960&fm=200&gp=0.jpg"]];
-    [self.categoryImageView3 sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538302421141&di=0d22c3c9b9b07e790c403b5a56d06b0e&imgtype=0&src=http%3A%2F%2Fd9.yihaodianimg.com%2FN08%2FM01%2F71%2F9E%2FChEi1lfHyFSATUjzAAFoXElsuZ859000.jpg"]];
-    [self.categoryImageView4 sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538302421141&di=0d22c3c9b9b07e790c403b5a56d06b0e&imgtype=0&src=http%3A%2F%2Fd9.yihaodianimg.com%2FN08%2FM01%2F71%2F9E%2FChEi1lfHyFSATUjzAAFoXElsuZ859000.jpg"]];
+    NSData *imageData = [NSData dataWithContentsOfFile:lgf_BundlePath(@"1.gif")];
+//    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538308168299&di=497b679e09cd7cd8529850084c83e852&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F902397dda144ad34610f98c4dba20cf430ad85c4.jpg"]];
+    lgf_SDAnimatedImage(self.backImageVIew, imageData);
+    
+    lgf_SDImage(self.bannerImageView, @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg");
+    lgf_SDImage(self.categoryImageView1, @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538302421141&di=0d22c3c9b9b07e790c403b5a56d06b0e&imgtype=0&src=http%3A%2F%2Fd9.yihaodianimg.com%2FN08%2FM01%2F71%2F9E%2FChEi1lfHyFSATUjzAAFoXElsuZ859000.jpg");
+    lgf_SDImage(self.categoryImageView2, @"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2473898977,3579373960&fm=200&gp=0.jpg");
+    lgf_SDImage(self.categoryImageView3, @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538302421141&di=0d22c3c9b9b07e790c403b5a56d06b0e&imgtype=0&src=http%3A%2F%2Fd9.yihaodianimg.com%2FN08%2FM01%2F71%2F9E%2FChEi1lfHyFSATUjzAAFoXElsuZ859000.jpg");
+    lgf_SDImage(self.categoryImageView4, @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538302421141&di=0d22c3c9b9b07e790c403b5a56d06b0e&imgtype=0&src=http%3A%2F%2Fd9.yihaodianimg.com%2FN08%2FM01%2F71%2F9E%2FChEi1lfHyFSATUjzAAFoXElsuZ859000.jpg");
     [self loaddata];
 }
 
@@ -74,7 +75,7 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
 }
 
 - (void)loadmoredata {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.dataArray addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg"];
         [self.dataArray addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg"];
         [self.dataArray addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg"];
@@ -100,7 +101,7 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     homeVCCell *cell = lgf_CVGetCell(collectionView, homeVCCell, indexPath);
-    [cell.testImageView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg"]];
+    lgf_SDImage(cell.testImageView, @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg");
     cell.index = indexPath;
     return cell;
 }
@@ -114,7 +115,8 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"%f", scrollView.contentOffset.y);
+    lgf_LogContentOffset(scrollView);
+    
     if (scrollView == self.homeCV) {
 //        self.topView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:MIN(1, MAX(0, (self.recommendCV.contentOffset.y + QTHomeVCHeaderHeight) / 80))];
         if ((self.homeCV.contentOffset.y + 1040) > 10) {
@@ -146,6 +148,7 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
 }
 
 #pragma mark - 懒加载
+
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray new];

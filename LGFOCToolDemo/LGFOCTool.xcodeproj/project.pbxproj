@@ -31,6 +31,8 @@
 		1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAD120A144C100573974 /* UIDevice+LGFDevice.m */; };
 		1829CAD620A14FB200573974 /* UIButton+LGFImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAD520A14FB200573974 /* UIButton+LGFImagePosition.m */; };
 		1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CADE20A1703F00573974 /* UIView+LGFGSView.m */; };
+		182B7FE62177086B007AB627 /* timg16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 182B7FE52177086B007AB627 /* timg16.jpeg */; };
+		182B7FE8217708A6007AB627 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 182B7FE7217708A6007AB627 /* 2.gif */; };
 		183A674D20C7B28200CDED30 /* LGFWaterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A674C20C7B28200CDED30 /* LGFWaterLayout.m */; };
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
 		183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */; };
@@ -90,11 +92,8 @@
 		185A0BEB216B2CAB000ED186 /* UIScrollView+LGFMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0BE9216B2CAA000ED186 /* UIScrollView+LGFMJRefresh.m */; };
 		185A0BEF216B341E000ED186 /* QTNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A0BEC216B341D000ED186 /* QTNoDataView.xib */; };
 		185A0BF0216B341E000ED186 /* QTNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0BEE216B341E000ED186 /* QTNoDataView.m */; };
-		185A0BF6216B416E000ED186 /* timg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 185A0BF5216B416D000ED186 /* timg.gif */; };
-		185A0BFC216B46D9000ED186 /* xiaoniao.gif in Resources */ = {isa = PBXBuildFile; fileRef = 185A0BFB216B46D9000ED186 /* xiaoniao.gif */; };
 		185A0C1C216C5ADD000ED186 /* LGFLightTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C1B216C5ADD000ED186 /* LGFLightTextLabel.m */; };
 		185A0C1F216C7A07000ED186 /* shareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C1E216C7A07000ED186 /* shareVC.m */; };
-		185A0C21216C80D7000ED186 /* timg16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 185A0C20216C80D6000ED186 /* timg16.jpeg */; };
 		185A0C24216C85CD000ED186 /* shareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C23216C85CD000ED186 /* shareView.m */; };
 		185A0C26216C8630000ED186 /* shareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A0C25216C8630000ED186 /* shareView.xib */; };
 		185A0C29216C8D2D000ED186 /* shareImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C28216C8D2D000ED186 /* shareImageVC.m */; };
@@ -194,6 +193,8 @@
 		1829CAD520A14FB200573974 /* UIButton+LGFImagePosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LGFImagePosition.m"; sourceTree = "<group>"; };
 		1829CADD20A1703F00573974 /* UIView+LGFGSView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFGSView.h"; sourceTree = "<group>"; };
 		1829CADE20A1703F00573974 /* UIView+LGFGSView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFGSView.m"; sourceTree = "<group>"; };
+		182B7FE52177086B007AB627 /* timg16.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg16.jpeg; sourceTree = "<group>"; };
+		182B7FE7217708A6007AB627 /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
 		183A674B20C7B28200CDED30 /* LGFWaterLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFWaterLayout.h; sourceTree = "<group>"; };
 		183A674C20C7B28200CDED30 /* LGFWaterLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFWaterLayout.m; sourceTree = "<group>"; };
 		183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFCornerRadius.h"; sourceTree = "<group>"; };
@@ -311,13 +312,10 @@
 		185A0BEC216B341D000ED186 /* QTNoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QTNoDataView.xib; sourceTree = "<group>"; };
 		185A0BED216B341E000ED186 /* QTNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTNoDataView.h; sourceTree = "<group>"; };
 		185A0BEE216B341E000ED186 /* QTNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTNoDataView.m; sourceTree = "<group>"; };
-		185A0BF5216B416D000ED186 /* timg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = timg.gif; sourceTree = "<group>"; };
-		185A0BFB216B46D9000ED186 /* xiaoniao.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = xiaoniao.gif; sourceTree = "<group>"; };
 		185A0C1A216C5ADD000ED186 /* LGFLightTextLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFLightTextLabel.h; sourceTree = "<group>"; };
 		185A0C1B216C5ADD000ED186 /* LGFLightTextLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFLightTextLabel.m; sourceTree = "<group>"; };
 		185A0C1D216C7A07000ED186 /* shareVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shareVC.h; sourceTree = "<group>"; };
 		185A0C1E216C7A07000ED186 /* shareVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shareVC.m; sourceTree = "<group>"; };
-		185A0C20216C80D6000ED186 /* timg16.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg16.jpeg; sourceTree = "<group>"; };
 		185A0C22216C85CD000ED186 /* shareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shareView.h; sourceTree = "<group>"; };
 		185A0C23216C85CD000ED186 /* shareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shareView.m; sourceTree = "<group>"; };
 		185A0C25216C8630000ED186 /* shareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = shareView.xib; sourceTree = "<group>"; };
@@ -887,10 +885,9 @@
 				18EDD62E216EEE410088A90B /* LGFPlayerView */,
 				188DEFBC2094396C0014E4CA /* Main.storyboard */,
 				188DEFBF2094396C0014E4CA /* Assets.xcassets */,
+				182B7FE52177086B007AB627 /* timg16.jpeg */,
+				182B7FE7217708A6007AB627 /* 2.gif */,
 				188DF030209444F00014E4CA /* pullToRefresh.gif */,
-				185A0C20216C80D6000ED186 /* timg16.jpeg */,
-				185A0BFB216B46D9000ED186 /* xiaoniao.gif */,
-				185A0BF5216B416D000ED186 /* timg.gif */,
 				188DEFC12094396C0014E4CA /* LaunchScreen.storyboard */,
 				188DEFC42094396C0014E4CA /* Info.plist */,
 				188DEFC52094396C0014E4CA /* main.m */,
@@ -1179,23 +1176,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182B7FE62177086B007AB627 /* timg16.jpeg in Resources */,
 				18EDD630216EEE590088A90B /* LGFPlayerView.xib in Resources */,
 				185A0BEF216B341E000ED186 /* QTNoDataView.xib in Resources */,
 				18EDD67A2175C1000088A90B /* 1.gif in Resources */,
 				18AD21B7215B7A130031F719 /* LGFTabBarVC.storyboard in Resources */,
 				188DEFC32094396C0014E4CA /* LaunchScreen.storyboard in Resources */,
 				185A0C26216C8630000ED186 /* shareView.xib in Resources */,
-				185A0C21216C80D7000ED186 /* timg16.jpeg in Resources */,
 				18585E9420ECE7A10084D5C1 /* SBTestViewController.storyboard in Resources */,
-				185A0BFC216B46D9000ED186 /* xiaoniao.gif in Resources */,
 				188DEFC02094396C0014E4CA /* Assets.xcassets in Resources */,
 				188225F320EDB5190004DBC6 /* TwoViewController.storyboard in Resources */,
 				188DEFBE2094396C0014E4CA /* Main.storyboard in Resources */,
-				185A0BF6216B416E000ED186 /* timg.gif in Resources */,
 				188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */,
 				188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */,
 				18EDD64F217486320088A90B /* lgf_lock.png in Resources */,
 				18EDD64E217486320088A90B /* lgf_unlock.png in Resources */,
+				182B7FE8217708A6007AB627 /* 2.gif in Resources */,
 				18AD218F215A1E3E0031F719 /* LGFAlertView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
