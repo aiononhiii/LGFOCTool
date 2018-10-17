@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		1829795720D0AC6E005DB4B7 /* UIControl+LGFControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829795620D0AC6E005DB4B7 /* UIControl+LGFControl.m */; };
 		1829795B20D0AE81005DB4B7 /* UIScreen+LGFScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829795A20D0AE81005DB4B7 /* UIScreen+LGFScreen.m */; };
-		1829796020D0CA26005DB4B7 /* LGFUploadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829795F20D0CA26005DB4B7 /* LGFUploadImage.m */; };
+		1829796020D0CA26005DB4B7 /* LGFGetPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829795F20D0CA26005DB4B7 /* LGFGetPhoto.m */; };
 		182979BD20D259A9005DB4B7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182979BB20D259A9005DB4B7 /* FirstViewController.m */; };
-		182979C620D39545005DB4B7 /* blueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182979C520D39545005DB4B7 /* blueViewController.m */; };
+		182979C620D39545005DB4B7 /* homeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182979C520D39545005DB4B7 /* homeVC.m */; };
 		182979C920D39CE1005DB4B7 /* resViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182979C820D39CE1005DB4B7 /* resViewController.m */; };
 		18297A5B20E1D9E3005DB4B7 /* LGFFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18297A5920E1D9E3005DB4B7 /* LGFFPSLabel.m */; };
 		18297A5F20E1DC9B005DB4B7 /* LGFWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18297A5E20E1DC9B005DB4B7 /* LGFWeakProxy.m */; };
@@ -23,14 +23,13 @@
 		1829CA94209AB04200573974 /* UIImage+LGFPDFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA93209AB04200573974 /* UIImage+LGFPDFImage.m */; };
 		1829CA98209AB43000573974 /* UIImageView+LGFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA97209AB43000573974 /* UIImageView+LGFImageView.m */; };
 		1829CA9C209AD34D00573974 /* UIViewController+LGFVCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA9B209AD34D00573974 /* UIViewController+LGFVCLog.m */; };
-		1829CA9F209AD62000573974 /* UIViewController+LGFTopBarMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA9D209AD62000573974 /* UIViewController+LGFTopBarMessage.m */; };
+		1829CA9F209AD62000573974 /* UIView+LGFTopBarMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CA9D209AD62000573974 /* UIView+LGFTopBarMessage.m */; };
 		1829CAA6209FE2C900573974 /* LGFCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAA5209FE2C900573974 /* LGFCountDownButton.m */; };
 		1829CAAD209FEDC000573974 /* UIView+LGFExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAAC209FEDC000573974 /* UIView+LGFExtension.m */; };
 		1829CAC420A1383600573974 /* UIWindow+LGFTopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAC320A1383600573974 /* UIWindow+LGFTopVC.m */; };
 		1829CAC720A13F3F00573974 /* UIViewController+LGFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAC620A13F3F00573974 /* UIViewController+LGFViewController.m */; };
 		1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAD120A144C100573974 /* UIDevice+LGFDevice.m */; };
 		1829CAD620A14FB200573974 /* UIButton+LGFImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CAD520A14FB200573974 /* UIButton+LGFImagePosition.m */; };
-		1829CAD820A1534B00573974 /* testIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1829CAD720A1534A00573974 /* testIcon.png */; };
 		1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829CADE20A1703F00573974 /* UIView+LGFGSView.m */; };
 		183A674D20C7B28200CDED30 /* LGFWaterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A674C20C7B28200CDED30 /* LGFWaterLayout.m */; };
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
@@ -88,12 +87,22 @@
 		18585E9220ECE7960084D5C1 /* SBTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18585E9120ECE7960084D5C1 /* SBTestViewController.m */; };
 		18585E9420ECE7A10084D5C1 /* SBTestViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18585E9320ECE7A10084D5C1 /* SBTestViewController.storyboard */; };
 		18585E9720ECEF440084D5C1 /* SBtestCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18585E9620ECEF440084D5C1 /* SBtestCollectionViewCell.m */; };
+		185A0BEB216B2CAB000ED186 /* UIScrollView+LGFMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0BE9216B2CAA000ED186 /* UIScrollView+LGFMJRefresh.m */; };
+		185A0BEF216B341E000ED186 /* QTNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A0BEC216B341D000ED186 /* QTNoDataView.xib */; };
+		185A0BF0216B341E000ED186 /* QTNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0BEE216B341E000ED186 /* QTNoDataView.m */; };
+		185A0BF6216B416E000ED186 /* timg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 185A0BF5216B416D000ED186 /* timg.gif */; };
+		185A0BFC216B46D9000ED186 /* xiaoniao.gif in Resources */ = {isa = PBXBuildFile; fileRef = 185A0BFB216B46D9000ED186 /* xiaoniao.gif */; };
+		185A0C1C216C5ADD000ED186 /* LGFLightTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C1B216C5ADD000ED186 /* LGFLightTextLabel.m */; };
+		185A0C1F216C7A07000ED186 /* shareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C1E216C7A07000ED186 /* shareVC.m */; };
+		185A0C21216C80D7000ED186 /* timg16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 185A0C20216C80D6000ED186 /* timg16.jpeg */; };
+		185A0C24216C85CD000ED186 /* shareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C23216C85CD000ED186 /* shareView.m */; };
+		185A0C26216C8630000ED186 /* shareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A0C25216C8630000ED186 /* shareView.xib */; };
+		185A0C29216C8D2D000ED186 /* shareImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C28216C8D2D000ED186 /* shareImageVC.m */; };
 		1861A58420A5617200559623 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1861A58320A5617200559623 /* HealthKit.framework */; };
 		188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225EB20EDB3BE0004DBC6 /* OneViewController.m */; };
 		188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */; };
 		188225F120EDB5120004DBC6 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225F020EDB5120004DBC6 /* TwoViewController.m */; };
 		188225F320EDB5190004DBC6 /* TwoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188225F220EDB5190004DBC6 /* TwoViewController.storyboard */; };
-		188227C220F0696D0004DBC6 /* testimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 188227C120F0696D0004DBC6 /* testimage.png */; };
 		188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFB72094396C0014E4CA /* AppDelegate.m */; };
 		188DEFBB2094396C0014E4CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFBA2094396C0014E4CA /* ViewController.m */; };
 		188DEFBE2094396C0014E4CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188DEFBC2094396C0014E4CA /* Main.storyboard */; };
@@ -103,6 +112,19 @@
 		188DEFD02094396C0014E4CA /* LGFOCToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFCF2094396C0014E4CA /* LGFOCToolTests.m */; };
 		188DEFDB2094396C0014E4CA /* LGFOCToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFDA2094396C0014E4CA /* LGFOCToolUITests.m */; };
 		188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */ = {isa = PBXBuildFile; fileRef = 188DF030209444F00014E4CA /* pullToRefresh.gif */; };
+		18AD2177215A09C40031F719 /* LGFPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD2174215A09C40031F719 /* LGFPopMenu.m */; };
+		18AD218D215A1E1C0031F719 /* LGFAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD218C215A1E1C0031F719 /* LGFAlertView.m */; };
+		18AD218F215A1E3E0031F719 /* LGFAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD218E215A1E3E0031F719 /* LGFAlertView.xib */; };
+		18AD21B6215B7A130031F719 /* LGFTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD21B3215B7A120031F719 /* LGFTabBarVC.m */; };
+		18AD21B7215B7A130031F719 /* LGFTabBarVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AD21B4215B7A130031F719 /* LGFTabBarVC.storyboard */; };
+		18AD21BA215B7B260031F719 /* TabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD21B9215B7B260031F719 /* TabBarVC.m */; };
+		18AD21C32160953B0031F719 /* homeVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD21C22160953B0031F719 /* homeVCCell.m */; };
+		18EDD630216EEE590088A90B /* LGFPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD62F216EEE590088A90B /* LGFPlayerView.xib */; };
+		18EDD633216EEE640088A90B /* LGFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD632216EEE640088A90B /* LGFPlayerView.m */; };
+		18EDD63A216F44420088A90B /* videoCellCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD639216F44420088A90B /* videoCellCollectionViewCell.m */; };
+		18EDD64E217486320088A90B /* lgf_unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD64C217486310088A90B /* lgf_unlock.png */; };
+		18EDD64F217486320088A90B /* lgf_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD64D217486310088A90B /* lgf_lock.png */; };
+		18EDD67A2175C1000088A90B /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD6792175C0FF0088A90B /* 1.gif */; };
 		EC6896CDD46AEDCC2E374A8F /* libPods-LGFOCTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 074678BA67CE112506AD20E4 /* libPods-LGFOCTool.a */; };
 /* End PBXBuildFile section */
 
@@ -129,12 +151,12 @@
 		1829795620D0AC6E005DB4B7 /* UIControl+LGFControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+LGFControl.m"; sourceTree = "<group>"; };
 		1829795920D0AE81005DB4B7 /* UIScreen+LGFScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScreen+LGFScreen.h"; sourceTree = "<group>"; };
 		1829795A20D0AE81005DB4B7 /* UIScreen+LGFScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+LGFScreen.m"; sourceTree = "<group>"; };
-		1829795E20D0CA26005DB4B7 /* LGFUploadImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFUploadImage.h; sourceTree = "<group>"; };
-		1829795F20D0CA26005DB4B7 /* LGFUploadImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFUploadImage.m; sourceTree = "<group>"; };
+		1829795E20D0CA26005DB4B7 /* LGFGetPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFGetPhoto.h; sourceTree = "<group>"; };
+		1829795F20D0CA26005DB4B7 /* LGFGetPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFGetPhoto.m; sourceTree = "<group>"; };
 		182979BB20D259A9005DB4B7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		182979BC20D259A9005DB4B7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		182979C420D39545005DB4B7 /* blueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blueViewController.h; sourceTree = "<group>"; };
-		182979C520D39545005DB4B7 /* blueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = blueViewController.m; sourceTree = "<group>"; };
+		182979C420D39545005DB4B7 /* homeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeVC.h; sourceTree = "<group>"; };
+		182979C520D39545005DB4B7 /* homeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeVC.m; sourceTree = "<group>"; };
 		182979C720D39CE1005DB4B7 /* resViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resViewController.h; sourceTree = "<group>"; };
 		182979C820D39CE1005DB4B7 /* resViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = resViewController.m; sourceTree = "<group>"; };
 		18297A5920E1D9E3005DB4B7 /* LGFFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFFPSLabel.m; sourceTree = "<group>"; };
@@ -157,8 +179,8 @@
 		1829CA97209AB43000573974 /* UIImageView+LGFImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LGFImageView.m"; sourceTree = "<group>"; };
 		1829CA9A209AD34D00573974 /* UIViewController+LGFVCLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LGFVCLog.h"; sourceTree = "<group>"; };
 		1829CA9B209AD34D00573974 /* UIViewController+LGFVCLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LGFVCLog.m"; sourceTree = "<group>"; };
-		1829CA9D209AD62000573974 /* UIViewController+LGFTopBarMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LGFTopBarMessage.m"; sourceTree = "<group>"; };
-		1829CA9E209AD62000573974 /* UIViewController+LGFTopBarMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LGFTopBarMessage.h"; sourceTree = "<group>"; };
+		1829CA9D209AD62000573974 /* UIView+LGFTopBarMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFTopBarMessage.m"; sourceTree = "<group>"; };
+		1829CA9E209AD62000573974 /* UIView+LGFTopBarMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFTopBarMessage.h"; sourceTree = "<group>"; };
 		1829CAA4209FE2C900573974 /* LGFCountDownButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFCountDownButton.h; sourceTree = "<group>"; };
 		1829CAA5209FE2C900573974 /* LGFCountDownButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFCountDownButton.m; sourceTree = "<group>"; };
 		1829CAAB209FEDC000573974 /* UIView+LGFExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFExtension.h"; sourceTree = "<group>"; };
@@ -171,7 +193,6 @@
 		1829CAD120A144C100573974 /* UIDevice+LGFDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LGFDevice.m"; sourceTree = "<group>"; };
 		1829CAD420A14FB200573974 /* UIButton+LGFImagePosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LGFImagePosition.h"; sourceTree = "<group>"; };
 		1829CAD520A14FB200573974 /* UIButton+LGFImagePosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LGFImagePosition.m"; sourceTree = "<group>"; };
-		1829CAD720A1534A00573974 /* testIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testIcon.png; sourceTree = "<group>"; };
 		1829CADD20A1703F00573974 /* UIView+LGFGSView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFGSView.h"; sourceTree = "<group>"; };
 		1829CADE20A1703F00573974 /* UIView+LGFGSView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFGSView.m"; sourceTree = "<group>"; };
 		183A674B20C7B28200CDED30 /* LGFWaterLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFWaterLayout.h; sourceTree = "<group>"; };
@@ -286,6 +307,23 @@
 		18585E9320ECE7A10084D5C1 /* SBTestViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SBTestViewController.storyboard; sourceTree = "<group>"; };
 		18585E9520ECEF440084D5C1 /* SBtestCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBtestCollectionViewCell.h; sourceTree = "<group>"; };
 		18585E9620ECEF440084D5C1 /* SBtestCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBtestCollectionViewCell.m; sourceTree = "<group>"; };
+		185A0BE9216B2CAA000ED186 /* UIScrollView+LGFMJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LGFMJRefresh.m"; sourceTree = "<group>"; };
+		185A0BEA216B2CAA000ED186 /* UIScrollView+LGFMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LGFMJRefresh.h"; sourceTree = "<group>"; };
+		185A0BEC216B341D000ED186 /* QTNoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QTNoDataView.xib; sourceTree = "<group>"; };
+		185A0BED216B341E000ED186 /* QTNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTNoDataView.h; sourceTree = "<group>"; };
+		185A0BEE216B341E000ED186 /* QTNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTNoDataView.m; sourceTree = "<group>"; };
+		185A0BF5216B416D000ED186 /* timg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = timg.gif; sourceTree = "<group>"; };
+		185A0BFB216B46D9000ED186 /* xiaoniao.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = xiaoniao.gif; sourceTree = "<group>"; };
+		185A0C1A216C5ADD000ED186 /* LGFLightTextLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFLightTextLabel.h; sourceTree = "<group>"; };
+		185A0C1B216C5ADD000ED186 /* LGFLightTextLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFLightTextLabel.m; sourceTree = "<group>"; };
+		185A0C1D216C7A07000ED186 /* shareVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shareVC.h; sourceTree = "<group>"; };
+		185A0C1E216C7A07000ED186 /* shareVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shareVC.m; sourceTree = "<group>"; };
+		185A0C20216C80D6000ED186 /* timg16.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg16.jpeg; sourceTree = "<group>"; };
+		185A0C22216C85CD000ED186 /* shareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shareView.h; sourceTree = "<group>"; };
+		185A0C23216C85CD000ED186 /* shareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shareView.m; sourceTree = "<group>"; };
+		185A0C25216C8630000ED186 /* shareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = shareView.xib; sourceTree = "<group>"; };
+		185A0C27216C8D2D000ED186 /* shareImageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shareImageVC.h; sourceTree = "<group>"; };
+		185A0C28216C8D2D000ED186 /* shareImageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shareImageVC.m; sourceTree = "<group>"; };
 		1861A58120A5617200559623 /* LGFOCTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LGFOCTool.entitlements; sourceTree = "<group>"; };
 		1861A58320A5617200559623 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		188225EA20EDB3BE0004DBC6 /* OneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
@@ -294,7 +332,6 @@
 		188225EF20EDB5120004DBC6 /* TwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
 		188225F020EDB5120004DBC6 /* TwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
 		188225F220EDB5190004DBC6 /* TwoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TwoViewController.storyboard; sourceTree = "<group>"; };
-		188227C120F0696D0004DBC6 /* testimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testimage.png; sourceTree = "<group>"; };
 		188DEFB32094396C0014E4CA /* LGFOCTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGFOCTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188DEFB62094396C0014E4CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188DEFB72094396C0014E4CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -314,6 +351,26 @@
 		188DEFE920943A500014E4CA /* LGFOCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFOCTool.h; sourceTree = "<group>"; };
 		188DF030209444F00014E4CA /* pullToRefresh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pullToRefresh.gif; sourceTree = "<group>"; };
 		188DF032209446020014E4CA /* LGFPch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPch.h; sourceTree = "<group>"; };
+		18AD2172215A09C40031F719 /* LGFPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFPopMenu.h; sourceTree = "<group>"; };
+		18AD2174215A09C40031F719 /* LGFPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenu.m; sourceTree = "<group>"; };
+		18AD218B215A1E1C0031F719 /* LGFAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAlertView.h; sourceTree = "<group>"; };
+		18AD218C215A1E1C0031F719 /* LGFAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFAlertView.m; sourceTree = "<group>"; };
+		18AD218E215A1E3E0031F719 /* LGFAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LGFAlertView.xib; sourceTree = "<group>"; };
+		18AD21B3215B7A120031F719 /* LGFTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFTabBarVC.m; sourceTree = "<group>"; };
+		18AD21B4215B7A130031F719 /* LGFTabBarVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LGFTabBarVC.storyboard; sourceTree = "<group>"; };
+		18AD21B5215B7A130031F719 /* LGFTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFTabBarVC.h; sourceTree = "<group>"; };
+		18AD21B8215B7B250031F719 /* TabBarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarVC.h; sourceTree = "<group>"; };
+		18AD21B9215B7B260031F719 /* TabBarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarVC.m; sourceTree = "<group>"; };
+		18AD21C12160953B0031F719 /* homeVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeVCCell.h; sourceTree = "<group>"; };
+		18AD21C22160953B0031F719 /* homeVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeVCCell.m; sourceTree = "<group>"; };
+		18EDD62F216EEE590088A90B /* LGFPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LGFPlayerView.xib; sourceTree = "<group>"; };
+		18EDD631216EEE640088A90B /* LGFPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPlayerView.h; sourceTree = "<group>"; };
+		18EDD632216EEE640088A90B /* LGFPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPlayerView.m; sourceTree = "<group>"; };
+		18EDD638216F44420088A90B /* videoCellCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoCellCollectionViewCell.h; sourceTree = "<group>"; };
+		18EDD639216F44420088A90B /* videoCellCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoCellCollectionViewCell.m; sourceTree = "<group>"; };
+		18EDD64C217486310088A90B /* lgf_unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lgf_unlock.png; sourceTree = "<group>"; };
+		18EDD64D217486310088A90B /* lgf_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lgf_lock.png; sourceTree = "<group>"; };
+		18EDD6792175C0FF0088A90B /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
 		19E77F694E9E2EDB3CE6DED2 /* Pods-LGFOCTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFOCTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool.release.xcconfig"; sourceTree = "<group>"; };
 		DED3068F201CEC3DB21EA974 /* Pods-LGFOCTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFOCTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -366,8 +423,8 @@
 		1829795D20D0CA0B005DB4B7 /* LGFUploadImage */ = {
 			isa = PBXGroup;
 			children = (
-				1829795E20D0CA26005DB4B7 /* LGFUploadImage.h */,
-				1829795F20D0CA26005DB4B7 /* LGFUploadImage.m */,
+				1829795E20D0CA26005DB4B7 /* LGFGetPhoto.h */,
+				1829795F20D0CA26005DB4B7 /* LGFGetPhoto.m */,
 			);
 			path = LGFUploadImage;
 			sourceTree = "<group>";
@@ -471,8 +528,6 @@
 		1829CA99209AD30600573974 /* UIViewController+LGFCategory */ = {
 			isa = PBXGroup;
 			children = (
-				1829CA9E209AD62000573974 /* UIViewController+LGFTopBarMessage.h */,
-				1829CA9D209AD62000573974 /* UIViewController+LGFTopBarMessage.m */,
 				1829CA9A209AD34D00573974 /* UIViewController+LGFVCLog.h */,
 				1829CA9B209AD34D00573974 /* UIViewController+LGFVCLog.m */,
 				1829CAC520A13F3E00573974 /* UIViewController+LGFViewController.h */,
@@ -503,15 +558,10 @@
 				18486C2720AD60EF00C4F723 /* UIView+LGFToast.m */,
 				183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */,
 				183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */,
+				1829CA9E209AD62000573974 /* UIView+LGFTopBarMessage.h */,
+				1829CA9D209AD62000573974 /* UIView+LGFTopBarMessage.m */,
 			);
 			path = "UIView+LGFCategory";
-			sourceTree = "<group>";
-		};
-		1829CAB420A05DE400573974 /* LGFPopMenu */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LGFPopMenu;
 			sourceTree = "<group>";
 		};
 		1829CAC120A1380A00573974 /* UIWindow+LGFCategory */ = {
@@ -637,6 +687,8 @@
 		183DA8FE20CE615500E09819 /* UIScrollView+LGFCategory */ = {
 			isa = PBXGroup;
 			children = (
+				185A0BEA216B2CAA000ED186 /* UIScrollView+LGFMJRefresh.h */,
+				185A0BE9216B2CAA000ED186 /* UIScrollView+LGFMJRefresh.m */,
 				183DA8FF20CE617300E09819 /* UIScrollView+LGFScrollView.h */,
 				183DA90020CE617300E09819 /* UIScrollView+LGFScrollView.m */,
 			);
@@ -671,11 +723,14 @@
 		1845E4CA20A3F62E00882152 /* LGFView */ = {
 			isa = PBXGroup;
 			children = (
+				185A0C19216C5AC9000ED186 /* LGFLightTextLabel */,
+				18AD21B2215B79FE0031F719 /* LGFTabBarVC */,
+				18AD218A215A1DFB0031F719 /* LGFAlertView */,
+				18AD216F215A09C40031F719 /* LGFPopMenu */,
 				18297A5820E1D9C9005DB4B7 /* LGFFPSLabel */,
 				1829795D20D0CA0B005DB4B7 /* LGFUploadImage */,
 				183A674A20C7B28200CDED30 /* LGFWaterLayout */,
 				18486BAB20A91A5600C4F723 /* LGFTimer */,
-				1829CAB420A05DE400573974 /* LGFPopMenu */,
 				1829CAA3209FE27800573974 /* LGFCountDownButton */,
 			);
 			path = LGFView;
@@ -784,6 +839,15 @@
 			path = LGFNetworking;
 			sourceTree = "<group>";
 		};
+		185A0C19216C5AC9000ED186 /* LGFLightTextLabel */ = {
+			isa = PBXGroup;
+			children = (
+				185A0C1A216C5ADD000ED186 /* LGFLightTextLabel.h */,
+				185A0C1B216C5ADD000ED186 /* LGFLightTextLabel.m */,
+			);
+			path = LGFLightTextLabel;
+			sourceTree = "<group>";
+		};
 		1861A58220A5617200559623 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,25 +882,18 @@
 		188DEFB52094396C0014E4CA /* LGFOCTool */ = {
 			isa = PBXGroup;
 			children = (
-				188227C120F0696D0004DBC6 /* testimage.png */,
 				1861A58120A5617200559623 /* LGFOCTool.entitlements */,
-				1829CAD720A1534A00573974 /* testIcon.png */,
-				188DF030209444F00014E4CA /* pullToRefresh.gif */,
 				188DEFE820943A1F0014E4CA /* LGFOCTool */,
+				18AD21BF216094E00031F719 /* New Group */,
 				188DEFB62094396C0014E4CA /* AppDelegate.h */,
 				188DEFB72094396C0014E4CA /* AppDelegate.m */,
-				188DEFB92094396C0014E4CA /* ViewController.h */,
-				188DEFBA2094396C0014E4CA /* ViewController.m */,
-				182979BC20D259A9005DB4B7 /* FirstViewController.h */,
-				182979BB20D259A9005DB4B7 /* FirstViewController.m */,
-				182979C420D39545005DB4B7 /* blueViewController.h */,
-				182979C520D39545005DB4B7 /* blueViewController.m */,
-				182979C720D39CE1005DB4B7 /* resViewController.h */,
-				182979C820D39CE1005DB4B7 /* resViewController.m */,
-				183DA8AF20C916BC00E09819 /* YDFMFMHistoryCVCell.h */,
-				183DA8B020C916BD00E09819 /* YDFMFMHistoryCVCell.m */,
+				18EDD62E216EEE410088A90B /* LGFPlayerView */,
 				188DEFBC2094396C0014E4CA /* Main.storyboard */,
 				188DEFBF2094396C0014E4CA /* Assets.xcassets */,
+				188DF030209444F00014E4CA /* pullToRefresh.gif */,
+				185A0C20216C80D6000ED186 /* timg16.jpeg */,
+				185A0BFB216B46D9000ED186 /* xiaoniao.gif */,
+				185A0BF5216B416D000ED186 /* timg.gif */,
 				188DEFC12094396C0014E4CA /* LaunchScreen.storyboard */,
 				188DEFC42094396C0014E4CA /* Info.plist */,
 				188DEFC52094396C0014E4CA /* main.m */,
@@ -896,7 +953,6 @@
 				18486BB320A924C300C4F723 /* NSDictionary+LGFCategory */,
 				18486BAF20A9233A00C4F723 /* CLLocation+LGFCategory */,
 				18486B9E20A58B9600C4F723 /* NSObject+LGFCategory */,
-				1845E4CA20A3F62E00882152 /* LGFView */,
 				1829CAD320A14F3400573974 /* UIButton+LGFCategory */,
 				1829CACF20A1448F00573974 /* UIDevice+LGFCategory */,
 				1829CACB20A142AD00573974 /* UIFont+LGFCategory */,
@@ -911,6 +967,7 @@
 				1829CA80209A95CF00573974 /* NSDate+LGFCategory */,
 				1829CA792099B67300573974 /* NSData+LGFCategory */,
 				184235B420999DA80006483C /* NSString+LGFCategory */,
+				1845E4CA20A3F62E00882152 /* LGFView */,
 				188DEFE920943A500014E4CA /* LGFOCTool.h */,
 				188DF032209446020014E4CA /* LGFPch.h */,
 				1842359F20995EBC0006483C /* LGFAllMethod.h */,
@@ -920,6 +977,105 @@
 			);
 			name = LGFOCTool;
 			path = ../../LGFOCTool;
+			sourceTree = "<group>";
+		};
+		18AD216F215A09C40031F719 /* LGFPopMenu */ = {
+			isa = PBXGroup;
+			children = (
+				18AD2172215A09C40031F719 /* LGFPopMenu.h */,
+				18AD2174215A09C40031F719 /* LGFPopMenu.m */,
+			);
+			path = LGFPopMenu;
+			sourceTree = "<group>";
+		};
+		18AD218A215A1DFB0031F719 /* LGFAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				18AD218B215A1E1C0031F719 /* LGFAlertView.h */,
+				18AD218C215A1E1C0031F719 /* LGFAlertView.m */,
+				18AD218E215A1E3E0031F719 /* LGFAlertView.xib */,
+			);
+			path = LGFAlertView;
+			sourceTree = "<group>";
+		};
+		18AD21B2215B79FE0031F719 /* LGFTabBarVC */ = {
+			isa = PBXGroup;
+			children = (
+				18AD21B5215B7A130031F719 /* LGFTabBarVC.h */,
+				18AD21B3215B7A120031F719 /* LGFTabBarVC.m */,
+				18AD21B4215B7A130031F719 /* LGFTabBarVC.storyboard */,
+			);
+			path = LGFTabBarVC;
+			sourceTree = "<group>";
+		};
+		18AD21BF216094E00031F719 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				185A0BED216B341E000ED186 /* QTNoDataView.h */,
+				185A0BEE216B341E000ED186 /* QTNoDataView.m */,
+				185A0BEC216B341D000ED186 /* QTNoDataView.xib */,
+				18AD21C0216095060031F719 /* homeVC */,
+				18AD21B8215B7B250031F719 /* TabBarVC.h */,
+				18AD21B9215B7B260031F719 /* TabBarVC.m */,
+				182979BC20D259A9005DB4B7 /* FirstViewController.h */,
+				182979BB20D259A9005DB4B7 /* FirstViewController.m */,
+				188DEFB92094396C0014E4CA /* ViewController.h */,
+				188DEFBA2094396C0014E4CA /* ViewController.m */,
+				182979C720D39CE1005DB4B7 /* resViewController.h */,
+				182979C820D39CE1005DB4B7 /* resViewController.m */,
+				183DA8AF20C916BC00E09819 /* YDFMFMHistoryCVCell.h */,
+				183DA8B020C916BD00E09819 /* YDFMFMHistoryCVCell.m */,
+				185A0C1D216C7A07000ED186 /* shareVC.h */,
+				185A0C1E216C7A07000ED186 /* shareVC.m */,
+				185A0C22216C85CD000ED186 /* shareView.h */,
+				185A0C23216C85CD000ED186 /* shareView.m */,
+				185A0C25216C8630000ED186 /* shareView.xib */,
+				185A0C27216C8D2D000ED186 /* shareImageVC.h */,
+				185A0C28216C8D2D000ED186 /* shareImageVC.m */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		18AD21C0216095060031F719 /* homeVC */ = {
+			isa = PBXGroup;
+			children = (
+				18EDD6792175C0FF0088A90B /* 1.gif */,
+				18EDD636216F44210088A90B /* videoCV */,
+				182979C420D39545005DB4B7 /* homeVC.h */,
+				182979C520D39545005DB4B7 /* homeVC.m */,
+				18AD21C12160953B0031F719 /* homeVCCell.h */,
+				18AD21C22160953B0031F719 /* homeVCCell.m */,
+			);
+			path = homeVC;
+			sourceTree = "<group>";
+		};
+		18EDD62E216EEE410088A90B /* LGFPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				18EDD64D217486310088A90B /* lgf_lock.png */,
+				18EDD64C217486310088A90B /* lgf_unlock.png */,
+				18EDD631216EEE640088A90B /* LGFPlayerView.h */,
+				18EDD632216EEE640088A90B /* LGFPlayerView.m */,
+				18EDD62F216EEE590088A90B /* LGFPlayerView.xib */,
+			);
+			path = LGFPlayerView;
+			sourceTree = "<group>";
+		};
+		18EDD636216F44210088A90B /* videoCV */ = {
+			isa = PBXGroup;
+			children = (
+				18EDD637216F442F0088A90B /* videoCell */,
+			);
+			path = videoCV;
+			sourceTree = "<group>";
+		};
+		18EDD637216F442F0088A90B /* videoCell */ = {
+			isa = PBXGroup;
+			children = (
+				18EDD638216F44420088A90B /* videoCellCollectionViewCell.h */,
+				18EDD639216F44420088A90B /* videoCellCollectionViewCell.m */,
+			);
+			path = videoCell;
 			sourceTree = "<group>";
 		};
 		826795C97548B8A5183DE73F /* Pods */ = {
@@ -1044,15 +1200,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1829CAD820A1534B00573974 /* testIcon.png in Resources */,
+				18EDD630216EEE590088A90B /* LGFPlayerView.xib in Resources */,
+				185A0BEF216B341E000ED186 /* QTNoDataView.xib in Resources */,
+				18EDD67A2175C1000088A90B /* 1.gif in Resources */,
+				18AD21B7215B7A130031F719 /* LGFTabBarVC.storyboard in Resources */,
 				188DEFC32094396C0014E4CA /* LaunchScreen.storyboard in Resources */,
+				185A0C26216C8630000ED186 /* shareView.xib in Resources */,
+				185A0C21216C80D7000ED186 /* timg16.jpeg in Resources */,
 				18585E9420ECE7A10084D5C1 /* SBTestViewController.storyboard in Resources */,
+				185A0BFC216B46D9000ED186 /* xiaoniao.gif in Resources */,
 				188DEFC02094396C0014E4CA /* Assets.xcassets in Resources */,
 				188225F320EDB5190004DBC6 /* TwoViewController.storyboard in Resources */,
-				188227C220F0696D0004DBC6 /* testimage.png in Resources */,
 				188DEFBE2094396C0014E4CA /* Main.storyboard in Resources */,
+				185A0BF6216B416E000ED186 /* timg.gif in Resources */,
 				188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */,
 				188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */,
+				18EDD64F217486320088A90B /* lgf_lock.png in Resources */,
+				18EDD64E217486320088A90B /* lgf_unlock.png in Resources */,
+				18AD218F215A1E3E0031F719 /* LGFAlertView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1123,12 +1288,14 @@
 				18486BA720A58EB100C4F723 /* NSObject+LGFReflection.m in Sources */,
 				18486BD420A993A600C4F723 /* UIView+LGFRotateAnimation.m in Sources */,
 				1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */,
+				18EDD633216EEE640088A90B /* LGFPlayerView.m in Sources */,
 				1829CA89209A98A500573974 /* UIColor+LGFColor.m in Sources */,
 				188DEFBB2094396C0014E4CA /* ViewController.m in Sources */,
 				183DA8F120CE3D6700E09819 /* UIBezierPath+LGFBezierPath.m in Sources */,
 				183DA8CC20CA62C200E09819 /* NSString+LGFEncodeDecode.m in Sources */,
 				184235A120995EBC0006483C /* LGFAllMethod.m in Sources */,
 				18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */,
+				18AD21C32160953B0031F719 /* homeVCCell.m in Sources */,
 				183DA90120CE617300E09819 /* UIScrollView+LGFScrollView.m in Sources */,
 				184235B02099994C0006483C /* NSString+LGFPinyin.m in Sources */,
 				18585E9720ECEF440084D5C1 /* SBtestCollectionViewCell.m in Sources */,
@@ -1144,15 +1311,18 @@
 				1829CA98209AB43000573974 /* UIImageView+LGFImageView.m in Sources */,
 				18486CEC20B26F0400C4F723 /* NSMutableArray+LGFMutableArray.m in Sources */,
 				188225F120EDB5120004DBC6 /* TwoViewController.m in Sources */,
+				185A0BEB216B2CAB000ED186 /* UIScrollView+LGFMJRefresh.m in Sources */,
 				184235BA2099A9E50006483C /* NSString+LGFTextSize.m in Sources */,
 				183DA8DB20CA82CB00E09819 /* NSNotificationCenter+OnMainThread.m in Sources */,
 				183DA8BA20CA1DD400E09819 /* NSData+LGFHash.m in Sources */,
 				183DA8C320CA2E3D00E09819 /* NSData+LGFEncryptDecrypt.m in Sources */,
+				185A0C1C216C5ADD000ED186 /* LGFLightTextLabel.m in Sources */,
 				18297A5F20E1DC9B005DB4B7 /* LGFWeakProxy.m in Sources */,
 				183DA8C020CA22C800E09819 /* NSData+LGFEncodeDecode.m in Sources */,
 				1829CA8E209A9DD100573974 /* UIImage+LGFImage.m in Sources */,
 				183DA8B120C916BD00E09819 /* YDFMFMHistoryCVCell.m in Sources */,
 				183DA8F520CE407300E09819 /* UIFont+LGFFont.m in Sources */,
+				185A0C24216C85CD000ED186 /* shareView.m in Sources */,
 				1845E4D120A4296500882152 /* LGFAllPermissions.m in Sources */,
 				183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */,
 				188DEFC62094396C0014E4CA /* main.m in Sources */,
@@ -1163,10 +1333,12 @@
 				183DA8ED20CE231300E09819 /* UIApplication+LGFApplication.m in Sources */,
 				183DA8B720CA1CC200E09819 /* NSData+LGFData.m in Sources */,
 				184235B72099A6240006483C /* NSString+LGFRemoveEmoji.m in Sources */,
-				1829CA9F209AD62000573974 /* UIViewController+LGFTopBarMessage.m in Sources */,
+				185A0C29216C8D2D000ED186 /* shareImageVC.m in Sources */,
+				1829CA9F209AD62000573974 /* UIView+LGFTopBarMessage.m in Sources */,
 				18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */,
 				1829CA9C209AD34D00573974 /* UIViewController+LGFVCLog.m in Sources */,
 				1829CA94209AB04200573974 /* UIImage+LGFPDFImage.m in Sources */,
+				185A0C1F216C7A07000ED186 /* shareVC.m in Sources */,
 				1842359E209956E50006483C /* NSString+LGFString.m in Sources */,
 				188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */,
 				18490C1620C90A91000243DD /* LGFNetworkHeader.m in Sources */,
@@ -1175,7 +1347,10 @@
 				183DA8B420CA1B1800E09819 /* NSArray+LGFArray.m in Sources */,
 				183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */,
 				1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */,
-				182979C620D39545005DB4B7 /* blueViewController.m in Sources */,
+				18AD21BA215B7B260031F719 /* TabBarVC.m in Sources */,
+				18AD2177215A09C40031F719 /* LGFPopMenu.m in Sources */,
+				182979C620D39545005DB4B7 /* homeVC.m in Sources */,
+				18AD218D215A1E1C0031F719 /* LGFAlertView.m in Sources */,
 				183DA8FD20CE59D900E09819 /* UITableView+LGFTableView.m in Sources */,
 				183DA8E920CE205200E09819 /* NSTimer+LGFBlockTimer.m in Sources */,
 				183DA8C920CA511C00E09819 /* NSMutableDictionary+LGFMutableDictionary.m in Sources */,
@@ -1185,6 +1360,7 @@
 				183DA8D720CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m in Sources */,
 				184235AA209982780006483C /* UITextField+LGFTextField.m in Sources */,
 				184235AD209994D70006483C /* NSString+LGFHash.m in Sources */,
+				18EDD63A216F44420088A90B /* videoCellCollectionViewCell.m in Sources */,
 				183DA8F920CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m in Sources */,
 				183DA8BD20CA22B500E09819 /* NSData+LGFInflateDeflate.m in Sources */,
 				1829CA91209A9E0100573974 /* UIImage+LGFColorImage.m in Sources */,
@@ -1194,14 +1370,16 @@
 				18490C0D20C8D6C0000243DD /* LGFNetwork.m in Sources */,
 				1829CAC720A13F3F00573974 /* UIViewController+LGFViewController.m in Sources */,
 				188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */,
-				1829796020D0CA26005DB4B7 /* LGFUploadImage.m in Sources */,
+				1829796020D0CA26005DB4B7 /* LGFGetPhoto.m in Sources */,
 				18486C2820AD60EF00C4F723 /* UIView+LGFToast.m in Sources */,
 				183DA8D320CA6A6300E09819 /* NSNumber+LGFNumber.m in Sources */,
 				18490C1320C8E17A000243DD /* LGFReqest.m in Sources */,
 				1829CAC420A1383600573974 /* UIWindow+LGFTopVC.m in Sources */,
+				18AD21B6215B7A130031F719 /* LGFTabBarVC.m in Sources */,
 				183DA8E120CE112100E09819 /* NSObject+LGFPerformSelector.m in Sources */,
 				1829CAD620A14FB200573974 /* UIButton+LGFImagePosition.m in Sources */,
 				182979BD20D259A9005DB4B7 /* FirstViewController.m in Sources */,
+				185A0BF0216B341E000ED186 /* QTNoDataView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

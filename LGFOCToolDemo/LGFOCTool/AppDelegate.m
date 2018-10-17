@@ -28,7 +28,7 @@
 //    -(kPermissionAccess)hasAccessToPhotos;
 //    -(kPermissionAccess)hasAccessToReminders;
     
-    [UINavigationController lgf_AnimatedTransitionIsUse:YES showDuration:0.5 modalDuration:0.7];
+    [UINavigationController lgf_AnimatedTransitionIsUse:YES showDuration:0.5 modalDuration:0.5];
     
     return YES;
 }
