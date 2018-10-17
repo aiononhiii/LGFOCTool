@@ -1,6 +1,6 @@
 //
-//  UIView+LGFToast.h
-//  LGFOCTool
+//  UIView+lgf_Toast.h
+//  lgf_OCTool
 //
 //  Created by apple on 2018/5/17.
 //  Copyright © 2018年 来国锋. All rights reserved.
@@ -9,59 +9,61 @@
 #import <UIKit/UIKit.h>
 #import "LGFOCTool.h"
 
-typedef NS_ENUM(NSUInteger, LGFToastPosition) {
-    LGFToastCenter,
-    LGFToastTop,
-    LGFToastBottom,
+typedef NS_ENUM(NSUInteger, lgf_ToastPosition) {
+    lgf_ToastCenter,
+    lgf_ToastTop,
+    lgf_ToastBottom,
 };
 
-typedef NS_ENUM(NSUInteger, LGFToastImagePosition) {
-    LGFToastImageTop,
-    LGFToastImageBottom,
-    LGFToastImageLeft,
-    LGFToastImageRight,
+typedef NS_ENUM(NSUInteger, lgf_ToastImagePosition) {
+    lgf_ToastImageTop,
+    lgf_ToastImageBottom,
+    lgf_ToastImageLeft,
+    lgf_ToastImageRight,
 };
 
 @interface LGFToastStyle : NSObject
 // Toast文字
-@property (copy, nonatomic) NSString *LGFToastMessage;
+@property (copy, nonatomic) NSString *lgf_ToastMessage;
 // Toast文字字体
-@property (nonatomic, strong) UIFont *LGFToastMessageFont;
+@property (nonatomic, strong) UIFont *lgf_ToastMessageFont;
 // Toast文字颜色
-@property (nonatomic, strong) UIColor *LGFToastMessageTextColor;
-// Toast图片
-@property (nonatomic, strong) UIImage *LGFToastImage;
+@property (nonatomic, strong) UIColor *lgf_ToastMessageTextColor;
+// Toast图片名字 可为gif
+@property (nonatomic, copy) NSString *lgf_ToastImageName;
 // Toast位置
-@property (assign, nonatomic) LGFToastPosition LGFToastPosition;
+@property (assign, nonatomic) lgf_ToastPosition lgf_ToastPosition;
 // 图片相对于文字位置
-@property (assign, nonatomic) LGFToastImagePosition LGFToastImagePosition;
+@property (assign, nonatomic) lgf_ToastImagePosition lgf_ToastImagePosition;
 // Toast背景色
-@property (nonatomic, strong) UIColor *LGFToastBackColor;
+@property (nonatomic, strong) UIColor *lgf_ToastBackColor;
 // 边框颜色
-@property (nonatomic, strong) UIColor *LGFToastBorderColor;
+@property (nonatomic, strong) UIColor *lgf_ToastBorderColor;
 // 边框粗细
-@property (assign, nonatomic) CGFloat LGFToastBorderWidth;
+@property (assign, nonatomic) CGFloat lgf_ToastBorderWidth;
 // Toast圆角
-@property (assign, nonatomic) CGFloat LGFToastCornerRadius;
+@property (assign, nonatomic) CGFloat lgf_ToastCornerRadius;
 // Toast消失动画时间
-@property (assign, nonatomic) NSTimeInterval LGFDismissDuration;
+@property (assign, nonatomic) NSTimeInterval lgf_DismissDuration;
 // Toast停留时间
-@property (assign, nonatomic) NSTimeInterval LGFDuration;
+@property (assign, nonatomic) NSTimeInterval lgf_Duration;
 // 图片文字间隔
-@property (assign, nonatomic) CGFloat LGFMessageImageSpacing;
+@property (assign, nonatomic) CGFloat lgf_MessageImageSpacing;
 // 四边距离
-@property (assign, nonatomic) CGFloat LGFToastSpacing;
+@property (assign, nonatomic) CGFloat lgf_ToastSpacing;
 // Toast最大宽度
-@property (assign, nonatomic) CGFloat LGFMaxWidth;
+@property (assign, nonatomic) CGFloat lgf_MaxWidth;
 // Toast最大高度
-@property (assign, nonatomic) CGFloat LGFMaxHeight;
+@property (assign, nonatomic) CGFloat lgf_MaxHeight;
 // 是否阻挡父View手势
-@property (assign, nonatomic) BOOL LGFCancelSuperGesture;
+@property (assign, nonatomic) BOOL lgf_SuperEnabled;
+// 是否阻挡父View手势
+@property (nonatomic, assign) BOOL lgf_BackBtnEnabled;
 // 是否有图片
-@property (assign, nonatomic) BOOL LGFToastHaveIamge;
+@property (assign, nonatomic) BOOL lgf_ToastHaveIamge;
 // 图片限定大小
-@property (assign, nonatomic) CGSize LGFToastImageSize;
-+ (instancetype)shard;
+@property (assign, nonatomic) CGSize lgf_ToastImageSize;
+lgf_ViewForH;
 - (CGFloat)lgf_HeightWithText:(NSString *)text font:(UIFont *)font width:(CGFloat)width;
 - (CGFloat)lgf_WidthWithText:(NSString *)text font:(UIFont *)font height:(CGFloat)height;
 @end
@@ -70,20 +72,21 @@ typedef NS_ENUM(NSUInteger, LGFToastImagePosition) {
 @property (nonatomic, strong) LGFToastStyle *style;
 @property (nonatomic, strong) UIImageView *image;
 @property (nonatomic, strong) UILabel *message;
-lgf_AllocOnlyOnceForH(ToastView);
+lgf_AllocOnceForH;
 @end
 
 @interface UIView (LGFToast)
-
-- (void)lgf_ShowToastStyle:(LGFToastStyle *)style completion:(void (^ __nullable)(void))completion;
-- (void)lgf_ShowToastMessage:(NSString *)message completion:(void (^ __nullable)(void))completion;
-- (void)lgf_ShowToastMessage:(NSString *)message duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion;
-- (void)lgf_ShowToastImage:(UIImage *)image completion:(void (^ __nullable)(void))completion;
-- (void)lgf_ShowToastImage:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion;
-- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image completion:(void (^ __nullable)(void))completion;
-- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion;
-
-- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets;
+- (void)lgf_ShowMessage:(NSString *)message
+               animated:(BOOL)animated
+             completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowMessage:(NSString *)message
+            maxDuration:(BOOL)maxDuration
+               animated:(BOOL)animated
+             completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowMessageStyle:(LGFToastStyle *)style
+                    animated:(BOOL)animated
+                  completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets cr:(CGFloat)cr;
 - (void)lgf_HideToastActivity;
 
 @end

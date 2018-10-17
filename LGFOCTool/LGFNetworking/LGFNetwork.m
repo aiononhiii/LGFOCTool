@@ -13,13 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation LGFNetwork
 
 #pragma mark - 单例初始化
-lgf_AllocOnlyOnceForM(LGFNetwork, Network);
+lgf_AllocOnceForM(LGFNetwork);
 
 #pragma mark - GET 请求
 - (NSURLSessionDataTask *)lgf_GET:(NSString *)URLString
-                   parameters:(id)parameters
-                      success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
-                      failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
+                       parameters:(id)parameters
+                          success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
+                          failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
     NSString *url = [self lgf_UrlConfig:URLString];
     NSLog(@"\n<<-----------请求-------------------\n Url == %@\n Params == %@\n------------------------------->>", url, parameters);
     return [self.lgf_SessionManager GET:url parameters:parameters progress:nil success:success failure:failure];
@@ -27,9 +27,9 @@ lgf_AllocOnlyOnceForM(LGFNetwork, Network);
 
 #pragma mark - POST 请求
 - (NSURLSessionDataTask *)lgf_POST:(NSString *)URLString
-                    parameters:(id)parameters
-                       success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
-                       failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
+                        parameters:(id)parameters
+                           success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
+                           failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
     NSString *url = [self lgf_UrlConfig:URLString];
     NSLog(@"\n<<-----------请求-------------------\n Url == %@\n Params == %@\n------------------------------->>", url, parameters);
     return [self.lgf_SessionManager POST:url parameters:parameters progress:nil success:success failure:failure];
@@ -37,8 +37,8 @@ lgf_AllocOnlyOnceForM(LGFNetwork, Network);
 
 #pragma mark - 下载 请求
 - (NSURLSessionDownloadTask *)lgf_DownloadTaskWithRequest:(NSString *)URLString
-                                           saveToPath:(NSString *)path
-                                    completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler {
+                                               saveToPath:(NSString *)path
+                                        completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     NSURL *URL = [NSURL URLWithString:URLString];

@@ -1,6 +1,6 @@
 //
-//  UIView+LGFToast.m
-//  LGFOCTool
+//  UIView+lgf_Toast.m
+//  lgf_OCTool
 //
 //  Created by apple on 2018/5/17.
 //  Copyright © 2018年 来国锋. All rights reserved.
@@ -8,43 +8,43 @@
 
 #import "UIView+LGFToast.h"
 #import <objc/runtime.h>
+#import "LGFBackButton.h"
+#import "UIImage+GIF.h"
 
 @implementation LGFToastStyle
 
+lgf_ViewForM(LGFToastStyle);
+
 - (instancetype)init {
     if (self = [super init]) {
-        self.LGFToastImage = [UIImage imageNamed:@"testIcon"];
-        self.LGFToastMessage = @"";
-        self.LGFToastPosition = LGFToastCenter;
-        self.LGFToastImagePosition = LGFToastImageTop;
-        self.LGFToastMessageFont = [UIFont systemFontOfSize:15];
-        self.LGFToastMessageTextColor = [UIColor whiteColor];
-        self.LGFToastBackColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.7];
-        self.LGFToastCornerRadius = 5.0;
-        self.LGFDismissDuration = 0.3;
-        self.LGFDuration = 0.5;
-        self.LGFCancelSuperGesture = YES;
-        self.LGFMessageImageSpacing = 5.0;
-        self.LGFToastSpacing = 10.0;
-        self.LGFToastImageSize = CGSizeMake(50.0, 50.0);
-        self.LGFMaxWidth = [UIScreen mainScreen].bounds.size.width * 0.3;
-        self.LGFMaxHeight = [UIScreen mainScreen].bounds.size.height * 0.8;
+        self.lgf_ToastImageName = @"";
+        self.lgf_ToastMessage = @"";
+        self.lgf_ToastPosition = lgf_ToastCenter;
+        self.lgf_ToastImagePosition = lgf_ToastImageTop;
+        self.lgf_ToastMessageFont = [UIFont boldSystemFontOfSize:16];
+        self.lgf_ToastMessageTextColor = [UIColor whiteColor];
+        self.lgf_ToastBackColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+        self.lgf_ToastCornerRadius = 10.0;
+        self.lgf_DismissDuration = 0.2;
+        self.lgf_Duration = 0.5;
+        self.lgf_SuperEnabled = NO;
+        self.lgf_BackBtnEnabled = YES;
+        self.lgf_MessageImageSpacing = 5.0;
+        self.lgf_ToastSpacing = 10.0;
+        self.lgf_ToastImageSize = CGSizeMake(50.0, 50.0);
+        self.lgf_MaxWidth = [UIScreen mainScreen].bounds.size.width * 0.8;
+        self.lgf_MaxHeight = [UIScreen mainScreen].bounds.size.height * 0.8;
     }
     return self;
 }
 
-- (void)setLGFToastImage:(UIImage *)LGFToastImage {
-    _LGFToastImage = LGFToastImage;
-    if (LGFToastImage) {
-        self.LGFToastHaveIamge = YES;
+- (void)setLgf_ToastImageName:(NSString *)lgf_ToastImageName {
+    _lgf_ToastImageName = lgf_ToastImageName;
+    if (lgf_ToastImageName.length > 0) {
+        self.lgf_ToastHaveIamge = YES;
     } else {
-        self.LGFToastHaveIamge = NO;
+        self.lgf_ToastHaveIamge = NO;
     }
-}
-
-+ (instancetype)shard {
-    LGFToastStyle *style = [[LGFToastStyle alloc] init];
-    return style;
 }
 
 - (CGFloat)lgf_HeightWithText:(NSString *)text font:(UIFont *)font width:(CGFloat)width {
@@ -79,7 +79,7 @@
 
 @implementation LGFToastView
 
-lgf_AllocOnlyOnceForM(LGFToastView, ToastView);
+lgf_AllocOnceForM(LGFToastView);
 
 - (UIImageView *)image {
     if (!_image) {
@@ -106,227 +106,231 @@ lgf_AllocOnlyOnceForM(LGFToastView, ToastView);
 
 - (void)setStyle:(LGFToastStyle *)style {
     _style = style;
-    if (style.LGFToastHaveIamge) {
-        [self.image setImage:style.LGFToastImage];
+    if (style.lgf_ToastHaveIamge) {
+        UIImage *image = [UIImage imageNamed:style.lgf_ToastImageName];
+        if (image) {
+            [self.image setImage:image];
+        } else {
+            NSString *path = [[NSBundle mainBundle] pathForResource:style.lgf_ToastImageName ofType:@"gif"];
+            NSData *data = [NSData dataWithContentsOfFile:path];
+            UIImage *image = [UIImage sd_animatedGIFWithData:data];
+            [self.image setImage:image];
+        }
     } else {
         [self.image setImage:nil];
     }
-    self.message.text = style.LGFToastMessage;
-    self.message.font = style.LGFToastMessageFont;
-    self.message.textColor = style.LGFToastMessageTextColor;
+    self.message.text = style.lgf_ToastMessage;
+    self.message.font = style.lgf_ToastMessageFont;
+    self.message.textColor = style.lgf_ToastMessageTextColor;
     self.message.numberOfLines = 0;
-    self.layer.cornerRadius = style.LGFToastCornerRadius;
-    self.backgroundColor = style.LGFToastBackColor;
-    self.layer.borderColor = style.LGFToastBorderColor.CGColor;
-    self.layer.borderWidth = style.LGFToastBorderWidth;
+    self.layer.cornerRadius = style.lgf_ToastCornerRadius;
+    self.backgroundColor = style.lgf_ToastBackColor;
+    self.layer.borderColor = style.lgf_ToastBorderColor.CGColor;
+    self.layer.borderWidth = style.lgf_ToastBorderWidth;
     self.alpha = 1.0;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (self.style.LGFToastHaveIamge) {
-        switch (self.style.LGFToastImagePosition) {
-            case LGFToastImageTop:
-                self.image.frame = CGRectMake((self.frame.size.width / 2) - (self.style.LGFToastImageSize.width / 2),
-                                              self.style.LGFToastSpacing,
-                                              self.style.LGFToastImageSize.width,
-                                              self.style.LGFToastImageSize.height);
-                self.message.frame = CGRectMake(self.style.LGFToastSpacing,
-                                                self.style.LGFToastSpacing + self.style.LGFToastImageSize.height + self.style.LGFMessageImageSpacing,
-                                                self.frame.size.width - (self.style.LGFToastSpacing * 2),
-                                                self.frame.size.height - (self.style.LGFToastSpacing * 2) - self.image.frame.size.height - self.style.LGFMessageImageSpacing);
+    if (self.style.lgf_ToastHaveIamge) {
+        switch (self.style.lgf_ToastImagePosition) {
+            case lgf_ToastImageTop:
+                self.image.frame = CGRectMake((self.frame.size.width / 2) - (self.style.lgf_ToastImageSize.width / 2),
+                                              self.style.lgf_ToastSpacing,
+                                              self.style.lgf_ToastImageSize.width,
+                                              self.style.lgf_ToastImageSize.height);
+                self.message.frame = CGRectMake(self.style.lgf_ToastSpacing,
+                                                self.style.lgf_ToastSpacing + self.style.lgf_ToastImageSize.height + self.style.lgf_MessageImageSpacing,
+                                                self.frame.size.width - (self.style.lgf_ToastSpacing * 2),
+                                                self.frame.size.height - (self.style.lgf_ToastSpacing * 2) - self.image.frame.size.height - self.style.lgf_MessageImageSpacing);
                 break;
-            case LGFToastImageBottom:
-                self.image.frame = CGRectMake((self.frame.size.width / 2) - (self.style.LGFToastImageSize.width / 2),
-                                              self.frame.size.height - self.style.LGFToastImageSize.height - self.style.LGFToastSpacing,
-                                              self.style.LGFToastImageSize.width,
-                                              self.style.LGFToastImageSize.height);
-                self.message.frame = CGRectMake(self.style.LGFToastSpacing,
-                                                self.style.LGFToastSpacing,
-                                                self.frame.size.width - (self.style.LGFToastSpacing * 2),
-                                                self.frame.size.height - (self.style.LGFToastSpacing * 2) - self.image.frame.size.height - self.style.LGFMessageImageSpacing);
+            case lgf_ToastImageBottom:
+                self.image.frame = CGRectMake((self.frame.size.width / 2) - (self.style.lgf_ToastImageSize.width / 2),
+                                              self.frame.size.height - self.style.lgf_ToastImageSize.height - self.style.lgf_ToastSpacing,
+                                              self.style.lgf_ToastImageSize.width,
+                                              self.style.lgf_ToastImageSize.height);
+                self.message.frame = CGRectMake(self.style.lgf_ToastSpacing,
+                                                self.style.lgf_ToastSpacing,
+                                                self.frame.size.width - (self.style.lgf_ToastSpacing * 2),
+                                                self.frame.size.height - (self.style.lgf_ToastSpacing * 2) - self.image.frame.size.height - self.style.lgf_MessageImageSpacing);
                 break;
-            case LGFToastImageLeft:
-                self.image.frame = CGRectMake(self.style.LGFToastSpacing,
-                                              (self.frame.size.height / 2) - (self.style.LGFToastImageSize.height / 2),
-                                              self.style.LGFToastImageSize.width,
-                                              self.style.LGFToastImageSize.height);
-                self.message.frame = CGRectMake(self.style.LGFToastSpacing + self.image.frame.size.width + self.style.LGFMessageImageSpacing,
-                                                self.style.LGFToastSpacing,
-                                                self.frame.size.width - (self.style.LGFToastSpacing * 2) - self.image.frame.size.width - self.style.LGFMessageImageSpacing,
-                                                self.frame.size.height - (self.style.LGFToastSpacing * 2));
+            case lgf_ToastImageLeft:
+                self.image.frame = CGRectMake(self.style.lgf_ToastSpacing,
+                                              (self.frame.size.height / 2) - (self.style.lgf_ToastImageSize.height / 2),
+                                              self.style.lgf_ToastImageSize.width,
+                                              self.style.lgf_ToastImageSize.height);
+                self.message.frame = CGRectMake(self.style.lgf_ToastSpacing + self.image.frame.size.width + self.style.lgf_MessageImageSpacing,
+                                                self.style.lgf_ToastSpacing,
+                                                self.frame.size.width - (self.style.lgf_ToastSpacing * 2) - self.image.frame.size.width - self.style.lgf_MessageImageSpacing,
+                                                self.frame.size.height - (self.style.lgf_ToastSpacing * 2));
                 break;
-            case LGFToastImageRight:
-                self.image.frame = CGRectMake(self.frame.size.width - self.style.LGFToastImageSize.width - self.style.LGFToastSpacing,
-                                              (self.frame.size.height / 2) - (self.style.LGFToastImageSize.height / 2),
-                                              self.style.LGFToastImageSize.width,
-                                              self.style.LGFToastImageSize.height);
-                self.message.frame = CGRectMake(self.style.LGFToastSpacing,
-                                                self.style.LGFToastSpacing,
-                                                self.frame.size.width - (self.style.LGFToastSpacing * 2) - self.image.frame.size.width - self.style.LGFMessageImageSpacing,
-                                                self.frame.size.height - (self.style.LGFToastSpacing * 2));
+            case lgf_ToastImageRight:
+                self.image.frame = CGRectMake(self.frame.size.width - self.style.lgf_ToastImageSize.width - self.style.lgf_ToastSpacing,
+                                              (self.frame.size.height / 2) - (self.style.lgf_ToastImageSize.height / 2),
+                                              self.style.lgf_ToastImageSize.width,
+                                              self.style.lgf_ToastImageSize.height);
+                self.message.frame = CGRectMake(self.style.lgf_ToastSpacing,
+                                                self.style.lgf_ToastSpacing,
+                                                self.frame.size.width - (self.style.lgf_ToastSpacing * 2) - self.image.frame.size.width - self.style.lgf_MessageImageSpacing,
+                                                self.frame.size.height - (self.style.lgf_ToastSpacing * 2));
                 break;
             default:
                 break;
         }
     } else {
-        self.message.frame = CGRectMake(self.style.LGFToastSpacing,  self.style.LGFToastSpacing, self.frame.size.width - (self.style.LGFToastSpacing * 2), self.frame.size.height - (self.style.LGFToastSpacing * 2));
+        self.message.frame = CGRectMake(self.style.lgf_ToastSpacing,  self.style.lgf_ToastSpacing, self.frame.size.width - (self.style.lgf_ToastSpacing * 2), self.frame.size.height - (self.style.lgf_ToastSpacing * 2));
     }
 }
 
 - (void)dismiss {
-    [UIView animateWithDuration:self.style.LGFDismissDuration animations:^{
+    [UIView animateWithDuration:self.style.lgf_DismissDuration animations:^{
         self.alpha = 0.0;
+        self.transform = CGAffineTransformMakeScale(0.85, 0.85);
     } completion:^(BOOL finished) {
-        if (self.style.LGFCancelSuperGesture) self.superview.userInteractionEnabled = YES;
+        [self.superview.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.userInteractionEnabled = YES;
+        }];
+        self.transform = CGAffineTransformIdentity;
         [self removeFromSuperview];
     }];
 }
 
 @end
 
-@implementation UIView (LGFToast)
+@implementation UIView (lgf_Toast)
 
-static char LGFToastViewKey;
-static char LGFToastActivityKey;
+static char lgf_ToastViewKey;
+static char lgf_ToastActivityKey;
 
-- (void)lgf_ShowToastMessage:(NSString *)message completion:(void (^ __nullable)(void))completion {
-    LGFToastStyle *style = [LGFToastStyle shard];
-    style.LGFToastMessage = message;
-    style.LGFToastImage = nil;
-    [self lgf_ShowToastStyle:style completion:completion];
+- (void)lgf_ShowMessage:(NSString *)message
+               animated:(BOOL)animated
+             completion:(void (^ __nullable)(void))completion {
+    LGFToastStyle *style = [LGFToastStyle lgf];
+    style.lgf_ToastMessage = message;
+    [self lgf_ShowMessageStyle:style animated:animated completion:completion];
 }
 
-- (void)lgf_ShowToastMessage:(NSString *)message duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion {
-    LGFToastStyle *style = [LGFToastStyle shard];
-    style.LGFToastMessage = message;
-    style.LGFToastImage = nil;
-    style.LGFDuration = duration;
-    [self lgf_ShowToastStyle:style completion:completion];
+- (void)lgf_ShowMessage:(NSString *)message
+            maxDuration:(BOOL)maxDuration
+               animated:(BOOL)animated
+             completion:(void (^ __nullable)(void))completion {
+    LGFToastStyle *style = [LGFToastStyle lgf];
+    style.lgf_ToastMessage = message;
+    if (maxDuration) style.lgf_Duration = CGFLOAT_MAX;
+    style.lgf_ToastMessage = message;
+    [self lgf_ShowMessageStyle:style animated:animated completion:completion];
 }
 
-- (void)lgf_ShowToastImage:(UIImage *)image completion:(void (^ __nullable)(void))completion {
-    LGFToastStyle *style = [LGFToastStyle shard];
-    style.LGFToastImage = image;
-    style.LGFToastMessage = nil;
-    [self lgf_ShowToastStyle:style completion:completion];
-}
-
-- (void)lgf_ShowToastImage:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion {
-    LGFToastStyle *style = [LGFToastStyle shard];
-    style.LGFToastImage = image;
-    style.LGFToastMessage = nil;
-    style.LGFDuration = duration;
-    [self lgf_ShowToastStyle:style completion:completion];
-}
-
-- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image completion:(void (^ __nullable)(void))completion {
-    LGFToastStyle *style = [LGFToastStyle shard];
-    style.LGFToastMessage = message;
-    style.LGFToastImage = image;
-    [self lgf_ShowToastStyle:style completion:completion];
-}
-
-- (void)lgf_ShowToastImageAndMessage:(NSString *)message image:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ __nullable)(void))completion {
-    LGFToastStyle *style = [LGFToastStyle shard];
-    style.LGFToastMessage = message;
-    style.LGFToastImage = image;
-    style.LGFDuration = duration;
-    [self lgf_ShowToastStyle:style completion:completion];
-}
-
-- (void)lgf_ShowToastStyle:(LGFToastStyle *)style completion:(void (^ __nullable)(void))completion {
-    
-    if (style.LGFToastMessage.length == 0 && !style.LGFToastImage) {
+- (void)lgf_ShowMessageStyle:(LGFToastStyle *)style
+                    animated:(BOOL)animated
+                  completion:(void (^ __nullable)(void))completion {
+    if (style.lgf_ToastMessage.length == 0 && !(style.lgf_ToastImageName.length == 0)) {
         return;
     }
-    
-    // 动态加载 LGFToastView
-    LGFToastView *toastView = objc_getAssociatedObject(self, &LGFToastViewKey);
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[LGFToastView class]]) {
+            [obj removeFromSuperview];
+        }
+    }];
+    // 动态加载 lgf_ToastView
+    LGFToastView *toastView = objc_getAssociatedObject(self, &lgf_ToastViewKey);
     toastView.style = style;
-    if (!toastView) {
-        toastView = [LGFToastView sharedToastView];
-        objc_setAssociatedObject(self, &LGFToastViewKey, toastView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+    toastView = [LGFToastView lgf_Once];
+    objc_setAssociatedObject(self, &lgf_ToastViewKey, toastView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    CGFloat LGFToastViewHeight = [style lgf_HeightWithText:@"" font:style.LGFToastMessageFont width:style.LGFMaxWidth];
-    CGFloat LGFToastViewWidth = [style lgf_WidthWithText:style.LGFToastMessage font:style.LGFToastMessageFont height:LGFToastViewHeight];
-    if (LGFToastViewWidth >= style.LGFMaxWidth) {
-        CGFloat realHeight = [style lgf_HeightWithText:style.LGFToastMessage font:style.LGFToastMessageFont width:style.LGFMaxWidth];
-        if (LGFToastViewHeight < realHeight) {
-            LGFToastViewHeight = MIN(realHeight, style.LGFMaxHeight);
+    CGFloat lgf_ToastViewHeight = [style lgf_HeightWithText:@"" font:style.lgf_ToastMessageFont width:style.lgf_MaxWidth];
+    CGFloat lgf_ToastViewWidth = [style lgf_WidthWithText:style.lgf_ToastMessage font:style.lgf_ToastMessageFont height:lgf_ToastViewHeight];
+    if (lgf_ToastViewWidth >= style.lgf_MaxWidth) {
+        CGFloat realHeight = [style lgf_HeightWithText:style.lgf_ToastMessage font:style.lgf_ToastMessageFont width:style.lgf_MaxWidth];
+        if (lgf_ToastViewHeight < realHeight) {
+            lgf_ToastViewHeight = MIN(realHeight, style.lgf_MaxHeight);
         }
     }
-    CGFloat LGFToastViewY;
-    CGFloat LGFToastViewX;
+    CGFloat lgf_ToastViewY;
+    CGFloat lgf_ToastViewX;
     
-    if (style.LGFToastHaveIamge) {
-        switch (style.LGFToastImagePosition) {
-            case LGFToastImageTop:
-                LGFToastViewHeight += style.LGFToastImageSize.height + style.LGFMessageImageSpacing;
+    if (style.lgf_ToastHaveIamge) {
+        switch (style.lgf_ToastImagePosition) {
+            case lgf_ToastImageTop:
+                lgf_ToastViewHeight += style.lgf_ToastImageSize.height + style.lgf_MessageImageSpacing;
                 break;
-            case LGFToastImageBottom:
-                LGFToastViewHeight += style.LGFToastImageSize.height + style.LGFMessageImageSpacing;
+            case lgf_ToastImageBottom:
+                lgf_ToastViewHeight += style.lgf_ToastImageSize.height + style.lgf_MessageImageSpacing;
                 break;
-            case LGFToastImageLeft:
-                LGFToastViewWidth += style.LGFToastImageSize.width + style.LGFMessageImageSpacing;
+            case lgf_ToastImageLeft:
+                lgf_ToastViewWidth += style.lgf_ToastImageSize.width + style.lgf_MessageImageSpacing;
                 break;
-            case LGFToastImageRight:
-                LGFToastViewWidth += style.LGFToastImageSize.width + style.LGFMessageImageSpacing;
+            case lgf_ToastImageRight:
+                lgf_ToastViewWidth += style.lgf_ToastImageSize.width + style.lgf_MessageImageSpacing;
                 break;
             default:
                 break;
         }
     }
     
-    switch (style.LGFToastPosition) {
-        case LGFToastTop:
-            LGFToastViewY = self.frame.size.height * 0.2;
+    switch (style.lgf_ToastPosition) {
+        case lgf_ToastTop:
+            lgf_ToastViewY = self.frame.size.height * 0.2;
             break;
-        case LGFToastBottom:
-            LGFToastViewY = self.frame.size.height * 0.8;
+        case lgf_ToastBottom:
+            lgf_ToastViewY = self.frame.size.height * 0.8;
             break;
-        case LGFToastCenter:
-            LGFToastViewY = (self.frame.size.height / 2) - (LGFToastViewHeight / 2);
+        case lgf_ToastCenter:
+            lgf_ToastViewY = (self.frame.size.height / 2) - (lgf_ToastViewHeight / 2);
             break;
         default:
             break;
     }
     
-    LGFToastViewWidth = MIN(LGFToastViewWidth, style.LGFMaxWidth) + style.LGFToastSpacing * 2;
-    LGFToastViewHeight = LGFToastViewHeight + style.LGFToastSpacing * 2;
-    LGFToastViewX = (self.frame.size.width / 2) - (LGFToastViewWidth / 2);
+    lgf_ToastViewWidth = MIN(lgf_ToastViewWidth, style.lgf_MaxWidth) + style.lgf_ToastSpacing * 2;
+    lgf_ToastViewHeight = lgf_ToastViewHeight + style.lgf_ToastSpacing * 2;
+    lgf_ToastViewX = (self.frame.size.width / 2) - (lgf_ToastViewWidth / 2);
     
-    toastView.frame = CGRectMake(LGFToastViewX, LGFToastViewY, LGFToastViewWidth, LGFToastViewHeight);
+    toastView.frame = CGRectMake(lgf_ToastViewX, lgf_ToastViewY, lgf_ToastViewWidth, lgf_ToastViewHeight);
     toastView.style = style;
     [self addSubview:toastView];
-    NSLog(@"%f", LGFToastViewHeight);
-    [NSObject cancelPreviousPerformRequestsWithTarget:toastView];
-    if (style.LGFCancelSuperGesture) self.userInteractionEnabled = NO;
-    [toastView performSelector:@selector(dismiss) withObject:nil afterDelay:style.LGFDuration];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((style.LGFDuration + style.LGFDismissDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (completion) {
-            completion();
+    [toastView setNeedsLayout];
+    [toastView layoutIfNeeded];
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.lgf_ViewName isEqualToString:@"自定义导航栏"]) {
+            obj.userInteractionEnabled = style.lgf_BackBtnEnabled;
+        } else {
+            obj.userInteractionEnabled = style.lgf_SuperEnabled;
         }
-    });
+    }];
+    // 动画
+    toastView.transform = CGAffineTransformMakeScale(0.85, 0.85);
+    [UIView animateWithDuration:animated ? 0.5 : 0.0 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        toastView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:toastView];
+        [toastView performSelector:@selector(dismiss) withObject:nil afterDelay:style.lgf_Duration];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((style.lgf_Duration + style.lgf_DismissDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion();
+            }
+        });
+    }];
 }
 
 #pragma mark - 菊花
 
-- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets {
+- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets cr:(CGFloat)cr {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.userInteractionEnabled = NO;
-        UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
+        UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastActivityKey);
         [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [activityBackView removeFromSuperview];
         if (!activityBackView) {
             activityBackView = [[UIView alloc] init];
+            activityBackView.layer.cornerRadius = cr;
             activityBackView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
         }
+        activityBackView.alpha = 1.0;
         [self addSubview:activityBackView];
         activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
-        objc_setAssociatedObject(self, &LGFToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, &lgf_ToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeRight multiplier:1.0 constant:Insets.right];
         [self.superview ?: self addConstraint:rightConstraint];
         NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:Insets.left];
@@ -339,7 +343,9 @@ static char LGFToastActivityKey;
         [self.superview ?: self layoutIfNeeded];
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] init];
         activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        [activityView startAnimating];
+        [UIView animateWithDuration:0.1 animations:^{
+            [activityView startAnimating];
+        }];
         activityView.center = CGPointMake(activityBackView.bounds.size.width / 2, activityBackView.bounds.size.height / 2);
         [activityBackView addSubview:activityView];
     });
@@ -348,10 +354,14 @@ static char LGFToastActivityKey;
 - (void)lgf_HideToastActivity {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.userInteractionEnabled = YES;
-        UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &LGFToastActivityKey);
+        UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastActivityKey);
         if (activityBackView) {
-            [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-            [activityBackView removeFromSuperview];
+            [UIView animateWithDuration:0.25 animations:^{
+                activityBackView.alpha = 0.0;
+            } completion:^(BOOL finished) {
+                [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+                [activityBackView removeFromSuperview];
+            }];
         }
     });
 }

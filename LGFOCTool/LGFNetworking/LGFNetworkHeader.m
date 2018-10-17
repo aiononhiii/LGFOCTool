@@ -10,6 +10,6 @@
 
 @implementation LGFNetworkHeader
 
-lgf_AllocOnlyOnceForM(LGFNetworkHeader, Header);
+lgf_AllocOnceForM(LGFNetworkHeader);
 
 @end

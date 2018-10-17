@@ -124,4 +124,12 @@
     return self;
 }
 
+- (void)lgf_RemoveAllThisObject:(id)object {
+    for (id obj in self) {
+        if ([obj isEqual:object]) {
+            [self removeObject:obj];
+        }
+    }
+}
+
 @end

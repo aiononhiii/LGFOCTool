@@ -42,6 +42,9 @@
 #undef lgf_NCenter
 #define lgf_NCenter [NSNotificationCenter defaultCenter]
 
+#undef lgf_MainScreen
+#define lgf_MainScreen [UIScreen mainScreen].bounds
+
 // NSUserDefaults 缓存
 #undef lgf_Defaults
 #define lgf_Defaults [NSUserDefaults standardUserDefaults]
@@ -64,6 +67,11 @@
 #undef lgf_Bundle
 #define lgf_Bundle(bundleName)\
 [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:bundleName ofType:@"bundle"]] ?: [NSBundle mainBundle]
+
+// 资源文件路径
+#undef lgf_BundlePath
+#define lgf_BundlePath(pathName)\
+[[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource:pathName ofType:nil]
 
 //---------------------- 常用系统信息获取 ----------------------
 
@@ -113,9 +121,9 @@
 #define lgf_DictIsEmpty(dic) (dic == nil || [dic isKindOfClass:[NSNull class]] || dic.allKeys == 0)
 
 //---------------------- 注册 Nib CollectionViewCell ----------------------
-#undef lgf_RegNibCVCell
-#define lgf_RegisterNibCollectionViewCell(collectionView, cellClass, bundle)\
-[collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([cellClass class]) bundle:bundle] forCellWithReuseIdentifier:NSStringFromClass([cellClass class])];
+#undef lgf_RegisterNibCollectionViewCell
+#define lgf_RegisterNibCollectionViewCell(collectionView, cellClass, bundleStr)\
+[collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([cellClass class]) bundle:lgf_Bundle(bundleStr)] forCellWithReuseIdentifier:NSStringFromClass([cellClass class])];
 
 //---------------------- 初始化 CollectionViewCell ----------------------
 #undef lgf_CVGetCell
@@ -178,21 +186,46 @@ return lgf_GetSBVC(className, storyboardStr, bundleStr);\
 }
 //---------------------- 获取 Xib View 快捷设置 ----------------------
 #undef lgf_XibViewForH
-#define lgf_XibViewForH + (instancetype)xibShare
+#define lgf_XibViewForH + (instancetype)lgf
 #undef lgf_XibViewForM
 #define lgf_XibViewForM(className, bundleStr) \
-+ (instancetype)xibShare\
++ (instancetype)lgf\
 {\
 return lgf_GetXibView(className, bundleStr);\
+}
+//---------------------- 获取 View 快捷设置 ----------------------
+#undef lgf_ViewForH
+#define lgf_ViewForH + (instancetype)lgf
+#undef lgf_ViewForM
+#define lgf_ViewForM(className) \
++ (instancetype)lgf\
+{\
+return [[className alloc] init];\
 }
 //---------------------- 单列快捷设置 ----------------------
 
 // 添加到 .h 文件
-#undef lgf_AllocOnlyOnceForH
-#define lgf_AllocOnlyOnceForH(methodName) + (instancetype)shared##methodName
+#undef lgf_XibAllocOnceForH
+#define lgf_XibAllocOnceForH + (instancetype)lgf_XibOnce
 // 添加到 .m 文件
-#undef lgf_AllocOnlyOnceForM
-#define lgf_AllocOnlyOnceForM(name,methodName) static name* _instance;\
+#undef lgf_XibAllocOnceForM
+#define lgf_XibAllocOnceForM(className, bundleStr)\
+static className *xibView;\
++ (instancetype)lgf_XibOnce\
+{\
+static dispatch_once_t onceToken;\
+dispatch_once(&onceToken, ^{\
+xibView = lgf_GetXibView(className, bundleStr);\
+});\
+return xibView;\
+}\
+
+// 添加到 .h 文件
+#undef lgf_AllocOnceForH
+#define lgf_AllocOnceForH + (instancetype)lgf_Once
+// 添加到 .m 文件
+#undef lgf_AllocOnceForM
+#define lgf_AllocOnceForM(className) static className* _instance;\
 + (instancetype)allocWithZone:(struct _NSZone *)zone\
 {\
 static dispatch_once_t onceToken;\
@@ -202,9 +235,9 @@ _instance = [super allocWithZone:zone];\
 return _instance;\
 }\
 \
-+ (instancetype)shared##methodName{\
++ (instancetype)lgf_Once {\
 \
-return [[name alloc] init];\
+return [[className alloc] init];\
 }\
 - (instancetype)init{\
 static dispatch_once_t onceToken;\

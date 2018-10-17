@@ -42,38 +42,38 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
         [gifHeader setImages:images forState:MJRefreshStateWillRefresh];
         [gifHeader setImages:@[images.firstObject] forState:MJRefreshStatePulling];
         [gifHeader setImages:images forState:MJRefreshStateRefreshing];
-    }
-    gifHeader.lastUpdatedTimeLabel.hidden = YES;
-    gifHeader.stateLabel.hidden = YES;
-    gifHeader.lgf_height = gifSize.height;
-    gifHeader.gifView.translatesAutoresizingMaskIntoConstraints = NO;
-    [gifHeader.gifView addConstraint:[NSLayoutConstraint constraintWithItem:gifHeader.gifView
+        gifHeader.lastUpdatedTimeLabel.hidden = YES;
+        gifHeader.stateLabel.hidden = YES;
+        gifHeader.lgf_height = gifSize.height;
+        gifHeader.gifView.translatesAutoresizingMaskIntoConstraints = NO;
+        [gifHeader.gifView addConstraint:[NSLayoutConstraint constraintWithItem:gifHeader.gifView
                                                                       attribute:NSLayoutAttributeWidth
                                                                       relatedBy:NSLayoutRelationEqual
                                                                          toItem:nil
                                                                       attribute:NSLayoutAttributeNotAnAttribute
                                                                      multiplier:1.0
                                                                        constant:gifSize.width]];
-    [gifHeader.gifView addConstraint:[NSLayoutConstraint constraintWithItem:gifHeader.gifView
+        [gifHeader.gifView addConstraint:[NSLayoutConstraint constraintWithItem:gifHeader.gifView
                                                                       attribute:NSLayoutAttributeHeight
                                                                       relatedBy:NSLayoutRelationEqual
                                                                          toItem:nil
                                                                       attribute:NSLayoutAttributeNotAnAttribute
                                                                      multiplier:1.0
                                                                        constant:gifSize.height]];
-    [gifHeader addConstraint:[NSLayoutConstraint constraintWithItem:gifHeader.gifView
-                                                                      attribute:NSLayoutAttributeCenterX
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:gifHeader
-                                                                      attribute:NSLayoutAttributeCenterX multiplier:1.0
-                                                                       constant:0]];
-    [gifHeader addConstraint:[NSLayoutConstraint constraintWithItem:gifHeader.gifView
-                                                                      attribute:NSLayoutAttributeCenterY
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:gifHeader
-                                                                      attribute:NSLayoutAttributeCenterY
-                                                                     multiplier:1.0
-                                                                       constant:0]];
+        [gifHeader addConstraint:[NSLayoutConstraint constraintWithItem:gifHeader.gifView
+                                                              attribute:NSLayoutAttributeCenterX
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:gifHeader
+                                                              attribute:NSLayoutAttributeCenterX multiplier:1.0
+                                                               constant:0]];
+        [gifHeader addConstraint:[NSLayoutConstraint constraintWithItem:gifHeader.gifView
+                                                              attribute:NSLayoutAttributeCenterY
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:gifHeader
+                                                              attribute:NSLayoutAttributeCenterY
+                                                             multiplier:1.0
+                                                               constant:0]];
+    }
     self.mj_header = gifHeader;
 }
 

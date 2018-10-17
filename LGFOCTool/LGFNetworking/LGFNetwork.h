@@ -35,25 +35,25 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) AFURLSessionManager *lgf_DownLoadManager;
 
-lgf_AllocOnlyOnceForH(Network);
+lgf_AllocOnceForH;
 
 #pragma mark - 请求区方法
 
 - (NSURLSessionDataTask *)lgf_GET:(NSString *)URLString
-                            parameters:(id)parameters
-                               success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
-                               failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure;
+                       parameters:(id)parameters
+                          success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
+                          failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure;
 
 
 - (NSURLSessionDataTask *)lgf_POST:(NSString *)URLString
-                             parameters:(id)parameters
-                                success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
-                                failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure;
+                        parameters:(id)parameters
+                           success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
+                           failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure;
 
 // 下载文件
 - (NSURLSessionDownloadTask *)lgf_DownloadTaskWithRequest:(NSString *)URLString
-                                                    saveToPath:(NSString *)path
-                                             completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
+                                               saveToPath:(NSString *)path
+                                        completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

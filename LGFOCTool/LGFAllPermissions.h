@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, lgf_HealthKitPermissionType) {
 
 @interface LGFAllPermissions : NSObject
 
-lgf_AllocOnlyOnceForH(shard);
+lgf_AllocOnceForH;
 
 @property (strong, nonatomic) CLLocationManager *lgf_Manager;
 
@@ -94,7 +94,7 @@ lgf_AllocOnlyOnceForH(shard);
 
 #pragma mark - 进入系统设置权限页
 
-+ (void)lgf_GoSystemSettingPermission:(NSString *)urlString;
++ (void)lgf_GoSystemSettingPermission;
 
 
 @end

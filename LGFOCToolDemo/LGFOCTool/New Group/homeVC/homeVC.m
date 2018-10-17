@@ -37,25 +37,16 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    int r = [LGFAllMethod lgf_GetRandomNumber:1 to:3];
-    FLAnimatedImage *image;
-//    if (r == 1) {
-    NSString  *filePath = [[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource:@"2.gif" ofType:nil];
-       
-        NSData  *imageData = [NSData dataWithContentsOfFile:filePath];
-        image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538308168299&di=497b679e09cd7cd8529850084c83e852&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F902397dda144ad34610f98c4dba20cf430ad85c4.jpg"]]];
-//    } else if (r == 2) {
-//        image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538308651889&di=073fec045c1bdc9986b5b08a1cb72917&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fdc073b0ab8103f4fe90484dfb943f85ab1c449c223dd20-cAm8MR_fw658"]]];
-//    } else {
-//        image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538310256085&di=78c2d27a515d07386f612d22df10d4ce&imgtype=0&src=http%3A%2F%2Fs9.rr.itc.cn%2Fr%2FwapChange%2F20171_18_14%2Fa8xy4m470738150239.gif"]]];
-//
-//    }
-//    [self.backImageVIew sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538985723197&di=361ee131f5e488826c9b848c0533e80d&imgtype=0&src=http%3A%2F%2Fbpic.ooopic.com%2F16%2F50%2F33%2F16503372-76179f4602a9440fcfc97155a040e853.jpg"]];
-    self.backImageVIew.animatedImage = image;
+
+//    NSString *filePath = [[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource:@"2.gif" ofType:nil];
+//    NSData *imageData = [NSData dataWithContentsOfFile:filePath];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538308168299&di=497b679e09cd7cd8529850084c83e852&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F902397dda144ad34610f98c4dba20cf430ad85c4.jpg"]]];
+    self.backImageVIew.animatedImage = image;
     CGFloat totalHeight = 1040;
     [self.homeCV setContentInset:UIEdgeInsetsMake(totalHeight, 0, 0, 0)];
     [self.homeCV lgf_ScrollToTop];

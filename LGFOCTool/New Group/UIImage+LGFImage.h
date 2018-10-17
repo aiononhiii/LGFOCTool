@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSArray *)lgf_ImagesWithGif:(NSString *)gifNameInBoundle;
 
+#pragma mark - 获取图片类型字符串（png/gif...）
++ (NSString *)lgf_GetContentTypeWithImageData:(NSData *)data;
+
 #pragma mark - 截图指定view成图片
 /**
  @param view 要截图的 截图

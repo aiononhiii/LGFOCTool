@@ -11,7 +11,7 @@
 
 @interface LGFNetworkHeader : NSObject
 
-lgf_AllocOnlyOnceForH(Header);
+lgf_AllocOnceForH;
 
 /**
  appId

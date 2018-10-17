@@ -109,6 +109,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 创建一个index数组
 - (NSMutableArray *)lgf_CreatIndexArr:(NSInteger)count;
+
+#pragma mark - 删除数组中所有该元素
+- (void)lgf_RemoveAllThisObject:(id)object;
 @end
 
 NS_ASSUME_NONNULL_END

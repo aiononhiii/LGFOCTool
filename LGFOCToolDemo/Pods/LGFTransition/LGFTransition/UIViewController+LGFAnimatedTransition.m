@@ -82,15 +82,16 @@ NSString *const lgf_IsUseLGFAnimatedTransitionKey = @"lgf_IsUseLGFAnimatedTransi
 - (void)lgf_AddPopPan:(lgf_PanType)panType {
     // 添加左侧边缘拖动手势
     // Add the left UIScreenEdgePanGestureRecognizer
-    UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(lgf_GestureRecognizer:)];
+    UIScreenEdgePanGestureRecognizer *recognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(lgf_ScreenEdgePanGestureRecognizer:)];
+    recognizer.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:recognizer];
     self.lgf_PanType = panType;
 }
 
-- (void)lgf_GestureRecognizer:(UIPanGestureRecognizer *)recognizer {
+- (void)lgf_ScreenEdgePanGestureRecognizer:(UIScreenEdgePanGestureRecognizer *)recognizer {
     // 计算拖过视图的距离
     // Calculate the distance dragged over the view
-    CGFloat progress = self.lgf_PanType == lgf_PopPan ? [recognizer translationInView:self.view].x / self.view.bounds.size.width : [recognizer translationInView:self.view].y / self.view.bounds.size.height;
+    CGFloat progress = [recognizer translationInView:self.view].x / self.view.bounds.size.width;
     progress = MIN(1.0, MAX(0.0, progress));
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         // 创建并开始一个转场交互
@@ -109,9 +110,9 @@ NSString *const lgf_IsUseLGFAnimatedTransitionKey = @"lgf_IsUseLGFAnimatedTransi
         // Update transition progress
         [self.lgf_InteractiveTransition updateInteractiveTransition:progress];
     } else {
-        // 如果滑动范围大于 40％(Pop) / 20%(Dismiss)，则交互完成，否则交互取消
-        // If the sliding range is greater than 40％(Pop) / 20%(Dismiss), the interaction finish, else, the interaction cancel
-        if (progress > (self.lgf_PanType == lgf_PopPan ? 0.4 : 0.2)) {
+        // 如果滑动范围大于 40％ 则交互完成，否则交互取消
+        // If the sliding range is greater than 40％, the interaction finish, else, the interaction cancel
+        if (progress > 0.4) {
             [self.lgf_InteractiveTransition finishInteractiveTransition];
         } else {
             [self.lgf_InteractiveTransition cancelInteractiveTransition];

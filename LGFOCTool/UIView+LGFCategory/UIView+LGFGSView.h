@@ -56,5 +56,9 @@
 
 @property (assign , nonatomic) IBInspectable CGFloat lgf_GHeight;
 
+@property (assign , nonatomic) IBInspectable CGPoint lgf_GStartPoint;
+
+@property (assign , nonatomic) IBInspectable CGPoint lgf_GEndPoint;
+
 @end
 

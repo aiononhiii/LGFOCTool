@@ -29,10 +29,17 @@
 // 瀑布流Layout
 #import "LGFWaterLayout.h"
 // 从相册选取图片
-#import "LGFUploadImage.h"
+#import "LGFGetPhoto.h"
 // 显示当前 FPS 的Label
 #import "LGFFPSLabel.h"
-
+// 自定义提示框
+#import "LGFAlertView.h"
+// 自定义菜单
+#import "LGFPopMenu.h"
+// 自定义tabbar
+#import "LGFTabBarVC.h"
+// MJRefresh 封装
+#import "UIScrollView+LGFMJRefresh.h"
 //******************************** 分类 **********************************
 //------------------ NSString 分类集合 -----------------
 #import "NSString+LGFString.h"
@@ -85,7 +92,7 @@
 // UIViewController 生命周期Log输出
 #import "UIViewController+LGFVCLog.h"
 // UIViewController 顶部提示条
-#import "UIViewController+LGFTopBarMessage.h"
+#import "UIView+LGFTopBarMessage.h"
 //------------------ UIView 分类集合 --------------------
 #import "UIView+LGFExtension.h"
 // 获取当前view的ViewController

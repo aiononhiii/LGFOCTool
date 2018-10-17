@@ -59,7 +59,7 @@
 
 - (void)lgf_TimeFailBeginFrom:(NSInteger)timeCount {
     self.count = timeCount;
-    self.enabled = NO;
+    [self setUI];
     // 加1个计时器
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
 }
@@ -67,12 +67,7 @@
 - (void)timerFired {
     if (self.count != 1) {
         self.count -= 1;
-        self.enabled = NO;
-        self.lgf_Label.text = [NSString stringWithFormat:@"重新发送 %lds", (long)self.count];
-        if (self.lgf_IsGray) {
-            self.lgf_Label.textColor = _lgf_SelectTextColor;
-            self.backgroundColor = _lgf_SelectColor;
-        }
+        [self setUI];
     } else {
         self.enabled = YES;
         self.lgf_Label.text = self.titleLabel.text;
@@ -80,6 +75,15 @@
         self.backgroundColor = _lgf_DefaultColor;
         [self.timer invalidate];
         self.timer = nil;
+    }
+}
+
+- (void)setUI {
+    self.enabled = NO;
+    self.lgf_Label.text = [NSString stringWithFormat:@"重新发送(%lds)", (long)self.count];
+    if (self.lgf_IsGray) {
+        self.lgf_Label.textColor = _lgf_SelectTextColor;
+        self.backgroundColor = _lgf_SelectColor;
     }
 }
 

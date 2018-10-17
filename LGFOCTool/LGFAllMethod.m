@@ -8,10 +8,143 @@
 
 #import "LGFAllMethod.h"
 #import "LGFOCTool.h"
+#include <arpa/inet.h>
+#include <net/if.h>
+#include <ifaddrs.h>
+#include <net/if_dl.h>
 
 @implementation LGFAllMethod
 
-+ (void)lgf_ScrollHideForTopView:(UIView *)topView hideHeight:(CGFloat)hideHeight scrollView:(UIScrollView *)scrollView animateDuration:(NSTimeInterval)animateDuration {
+static CGFloat leftConstant;
+static CGFloat rightConstant;
+static CGFloat topConstant;
+static CGFloat heightConstant;
++ (void)lgf_ToLayoutScreenView:(UIView *)view left:(NSLayoutConstraint *)left right:(NSLayoutConstraint *)right top:(NSLayoutConstraint *)top height:(NSLayoutConstraint *)height {
+    if (CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity)) {
+        leftConstant = left.constant;
+        rightConstant = right.constant;
+        topConstant = top.constant;
+        heightConstant = height.constant;
+        height.constant = lgf_ScreenWidth;
+        left.constant = (lgf_ScreenWidth - lgf_ScreenHeight) / 2;
+        right.constant = -(lgf_ScreenHeight - lgf_ScreenWidth + (lgf_ScreenWidth - lgf_ScreenHeight) / 2);
+        UIView *topView = (UIView *)top.secondItem;
+        top.constant = (lgf_ScreenHeight - lgf_ScreenWidth) / 2 - topView.lgf_y - topView.lgf_height;
+        [UIView animateWithDuration:0.4 animations:^{
+            [view.superview layoutIfNeeded];
+            view.transform = CGAffineTransformRotate(view.transform, M_PI_2);
+        }];
+    }
+}
+
++ (void)lgf_ToLayoutUnScreenView:(UIView *)view left:(NSLayoutConstraint *)left right:(NSLayoutConstraint *)right top:(NSLayoutConstraint *)top height:(NSLayoutConstraint *)height {
+    if (!CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity)) {
+        left.constant = leftConstant;
+        right.constant = rightConstant;
+        top.constant = topConstant;
+        height.constant = heightConstant;
+        [UIView animateWithDuration:0.4 animations:^{
+            view.transform = CGAffineTransformIdentity;
+            [view.superview layoutIfNeeded];
+        } completion:^(BOOL finished) {
+        }];
+    }
+}
+
++ (void)lgf_ToTransformScreenView:(UIView *)view {
+    if (CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity)) {
+        [UIView animateWithDuration:0.5 animations:^{
+            view.transform = CGAffineTransformTranslate(view.transform, 0, (lgf_ScreenHeight - lgf_ScreenWidth) / 2 +(view.lgf_width - 200) / 2 - view.lgf_y);
+            view.transform = CGAffineTransformScale(view.transform, view.lgf_width / 200, lgf_ScreenHeight / lgf_ScreenWidth);
+            view.transform = CGAffineTransformRotate(view.transform, M_PI_2);
+        }];
+    }
+}
+
++ (void)lgf_ToTransformUnScreenView:(UIView *)view {
+    if (!CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity)) {
+        [UIView animateWithDuration:0.5 animations:^{
+            view.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+        }];
+    }
+}
+
++ (UIImage *)lgf_GetCodeImageWithUrl:(NSString *)urlString imgWidth:(float)imgWidth {
+    //创建过滤器
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    //过滤器恢复默认
+    [filter setDefaults];
+    //给过滤器添加数据
+    NSString *string = urlString;
+    //将NSString格式转化成NSData格式
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    [filter setValue:data forKeyPath:@"inputMessage"];
+    //获取二维码过滤器生成的二维码
+    CIImage *image = [filter outputImage];
+    //此步骤将二维码生成的图片清晰化
+    CGRect extent = CGRectIntegral(image.extent);
+    CGFloat scale = MIN(imgWidth/CGRectGetWidth(extent), imgWidth/CGRectGetHeight(extent));
+    // 1.创建bitmap;
+    size_t width = CGRectGetWidth(extent) * scale;
+    size_t height = CGRectGetHeight(extent) * scale;
+    CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();
+    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, cs, (CGBitmapInfo)kCGImageAlphaNone);
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef bitmapImage = [context createCGImage:image fromRect:extent];
+    CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);
+    CGContextScaleCTM(bitmapRef, scale, scale);
+    CGContextDrawImage(bitmapRef, extent, bitmapImage);
+    // 2.保存bitmap到图片
+    CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
+    CGContextRelease(bitmapRef);
+    CGImageRelease(bitmapImage);
+    //将获取到的二维码添加到imageview上
+    return [UIImage imageWithCGImage:scaledImage];
+}
+
++ (int)lgf_GetRandomNumber:(int)from to:(int)to {
+    return (int)(from + (arc4random() % (to - from + 1)));
+}
+
++ (BOOL)lgf_IsGoodNetSpeed {
+    CGFloat bity = [LGFAllMethod lgf_GetInterfaceBytes];
+    CGFloat speed = bity/1000;
+    if (speed < 100) {
+        NSString *string = @"您当前网速低于【100kb/s】,暂时不能开启直播；请先设置好您的网络要求";
+        [lgf_Application.keyWindow lgf_ShowMessage:string animated:YES completion:nil];
+        return NO;
+    }
+    return YES;
+}
+
++ (long long)lgf_GetInterfaceBytes {
+    struct ifaddrs *ifa_list = 0, *ifa;
+    if (getifaddrs(&ifa_list) == -1) {
+        return 0;
+    }
+    uint32_t iBytes = 0;
+    uint32_t oBytes = 0;
+    for (ifa = ifa_list; ifa; ifa = ifa->ifa_next) {
+        if (AF_LINK != ifa->ifa_addr->sa_family)
+            continue;
+        if (!(ifa->ifa_flags & IFF_UP) && !(ifa->ifa_flags & IFF_RUNNING))
+            continue;
+        if (ifa->ifa_data == 0)
+            continue;
+        /* Not a loopback device. */
+        if (strncmp(ifa->ifa_name, "lo", 2)) {
+            struct if_data *if_data = (struct if_data *)ifa->ifa_data;
+            iBytes += if_data->ifi_ibytes;
+            oBytes += if_data->ifi_obytes;
+        }
+    }
+    freeifaddrs(ifa_list);
+    NSLog(@"\n[getInterfaceBytes-Total]%d,%d",iBytes,oBytes);
+    return iBytes + oBytes;
+}
+
++ (void)lgf_ScrollHideForTopView:(UIView *)topView newHeight:(CGFloat)newHeight hideHeight:(CGFloat)hideHeight scrollView:(UIScrollView *)scrollView animateDuration:(NSTimeInterval)animateDuration {
     CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
     [UIView animateWithDuration:animateDuration animations:^{
         if (translation.y > 0) {
@@ -19,7 +152,7 @@
                 topView.transform = CGAffineTransformIdentity;
             }
         } else if (translation.y < 0) {
-            if (scrollView.contentOffset.y > hideHeight) {
+            if ((scrollView.contentOffset.y + newHeight) > hideHeight) {
                 if (topView.transform.ty == 0) {
                     topView.transform = CGAffineTransformMakeTranslation(0, -hideHeight);
                 }
@@ -32,11 +165,37 @@
     }];
 }
 
++ (void)SKU:(NSMutableArray *)skuArr result:(NSMutableArray *)result data:(NSArray *)data curr:(int)currIndex getSKUArray:(void(^)(NSMutableArray *array))getSKUArray {
+    if (currIndex == data.count) {
+        [skuArr addObject:[result mutableCopy]];
+        __block NSInteger all = 1;
+        [data enumerateObjectsUsingBlock:^(NSArray *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            all = all * (obj.count == 0 ? 1 : obj.count);
+        }];
+        if (skuArr.count == all) {
+            getSKUArray(skuArr);
+            return;
+        }
+        [result removeLastObject];
+    } else {
+        NSArray* array = [data objectAtIndex:currIndex];
+        for (int i = 0; i < array.count; ++i) {
+            [result addObject:[array objectAtIndex:i][@"name"]];
+            [self SKU:skuArr result:result data:data curr:currIndex+1 getSKUArray:getSKUArray];
+            if ((i+1 == array.count) && (currIndex-1>=0)) {
+                [result removeObjectAtIndex:currIndex-1];
+            }
+        }
+    }
+}
+
 static UICollectionViewCell *lgf_MoveCell;
 
 + (void)lgf_SortCellWithGesture:(UILongPressGestureRecognizer *)sender collectionView:(UICollectionView *)collectionView fixedHorizontal:(BOOL)fixedHorizontal fixedVertical:(BOOL)fixedVertical {
     CGPoint point = [sender locationInView:collectionView];
     NSIndexPath *indexPath;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
     switch (sender.state) {
         case UIGestureRecognizerStateBegan:
             indexPath = [collectionView indexPathForItemAtPoint:point];
@@ -66,6 +225,7 @@ static UICollectionViewCell *lgf_MoveCell;
             [collectionView cancelInteractiveMovement];
             break;
     }
+    #pragma clang diagnostic pop
 }
 
 #pragma mark - 根据PNG图片url获取PNG图片尺寸

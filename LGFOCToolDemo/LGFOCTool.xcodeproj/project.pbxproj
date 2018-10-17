@@ -121,7 +121,6 @@
 		18AD21C32160953B0031F719 /* homeVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD21C22160953B0031F719 /* homeVCCell.m */; };
 		18EDD630216EEE590088A90B /* LGFPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD62F216EEE590088A90B /* LGFPlayerView.xib */; };
 		18EDD633216EEE640088A90B /* LGFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD632216EEE640088A90B /* LGFPlayerView.m */; };
-		18EDD63A216F44420088A90B /* videoCellCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD639216F44420088A90B /* videoCellCollectionViewCell.m */; };
 		18EDD64E217486320088A90B /* lgf_unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD64C217486310088A90B /* lgf_unlock.png */; };
 		18EDD64F217486320088A90B /* lgf_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD64D217486310088A90B /* lgf_lock.png */; };
 		18EDD67A2175C1000088A90B /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD6792175C0FF0088A90B /* 1.gif */; };
@@ -366,8 +365,6 @@
 		18EDD62F216EEE590088A90B /* LGFPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LGFPlayerView.xib; sourceTree = "<group>"; };
 		18EDD631216EEE640088A90B /* LGFPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPlayerView.h; sourceTree = "<group>"; };
 		18EDD632216EEE640088A90B /* LGFPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPlayerView.m; sourceTree = "<group>"; };
-		18EDD638216F44420088A90B /* videoCellCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoCellCollectionViewCell.h; sourceTree = "<group>"; };
-		18EDD639216F44420088A90B /* videoCellCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoCellCollectionViewCell.m; sourceTree = "<group>"; };
 		18EDD64C217486310088A90B /* lgf_unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lgf_unlock.png; sourceTree = "<group>"; };
 		18EDD64D217486310088A90B /* lgf_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lgf_lock.png; sourceTree = "<group>"; };
 		18EDD6792175C0FF0088A90B /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
@@ -1040,7 +1037,6 @@
 			isa = PBXGroup;
 			children = (
 				18EDD6792175C0FF0088A90B /* 1.gif */,
-				18EDD636216F44210088A90B /* videoCV */,
 				182979C420D39545005DB4B7 /* homeVC.h */,
 				182979C520D39545005DB4B7 /* homeVC.m */,
 				18AD21C12160953B0031F719 /* homeVCCell.h */,
@@ -1059,23 +1055,6 @@
 				18EDD62F216EEE590088A90B /* LGFPlayerView.xib */,
 			);
 			path = LGFPlayerView;
-			sourceTree = "<group>";
-		};
-		18EDD636216F44210088A90B /* videoCV */ = {
-			isa = PBXGroup;
-			children = (
-				18EDD637216F442F0088A90B /* videoCell */,
-			);
-			path = videoCV;
-			sourceTree = "<group>";
-		};
-		18EDD637216F442F0088A90B /* videoCell */ = {
-			isa = PBXGroup;
-			children = (
-				18EDD638216F44420088A90B /* videoCellCollectionViewCell.h */,
-				18EDD639216F44420088A90B /* videoCellCollectionViewCell.m */,
-			);
-			path = videoCell;
 			sourceTree = "<group>";
 		};
 		826795C97548B8A5183DE73F /* Pods */ = {
@@ -1360,7 +1339,6 @@
 				183DA8D720CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m in Sources */,
 				184235AA209982780006483C /* UITextField+LGFTextField.m in Sources */,
 				184235AD209994D70006483C /* NSString+LGFHash.m in Sources */,
-				18EDD63A216F44420088A90B /* videoCellCollectionViewCell.m in Sources */,
 				183DA8F920CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m in Sources */,
 				183DA8BD20CA22B500E09819 /* NSData+LGFInflateDeflate.m in Sources */,
 				1829CA91209A9E0100573974 /* UIImage+LGFColorImage.m in Sources */,

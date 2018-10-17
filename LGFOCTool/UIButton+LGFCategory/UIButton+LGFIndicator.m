@@ -11,6 +11,7 @@
 
 static NSString *const lgf_IndicatorViewKey = @"lgf_IndicatorViewKey";
 static NSString *const lgf_ButtonTextObjectKey = @"lgf_ButtonTextObjectKey";
+static NSString *const lgf_ButtonImageObjectKey = @"lgf_ButtonImageObjectKey";
 
 @implementation UIButton (LGFIndicator)
 
@@ -27,25 +28,21 @@ static NSString *const lgf_ButtonTextObjectKey = @"lgf_ButtonTextObjectKey";
 }
 
 #pragma mark - 按钮隐藏菊花
-
 - (void)lgf_HideIndicator {
-    NSString *currentButtonText = (NSString *)objc_getAssociatedObject(self, &lgf_ButtonTextObjectKey);
     UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)objc_getAssociatedObject(self, &lgf_IndicatorViewKey);
     [indicator removeFromSuperview];
-    [self setTitle:currentButtonText forState:UIControlStateNormal];
-    self.enabled = YES;
+    self.titleLabel.alpha = 1.0;
+    self.userInteractionEnabled = YES;
 }
 
 - (void)lgf_ShowIndicator:(UIActivityIndicatorViewStyle)style {
+    self.userInteractionEnabled = NO;
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
-    indicator.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    indicator.frame = self.bounds;
     [indicator startAnimating];
-    NSString *currentButtonText = self.titleLabel.text;
-    objc_setAssociatedObject(self, &lgf_ButtonTextObjectKey, currentButtonText, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(self, &lgf_IndicatorViewKey, indicator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self setTitle:@"" forState:UIControlStateNormal];
-    self.enabled = NO;
     [self addSubview:indicator];
+    objc_setAssociatedObject(self, &lgf_IndicatorViewKey, indicator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    self.titleLabel.alpha = 0.0;
 }
 
 @end

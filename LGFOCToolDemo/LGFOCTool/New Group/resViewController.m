@@ -9,9 +9,8 @@
 #import "resViewController.h"
 #import "shareView.h"
 #import "shareImageVC.h"
-#import "ZSPlayerView.h"
-#import "LGFPlayerView.h"
-#import "videoCellCollectionViewCell.h"
+//#import "ZSPlayerView.h"
+//#import "LGFPlayerView.h"
 
 @interface resViewController ()
 {
@@ -71,7 +70,7 @@ lgf_SBViewControllerForM(resViewController, @"Main", @"FirstViewController");
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.item == 0) {
-        videoCellCollectionViewCell *cell = lgf_CVGetCell(collectionView, videoCellCollectionViewCell, indexPath);
+        UICollectionViewCell *cell = lgf_CVGetCell(collectionView, UICollectionViewCell, indexPath);
 //        [cell addSubview:self.videoView];
 //        [self.videoView playWithUrl:@"http://221.228.226.5/15/t/s/h/v/tshvhsxwkbjlipfohhamjkraxuknsc/sh.yinyuetai.com/88DC015DB03C829C2126EEBBB5A887CB.mp4" SV:cell];
 //        [self.videoView showToolView];
@@ -87,7 +86,7 @@ lgf_SBViewControllerForM(resViewController, @"Main", @"FirstViewController");
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSInteger index = scrollView.contentOffset.x / lgf_ScreenWidth;
+//    NSInteger index = scrollView.contentOffset.x / lgf_ScreenWidth;
 //    if (index == 0) {
 //        [self.videoView.ijkPlayer play];
 //    } else {

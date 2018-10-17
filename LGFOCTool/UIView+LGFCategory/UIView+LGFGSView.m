@@ -23,6 +23,8 @@ static const char *lgf_GFromColorKey = "lgf_GFromColorKey";
 static const char *lgf_GToColorKey = "lgf_GToColorKey";
 static const char *lgf_GWidthKey = "lgf_GWidthKey";
 static const char *lgf_GHeightKey = "lgf_GHeightKey";
+static const char *lgf_GStartPointKey = "lgf_GStartPointKey";
+static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 
 @implementation UIView (LGFGSView)
 
@@ -39,6 +41,8 @@ static const char *lgf_GHeightKey = "lgf_GHeightKey";
 @dynamic lgf_GToColor;
 @dynamic lgf_GWidth;
 @dynamic lgf_GHeight;
+@dynamic lgf_GStartPoint;
+@dynamic lgf_GEndPoint;
 
 #pragma mark - 控件唯一名字(通常用于确定某一个特殊的view)
 
@@ -148,6 +152,7 @@ static const char *lgf_GHeightKey = "lgf_GHeightKey";
 
 - (void)setLgf_GFromColor:(UIColor *)lgf_GFromColor {
     objc_setAssociatedObject(self, &lgf_GFromColorKey, lgf_GFromColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self goGradient];
 }
 
 - (UIColor *)lgf_GToColor {
@@ -156,6 +161,7 @@ static const char *lgf_GHeightKey = "lgf_GHeightKey";
 
 - (void)setLgf_GToColor:(UIColor *)lgf_GToColor {
     objc_setAssociatedObject(self, &lgf_GToColorKey, lgf_GToColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self goGradient];
 }
 
 - (CGFloat)lgf_GWidth {
@@ -164,16 +170,7 @@ static const char *lgf_GHeightKey = "lgf_GHeightKey";
 
 - (void)setLgf_GWidth:(CGFloat)lgf_GWidth {
     objc_setAssociatedObject(self, &lgf_GWidthKey, [NSNumber numberWithFloat:lgf_GWidth], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    if (lgf_GWidth && lgf_GWidth > 0) {
-        CGFloat gwidth;
-        if (self.lgf_GWidth == 888) {
-            [self.superview layoutIfNeeded];
-            gwidth = self.lgf_width;
-        } else {
-            gwidth = lgf_GWidth;
-        }
-        self.backgroundColor = [UIColor lgf_GradientFromColor:self.lgf_GFromColor toColor:self.lgf_GToColor width:gwidth];
-    }
+    [self goGradient];
 }
 
 - (CGFloat)lgf_GHeight {
@@ -182,16 +179,50 @@ static const char *lgf_GHeightKey = "lgf_GHeightKey";
 
 - (void)setLgf_GHeight:(CGFloat)lgf_GHeight {
     objc_setAssociatedObject(self, &lgf_GHeightKey, [NSNumber numberWithFloat:lgf_GHeight], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    if (lgf_GHeight && lgf_GHeight > 0) {
-        CGFloat gheight;
-        if (self.lgf_GHeight == 888) {
-            [self.superview layoutIfNeeded];
-            gheight = self.lgf_height;
-        } else {
-            gheight = lgf_GHeight;
-        }
-        self.backgroundColor = [UIColor lgf_GradientFromColor:self.lgf_GFromColor toColor:self.lgf_GToColor height:gheight];
+    [self goGradient];
+}
+
+- (void)goGradient {
+    if (self.lgf_GWidth && self.lgf_GToColor && self.lgf_GFromColor) {
+        self.backgroundColor = [UIColor lgf_GradientFromColor:self.lgf_GFromColor toColor:self.lgf_GToColor width:self.lgf_GWidth == 888 ? self.lgf_width : self.lgf_GWidth];
+    } else if (self.lgf_GHeight && self.lgf_GToColor && self.lgf_GFromColor) {
+        self.backgroundColor = [UIColor lgf_GradientFromColor:self.lgf_GFromColor toColor:self.lgf_GToColor height:self.lgf_GHeight == 888 ? self.lgf_height : self.lgf_GHeight];
     }
+}
+
+- (CGPoint)lgf_GStartPoint {
+    return [objc_getAssociatedObject(self, &lgf_GStartPointKey) CGPointValue];
+}
+
+- (void)setLgf_GStartPoint:(CGPoint)lgf_GStartPoint {
+    objc_setAssociatedObject(self, &lgf_GStartPointKey, [NSValue valueWithCGPoint:lgf_GStartPoint], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self changeAlpha];
+}
+
+- (CGPoint)lgf_GEndPoint {
+    return [objc_getAssociatedObject(self, &lgf_GEndPointKey) CGPointValue];
+}
+
+- (void)setLgf_GEndPoint:(CGPoint)lgf_GEndPoint {
+    objc_setAssociatedObject(self, &lgf_GEndPointKey, [NSValue valueWithCGPoint:lgf_GEndPoint], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self changeAlpha];
+}
+
+- (void)changeAlpha{
+    if ((self.lgf_GStartPoint.x && self.lgf_GEndPoint.x) || (self.lgf_GStartPoint.y && self.lgf_GEndPoint.y)) {
+        CAGradientLayer *gradLayer = [CAGradientLayer layer];
+        NSArray *colors = [NSArray arrayWithObjects:
+                           (id)[[UIColor colorWithWhite:0 alpha:0] CGColor],
+                           (id)[[UIColor colorWithWhite:0 alpha:0.5] CGColor],
+                           (id)[[UIColor colorWithWhite:0 alpha:1] CGColor],
+                           nil];
+        [gradLayer setColors:colors];
+        [gradLayer setStartPoint:self.lgf_GStartPoint];
+        [gradLayer setEndPoint:self.lgf_GEndPoint];
+        [gradLayer setFrame:self.bounds];
+        [self.layer setMask:gradLayer];
+    }
+    
 }
 
 @end

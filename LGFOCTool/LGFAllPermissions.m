@@ -10,7 +10,7 @@
 
 @implementation LGFAllPermissions
 
-lgf_AllocOnlyOnceForM(LGFAllPermissions, shard);
+lgf_AllocOnceForM(LGFAllPermissions);
 
 #pragma mark - 相机权限
 
@@ -112,9 +112,9 @@ lgf_AllocOnlyOnceForM(LGFAllPermissions, shard);
         lgf_HaveBlock(block, YES);
     } else {
         if (LocationPermissionType == lgf_Always) {
-            [[LGFAllPermissions sharedshard].lgf_Manager requestAlwaysAuthorization];//一直获取定位信息
+            [[LGFAllPermissions lgf_Once].lgf_Manager requestAlwaysAuthorization];//一直获取定位信息
         } else {
-            [[LGFAllPermissions sharedshard].lgf_Manager requestWhenInUseAuthorization];//使用的时候获取定位信息
+            [[LGFAllPermissions lgf_Once].lgf_Manager requestWhenInUseAuthorization];//使用的时候获取定位信息
         }
         lgf_HaveBlock(block, NO);
     }
@@ -242,53 +242,10 @@ lgf_AllocOnlyOnceForM(LGFAllPermissions, shard);
 }
 
 #pragma mark - 进入系统设置权限页
-/**
- 关于本机          App-prefs:root=General&path=About
- 辅助功能          App-prefs:root=General&path=ACCESSIBILITY
- 飞行模式          App-prefs:root=AIRPLANE_MODE
- 自动锁定          App-prefs:root=General&path=AUTOLOCK
- 蓝牙             App-prefs:root=Bluetooth
- 日期与时间        App-prefs:root=General&path=DATE_AND_TIME
- FaceTime        App-prefs:root=FACETIME
- 通用             App-prefs:root=General
- 键盘             App-prefs:root=General&path=Keyboard
- iCloud          App-prefs:root=CASTLE
- iCloud存储空间    App-prefs:root=CASTLE&path=STORAGE_AND_BACKUP
- 语言与地区        App-prefs:root=General&path=INTERNATIONAL
- 定位服务          App- prefs:root=LOCATION_SERVICES
- 邮件、通讯录、日历  App-prefs:root=ACCOUNT_SETTINGS
- 音乐             App-prefs:root=MUSIC
- 音乐             App-prefs:root=MUSIC&path=EQ
- 音乐             App-prefs:root=MUSIC&path=VolumeLimit
- 备忘录           App-prefs:root=NOTES
- 通知             App-prefs:root=NOTIFICATIONS_ID
- 电话             App-prefs:root=Phone
- 照片与相机        App-prefs:root=Photos
- 描述文件          App-prefs:root=General&path=ManagedConfigurationList
- 还原             App-prefs:root=General&path=Reset
- 电话铃声          App-prefs:root=Sounds&path=Ringtone
- Safari          App-prefs:root=Safari
- 声音             App-prefs:root=Sounds
- 软件更新          App-prefs:root=General&path=SOFTWARE_UPDATE_LINK
- App Store       App-prefs:root=STORE
- Twitter         App-prefs:root=TWITTER
- 视频             App-prefs:root=VIDEO
- VPN             App-prefs:root=General&path=VPN
- 墙纸             App-prefs:root=Wallpaper
- WiFi            App-prefs:root=WIFI
- */
-+ (void)lgf_GoSystemSettingPermission:(NSString *)urlString {
-    UIApplication *application = [UIApplication sharedApplication];
++ (void)lgf_GoSystemSettingPermission {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
-            NSURL *URL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
-            [application openURL:URL options:@{} completionHandler:^(BOOL success) {}];
-#pragma clang diagnostic pop
-        }else{
-            NSURL *URL = [NSURL URLWithString:urlString];
-            [application openURL:URL];
+        if (lgf_IOSSystemVersion(10)) {
+            [lgf_Application openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
         }
     });
 }
