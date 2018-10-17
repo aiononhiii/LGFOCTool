@@ -14,12 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
   - LGFPageTitle (1.1.4)
-  - LGFTransition (0.0.9)
+  - LGFTransition (0.1.2)
   - MJRefresh (3.1.15.3)
-  - SDWebImage (4.4.0):
-    - SDWebImage/Core (= 4.4.0)
-  - SDWebImage/Core (4.4.0)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - YYAsyncLayer (1.0)
   - YYCache (1.0.4)
   - YYCategories (1.0.4):
@@ -37,10 +38,11 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FLAnimatedImage (~> 1.0)
   - LGFPageTitle
   - LGFTransition
   - MJRefresh
-  - SDWebImage
+  - SDWebImage (= 4.4.1)
   - YYAsyncLayer
   - YYCategories
   - YYKeyboardManager
@@ -51,6 +53,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - FLAnimatedImage
     - LGFPageTitle
     - LGFTransition
     - MJRefresh
@@ -66,10 +69,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   LGFPageTitle: c2843c6c8b2a003ec495bfc4e7a49ac352d5de45
-  LGFTransition: 4ae14d52e5787f3a514c8701ffe7cfdd524b95da
+  LGFTransition: c147906887cc5ef9661294aa681d369e5becb923
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  SDWebImage: b534502786e43dde36dfcaee89356fe6df30e203
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   YYAsyncLayer: df6b01ebc695c5f6b4c15dd5c23fa3e081eb25c0
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
@@ -79,6 +83,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 040bffdaeb9732bccf7a1d2fa139e86942239802
+PODFILE CHECKSUM: 44d276920b6379b97813d7197981988f3fd292b6
 
 COCOAPODS: 1.5.3

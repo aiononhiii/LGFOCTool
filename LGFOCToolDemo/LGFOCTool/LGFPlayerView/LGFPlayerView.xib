@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="LGFPlayerView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vv-z2-htp">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ml-EU-EVg">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xty-vK-qzP">
+                                    <rect key="frame" x="354.5" y="165" width="15" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" id="p0Q-zf-ppy"/>
+                                        <constraint firstAttribute="width" constant="15" id="scF-ad-fL5"/>
+                                    </constraints>
+                                    <state key="normal" image="quiteScreen"/>
+                                    <connections>
+                                        <action selector="fullScreen:" destination="iN0-l3-epB" eventType="touchUpInside" id="4kE-Co-Rdz"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iac-wi-Q1l">
+                                    <rect key="frame" x="3" y="186" width="20.5" height="8"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="8" id="xCe-hc-wMA"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="8"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfN-UJ-LJh">
+                                    <rect key="frame" x="351.5" y="186" width="20.5" height="8"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="8" id="rmT-cl-Dvq"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="8"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jT9-dT-gaC">
+                                    <rect key="frame" x="162" y="75" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="MYl-9H-1k3"/>
+                                        <constraint firstAttribute="width" constant="50" id="TXY-xK-Hxm"/>
+                                    </constraints>
+                                    <state key="normal" image="pause"/>
+                                    <connections>
+                                        <action selector="play:" destination="iN0-l3-epB" eventType="touchUpInside" id="x1l-pb-8os"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="xfN-UJ-LJh" secondAttribute="trailing" constant="3" id="A94-7E-ZDN"/>
+                                <constraint firstItem="jT9-dT-gaC" firstAttribute="centerX" secondItem="7ml-EU-EVg" secondAttribute="centerX" id="JtS-Nb-IyY"/>
+                                <constraint firstAttribute="bottom" secondItem="iac-wi-Q1l" secondAttribute="bottom" constant="6" id="Qfu-hZ-l7r"/>
+                                <constraint firstItem="iac-wi-Q1l" firstAttribute="leading" secondItem="7ml-EU-EVg" secondAttribute="leading" constant="3" id="QoN-n0-mpE"/>
+                                <constraint firstAttribute="bottom" secondItem="xfN-UJ-LJh" secondAttribute="bottom" constant="6" id="Z0v-5f-zjM"/>
+                                <constraint firstItem="jT9-dT-gaC" firstAttribute="centerY" secondItem="7ml-EU-EVg" secondAttribute="centerY" id="ZXF-HH-mpk"/>
+                                <constraint firstAttribute="bottom" secondItem="xty-vK-qzP" secondAttribute="bottom" constant="20" id="b7l-K6-wpE"/>
+                                <constraint firstItem="xfN-UJ-LJh" firstAttribute="centerX" secondItem="xty-vK-qzP" secondAttribute="centerX" id="n8O-Fx-A6X"/>
+                            </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="Fxc-pB-dex" appends="YES" id="6h4-GQ-fhF"/>
+                            </connections>
+                        </view>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-qT-cf5">
+                            <rect key="frame" x="0.0" y="198" width="375" height="2"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="TYe-0P-uyr"/>
+                            </constraints>
+                            <color key="progressTintColor" red="1" green="0.40663632049999998" blue="0.36419300719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="trackTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </progressView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfS-Nl-3VM">
+                            <rect key="frame" x="15" y="90" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="W1x-wS-Nwe"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="flc-2H-KkR"/>
+                                <constraint firstAttribute="height" constant="20" id="itR-ra-ODt"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="jla-pe-QG9"/>
+                            </constraints>
+                            <state key="normal" image="lgf_unlock.png"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="lgf_ViewName" value="锁定"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="lock:" destination="iN0-l3-epB" eventType="touchUpInside" id="XTU-CR-p8Q"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="7ml-EU-EVg" firstAttribute="top" secondItem="6Vv-z2-htp" secondAttribute="top" id="1ms-Zw-RpG"/>
+                        <constraint firstItem="EfS-Nl-3VM" firstAttribute="centerY" secondItem="6Vv-z2-htp" secondAttribute="centerY" id="9Up-h8-VqK"/>
+                        <constraint firstAttribute="trailing" secondItem="7ml-EU-EVg" secondAttribute="trailing" id="9vi-do-mBb"/>
+                        <constraint firstItem="6gc-qT-cf5" firstAttribute="leading" secondItem="6Vv-z2-htp" secondAttribute="leading" id="IGg-tc-zh4"/>
+                        <constraint firstItem="7ml-EU-EVg" firstAttribute="leading" secondItem="6Vv-z2-htp" secondAttribute="leading" id="IXq-i3-AF7"/>
+                        <constraint firstAttribute="bottom" secondItem="7ml-EU-EVg" secondAttribute="bottom" id="cWl-a5-1Bp"/>
+                        <constraint firstAttribute="trailing" secondItem="6gc-qT-cf5" secondAttribute="trailing" id="cfA-0L-Kyo"/>
+                        <constraint firstAttribute="bottom" secondItem="6gc-qT-cf5" secondAttribute="bottom" id="hne-34-gV4"/>
+                        <constraint firstItem="EfS-Nl-3VM" firstAttribute="leading" secondItem="6Vv-z2-htp" secondAttribute="leading" constant="15" id="icl-Vb-Gfz"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="6Vv-z2-htp" secondAttribute="trailing" id="5ow-uy-gNJ"/>
+                <constraint firstItem="6Vv-z2-htp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Uur-pH-kSI"/>
+                <constraint firstItem="6Vv-z2-htp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Z7G-Lr-Ooh"/>
+                <constraint firstAttribute="bottom" secondItem="6Vv-z2-htp" secondAttribute="bottom" id="smt-OG-Ya8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="fullScreenBtn" destination="xty-vK-qzP" id="W9X-KC-ZXV"/>
+                <outlet property="lock" destination="EfS-Nl-3VM" id="pDy-oj-Uqm"/>
+                <outlet property="playBtn" destination="jT9-dT-gaC" id="gjI-3k-ZxT"/>
+                <outlet property="playEndTime" destination="xfN-UJ-LJh" id="bQT-It-bB3"/>
+                <outlet property="playProgress" destination="6gc-qT-cf5" id="r0i-xR-NMK"/>
+                <outlet property="playStartTime" destination="iac-wi-Q1l" id="mTW-b7-9zf"/>
+                <outlet property="playerToolBackView" destination="6Vv-z2-htp" id="sxN-mk-fSb"/>
+                <outlet property="playerToolView" destination="7ml-EU-EVg" id="FAP-nT-94b"/>
+                <outletCollection property="gestureRecognizers" destination="uCu-Wr-oKB" appends="YES" id="sFy-dw-SLb"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="151"/>
+        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="Fxc-pB-dex">
+            <connections>
+                <action selector="videoPan:" destination="iN0-l3-epB" id="Bu5-ro-WA6"/>
+            </connections>
+        </panGestureRecognizer>
+        <tapGestureRecognizer id="uCu-Wr-oKB">
+            <connections>
+                <action selector="selectToolView:" destination="iN0-l3-epB" id="ggh-NR-efW"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="lgf_unlock.png" width="32" height="32"/>
+        <image name="pause" width="32" height="32"/>
+        <image name="quiteScreen" width="32" height="32"/>
+    </resources>
+</document>

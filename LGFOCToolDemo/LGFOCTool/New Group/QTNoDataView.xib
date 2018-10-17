@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="S8V-4e-rrN" customClass="QTNoDataView">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是有底线的" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEh-AM-6Gm">
+                            <rect key="frame" x="109.5" y="14" width="80" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="17" id="Oo0-zR-qdG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="13"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7s-Lh-SP7">
+                            <rect key="frame" x="16" y="22" width="78.5" height="1"/>
+                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="iWo-zM-hRs"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FM3-Sl-vwZ">
+                            <rect key="frame" x="204.5" y="22" width="79.5" height="1"/>
+                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="En2-v3-CFA"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="o7s-Lh-SP7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="7ht-9Z-KsJ"/>
+                        <constraint firstAttribute="trailing" secondItem="FM3-Sl-vwZ" secondAttribute="trailing" constant="16" id="B0Y-Yo-HEO"/>
+                        <constraint firstItem="mEh-AM-6Gm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ftc-LQ-3Na"/>
+                        <constraint firstItem="o7s-Lh-SP7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Fts-Rz-fqd"/>
+                        <constraint firstAttribute="height" constant="44" id="LSt-Ud-dLk"/>
+                        <constraint firstItem="mEh-AM-6Gm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="jLe-2e-aY0"/>
+                        <constraint firstItem="FM3-Sl-vwZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nL7-6u-IqM"/>
+                        <constraint firstItem="FM3-Sl-vwZ" firstAttribute="leading" secondItem="mEh-AM-6Gm" secondAttribute="trailing" constant="15" id="rhC-94-ytB"/>
+                        <constraint firstItem="mEh-AM-6Gm" firstAttribute="leading" secondItem="o7s-Lh-SP7" secondAttribute="trailing" constant="15" id="yQN-6q-XYa"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="S8V-4e-rrN" secondAttribute="leading" id="5vK-IF-GuD"/>
+                <constraint firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="NRK-GD-V7b"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="S8V-4e-rrN" secondAttribute="top" id="sqM-Ez-ho1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-4" y="161"/>
+        </view>
+    </objects>
+</document>
