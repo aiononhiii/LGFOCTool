@@ -7,8 +7,6 @@
 //
 
 #import "LGFTabBarVC.h"
-#import "TwoViewController.h"
-#import "ViewController.h"
 
 @interface LGFTabBarVC () <UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lgf_TabBarBottom;
