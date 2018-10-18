@@ -20,4 +20,6 @@ s.dependency 'AFNetworking'
 s.dependency 'MJRefresh'
 s.dependency 'SDWebImage', '4.4.1'
 s.dependency 'FLAnimatedImage', '~> 1.0'
+
+s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
 end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LGFOCTool.h"
+#import "MJRefresh.h"
 
 #undef LGFMJHeader
 #define LGFMJHeader(Target, SEL) [MJRefreshNormalHeader headerWithRefreshingTarget:Target refreshingAction:SEL]
