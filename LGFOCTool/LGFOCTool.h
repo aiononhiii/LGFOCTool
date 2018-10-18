@@ -11,6 +11,7 @@
 
 // 宏集合
 #import "LGFPch.h"
+#import "MJRefresh.h"
 
 // 所有特殊方法
 #import "LGFAllMethod.h"
