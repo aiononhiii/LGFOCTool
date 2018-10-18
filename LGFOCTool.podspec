@@ -13,10 +13,9 @@ s.platform     = :ios, "8.0"
 s.source   = { :git => "https://github.com/aiononhiii/LGFOCTool.git", :tag => s.version }
 s.framework  = "Foundation", "UIKit", "QuartzCore", "AssetsLibrary", "AVFoundation", "CoreGraphics", "CoreVideo", "CoreMedia", "CoreImage", "CoreLocation", "SystemConfiguration", "Photos", "CoreTelephony", "AddressBook", "Contacts", "HealthKit", "EventKit"
 s.source_files = 'LGFOCTool/**/*.{h,m}'
-
+s.resource_bundles = {
+  'LGFOCTool' => ['LGFOCTool/**/**/*.{xib,storyboard}']
+}
 s.dependency 'AFNetworking'
-s.dependency 'MJRefresh'
-s.dependency 'SDWebImage', '4.4.1'
-s.dependency 'FLAnimatedImage', '~> 1.0'
 
 end
