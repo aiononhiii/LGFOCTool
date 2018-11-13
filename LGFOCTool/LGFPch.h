@@ -19,6 +19,34 @@
 #undef GKeyPath
 #define GKeyPath(objc,keyPath) @(((void)objc.keyPath,#keyPath))
 
+// IPhone4
+#undef lgf_IPhone4
+#define lgf_IPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// IPhone5
+#undef lgf_IPhone5
+#define lgf_IPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// IPhone6789
+#undef lgf_IPhone6789
+#define lgf_IPhone6789 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(754, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// IPhone6789Plus
+#undef lgf_IPhone6789Plus
+#define lgf_IPhone6789Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1080, 1920), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// IPhoneX
+#undef lgf_IPhoneX
+#define lgf_IPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// IPhoneXS
+#undef lgf_IPhoneXS
+#define lgf_IPhoneXS ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// IPhoneXR
+#undef lgf_IPhoneXR
+#define lgf_IPhoneXR ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) : NO)
+
 // 是否大于某个系统版本
 #undef lgf_IOSSystemVersion
 #define lgf_IOSSystemVersion(V) [[UIDevice currentDevice] systemVersion].floatValue >= (V)

@@ -86,6 +86,7 @@ lgf_AllocOnceForH;
 - (void)lgf_ShowMessageStyle:(LGFToastStyle *)style
                     animated:(BOOL)animated
                   completion:(void (^ __nullable)(void))completion;
+- (void)lgf_HideMessage:(void (^ __nullable)(void))completion;
 - (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets cr:(CGFloat)cr;
 - (void)lgf_HideToastActivity;
 

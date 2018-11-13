@@ -200,6 +200,23 @@ lgf_AllocOnceForM(LGFToastView);
 static char lgf_ToastViewKey;
 static char lgf_ToastActivityKey;
 
+- (void)lgf_HideMessage:(void (^ __nullable)(void))completion {
+    LGFToastView *toastView = objc_getAssociatedObject(self, &lgf_ToastViewKey);
+    [UIView animateWithDuration:toastView.style.lgf_DismissDuration animations:^{
+        toastView.alpha = 0.0;
+        toastView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    } completion:^(BOOL finished) {
+        toastView.transform = CGAffineTransformIdentity;
+        [toastView removeFromSuperview];
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.userInteractionEnabled = YES;
+        }];
+        if (completion) {
+            completion();
+        }
+    }];
+}
+
 - (void)lgf_ShowMessage:(NSString *)message
              completion:(void (^ __nullable)(void))completion {
     LGFToastStyle *style = [LGFToastStyle lgf];
