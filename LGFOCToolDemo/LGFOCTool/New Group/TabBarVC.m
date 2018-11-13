@@ -21,12 +21,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tabvc = [LGFTabBarVC lgf_SBViewController];
-    FirstViewController *vc = [FirstViewController lgf_SBViewController];
-    homeVC *twovc = [homeVC lgf_SBViewController];
+    self.tabvc = [LGFTabBarVC lgf];
+    FirstViewController *vc = [FirstViewController lgf];
+    homeVC *twovc = [homeVC lgf];
     //    ThreeViewController *threevc = [ThreeViewController lgf_SBViewController];
-    ViewController *fourvc = [ViewController lgf_SBViewController];
-    ViewController *fivevc = [ViewController lgf_SBViewController];
+    ViewController *fourvc = [ViewController lgf];
+    ViewController *fivevc = [ViewController lgf];
     
     self.tabvc.lgf_BarChildVCs = @[vc, twovc, fourvc, fivevc];
     self.tabvc.lgf_BarItemTitles = @[@"首页", @"微淘", @"购物车", @"我的淘宝"];

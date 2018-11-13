@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F24C9569196B9BE46C0A01C75E34FE74"
+               BlueprintIdentifier = "F54919AC6FF0F928EEDEDB18449A6927"
                BlueprintName = "Pods-LGFOCTool"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-LGFOCTool.a">

@@ -48,6 +48,7 @@
 
 - (void)lgf_Dealloc {
     NSLog(@"LGF的控制器:%@ --- 已经释放", NSStringFromClass([self class]));
+    NSLog(@"LGF的控制器:%@ --- 全部通知已经删除", NSStringFromClass([self class]));
     [self lgf_Dealloc];
     [lgf_NCenter removeObserver:self];
 }

@@ -97,7 +97,10 @@
 		185A0C24216C85CD000ED186 /* shareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C23216C85CD000ED186 /* shareView.m */; };
 		185A0C26216C8630000ED186 /* shareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A0C25216C8630000ED186 /* shareView.xib */; };
 		185A0C29216C8D2D000ED186 /* shareImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C28216C8D2D000ED186 /* shareImageVC.m */; };
-		1861A58420A5617200559623 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1861A58320A5617200559623 /* HealthKit.framework */; };
+		186AC2C02191720A00A9027F /* LGFCenterPageVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186AC2BF2191720A00A9027F /* LGFCenterPageVC.storyboard */; };
+		186AC2CB219180E600A9027F /* TestPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AC2C9219180E600A9027F /* TestPageCell.m */; };
+		186AC2CC219180E600A9027F /* TestPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AC2CA219180E600A9027F /* TestPageCell.xib */; };
+		187D35F92181BF4800789BC5 /* LGFCenterPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D35F82181BF4800789BC5 /* LGFCenterPageVC.m */; };
 		188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225EB20EDB3BE0004DBC6 /* OneViewController.m */; };
 		188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */; };
 		188225F120EDB5120004DBC6 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225F020EDB5120004DBC6 /* TwoViewController.m */; };
@@ -118,6 +121,8 @@
 		18AD21B7215B7A130031F719 /* LGFTabBarVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AD21B4215B7A130031F719 /* LGFTabBarVC.storyboard */; };
 		18AD21BA215B7B260031F719 /* TabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD21B9215B7B260031F719 /* TabBarVC.m */; };
 		18AD21C32160953B0031F719 /* homeVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD21C22160953B0031F719 /* homeVCCell.m */; };
+		18BDDF41219AC325004059F3 /* LGFCenterPageVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BDDF40219AC325004059F3 /* LGFCenterPageVCTest.m */; };
+		18E9BC0921844B8D000C387E /* LGFCenterPageChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E9BC0821844B8D000C387E /* LGFCenterPageChildVC.m */; };
 		18EDD630216EEE590088A90B /* LGFPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD62F216EEE590088A90B /* LGFPlayerView.xib */; };
 		18EDD633216EEE640088A90B /* LGFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD632216EEE640088A90B /* LGFPlayerView.m */; };
 		18EDD64E217486320088A90B /* lgf_unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD64C217486310088A90B /* lgf_unlock.png */; };
@@ -322,7 +327,12 @@
 		185A0C27216C8D2D000ED186 /* shareImageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shareImageVC.h; sourceTree = "<group>"; };
 		185A0C28216C8D2D000ED186 /* shareImageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shareImageVC.m; sourceTree = "<group>"; };
 		1861A58120A5617200559623 /* LGFOCTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LGFOCTool.entitlements; sourceTree = "<group>"; };
-		1861A58320A5617200559623 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		186AC2BF2191720A00A9027F /* LGFCenterPageVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LGFCenterPageVC.storyboard; sourceTree = "<group>"; };
+		186AC2C8219180E600A9027F /* TestPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestPageCell.h; sourceTree = "<group>"; };
+		186AC2C9219180E600A9027F /* TestPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestPageCell.m; sourceTree = "<group>"; };
+		186AC2CA219180E600A9027F /* TestPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestPageCell.xib; sourceTree = "<group>"; };
+		187D35F72181BF4800789BC5 /* LGFCenterPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFCenterPageVC.h; sourceTree = "<group>"; };
+		187D35F82181BF4800789BC5 /* LGFCenterPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFCenterPageVC.m; sourceTree = "<group>"; };
 		188225EA20EDB3BE0004DBC6 /* OneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
 		188225EB20EDB3BE0004DBC6 /* OneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OneViewController.storyboard; sourceTree = "<group>"; };
@@ -360,6 +370,10 @@
 		18AD21B9215B7B260031F719 /* TabBarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarVC.m; sourceTree = "<group>"; };
 		18AD21C12160953B0031F719 /* homeVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeVCCell.h; sourceTree = "<group>"; };
 		18AD21C22160953B0031F719 /* homeVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeVCCell.m; sourceTree = "<group>"; };
+		18BDDF3F219AC325004059F3 /* LGFCenterPageVCTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFCenterPageVCTest.h; sourceTree = "<group>"; };
+		18BDDF40219AC325004059F3 /* LGFCenterPageVCTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFCenterPageVCTest.m; sourceTree = "<group>"; };
+		18E9BC0721844B8D000C387E /* LGFCenterPageChildVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFCenterPageChildVC.h; sourceTree = "<group>"; };
+		18E9BC0821844B8D000C387E /* LGFCenterPageChildVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFCenterPageChildVC.m; sourceTree = "<group>"; };
 		18EDD62F216EEE590088A90B /* LGFPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LGFPlayerView.xib; sourceTree = "<group>"; };
 		18EDD631216EEE640088A90B /* LGFPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPlayerView.h; sourceTree = "<group>"; };
 		18EDD632216EEE640088A90B /* LGFPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFPlayerView.m; sourceTree = "<group>"; };
@@ -375,7 +389,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1861A58420A5617200559623 /* HealthKit.framework in Frameworks */,
 				EC6896CDD46AEDCC2E374A8F /* libPods-LGFOCTool.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,6 +731,7 @@
 		1845E4CA20A3F62E00882152 /* LGFView */ = {
 			isa = PBXGroup;
 			children = (
+				18BDDF3E219AC2FD004059F3 /* LGFCenterPageVC */,
 				185A0C19216C5AC9000ED186 /* LGFLightTextLabel */,
 				18AD21B2215B79FE0031F719 /* LGFTabBarVC */,
 				18AD218A215A1DFB0031F719 /* LGFAlertView */,
@@ -846,10 +860,28 @@
 		1861A58220A5617200559623 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1861A58320A5617200559623 /* HealthKit.framework */,
 				074678BA67CE112506AD20E4 /* libPods-LGFOCTool.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		186AC2C12191778100A9027F /* TestPageVC */ = {
+			isa = PBXGroup;
+			children = (
+				186AC2C8219180E600A9027F /* TestPageCell.h */,
+				186AC2C9219180E600A9027F /* TestPageCell.m */,
+				186AC2CA219180E600A9027F /* TestPageCell.xib */,
+			);
+			path = TestPageVC;
+			sourceTree = "<group>";
+		};
+		187D35F62181BDDD00789BC5 /* LGFCenterPageVC */ = {
+			isa = PBXGroup;
+			children = (
+				18BDDF3F219AC325004059F3 /* LGFCenterPageVCTest.h */,
+				18BDDF40219AC325004059F3 /* LGFCenterPageVCTest.m */,
+			);
+			path = LGFCenterPageVC;
 			sourceTree = "<group>";
 		};
 		188DEFAA2094396B0014E4CA = {
@@ -1005,10 +1037,12 @@
 		18AD21BF216094E00031F719 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				186AC2C12191778100A9027F /* TestPageVC */,
+				187D35F62181BDDD00789BC5 /* LGFCenterPageVC */,
+				18AD21C0216095060031F719 /* homeVC */,
 				185A0BED216B341E000ED186 /* QTNoDataView.h */,
 				185A0BEE216B341E000ED186 /* QTNoDataView.m */,
 				185A0BEC216B341D000ED186 /* QTNoDataView.xib */,
-				18AD21C0216095060031F719 /* homeVC */,
 				18AD21B8215B7B250031F719 /* TabBarVC.h */,
 				18AD21B9215B7B260031F719 /* TabBarVC.m */,
 				182979BC20D259A9005DB4B7 /* FirstViewController.h */,
@@ -1040,6 +1074,18 @@
 				18AD21C22160953B0031F719 /* homeVCCell.m */,
 			);
 			path = homeVC;
+			sourceTree = "<group>";
+		};
+		18BDDF3E219AC2FD004059F3 /* LGFCenterPageVC */ = {
+			isa = PBXGroup;
+			children = (
+				187D35F72181BF4800789BC5 /* LGFCenterPageVC.h */,
+				187D35F82181BF4800789BC5 /* LGFCenterPageVC.m */,
+				18E9BC0721844B8D000C387E /* LGFCenterPageChildVC.h */,
+				18E9BC0821844B8D000C387E /* LGFCenterPageChildVC.m */,
+				186AC2BF2191720A00A9027F /* LGFCenterPageVC.storyboard */,
+			);
+			path = LGFCenterPageVC;
 			sourceTree = "<group>";
 		};
 		18EDD62E216EEE410088A90B /* LGFPlayerView */ = {
@@ -1135,7 +1181,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1191,8 +1237,10 @@
 				188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */,
 				18EDD64F217486320088A90B /* lgf_lock.png in Resources */,
 				18EDD64E217486320088A90B /* lgf_unlock.png in Resources */,
+				186AC2CC219180E600A9027F /* TestPageCell.xib in Resources */,
 				182B7FE8217708A6007AB627 /* 2.gif in Resources */,
 				18AD218F215A1E3E0031F719 /* LGFAlertView.xib in Resources */,
+				186AC2C02191720A00A9027F /* LGFCenterPageVC.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1219,7 +1267,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/LGFPageTitle/LGFPageTitle.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
@@ -1230,7 +1278,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AD9D18D6924E2152B4914F48 /* [CP] Check Pods Manifest.lock */ = {
@@ -1267,12 +1315,14 @@
 				1829CA89209A98A500573974 /* UIColor+LGFColor.m in Sources */,
 				188DEFBB2094396C0014E4CA /* ViewController.m in Sources */,
 				183DA8F120CE3D6700E09819 /* UIBezierPath+LGFBezierPath.m in Sources */,
+				187D35F92181BF4800789BC5 /* LGFCenterPageVC.m in Sources */,
 				183DA8CC20CA62C200E09819 /* NSString+LGFEncodeDecode.m in Sources */,
 				184235A120995EBC0006483C /* LGFAllMethod.m in Sources */,
 				18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */,
 				18AD21C32160953B0031F719 /* homeVCCell.m in Sources */,
 				183DA90120CE617300E09819 /* UIScrollView+LGFScrollView.m in Sources */,
 				184235B02099994C0006483C /* NSString+LGFPinyin.m in Sources */,
+				18E9BC0921844B8D000C387E /* LGFCenterPageChildVC.m in Sources */,
 				18585E9720ECEF440084D5C1 /* SBtestCollectionViewCell.m in Sources */,
 				183DA8C620CA508500E09819 /* NSDictionary+LGFDictionary.m in Sources */,
 				1829CAAD209FEDC000573974 /* UIView+LGFExtension.m in Sources */,
@@ -1295,6 +1345,7 @@
 				18297A5F20E1DC9B005DB4B7 /* LGFWeakProxy.m in Sources */,
 				183DA8C020CA22C800E09819 /* NSData+LGFEncodeDecode.m in Sources */,
 				1829CA8E209A9DD100573974 /* UIImage+LGFImage.m in Sources */,
+				186AC2CB219180E600A9027F /* TestPageCell.m in Sources */,
 				183DA8B120C916BD00E09819 /* YDFMFMHistoryCVCell.m in Sources */,
 				183DA8F520CE407300E09819 /* UIFont+LGFFont.m in Sources */,
 				185A0C24216C85CD000ED186 /* shareView.m in Sources */,
@@ -1335,6 +1386,7 @@
 				183DA8D720CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m in Sources */,
 				184235AA209982780006483C /* UITextField+LGFTextField.m in Sources */,
 				184235AD209994D70006483C /* NSString+LGFHash.m in Sources */,
+				18BDDF41219AC325004059F3 /* LGFCenterPageVCTest.m in Sources */,
 				183DA8F920CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m in Sources */,
 				183DA8BD20CA22B500E09819 /* NSData+LGFInflateDeflate.m in Sources */,
 				1829CA91209A9E0100573974 /* UIImage+LGFColorImage.m in Sources */,
@@ -1521,7 +1573,6 @@
 			baseConfigurationReference = DED3068F201CEC3DB21EA974 /* Pods-LGFOCTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = LGFOCTool/LGFOCTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96RN4L9K39;
 				INFOPLIST_FILE = LGFOCTool/Info.plist;
@@ -1538,7 +1589,6 @@
 			baseConfigurationReference = 19E77F694E9E2EDB3CE6DED2 /* Pods-LGFOCTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = LGFOCTool/LGFOCTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96RN4L9K39;
 				INFOPLIST_FILE = LGFOCTool/Info.plist;

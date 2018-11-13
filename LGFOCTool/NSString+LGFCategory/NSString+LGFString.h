@@ -97,6 +97,9 @@ typedef NS_ENUM(NSUInteger, lgf_TimeFormatType) {
 #pragma mark - 返回修剪头部和尾部的空白字符（空格和换行符）
 - (NSString *)lgf_StringByTrim;
 
+#pragma mark - 字符串如果前面有0，保留去掉0之后的字符串
+- (NSString *)lgf_GetTheCorrectNum;
+
 #pragma MARK - 返回一个新的UUID NSString
 /**
  e.g. "D1178E50-2A4D-4F1F-9BD3-F6AAB00E06B1"
@@ -189,9 +192,9 @@ typedef NS_ENUM(NSUInteger, lgf_TimeFormatType) {
 
 #pragma mark - 字符串是否为空
 /**
- nil, @"", @"  ", @"\n" will Returns NO; otherwise Returns YES.
+ nil, @"", @"  ", @"\n" will Returns YES; otherwise Returns NO.
  */
-- (BOOL)lgf_IsNotBlank;
+- (BOOL)lgf_IsBlank;
 
 #pragma mark - 字符串是否包含某个字符串
 /**

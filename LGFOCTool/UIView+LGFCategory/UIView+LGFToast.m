@@ -21,7 +21,7 @@ lgf_ViewForM(LGFToastStyle);
         self.lgf_ToastMessage = @"";
         self.lgf_ToastPosition = lgf_ToastCenter;
         self.lgf_ToastImagePosition = lgf_ToastImageTop;
-        self.lgf_ToastMessageFont = [UIFont boldSystemFontOfSize:16];
+        self.lgf_ToastMessageFont = [UIFont boldSystemFontOfSize:15];
         self.lgf_ToastMessageTextColor = [UIColor whiteColor];
         self.lgf_ToastBackColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
         self.lgf_ToastCornerRadius = 10.0;
@@ -186,11 +186,8 @@ lgf_AllocOnceForM(LGFToastView);
 - (void)dismiss {
     [UIView animateWithDuration:self.style.lgf_DismissDuration animations:^{
         self.alpha = 0.0;
-        self.transform = CGAffineTransformMakeScale(0.85, 0.85);
+        self.transform = CGAffineTransformMakeScale(0.8, 0.8);
     } completion:^(BOOL finished) {
-        [self.superview.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.userInteractionEnabled = YES;
-        }];
         self.transform = CGAffineTransformIdentity;
         [self removeFromSuperview];
     }];
@@ -204,9 +201,27 @@ static char lgf_ToastViewKey;
 static char lgf_ToastActivityKey;
 
 - (void)lgf_ShowMessage:(NSString *)message
+             completion:(void (^ __nullable)(void))completion {
+    LGFToastStyle *style = [LGFToastStyle lgf];
+    style.lgf_ToastMessage = message;
+    [self lgf_ShowMessageStyle:style animated:YES completion:completion];
+}
+
+- (void)lgf_ShowMessage:(NSString *)message
                animated:(BOOL)animated
              completion:(void (^ __nullable)(void))completion {
     LGFToastStyle *style = [LGFToastStyle lgf];
+    style.lgf_ToastMessage = message;
+    [self lgf_ShowMessageStyle:style animated:animated completion:completion];
+}
+
+- (void)lgf_ShowMessage:(NSString *)message
+               duration:(CGFloat)duration
+               animated:(BOOL)animated
+             completion:(void (^ __nullable)(void))completion {
+    LGFToastStyle *style = [LGFToastStyle lgf];
+    style.lgf_ToastMessage = message;
+    if (duration) style.lgf_Duration = duration;
     style.lgf_ToastMessage = message;
     [self lgf_ShowMessageStyle:style animated:animated completion:completion];
 }
@@ -293,20 +308,24 @@ static char lgf_ToastActivityKey;
     [toastView setNeedsLayout];
     [toastView layoutIfNeeded];
     [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.lgf_ViewName isEqualToString:@"自定义导航栏"]) {
+        if ([obj.lgf_ViewName isEqualToString:@"我不被Toast盖住"]) {
             obj.userInteractionEnabled = style.lgf_BackBtnEnabled;
         } else {
             obj.userInteractionEnabled = style.lgf_SuperEnabled;
         }
     }];
+    
     // 动画
-    toastView.transform = CGAffineTransformMakeScale(0.85, 0.85);
-    [UIView animateWithDuration:animated ? 0.5 : 0.0 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [NSObject cancelPreviousPerformRequestsWithTarget:toastView];
+    if (animated) toastView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    [UIView animateWithDuration:animated ? 0.4 : 0.0 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         toastView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:toastView];
         [toastView performSelector:@selector(dismiss) withObject:nil afterDelay:style.lgf_Duration];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((style.lgf_Duration + style.lgf_DismissDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.userInteractionEnabled = YES;
+            }];
             if (completion) {
                 completion();
             }
@@ -317,56 +336,50 @@ static char lgf_ToastActivityKey;
 #pragma mark - 菊花
 
 - (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets cr:(CGFloat)cr {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.userInteractionEnabled = NO;
-        UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastActivityKey);
-        [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [activityBackView removeFromSuperview];
-        if (!activityBackView) {
-            activityBackView = [[UIView alloc] init];
-            activityBackView.layer.cornerRadius = cr;
-            activityBackView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
-        }
-        activityBackView.alpha = 1.0;
-        [self addSubview:activityBackView];
-        activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
-        objc_setAssociatedObject(self, &lgf_ToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeRight multiplier:1.0 constant:Insets.right];
-        [self.superview ?: self addConstraint:rightConstraint];
-        NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:Insets.left];
-        [self.superview ?: self addConstraint:leftConstraint];
-        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeTop multiplier:1.0 constant:Insets.top];
-        [self.superview ?: self addConstraint:topConstraint];
-        NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:Insets.bottom];
-        [self.superview ?: self addConstraint:bottomConstraint];
-        [self.superview ?: self setNeedsLayout];
-        [self.superview ?: self layoutIfNeeded];
-        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] init];
-        activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        [UIView animateWithDuration:0.1 animations:^{
-            [activityView startAnimating];
-        }];
-        activityView.center = CGPointMake(activityBackView.bounds.size.width / 2, activityBackView.bounds.size.height / 2);
-        [activityBackView addSubview:activityView];
-    });
+    self.userInteractionEnabled = NO;
+    UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastActivityKey);
+    [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [activityBackView removeFromSuperview];
+    if (!activityBackView) {
+        activityBackView = [[UIView alloc] init];
+        activityBackView.layer.cornerRadius = cr;
+        activityBackView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
+    }
+    activityBackView.alpha = 1.0;
+    [self addSubview:activityBackView];
+    activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
+    objc_setAssociatedObject(self, &lgf_ToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeRight multiplier:1.0 constant:Insets.right];
+    [self.superview ?: self addConstraint:rightConstraint];
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:Insets.left];
+    [self.superview ?: self addConstraint:leftConstraint];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeTop multiplier:1.0 constant:Insets.top];
+    [self.superview ?: self addConstraint:topConstraint];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:Insets.bottom];
+    [self.superview ?: self addConstraint:bottomConstraint];
+    [self.superview ?: self setNeedsLayout];
+    [self.superview ?: self layoutIfNeeded];
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] init];
+    activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    [UIView animateWithDuration:0.1 animations:^{
+        [activityView startAnimating];
+    }];
+    activityView.center = CGPointMake(activityBackView.bounds.size.width / 2, activityBackView.bounds.size.height / 2);
+    [activityBackView addSubview:activityView];
 }
 
 - (void)lgf_HideToastActivity {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.userInteractionEnabled = YES;
-        UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastActivityKey);
-        if (activityBackView) {
-            [UIView animateWithDuration:0.25 animations:^{
-                activityBackView.alpha = 0.0;
-            } completion:^(BOOL finished) {
-                [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-                [activityBackView removeFromSuperview];
-            }];
-        }
-    });
+    self.userInteractionEnabled = YES;
+    UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastActivityKey);
+    if (activityBackView) {
+        [UIView animateWithDuration:0.25 animations:^{
+            activityBackView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            [activityBackView removeFromSuperview];
+        }];
+    }
 }
 
 @end
-
-
 

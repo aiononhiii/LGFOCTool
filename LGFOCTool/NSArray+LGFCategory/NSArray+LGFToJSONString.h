@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 数组转 格式化JSON字符串
 - (nullable NSString *)lgf_ArrayToJsonPrettyString;
 
+#pragma mark - JSON字符串转数组
++ (NSArray *)lgf_ArrayFromJsonString:(NSString *)jsonString;
 @end
 
 NS_ASSUME_NONNULL_END

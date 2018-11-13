@@ -8,10 +8,6 @@
 
 #import "LGFAlertView.h"
 
-//当前视图
-#define LGFLastView LGFApplication.windows.firstObject
-#define LGFApplication [UIApplication sharedApplication]
-
 @implementation LGFAlertViewStyle
 lgf_ViewForM(LGFAlertViewStyle);
 - (instancetype)init {
@@ -37,7 +33,7 @@ lgf_ViewForM(LGFAlertViewStyle);
 
 @implementation LGFAlertView
 
-lgf_XibViewForM(LGFAlertView, @"LGFAlertView");
+lgf_XibViewForM(LGFAlertView, @"LGFOCTool");
 
 - (void)lgf_ShowAlertWithStyle:(LGFAlertViewStyle *)style message:(NSString *)message sure:(QTSureBlock)sure {
     self.sureButton.hidden = NO;
@@ -57,14 +53,14 @@ lgf_XibViewForM(LGFAlertView, @"LGFAlertView");
 
 - (void)lgf_ShowAlertWithStyle:(LGFAlertViewStyle *)style message:(NSString *)message sure:(QTSureBlock)sure cancel:(QTCancelBlock)cancel confirm:(QTConfirmBlock)confirm {
     self.firstResponderView = (UIView *)[LGFAlertView lgf_CurrentFirstResponder];
-    [LGFLastView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [lgf_Application.windows.lastObject.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[LGFAlertView class]]) {
             [obj removeFromSuperview];
         }
     }];
-    [LGFLastView endEditing:YES];
-    self.frame = LGFLastView.bounds;
-    [LGFLastView addSubview:self];
+    [lgf_Application.windows.firstObject endEditing:YES];
+    self.frame = lgf_Application.windows.firstObject.bounds;
+    [lgf_Application.windows.firstObject addSubview:self];
     self.alertBackView.layer.cornerRadius = style.lgf_AlertCornerRadius;
     [self.cancelButton setTitle:style.lgf_CancelTitle forState:UIControlStateNormal];
     [self.cancelButton setTitleColor:style.lgf_CancelTitleColor forState:UIControlStateNormal];
@@ -78,27 +74,30 @@ lgf_XibViewForM(LGFAlertView, @"LGFAlertView");
     [self.sureButton setTitleColor:style.lgf_SureTitleColor forState:UIControlStateNormal];
     [self.sureButton setBackgroundColor:style.lgf_SureTitleBackColor];
     self.sureButton.titleLabel.font = style.lgf_SureTitleFont;
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:message];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    if (style.lgf_HighColorTitle && style.lgf_HighColor) {
-        NSRange range = [[attrStr string] rangeOfString:style.lgf_HighColorTitle];
-        [attrStr addAttribute:NSForegroundColorAttributeName value:style.lgf_HighColor range:range];
+    if (message.length > 0) {
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:message];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        if (style.lgf_HighColorTitle && style.lgf_HighColor) {
+            NSRange range = [[attrStr string] rangeOfString:style.lgf_HighColorTitle];
+            [attrStr addAttribute:NSForegroundColorAttributeName value:style.lgf_HighColor range:range];
+        }
+        paragraphStyle.lineSpacing = 5;
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        [attrStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attrStr.string.length)];
+        self.title.font = style.lgf_MessageFont;
+        self.title.attributedText = attrStr;
     }
-    paragraphStyle.lineSpacing = 5;
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    [attrStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attrStr.string.length)];
-    self.title.font = style.lgf_MessageFont;
-    self.title.attributedText = attrStr;
+    
     self.sureBlock = sure;
     self.cancelBlock = cancel;
     self.confirmBlock = confirm;
     
     // 动画
-    self.alertBackView.transform = CGAffineTransformMakeScale(0.85, 0.85);
-    [UIView animateWithDuration:0.25 animations:^{
+    self.alertBackView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    [UIView animateWithDuration:0.3 animations:^{
         self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
     }];
-    [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.alertBackView.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
@@ -119,9 +118,16 @@ lgf_XibViewForM(LGFAlertView, @"LGFAlertView");
 }
 
 - (void)selfRemove {
-    self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
-    [self removeFromSuperview];
-    [self.firstResponderView becomeFirstResponder];
+    [UIView animateWithDuration:0.1 animations:^{
+        self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+    }];
+    [UIView animateWithDuration:0.1 animations:^{
+        self.alertBackView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+        self.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+        [self.firstResponderView becomeFirstResponder];
+    }];
 }
 
 static __weak id lgf_CurrentFirstResponder;

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B658FC2AB69FCF48D63E2747C90E81D"
+               BlueprintIdentifier = "B4F8D4541B128F0E28EC204CCD80D694"
                BlueprintName = "LGFPageTitle"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libLGFPageTitle.a">

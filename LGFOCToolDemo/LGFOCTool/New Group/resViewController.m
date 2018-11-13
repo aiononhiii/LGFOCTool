@@ -50,7 +50,7 @@ lgf_SBViewControllerForM(resViewController, @"Main", @"FirstViewController");
     shareView *view = [shareView lgf];
     [view showShareView:self.view shareUrl:@"https://www.baidu.com"];
     view.shareBlock = ^(UIImage *image) {
-        shareImageVC *vc = [shareImageVC lgf_SBViewController];
+        shareImageVC *vc = [shareImageVC lgf];
         vc.image = image;
         //        [self.navigationController pushViewController:vc animated:YES];
         

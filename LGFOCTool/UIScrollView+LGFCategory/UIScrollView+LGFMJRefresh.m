@@ -35,6 +35,8 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
 }
 
 - (void)lgf_SetGifHeader:(MJRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize {
+    gifHeader.stateLabel.textColor = [UIColor whiteColor];
+    gifHeader.lastUpdatedTimeLabel.textColor = [UIColor whiteColor];
     // 以后如果要给header加gif动画， 加在这里
     NSMutableArray *images = [NSMutableArray arrayWithArray:[self cdi_imagesWithGif:gifName]];
     if (images.count > 0) {
@@ -94,10 +96,10 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
     [self.mj_header endRefreshing];
 }
 
-- (void)lgf_ReloadData:(NSInteger)count noMoreDataView:(UIView *)noMoreDataView {
+- (void)lgf_ReloadDataAndNoMoreDataView:(UIView *)noMoreDataView isShow:(BOOL)isShow {
     [self.lgf_NoMoreView removeFromSuperview];
     // 数据数组count小于10 显示我是有底线的view
-    if (count < 10) {
+    if (isShow) {
         [self.mj_footer endRefreshingWithNoMoreData];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.lgf_NoMoreView = noMoreDataView;

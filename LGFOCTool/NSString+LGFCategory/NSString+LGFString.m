@@ -196,6 +196,15 @@
     return str;
 }
 
+#pragma mark - 字符串如果前面有0，保留去掉0之后的字符串
+- (NSString *)lgf_GetTheCorrectNum {
+    NSString *CorrectNumStr = self;
+    while ([CorrectNumStr hasPrefix:@"0"]) {
+        CorrectNumStr = [CorrectNumStr substringFromIndex:1];
+    }
+    return CorrectNumStr;
+}
+
 #pragma mark - 格式化系统内存容量显示
 + (NSString *)lgf_FileSizeFormat:(CGFloat)bsize {
     if (bsize < 1024) {
@@ -326,15 +335,15 @@
     return scale;
 }
 
-- (BOOL)lgf_IsNotBlank {
+- (BOOL)lgf_IsBlank {
     NSCharacterSet *blank = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     for (NSInteger i = 0; i < self.length; ++i) {
         unichar c = [self characterAtIndex:i];
         if (![blank characterIsMember:c]) {
-            return YES;
+            return NO;
         }
     }
-    return NO;
+    return YES;
 }
 
 - (BOOL)lgf_ContainsString:(NSString *)string {

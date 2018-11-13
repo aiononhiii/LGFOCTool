@@ -182,8 +182,8 @@ lgf_ViewForM(LGFPopMenu);
     [self addSubview:self.lgf_MenuBackView];
     [self.lgf_MenuBackView addSubview:self.lgf_ArrowView];
     [self.lgf_MenuBackView addSubview:self.style.lgf_PopMenuView];
-    self.lgf_MenuBackView.transform = CGAffineTransformMakeScale(0.85, 0.85);
-    [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    self.lgf_MenuBackView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.lgf_MenuBackView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         lgf_HaveBlock(self.lgf_popMenuDidShow, self);

@@ -14,7 +14,7 @@
 
 @implementation LGFTabBarVC
 
-lgf_SBViewControllerForM(LGFTabBarVC, @"LGFTabBarVC", @"LGFTabBarVC");
+lgf_SBViewControllerForM(LGFTabBarVC, @"LGFTabBarVC", @"LGFOCTool");
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,20 +49,18 @@ lgf_SBViewControllerForM(LGFTabBarVC, @"LGFTabBarVC", @"LGFTabBarVC");
 }
 
 - (void)lgf_ShowTabBar {
-    if (_lgf_TabBarBottom.constant < 0.0) {
-        _lgf_TabBarBottom.constant = 0.0;
+    if (self.lgf_TabBarBackView.transform.ty == 55) {
         [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [self.view layoutIfNeeded];
+            self.lgf_TabBarBackView.transform = CGAffineTransformMakeTranslation(0.0, 0.0);
         } completion:^(BOOL finished) {
         }];
     }
 }
 
 - (void)lgf_HideTabBar {
-    if (_lgf_TabBarBottom.constant == 0.0) {
-        _lgf_TabBarBottom.constant = -98;
+    if (self.lgf_TabBarBackView.transform.ty == 0) {
         [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [self.view layoutIfNeeded];
+            self.lgf_TabBarBackView.transform = CGAffineTransformMakeTranslation(0.0, 55);
         } completion:^(BOOL finished) {
         }];
     }
@@ -105,7 +103,7 @@ lgf_SBViewControllerForM(LGFTabBarVC, @"LGFTabBarVC", @"LGFTabBarVC");
     if (indexPath.item == self.lgf_DefultSelectIndex) {
         cell.lgf_Bartitle.textColor = self.lgf_SelectBarItemColor;
         cell.lgf_BarIcon.image = [UIImage imageNamed:self.lgf_SelectBarItemIcons[indexPath.item]];
-        [_lgf_ChildVCCV scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        [_lgf_ChildVCCV scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
         cell.lgf_BarIcon.transform = CGAffineTransformMakeScale(0.85, 0.85);
         [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             cell.lgf_BarIcon.transform = CGAffineTransformMakeScale(1.1, 1.1);

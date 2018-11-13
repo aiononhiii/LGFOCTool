@@ -190,6 +190,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
         [self.view lgf_ShowMessage:@"测试测试测试测试测试测试测试测试测试测试测试测试" maxDuration:YES animated:YES completion:^{
 
         }];
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.view lgf_ShowMessage:@"加载中。。。" maxDuration:YES animated:NO completion:^{
 
@@ -231,8 +232,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
     int rad = [LGFAllMethod lgf_GetRandomNumber:1 to:2];
     if (rad == 1) {
         LGFAlertViewStyle *style = [LGFAlertViewStyle lgf];
-        style.lgf_SureTitleColor = [UIColor whiteColor];
-        style.lgf_SureTitleBackColor = [UIColor lgf_ColorWithHexString:@"333333"];
+//        style.lgf_SureTitleBackColor = Color_FF5858;
         [[LGFAlertView lgf] lgf_ShowAlertWithStyle:style message:@"我是测试警报框我问范围可分为可分开我就饿回放看完回放看我" sure:^{
             
         }];
@@ -246,6 +246,15 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
             
         }];
     }
+    LGFAlertViewStyle *style = [LGFAlertViewStyle lgf];
+    style.lgf_CancelTitle = @"取消";
+    style.lgf_ConfirmTitle = @"确定";
+//    style.lgf_ConfirmBackColor = Color_7474BF;
+//    style.lgf_ConfirmBackColor = Color_FF5858;
+    [[LGFAlertView lgf] lgf_ShowAlertWithStyle:style message:@"是否确定移除该房管？" cancel:^{
+    } confirm:^{
+        
+    }];
     
 }
 

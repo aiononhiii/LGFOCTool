@@ -69,6 +69,17 @@ typedef NS_ENUM(NSUInteger, LGFTitleLineWidthType) {
 @property (assign, nonatomic) BOOL title_have_animation;
 // 标左右间距 默认 0.0
 @property (assign, nonatomic) CGFloat title_left_right_spacing;
+// 标背景色
+@property (strong, nonatomic) UIColor *title_backgroundColor;
+
+@property (strong, nonatomic) UIColor *title_borderColor;
+
+@property (assign, nonatomic) CGFloat title_borderWidth;
+
+@property (assign, nonatomic) CGFloat title_cornerRadius;
+
+@property (nonatomic, assign) BOOL title_line_break_by_word_wrapping;
+
 //------------------- 标图片设置
 
 // 图片Bundle 如果图片不在本控件bundel里请设置

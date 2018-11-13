@@ -32,6 +32,7 @@ static NSString *const lgf_ButtonImageObjectKey = @"lgf_ButtonImageObjectKey";
     UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)objc_getAssociatedObject(self, &lgf_IndicatorViewKey);
     [indicator removeFromSuperview];
     self.titleLabel.alpha = 1.0;
+    self.imageView.alpha = 1.0;
     self.userInteractionEnabled = YES;
 }
 
@@ -43,6 +44,7 @@ static NSString *const lgf_ButtonImageObjectKey = @"lgf_ButtonImageObjectKey";
     [self addSubview:indicator];
     objc_setAssociatedObject(self, &lgf_IndicatorViewKey, indicator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     self.titleLabel.alpha = 0.0;
+    self.imageView.alpha = 0.0;
 }
 
 @end

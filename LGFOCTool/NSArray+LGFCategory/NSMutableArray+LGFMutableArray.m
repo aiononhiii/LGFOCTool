@@ -124,10 +124,20 @@
     return self;
 }
 
-- (void)lgf_RemoveAllThisObject:(id)object {
-    for (id obj in self) {
-        if ([obj isEqual:object]) {
-            [self removeObject:obj];
+- (NSMutableArray *)lgf_CreatNumberIndexArr:(NSInteger)count {
+    [self removeAllObjects];
+    for (int i = 0; i < count; i++) {
+        [self addObject:@(i)];
+    }
+    return self;
+}
+
+- (void)lgf_RemoveAllThisObject:(NSString *)object {
+    if ([self containsObject:object]) {
+        for (NSString * obj in self) {
+            if ([obj isEqualToString:object]) {
+                [self removeObject:obj];
+            }
         }
     }
 }

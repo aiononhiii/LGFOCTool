@@ -37,7 +37,7 @@ lgf_SBViewControllerForM(FirstViewController, @"Main", @"FirstViewController")
 }
 
 - (IBAction)goViewController:(UIButton *)sender {
-    ViewController *vc = [ViewController lgf_SBViewController];
+    ViewController *vc = [ViewController lgf];
     [self.navigationController pushViewController:vc animated:NO];
 }
 
@@ -57,7 +57,7 @@ lgf_SBViewControllerForM(FirstViewController, @"Main", @"FirstViewController")
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    ViewController *vc = [ViewController lgf_SBViewController];
+    ViewController *vc = [ViewController lgf];
     [self.navigationController pushViewController:vc animated:NO];
 }
 

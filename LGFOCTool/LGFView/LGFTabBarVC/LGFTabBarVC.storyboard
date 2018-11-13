@@ -153,29 +153,29 @@
                                     </visualEffectView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="cbA-S0-cAx" firstAttribute="leading" secondItem="vEx-MS-s4O" secondAttribute="leading" id="26P-z5-Q8C"/>
-                                    <constraint firstAttribute="trailing" secondItem="cbA-S0-cAx" secondAttribute="trailing" id="WM9-xb-4ja"/>
+                                    <constraint firstAttribute="trailing" secondItem="cbA-S0-cAx" secondAttribute="trailing" id="0Ei-ze-KWU"/>
                                     <constraint firstItem="JUK-XK-j2v" firstAttribute="leading" secondItem="cbA-S0-cAx" secondAttribute="leading" constant="-1" id="YWL-7s-LZZ"/>
                                     <constraint firstItem="JUK-XK-j2v" firstAttribute="trailing" secondItem="cbA-S0-cAx" secondAttribute="trailing" constant="1" id="ZLD-Pk-7m1"/>
+                                    <constraint firstItem="cbA-S0-cAx" firstAttribute="leading" secondItem="vEx-MS-s4O" secondAttribute="leading" id="bnX-5O-QGL"/>
                                     <constraint firstAttribute="height" constant="55" id="mMz-yE-ueO"/>
                                     <constraint firstItem="JUK-XK-j2v" firstAttribute="bottom" secondItem="cbA-S0-cAx" secondAttribute="bottom" constant="1" id="ug0-Vo-ZWT"/>
                                     <constraint firstItem="JUK-XK-j2v" firstAttribute="top" secondItem="cbA-S0-cAx" secondAttribute="top" id="vQ6-RH-Ndg"/>
-                                    <constraint firstAttribute="bottom" secondItem="cbA-S0-cAx" secondAttribute="bottom" id="voM-NU-ro3"/>
+                                    <constraint firstAttribute="bottom" secondItem="cbA-S0-cAx" secondAttribute="bottom" id="z3C-4p-jse"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lme-vC-drb" firstAttribute="leading" secondItem="Wfh-OJ-ENW" secondAttribute="leading" id="0nu-7m-26n"/>
-                            <constraint firstAttribute="trailing" secondItem="lme-vC-drb" secondAttribute="trailing" id="13N-L6-IoC"/>
+                            <constraint firstAttribute="trailing" secondItem="lme-vC-drb" secondAttribute="trailing" id="2QM-MW-gON"/>
                             <constraint firstItem="Eqg-VU-krW" firstAttribute="top" secondItem="lme-vC-drb" secondAttribute="bottom" id="9aw-Fx-ks8"/>
                             <constraint firstItem="uMS-ZP-dL9" firstAttribute="leading" secondItem="Wfh-OJ-ENW" secondAttribute="leading" id="Duq-Vz-BP1"/>
                             <constraint firstAttribute="trailing" secondItem="uMS-ZP-dL9" secondAttribute="trailing" id="Enn-aW-ySu"/>
                             <constraint firstItem="vEx-MS-s4O" firstAttribute="leading" secondItem="Wfh-OJ-ENW" secondAttribute="leading" id="OXC-SQ-ACS"/>
                             <constraint firstItem="uMS-ZP-dL9" firstAttribute="top" secondItem="YRe-tf-FYS" secondAttribute="bottom" id="RjS-wp-87X"/>
-                            <constraint firstItem="lme-vC-drb" firstAttribute="top" secondItem="Wfh-OJ-ENW" secondAttribute="top" id="TtM-Qn-6ao"/>
+                            <constraint firstItem="lme-vC-drb" firstAttribute="leading" secondItem="Wfh-OJ-ENW" secondAttribute="leading" id="TRQ-3W-Tb3"/>
+                            <constraint firstItem="lme-vC-drb" firstAttribute="top" secondItem="Wfh-OJ-ENW" secondAttribute="top" id="a24-fa-isT"/>
                             <constraint firstAttribute="trailing" secondItem="vEx-MS-s4O" secondAttribute="trailing" id="bk1-W9-onp"/>
-                            <constraint firstAttribute="bottom" secondItem="vEx-MS-s4O" secondAttribute="bottom" id="rRD-RY-lk9"/>
+                            <constraint firstItem="Eqg-VU-krW" firstAttribute="top" secondItem="vEx-MS-s4O" secondAttribute="bottom" id="ibF-BY-3Yz"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
@@ -185,7 +185,6 @@
                         <outlet property="lgf_ShadowView" destination="JUK-XK-j2v" id="7PE-Jf-KBf"/>
                         <outlet property="lgf_TabBarBackView" destination="vEx-MS-s4O" id="0Vb-kV-23z"/>
                         <outlet property="lgf_TabBarBackViewHeight" destination="mMz-yE-ueO" id="pbS-7S-Brq"/>
-                        <outlet property="lgf_TabBarBottom" destination="rRD-RY-lk9" id="5MO-um-MR7"/>
                         <outlet property="lgf_TabBarView" destination="cbA-S0-cAx" id="0dl-si-nte"/>
                     </connections>
                 </viewController>

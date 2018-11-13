@@ -50,10 +50,10 @@ lgf_SBViewControllerForM(SBTestViewController, @"SBTestViewController", @"SBTest
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    OneViewController *onevc = [OneViewController lgf_SBViewController];
+    OneViewController *onevc = [OneViewController lgf];
     onevc.view.backgroundColor = [UIColor greenColor];
     [self addChildViewController:onevc];
-    TwoViewController *twovc = [TwoViewController lgf_SBViewController];
+    TwoViewController *twovc = [TwoViewController lgf];
     twovc.view.backgroundColor = [UIColor redColor];
     [self addChildViewController:twovc];
     self.ccvarr = @[onevc, twovc];

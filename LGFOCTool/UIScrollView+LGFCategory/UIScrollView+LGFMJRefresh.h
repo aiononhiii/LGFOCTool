@@ -13,7 +13,7 @@
 #undef LGFMJHeader
 #define LGFMJHeader(Target, SEL) [MJRefreshNormalHeader headerWithRefreshingTarget:Target refreshingAction:SEL]
 #undef LGFMJGifHeader
-#define LGFMJGifHeader(Target, SEL) [MJRefreshGifHeader headerWithRefreshingTarget:Target refreshingAction:SEL];
+#define LGFMJGifHeader(Target, SEL) [MJRefreshGifHeader headerWithRefreshingTarget:Target refreshingAction:SEL] 
 #undef LGFMJFooter
 #define LGFMJFooter(Target, SEL) [MJRefreshAutoNormalFooter footerWithRefreshingTarget:Target refreshingAction:SEL]
 
@@ -25,7 +25,7 @@
 // header 和 footer 同时结束刷新
 - (void)lgf_EndRefreshing;
 // 传入 数据数组count 判断是否要显示 我是有底线的view 并且刷新
-- (void)lgf_ReloadData:(NSInteger)count noMoreDataView:(UIView *)noMoreDataView;
+- (void)lgf_ReloadDataAndNoMoreDataView:(UIView *)noMoreDataView isShow:(BOOL)isShow;
 
 - (void)lgf_SetGifHeader:(MJRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize;
 @end

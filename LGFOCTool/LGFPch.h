@@ -62,6 +62,14 @@
 #undef lgf_MainScreen
 #define lgf_MainScreen [UIScreen mainScreen].bounds
 
+// 获取横向滚动index
+#undef lgf_ScrollHorizontalIndex
+#define lgf_ScrollHorizontalIndex(scrollView) (scrollView.contentOffset.x / (NSInteger)scrollView.bounds.size.width)
+
+// 获取竖向滚动index
+#undef lgf_ScrollVerticalIndex
+#define lgf_ScrollVerticalIndex(scrollView) (scrollView.contentOffset.y / (NSInteger)scrollView.bounds.size.height)
+
 // Log 输出
 #undef lgf_LogContentOffset
 #define lgf_LogContentOffset(scrollView) NSLog(@"%f", scrollView.contentOffset.y)
@@ -206,10 +214,10 @@
 #endif
 //---------------------- 获取 Storyboard VC 快捷设置 ----------------------
 #undef lgf_SBViewControllerForH
-#define lgf_SBViewControllerForH + (instancetype)lgf_SBViewController
+#define lgf_SBViewControllerForH + (instancetype)lgf
 #undef lgf_SBViewControllerForM
 #define lgf_SBViewControllerForM(className, storyboardStr, bundleStr) \
-+ (instancetype)lgf_SBViewController\
++ (instancetype)lgf\
 {\
 return lgf_GetSBVC(className, storyboardStr, bundleStr);\
 }

@@ -12,6 +12,9 @@
 #import "UIImage+GIF.h"
 #import "FLAnimatedImage.h"
 #import "QTNoDataView.h"
+#import "LGFCenterPageVCTest.h"
+#import "TestPageCell.h"
+
 
 @interface homeVC ()
 @property (weak, nonatomic) IBOutlet UIButton *addressBtn;
@@ -81,9 +84,9 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
         [self.dataArray addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg"];
         [self.homeCV lgf_EndRefreshing];
         if (self.page >= 4) {
-            [self.homeCV lgf_ReloadData:9 noMoreDataView:[QTNoDataView lgf]];
+            [self.homeCV lgf_ReloadDataAndNoMoreDataView:[QTNoDataView lgf] isShow:YES];
         } else {
-            [self.homeCV lgf_ReloadData:10 noMoreDataView:[QTNoDataView lgf]];
+            [self.homeCV lgf_ReloadDataAndNoMoreDataView:[QTNoDataView lgf] isShow:NO];
         }
         self.page++;
     });
@@ -107,7 +110,8 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //  <#cellClass#> *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    LGFCenterPageVCTest *vc = [LGFCenterPageVCTest lgf];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,15 +122,9 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
     lgf_LogContentOffset(scrollView);
     
     if (scrollView == self.homeCV) {
-//        self.topView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:MIN(1, MAX(0, (self.recommendCV.contentOffset.y + QTHomeVCHeaderHeight) / 80))];
-        if ((self.homeCV.contentOffset.y + 1040) > 10) {
-//            [self.topBar toLight];
-        } else {
-//            [self.topBar toDark];
-        }
         if (self.backImageVIew.alpha == 0) {
             if (self.homeCV.contentOffset.y <= -1030) {
-                [UIView animateWithDuration:0.2 animations:^{
+                [UIView animateWithDuration:0.3 animations:^{
                     self.backImageVIew.alpha = 1.0;
                     self.navLine.alpha = 0.0;
                 }];
@@ -135,7 +133,7 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
             }
         } else {
             if (self.homeCV.contentOffset.y > -1030) {
-                [UIView animateWithDuration:0.2 animations:^{
+                [UIView animateWithDuration:0.3 animations:^{
                     self.backImageVIew.alpha = 0.0;
                     self.navLine.alpha = 1.0;
                 }];
