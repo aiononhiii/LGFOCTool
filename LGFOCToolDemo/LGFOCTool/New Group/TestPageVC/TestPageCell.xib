@@ -56,6 +56,9 @@
                 <constraint firstAttribute="trailing" secondItem="nWp-WM-ozf" secondAttribute="trailing" id="yCo-zE-rdO"/>
             </constraints>
             <size key="customSize" width="195" height="268"/>
+            <connections>
+                <outlet property="testLabel" destination="Txe-DG-Fxi" id="SMs-uQ-uHv"/>
+            </connections>
             <point key="canvasLocation" x="106.5" y="277"/>
         </collectionViewCell>
     </objects>

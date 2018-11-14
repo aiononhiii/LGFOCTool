@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TestPageCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UILabel *testLabel;
 
 @end

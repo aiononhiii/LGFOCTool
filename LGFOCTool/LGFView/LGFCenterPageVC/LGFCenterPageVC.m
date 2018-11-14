@@ -7,19 +7,12 @@
 //
 
 #import "LGFCenterPageVC.h"
-#import "LGFCenterPageChildVC.h"
 
 @interface LGFCenterPageVC () <LGFPageTitleViewDelegate, LGFCenterPageChildVCDelegate>
 // header view
 @property (strong, nonatomic) IBOutlet UIView *lgf_HeaderViewForSB;
 // lgf_PageTitleView 父控件(superview)
 @property (strong, nonatomic) IBOutlet UIView *lgf_PageTitleSuperViewForSB;
-// 导航栏整体view
-@property (weak, nonatomic) IBOutlet UIView *naviView;
-// 导航栏标view
-@property (weak, nonatomic) IBOutlet UIView *naviTitleView;
-// 导航栏顶部约束 用于某些情况下需要隐藏导航栏 直接赋值（-系统导航栏电池栏总高度）
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *naviTop;
 // 头部父控件
 @property (strong, nonatomic) IBOutlet UIView *lgf_HeaderSuperView;
 // 联动点击view
@@ -66,14 +59,12 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
     self.lgf_HeaderTapView.frame = self.lgf_HeaderSuperView.frame;
     [self.view addSubview:self.lgf_HeaderTapView];
     [self.view addSubview:self.lgf_HeaderSuperView];
-    [self.view bringSubviewToFront:self.naviView];
-    [self.view bringSubviewToFront:self.naviTitleView];
     [self.lgf_PageTitleArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         LGFCenterPageChildVC *vc = [LGFCenterPageChildVC lgf];
         vc.title = obj;
-        vc.headerHeight = self.lgf_HeaderHeight;
-        vc.pageHeight = self.lgf_PageTitleViewHeight;
-        vc.index = idx;
+        vc.lgf_HeaderHeight = self.lgf_HeaderHeight;
+        vc.lgf_PageTitleViewHeight = self.lgf_PageTitleViewHeight;
+        vc.lgf_SelectIndex = idx;
         vc.LGFCenterPageView = self.view;
         vc.lgf_HeaderTapView = self.lgf_HeaderTapView;
         vc.lgf_HeaderSuperView = self.lgf_HeaderSuperView;
@@ -111,35 +102,36 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
 }
 
 #pragma mark - LGFCenterPageChildVC Delegate
-- (void)lgf_CenterChildPageCVConfig:(UICollectionView *)collectionView {
+- (void)lgf_CenterChildPageCVConfig:(UICollectionView *)lgf_CenterChildPageCV {
     if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCVConfig:)]) {
-        return [self.delegate lgf_CenterChildPageCVConfig:collectionView];
+        return [self.delegate lgf_CenterChildPageCVConfig:lgf_CenterChildPageCV];
     }
 }
 
-- (NSInteger)lgf_NumberOfItemsInSelectIndex:(NSInteger)selectIndex collectionView:(UICollectionView *)collectionView {
-    if ([self.delegate respondsToSelector:@selector(lgf_NumberOfItemsInSelectIndex:collectionView:)]) {
-        return [self.delegate lgf_NumberOfItemsInSelectIndex:selectIndex collectionView:collectionView];
+- (NSInteger)lgf_NumberOfItems:(UIViewController *)lgf_CenterChildPageVC {
+    if ([self.delegate respondsToSelector:@selector(lgf_NumberOfItems:)]) {
+        return [self.delegate lgf_NumberOfItems:lgf_CenterChildPageVC];
     }
     return 0;
 }
 
-- (Class)lgf_CenterChildPageCVCellClassForCV:(UICollectionView *)collectionView {
-    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCVCellClassForCV:)]) {
-        return [self.delegate lgf_CenterChildPageCVCellClassForCV:collectionView];
+- (Class)lgf_CenterChildPageCVCellClass:(UIViewController *)lgf_CenterChildPageVC {
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCVCellClass:)]) {
+        return [self.delegate lgf_CenterChildPageCVCellClass:lgf_CenterChildPageVC];
     }
     return nil;
 }
 
-- (void)lgf_CenterChildPageCVCell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath selectIndex:(NSInteger)selectIndex collectionView:(UICollectionView *)collectionView {
-    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCVCell:indexPath:selectIndex:collectionView:)]) {
-        [self.delegate lgf_CenterChildPageCVCell:cell indexPath:indexPath selectIndex:selectIndex collectionView:collectionView];
+- (void)lgf_CenterChildPageVC:(UIViewController *)lgf_CenterChildPageVC cell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageVC:cell:indexPath:)]) {
+        [self.delegate lgf_CenterChildPageVC:lgf_CenterChildPageVC cell:cell indexPath:indexPath];
     }
+    
 }
 
-- (void)lgf_CenterChildPageCV:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath selectIndex:(NSInteger)selectIndex {
-    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCV:didSelectItemAtIndexPath:selectIndex:)]) {
-        [self.delegate lgf_CenterChildPageCV:collectionView didSelectItemAtIndexPath:indexPath selectIndex:selectIndex];
+- (void)lgf_CenterChildPageVC:(UIViewController *)lgf_CenterChildPageVC didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageVC:didSelectItemAtIndexPath:)]) {
+        [self.delegate lgf_CenterChildPageVC:lgf_CenterChildPageVC didSelectItemAtIndexPath:indexPath];
     }
 }
 
@@ -186,6 +178,9 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
         [self.lgf_HeaderSuperView removeGestureRecognizer:obj];
     }];
     [self.lgf_HeaderSuperView addGestureRecognizer:vc.lgf_PanScrollView.panGestureRecognizer];
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterPageCVPaging:selectIndex:)]) {
+        [self.delegate lgf_CenterPageCVPaging:vc selectIndex:index];
+    }
 }
 
 - (IBAction)tapHeader:(UITapGestureRecognizer *)sender {

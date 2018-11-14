@@ -9,17 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "LGFOCTool.h"
 #import "LGFPageTitleView.h"
+#import "LGFCenterPageChildVC.h"
+
 @protocol LGFCenterPageVCDelegate <NSObject>
-// 外部可以配置内部 UICollectionView
-- (void)lgf_CenterChildPageCVConfig:(UICollectionView *)collectionView;
+// lgf_CenterPageCV 分页监听
+- (void)lgf_CenterPageCVPaging:(UIViewController *)centerPageChildVC selectIndex:(NSInteger)selectIndex;
+// 配置内部 UICollectionView
+- (void)lgf_CenterChildPageCVConfig:(UICollectionView *)lgf_CenterChildPageCV;
 // 返回 cell 个数
-- (NSInteger)lgf_NumberOfItemsInSelectIndex:(NSInteger)selectIndex collectionView:(UICollectionView *)collectionView;
+- (NSInteger)lgf_NumberOfItems:(UIViewController *)centerPageChildVC;
 // 返回 cellclass 用于注册cell 如果是xibcell 请建立与 cellclass 相同名字的 xib
-- (Class)lgf_CenterChildPageCVCellClassForCV:(UICollectionView *)collectionView;
+- (Class)lgf_CenterChildPageCVCellClass:(UIViewController *)centerPageChildVC;
 // cell 数据源赋值
-- (void)lgf_CenterChildPageCVCell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath selectIndex:(NSInteger)selectIndex collectionView:(UICollectionView *)collectionView;
+- (void)lgf_CenterChildPageVC:(UIViewController *)centerPageChildVC cell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath;
 // cell 点击事件
-- (void)lgf_CenterChildPageCV:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath selectIndex:(NSInteger)selectIndex;
+- (void)lgf_CenterChildPageVC:(UIViewController *)centerPageChildVC didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 @end
 @interface LGFCenterPageVC : UIViewController
 @property (nonatomic, weak, nullable) id <LGFCenterPageVCDelegate> delegate;
