@@ -52,26 +52,34 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
 
 - (void)lgf_CenterPageCVPaging:(UIViewController *)centerPageChildVC selectIndex:(NSInteger)selectIndex {
     LGFCenterPageChildVC *vc = (LGFCenterPageChildVC *)centerPageChildVC;
-    if (vc.lgf_PageChildDataArray.count == 0) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 加载数据
         if (selectIndex == 4) {
             vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"水杯", @"笔记本", @"汽车"]];
+        } else if (selectIndex == 6) {
+            vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[]];
         } else {
             vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"淘宝", @"京东", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会"]];
         }
         // 加载数据完毕
         [vc.lgf_CenterChildPageCV reloadData];
         [vc lgf_SynContentSize];
-    }
+    });
 }
 
-- (void)lgf_CenterChildPageCVConfig:(UICollectionView *)lgf_CenterChildPageCV {
-    
+- (void)lgf_CenterChildPageCVConfig:(UIViewController *)centerPageChildVC {
+    LGFCenterPageChildVC *vc = (LGFCenterPageChildVC *)centerPageChildVC;
+    vc.lgf_CenterChildPageCV.lgf_Header = LGFMJHeader(vc, @selector(ddddd));
+    vc.lgf_CenterChildPageCV.lgf_Footer = LGFMJFooter(vc, @selector(ddddd));
 }
 
 - (NSInteger)lgf_NumberOfItems:(UIViewController *)centerPageChildVC {
     LGFCenterPageChildVC *vc = (LGFCenterPageChildVC *)centerPageChildVC;
     return vc.lgf_PageChildDataArray.count;
+}
+
+- (CGSize)lgf_SizeForItemAtIndexPath:(NSIndexPath *)indexPath centerPageChildVC:(UIViewController *)centerPageChildVC {
+    return CGSizeMake(lgf_ScreenWidth / 2, 300);
 }
 
 - (Class)lgf_CenterChildPageCVCellClass:(UIViewController *)centerPageChildVC {
@@ -82,11 +90,8 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
     LGFCenterPageChildVC *vc = (LGFCenterPageChildVC *)centerPageChildVC;
     TestPageCell *bcell = (TestPageCell *)cell;
     bcell.testLabel.text = vc.lgf_PageChildDataArray[indexPath.item];
-    if (indexPath.item % 2 == 0) {
-        bcell.backgroundColor = [UIColor redColor];
-    } else {
-        bcell.backgroundColor = [UIColor whiteColor];
-    }
+    bcell.testLabelTwo.text = vc.lgf_PageChildDataArray[indexPath.item];
+    bcell.testImage.image = [UIImage imageNamed:@"timg16.jpeg"];
 }
 
 - (void)lgf_CenterChildPageVC:(UIViewController *)centerPageChildVC didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

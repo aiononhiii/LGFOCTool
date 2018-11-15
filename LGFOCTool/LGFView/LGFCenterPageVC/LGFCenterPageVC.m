@@ -24,13 +24,13 @@
 // 分页控件
 @property (strong, nonatomic) LGFPageTitleView *lgf_PageTitleView;
 // 子控制器数组
-@property (nonatomic, strong) NSMutableArray *childVCArray;
+@property (nonatomic, strong) NSMutableArray *lgf_ChildVCArray;
 // 子控制器记录用 contentOffset.y
-@property (nonatomic, assign) CGFloat offsetY;
+@property (nonatomic, assign) CGFloat lgf_OffsetY;
 // 当前选择子控制器 selectIndex
-@property (nonatomic, assign) NSInteger selectIndex;
+@property (nonatomic, assign) NSInteger lgf_SelectIndex;
 // 是否滚动到顶部
-@property (nonatomic, assign) BOOL isTopScroll;
+@property (nonatomic, assign) BOOL lgf_IsTopScroll;
 @end
 
 @implementation LGFCenterPageVC
@@ -65,12 +65,13 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
         vc.lgf_HeaderHeight = self.lgf_HeaderHeight;
         vc.lgf_PageTitleViewHeight = self.lgf_PageTitleViewHeight;
         vc.lgf_SelectIndex = idx;
+        vc.lgf_CenterPageCV = self.lgf_CenterPageCV;
         vc.LGFCenterPageView = self.view;
         vc.lgf_HeaderTapView = self.lgf_HeaderTapView;
         vc.lgf_HeaderSuperView = self.lgf_HeaderSuperView;
         [self addChildViewController:vc];
         [vc didMoveToParentViewController:self];
-        [self.childVCArray addObject:vc];
+        [self.lgf_ChildVCArray addObject:vc];
     }];
     // 刷新数据源
     [self.lgf_CenterPageCV reloadData];
@@ -87,14 +88,14 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
 #pragma mark - 分页控制部分逻辑
 - (void)childScroll:(NSNotification *)noti {
     NSInteger index = [noti.object[1] integerValue];
-    if (index == self.selectIndex) {
-        self.offsetY = [noti.object[0] floatValue];
-        self.lgf_HeaderSuperView.transform = CGAffineTransformMakeTranslation(0, MAX(-(self.offsetY + self.lgf_HeaderHeight), -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)));
+    if (index == self.lgf_SelectIndex) {
+        self.lgf_OffsetY = [noti.object[0] floatValue];
+        self.lgf_HeaderSuperView.transform = CGAffineTransformMakeTranslation(0, MAX(-(self.lgf_OffsetY + self.lgf_HeaderHeight), -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)));
         self.lgf_HeaderTapView.transform = self.lgf_HeaderSuperView.transform;
     }
-    if (self.lgf_HeaderSuperView.transform.ty > -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)) {
-        self.isTopScroll = YES;
-        [lgf_NCenter postNotificationName:@"superScroll" object:@[@(self.offsetY), @(self.selectIndex)]];
+    LGFCenterPageChildVC *vc = self.lgf_ChildVCArray[index];
+    if ((self.lgf_HeaderSuperView.transform.ty > -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)) && vc.lgf_IsGreaterFullContentSize) {
+        self.lgf_IsTopScroll = YES;
         self.lgf_PageTitleSuperViewLine.hidden = YES;
     } else {
         self.lgf_PageTitleSuperViewLine.hidden = NO;
@@ -113,6 +114,13 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
         return [self.delegate lgf_NumberOfItems:lgf_CenterChildPageVC];
     }
     return 0;
+}
+
+- (CGSize)lgf_SizeForItemAtIndexPath:(NSIndexPath *)indexPath centerPageChildVC:(UIViewController *)centerPageChildVC {
+    if ([self.delegate respondsToSelector:@selector(lgf_SizeForItemAtIndexPath:centerPageChildVC:)] && self) {
+        return [self.delegate lgf_SizeForItemAtIndexPath:indexPath centerPageChildVC:self];
+    }
+    return CGSizeZero;
 }
 
 - (Class)lgf_CenterChildPageCVCellClass:(UIViewController *)lgf_CenterChildPageVC {
@@ -137,7 +145,7 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
 
 #pragma mark - Collection View DataSource And Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.childVCArray.count;
+    return self.lgf_ChildVCArray.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -148,7 +156,7 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
     UICollectionViewCell *cell = lgf_CVGetCell(collectionView, UICollectionViewCell, indexPath);
     cell.tag = indexPath.item;
     [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    LGFCenterPageChildVC *vc = self.childVCArray[indexPath.item];
+    LGFCenterPageChildVC *vc = self.lgf_ChildVCArray[indexPath.item];
     vc.delegate = self;
     vc.view.frame = cell.bounds;
     [cell addSubview:vc.view];
@@ -156,35 +164,61 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.lgf_HeaderSuperView.transform.ty > -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)) {
-        [lgf_NCenter postNotificationName:@"superScroll" object:@[@(self.offsetY), @(self.selectIndex)]];
-    } else {
-        if (self.isTopScroll) {
-            [lgf_NCenter postNotificationName:@"superScroll" object:@[@(-(self.lgf_HeaderHeight + self.lgf_HeaderSuperView.transform.ty)), @(self.selectIndex)]];
+    LGFCenterPageChildVC *vc = self.lgf_ChildVCArray[indexPath.item];
+    if (vc.lgf_PageChildDataArray.count > 0) {
+        if ([self.delegate respondsToSelector:@selector(lgf_CenterPageCVPaging:selectIndex:)]) {
+            [self.delegate lgf_CenterPageCVPaging:vc selectIndex:indexPath.item];
         }
+    }
+    if (vc.lgf_SelectIndex != self.lgf_SelectIndex) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.lgf_HeaderSuperView.transform.ty > -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)) {
+                [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, self.lgf_OffsetY) animated:NO];
+            } else {
+                if (self.lgf_IsTopScroll) {
+                    [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_HeaderHeight + self.lgf_HeaderSuperView.transform.ty)) animated:NO];
+                } else {
+                    if (!vc.lgf_PageChildDataArray || vc.lgf_PageChildDataArray.count == 0) {
+                        [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_PageTitleViewHeight)) animated:NO];
+                    } else {
+                        if (vc.lgf_CenterChildPageCV.contentOffset.y < -(self.lgf_PageTitleViewHeight)) {
+                            [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_PageTitleViewHeight)) animated:NO];
+                        }
+                    }
+                }
+            }
+            if (vc.lgf_CenterChildPageCV.contentOffset.y >= -(self.lgf_PageTitleViewHeight)) {
+                vc.lgf_PageTitleViewIsCenter = YES;
+            }
+        });
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (scrollView == self.lgf_CenterPageCV) {
+        self.lgf_HeaderSuperView.userInteractionEnabled = NO;
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (scrollView == self.lgf_CenterPageCV) {
+        self.lgf_HeaderSuperView.userInteractionEnabled = YES;
     }
 }
 
 #pragma arguments LGFPageTitleViewDelegate
 - (void)lgf_SelectPageTitle:(NSInteger)selectIndex {
-    self.isTopScroll = NO;
-    self.selectIndex = selectIndex;
-    [self addPan:self.selectIndex];
+    self.lgf_IsTopScroll = NO;
+    self.lgf_SelectIndex = selectIndex;
+    [self lgf_AddPanGestureRecognizer];
 }
 
-- (void)addPan:(NSInteger)index {
-    LGFCenterPageChildVC *vc = self.childVCArray[self.selectIndex];
+- (void)lgf_AddPanGestureRecognizer {
+    LGFCenterPageChildVC *vc = self.lgf_ChildVCArray[self.lgf_SelectIndex];
     [self.lgf_HeaderSuperView.gestureRecognizers enumerateObjectsUsingBlock:^(__kindof UIGestureRecognizer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.lgf_HeaderSuperView removeGestureRecognizer:obj];
     }];
     [self.lgf_HeaderSuperView addGestureRecognizer:vc.lgf_PanScrollView.panGestureRecognizer];
-    if ([self.delegate respondsToSelector:@selector(lgf_CenterPageCVPaging:selectIndex:)]) {
-        [self.delegate lgf_CenterPageCVPaging:vc selectIndex:index];
-    }
-}
-
-- (IBAction)tapHeader:(UITapGestureRecognizer *)sender {
-    [lgf_Application.windows.firstObject.rootViewController.view lgf_ShowMessage:@"点击有效了" animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -200,11 +234,11 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
     return _lgf_PageTitleArray;
 }
 
-- (NSMutableArray *)childVCArray {
-    if (!_childVCArray) {
-        _childVCArray = [NSMutableArray new];
+- (NSMutableArray *)lgf_ChildVCArray {
+    if (!_lgf_ChildVCArray) {
+        _lgf_ChildVCArray = [NSMutableArray new];
     }
-    return _childVCArray;
+    return _lgf_ChildVCArray;
 }
 
 - (LGFPageTitleView *)lgf_PageTitleView {

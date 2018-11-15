@@ -10,5 +10,7 @@
 
 @interface TestPageCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
+@property (weak, nonatomic) IBOutlet UILabel *testLabelTwo;
+@property (weak, nonatomic) IBOutlet UIImageView *testImage;
 
 @end

@@ -18,6 +18,8 @@
 - (void)lgf_CenterChildPageCVConfig:(UICollectionView *)lgf_CenterChildPageCV;
 // 返回 cell 个数
 - (NSInteger)lgf_NumberOfItems:(UIViewController *)centerPageChildVC;
+// 返回 cell 大小
+- (CGSize)lgf_SizeForItemAtIndexPath:(NSIndexPath *)indexPath centerPageChildVC:(UIViewController *)centerPageChildVC;
 // 返回 cellclass 用于注册cell 如果是xibcell 请建立与 cellclass 相同名字的 xib
 - (Class)lgf_CenterChildPageCVCellClass:(UIViewController *)centerPageChildVC;
 // cell 数据源赋值
