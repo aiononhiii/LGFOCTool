@@ -103,9 +103,23 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
 }
 
 #pragma mark - LGFCenterPageChildVC Delegate
-- (void)lgf_CenterChildPageCVConfig:(UICollectionView *)lgf_CenterChildPageCV {
-    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCVConfig:)]) {
-        return [self.delegate lgf_CenterChildPageCVConfig:lgf_CenterChildPageCV];
+
+- (void)lgf_CenterPageVCLoadData {
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterPageVCLoadData:)]) {
+        [self.delegate lgf_CenterPageVCLoadData:self];
+    }
+}
+
+- (void)lgf_CenterChildPageVCDidLoad:(UIViewController *)centerPageChildVC {
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageVCDidLoad:)]) {
+        return [self.delegate lgf_CenterChildPageVCDidLoad:centerPageChildVC];
+    }
+}
+
+- (void)lgf_CenterPageChildVCLoadData:(UIViewController *)centerPageChildVC selectIndex:(NSInteger)selectIndex loadType:(lgf_ChildLoadType)loadType {
+    LGFCenterPageChildVC *vc = (LGFCenterPageChildVC *)centerPageChildVC;
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterPageChildVCLoadData:selectIndex:loadType:)]) {
+        [self.delegate lgf_CenterPageChildVCLoadData:vc selectIndex:selectIndex loadType:loadType == lgf_ChildLoadData ? lgf_LoadData : lgf_LoadMoreData];
     }
 }
 
@@ -165,9 +179,9 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     LGFCenterPageChildVC *vc = self.lgf_ChildVCArray[indexPath.item];
-    if (vc.lgf_PageChildDataArray.count > 0) {
-        if ([self.delegate respondsToSelector:@selector(lgf_CenterPageCVPaging:selectIndex:)]) {
-            [self.delegate lgf_CenterPageCVPaging:vc selectIndex:indexPath.item];
+    if (vc.lgf_PageChildDataArray.count == 0) {
+        if ([self.delegate respondsToSelector:@selector(lgf_CenterPageChildVCLoadData:selectIndex:loadType:)]) {
+            [self.delegate lgf_CenterPageChildVCLoadData:vc selectIndex:indexPath.item loadType:lgf_LoadData];
         }
     }
     if (vc.lgf_SelectIndex != self.lgf_SelectIndex) {

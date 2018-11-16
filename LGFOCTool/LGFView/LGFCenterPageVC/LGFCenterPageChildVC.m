@@ -12,6 +12,10 @@
 #define lgf_CenterChildPageCVRealRect ([self.view.superview convertRect:self.view.frame toView:nil])
 
 @interface LGFCenterPageChildVC ()
+@property (strong, nonatomic) MJRefreshHeader *header;
+@property (strong, nonatomic) MJRefreshHeader *panheader;
+@property (strong, nonatomic) MJRefreshFooter *footer;
+@property (strong, nonatomic) MJRefreshFooter *panfooter;
 @end
 
 @implementation LGFCenterPageChildVC
@@ -21,29 +25,59 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     // 给 header view 预留 top 空间
     if (self.lgf_CenterChildPageCV.contentInset.top != self.lgf_HeaderHeight) {
         [self.lgf_CenterChildPageCV setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, 0, 0)];
         [self.lgf_PanScrollView setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, 0, 0)];
     }
-    
     // 外部 cell 注册
     if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCVCellClass:)]) {
         lgf_RegisterNibCollectionViewCell(self.lgf_CenterChildPageCV, [self.delegate lgf_CenterChildPageCVCellClass:self], NSStringFromClass([self.delegate lgf_CenterChildPageCVCellClass:self]))
     }
     
-    // 添加分页控制逻辑通知
-    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCVConfig:)] && self) {
-        [self.delegate lgf_CenterChildPageCVConfig:self.lgf_CenterChildPageCV];
-    }
-    
     if (self.lgf_SelectIndex == 0) {
         [self.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -self.lgf_HeaderHeight) animated:NO];
     }
-    
     // 判断 数据源是否足以支撑全屏 ContentSize
     self.lgf_IsGreaterFullContentSize = self.lgf_CenterChildPageCV.contentSize.height > lgf_ScreenHeight - lgf_CenterChildPageCVRealRect.origin.y;
+    
+    self.lgf_Page = 1;
+    // 代理回调 viewDidLoad
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageVCDidLoad:)] && self) {
+        [self.delegate lgf_CenterChildPageVCDidLoad:self];
+    }
+}
+
+- (void)lgf_SetMJMJRefreshHeader {
+    self.header = LGFMJHeader(self, @selector(lgf_ChildLoadData));
+    self.header.ignoredScrollViewContentInsetTop = self.lgf_HeaderHeight;
+    self.panheader = LGFMJHeader(self, @selector(lgf_ChildLoadData));
+    self.panheader.ignoredScrollViewContentInsetTop = self.lgf_HeaderHeight;
+    self.lgf_PanScrollView.lgf_Header = self.panheader;
+    self.lgf_CenterChildPageCV.lgf_Header = self.header;
+}
+
+- (void)lgf_SetMJMJRefreshFooter {
+    self.footer = LGFMJFooter(self, @selector(lgf_ChildLoadMoreData));
+    self.panfooter = LGFMJFooter(self, @selector(lgf_ChildLoadMoreData));
+    self.lgf_PanScrollView.lgf_Footer = self.footer;
+    self.lgf_CenterChildPageCV.lgf_Footer = self.panfooter;
+}
+
+- (void)lgf_ChildLoadData {
+    self.lgf_Page = 1;
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterPageVCLoadData)] && self) {
+        [self.delegate lgf_CenterPageVCLoadData];
+    }
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterPageChildVCLoadData:selectIndex:loadType:)] && self) {
+        [self.delegate lgf_CenterPageChildVCLoadData:self selectIndex:self.lgf_SelectIndex loadType:lgf_ChildLoadData];
+    }
+}
+
+- (void)lgf_ChildLoadMoreData {
+    if ([self.delegate respondsToSelector:@selector(lgf_CenterPageChildVCLoadData:selectIndex:loadType:)] && self) {
+        [self.delegate lgf_CenterPageChildVCLoadData:self selectIndex:self.lgf_SelectIndex loadType:lgf_ChildLoadMoreData];
+    }
 }
 
 #pragma mark - 空白占位逻辑优化
@@ -96,28 +130,35 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
 
 #pragma mark - 以一个 空白ScrollView 联动两个非父子关系控件的核心代码
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"%f", scrollView.contentOffset.y);
     if (scrollView == self.lgf_PanScrollView) {
         // 让 lgf_CenterChildPageCV 与 lgf_PanScrollView 联动
         [self.lgf_CenterChildPageCV setContentOffset:self.lgf_PanScrollView.contentOffset];
         // 如果 lgf_CenterChildPageCV 滚动被暂停
         if (self.lgf_CenterChildPageCV.tracking) {
-            [self showHeaderTapView];
-            [self hidePanScrollView];
+            self.panheader.hidden = YES;
+            self.header.hidden = NO;
             // 暂停 lgf_PanScrollView 滚动
             [self.lgf_PanScrollView setContentOffset:self.lgf_PanScrollView.contentOffset animated:NO];
+            [self showHeaderTapView];
+            [self hidePanScrollView];
         }
     } else {
         // 让 lgf_PanScrollView 与 lgf_CenterChildPageCV 联动
-        [self.lgf_PanScrollView setContentOffset:self.lgf_CenterChildPageCV.contentOffset];
-        [lgf_NCenter postNotificationName:@"childScroll" object:@[@(scrollView.contentOffset.y), @(self.lgf_SelectIndex)]];
+        if (self.lgf_CenterChildPageCV.contentOffset.y > -(self.lgf_HeaderHeight)) {
+            [self.lgf_PanScrollView setContentOffset:self.lgf_CenterChildPageCV.contentOffset];
+        } else {
+            [self.lgf_PanScrollView setContentOffset:self.lgf_CenterChildPageCV.contentOffset animated:NO];
+        }
         // 如果 lgf_PanScrollView 滚动被暂停
         if (self.lgf_PanScrollView.tracking) {
-            [self hideHeaderTapView];
-            [self showPanScrollView];
+            self.panheader.hidden = NO;
+            self.header.hidden = YES;
             // 暂停 lgf_CenterChildPageCV 滚动
             [self.lgf_CenterChildPageCV setContentOffset:self.lgf_CenterChildPageCV.contentOffset animated:NO];
+            [self hideHeaderTapView];
+            [self showPanScrollView];
         }
+        [lgf_NCenter postNotificationName:@"childScroll" object:@[@(scrollView.contentOffset.y), @(self.lgf_SelectIndex)]];
     }
 }
 // 滚动是否手动暂停

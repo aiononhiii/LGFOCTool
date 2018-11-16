@@ -9,13 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "LGFOCTool.h"
 #import "LGFPageTitleView.h"
-#import "LGFCenterPageChildVC.h"
+
+typedef NS_ENUM(NSUInteger, lgf_LoadType) {
+    lgf_LoadData,
+    lgf_LoadMoreData,
+};
 
 @protocol LGFCenterPageVCDelegate <NSObject>
-// lgf_CenterPageCV 分页监听
-- (void)lgf_CenterPageCVPaging:(UIViewController *)centerPageChildVC selectIndex:(NSInteger)selectIndex;
-// 配置内部 UICollectionView
-- (void)lgf_CenterChildPageCVConfig:(UICollectionView *)lgf_CenterChildPageCV;
+// lgf_CenterPageCV 分页主控制器加载数据
+- (void)lgf_CenterPageVCLoadData:(UIViewController *)centerPageVC;
+// lgf_CenterPageChildCV 子控制器加载数据
+- (void)lgf_CenterPageChildVCLoadData:(UIViewController *)centerPageChildVC selectIndex:(NSInteger)selectIndex loadType:(lgf_LoadType)loadType;
+// 配置内部 centerPageChildVC
+- (void)lgf_CenterChildPageVCDidLoad:(UIViewController *)centerPageChildVC;
 // 返回 cell 个数
 - (NSInteger)lgf_NumberOfItems:(UIViewController *)centerPageChildVC;
 // 返回 cell 大小
