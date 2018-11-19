@@ -41,7 +41,7 @@
 #import "LGFPopMenu.h"
 // 自定义tabbar
 #import "LGFTabBarVC.h"
-// MJRefresh 封装
+// LGFRefresh 封装
 #import "UIScrollView+LGFMJRefresh.h"
 //******************************** 分类 **********************************
 //------------------ NSString 分类集合 -----------------

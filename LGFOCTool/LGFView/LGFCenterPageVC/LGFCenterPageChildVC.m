@@ -13,10 +13,10 @@
 
 @interface LGFCenterPageChildVC ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lgf_PanScrollViewHeight;
-@property (strong, nonatomic) MJRefreshHeader *header;
-@property (strong, nonatomic) MJRefreshHeader *panheader;
-@property (strong, nonatomic) MJRefreshFooter *footer;
-@property (strong, nonatomic) MJRefreshFooter *panfooter;
+@property (strong, nonatomic) LGFRefreshHeader *header;
+@property (strong, nonatomic) LGFRefreshHeader *panheader;
+@property (strong, nonatomic) LGFRefreshFooter *footer;
+@property (strong, nonatomic) LGFRefreshFooter *panfooter;
 @end
 
 @implementation LGFCenterPageChildVC
@@ -52,17 +52,17 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
     }
 }
 
-- (void)lgf_SetMJMJRefreshHeader {
-    MJRefreshHeader *header = LGFMJHeader(self, @selector(lgf_ChildLoadData));
+- (void)lgf_SetMJLGFRefreshHeader {
+    LGFRefreshHeader *header = LGFMJHeader(self, @selector(lgf_ChildLoadData));
     header.ignoredScrollViewContentInsetTop = self.lgf_HeaderHeight;
     self.lgf_CenterChildPageCV.lgf_Header = header;
     self.lgf_CenterChildPageCV.lgf_BrotherScrollView = self.lgf_PanScrollView;
 }
 
-- (void)lgf_SetMJMJRefreshFooter {
+- (void)lgf_SetMJLGFRefreshFooter {
     
     self.lgf_PanScrollView.lgf_Footer = self.footer;
-//    MJRefreshAutoNormalFooter *pfooter = LGFMJFooter(self, @selector(lgf_ChildLoadMoreData));
+//    LGFRefreshAutoNormalFooter *pfooter = LGFMJFooter(self, @selector(lgf_ChildLoadMoreData));
 //    self.lgf_PanScrollView.lgf_Footer = pfooter;
 }
 

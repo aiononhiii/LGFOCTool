@@ -107,7 +107,7 @@
 #define lgf_SDImage(imageView, imageUrl) [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
 #undef lgf_SDAnimatedImage
 #define lgf_SDAnimatedImage(imageView, imageData) [imageView setAnimatedImage:[FLAnimatedImage animatedImageWithGIFData:imageData]];
-//s.dependency 'MJRefresh'
+//s.dependency 'LGFRefresh'
 //s.dependency 'SDWebImage', '4.4.1'
 //s.dependency 'FLAnimatedImage', '~> 1.0'
 // NSUserDefaults 缓存

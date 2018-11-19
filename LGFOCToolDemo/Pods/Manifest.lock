@@ -17,7 +17,6 @@ PODS:
   - FLAnimatedImage (1.0.12)
   - LGFPageTitle (1.1.7)
   - LGFTransition (0.1.2)
-  - MJRefresh (3.1.15.3)
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
@@ -41,7 +40,6 @@ DEPENDENCIES:
   - FLAnimatedImage (~> 1.0)
   - LGFPageTitle
   - LGFTransition
-  - MJRefresh
   - SDWebImage (= 4.4.1)
   - YYAsyncLayer
   - YYCategories
@@ -56,7 +54,6 @@ SPEC REPOS:
     - FLAnimatedImage
     - LGFPageTitle
     - LGFTransition
-    - MJRefresh
     - SDWebImage
     - YYAsyncLayer
     - YYCache
@@ -72,7 +69,6 @@ SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   LGFPageTitle: f5cf833a3790a95d4d74ad2a32c4f03a62784630
   LGFTransition: c147906887cc5ef9661294aa681d369e5becb923
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   YYAsyncLayer: df6b01ebc695c5f6b4c15dd5c23fa3e081eb25c0
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
@@ -83,6 +79,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: ab1cf00fc7480fe2f0e881a68753bfda183e6421
+PODFILE CHECKSUM: bf5e198f962342ba93f0df6db8d6db38e1b15aee
 
 COCOAPODS: 1.6.0.beta.1
