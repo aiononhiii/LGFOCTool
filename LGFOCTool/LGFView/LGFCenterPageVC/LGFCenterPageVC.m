@@ -35,7 +35,7 @@
 
 @implementation LGFCenterPageVC
 
-lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC");
+lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFOCTool");
 
 - (void)lgf_ShowInVC:(UIViewController *)VC view:(UIView *)view {
     [VC addChildViewController:self];
