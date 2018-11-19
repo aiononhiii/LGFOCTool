@@ -148,7 +148,6 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
     if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageVC:cell:indexPath:)]) {
         [self.delegate lgf_CenterChildPageVC:lgf_CenterChildPageVC cell:cell indexPath:indexPath];
     }
-    
 }
 
 - (void)lgf_CenterChildPageVC:(UIViewController *)lgf_CenterChildPageVC didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

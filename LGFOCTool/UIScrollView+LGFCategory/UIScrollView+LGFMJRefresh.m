@@ -13,8 +13,26 @@
 @dynamic lgf_NoMoreView;
 @dynamic lgf_Footer;
 @dynamic lgf_Header;
+@dynamic lgf_BrotherScrollView;
 
 static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
+
+- (MJRefreshFooter *)lgf_Footer {
+    return (MJRefreshFooter *)self.mj_footer;
+}
+
+- (MJRefreshHeader *)lgf_header {
+    return (MJRefreshHeader *)self.mj_header;
+}
+
+- (void)setLgf_BrotherScrollView:(UIScrollView *)lgf_BrotherScrollView {
+    self.mj_header.brotherScrollView = lgf_BrotherScrollView;
+    self.mj_footer.brotherScrollView = lgf_BrotherScrollView;
+}
+
+- (void)setLgf_Header:(MJRefreshHeader *)lgf_Header {
+    self.mj_header = lgf_Header;
+}
 
 - (void)setLgf_Footer:(MJRefreshFooter *)lgf_Footer {
     MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)lgf_Footer;
@@ -24,14 +42,6 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
     [footer setTitle:@"" forState:MJRefreshStateRefreshing];
     [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
     self.mj_footer = footer;
-}
-
-- (MJRefreshFooter *)lgf_Footer {
-    return self.mj_footer;
-}
-
-- (void)setLgf_Header:(MJRefreshHeader *)lgf_Header {
-    self.mj_header = lgf_Header;
 }
 
 - (void)lgf_SetGifHeader:(MJRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize {
@@ -77,10 +87,6 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
                                                                constant:0]];
     }
     self.mj_header = gifHeader;
-}
-
-- (MJRefreshHeader *)lgf_header {
-    return self.mj_header;
 }
 
 - (void)setLgf_NoMoreView:(UIView *)lgf_NoMoreView {

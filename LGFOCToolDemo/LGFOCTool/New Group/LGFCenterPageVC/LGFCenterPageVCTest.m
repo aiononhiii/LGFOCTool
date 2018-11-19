@@ -66,11 +66,11 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
             vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[]];
         } else {
             if (vc.lgf_Page == 1) {
-                vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"淘宝", @"京东", @"腾讯", @"网易", @"尚衣会"]];
+                vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"淘宝", @"京东", @"腾讯", @"网易"]];
             } else {
                 [vc.lgf_PageChildDataArray addObject:@"淘宝"];
-                [vc.lgf_PageChildDataArray addObject:@"京东"];
-                [vc.lgf_PageChildDataArray addObject:@"腾讯"];
+//                [vc.lgf_PageChildDataArray addObject:@"京东"];
+//                [vc.lgf_PageChildDataArray addObject:@"腾讯"];
             }
         }
         vc.lgf_Page++;

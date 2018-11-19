@@ -67,6 +67,11 @@
         // 记录UIScrollView最开始的contentInset
         _scrollViewOriginalInset = _scrollView.mj_inset;
         
+        if (_brotherScrollView) {
+            _brotherScrollView.alwaysBounceVertical = YES;
+            _scrollViewOriginalInset = _scrollView.mj_inset;
+        }
+        
         // 添加监听
         [self addObservers];
     }
@@ -89,6 +94,7 @@
     [self.scrollView addObserver:self forKeyPath:MJRefreshKeyPathContentOffset options:options context:nil];
     [self.scrollView addObserver:self forKeyPath:MJRefreshKeyPathContentSize options:options context:nil];
     self.pan = self.scrollView.panGestureRecognizer;
+    
     [self.pan addObserver:self forKeyPath:MJRefreshKeyPathPanState options:options context:nil];
 }
 

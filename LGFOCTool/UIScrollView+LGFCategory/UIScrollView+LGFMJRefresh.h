@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIView *lgf_NoMoreView;
 @property (nonatomic, strong) MJRefreshHeader *lgf_Header;
 @property (nonatomic, strong) MJRefreshFooter *lgf_Footer;
+@property (strong, nonatomic) UIScrollView *lgf_BrotherScrollView;
 // header 和 footer 同时结束刷新
 - (void)lgf_EndRefreshing;
 // 传入 数据数组count 判断是否要显示 我是有底线的view 并且刷新

@@ -40,8 +40,10 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 {
     /** 记录scrollView刚开始的inset */
     UIEdgeInsets _scrollViewOriginalInset;
+
     /** 父控件 */
     __weak UIScrollView *_scrollView;
+    __weak UIScrollView *_brotherScrollView;
 }
 #pragma mark - 刷新回调
 /** 正在刷新的回调 */
@@ -78,6 +80,8 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 @property (assign, nonatomic, readonly) UIEdgeInsets scrollViewOriginalInset;
 /** 父控件 */
 @property (weak, nonatomic, readonly) UIScrollView *scrollView;
+/** 一些特殊情况需要的 父控件兄弟控件 */
+@property (weak, nonatomic) UIScrollView *brotherScrollView;
 
 #pragma mark - 交给子类们去实现
 /** 初始化 */

@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, lgf_ChildLoadType) {
 // 外部分页滚动 UICollectionView
 @property (weak, nonatomic) UICollectionView *lgf_CenterPageCV;
 @property (strong, nonatomic) NSMutableArray *lgf_PageChildDataArray;
-// 父控制器传进来的 
+// 父控制器传进来的
 @property (weak, nonatomic) UIView *lgf_HeaderTapView;
 @property (weak, nonatomic) UIView *lgf_HeaderSuperView;
 @property (weak, nonatomic) UIView *LGFCenterPageView;
