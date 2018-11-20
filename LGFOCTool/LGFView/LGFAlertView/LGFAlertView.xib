@@ -19,7 +19,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzK-nj-yIl">
                     <rect key="frame" x="56" y="273.5" width="262.5" height="120.5"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pnp-he-VrB">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pnp-he-VrB" userLabel="Line">
                             <rect key="frame" x="0.0" y="70" width="262.5" height="0.5"/>
                             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -34,28 +34,28 @@
                                 <constraint firstAttribute="height" constant="50" id="fog-zc-lsH"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P30-AJ-hVR">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P30-AJ-hVR">
                             <rect key="frame" x="0.0" y="70.5" width="131.5" height="50"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="取消">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="cancel:" destination="HJg-7X-y6f" eventType="touchUpInside" id="EKM-03-D8k"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ch4-dV-DAP">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ch4-dV-DAP">
                             <rect key="frame" x="132" y="70.5" width="131" height="50"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="确定">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="confirm:" destination="HJg-7X-y6f" eventType="touchUpInside" id="WtU-Jd-5zG"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3Q-BN-PD1">
-                            <rect key="frame" x="0.0" y="69.5" width="262.5" height="50.5"/>
+                            <rect key="frame" x="0.0" y="70.5" width="262.5" height="49.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="确定">
                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,14 +91,13 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="P30-AJ-hVR" firstAttribute="top" secondItem="Pnp-he-VrB" secondAttribute="bottom" id="1sZ-pB-oJF"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="450" id="AON-Fh-Plo"/>
                         <constraint firstAttribute="bottom" secondItem="P30-AJ-hVR" secondAttribute="bottom" id="DgL-rr-cuI"/>
                         <constraint firstAttribute="bottom" secondItem="Ch4-dV-DAP" secondAttribute="bottom" id="FE2-ul-c0v"/>
                         <constraint firstItem="n3Q-BN-PD1" firstAttribute="leading" secondItem="pzK-nj-yIl" secondAttribute="leading" id="FdV-pf-bxq"/>
-                        <constraint firstItem="n3Q-BN-PD1" firstAttribute="top" secondItem="yhb-iv-JIl" secondAttribute="bottom" id="K8Q-ee-HLX"/>
                         <constraint firstItem="Ch4-dV-DAP" firstAttribute="leading" secondItem="Sqo-zL-7u2" secondAttribute="trailing" id="SQQ-Rz-Ncb"/>
                         <constraint firstAttribute="trailing" secondItem="Pnp-he-VrB" secondAttribute="trailing" id="UCf-Un-HhO"/>
                         <constraint firstAttribute="bottom" secondItem="n3Q-BN-PD1" secondAttribute="bottom" id="Y2o-Zi-oaC"/>
@@ -114,6 +113,7 @@
                         <constraint firstItem="Sqo-zL-7u2" firstAttribute="top" secondItem="Pnp-he-VrB" secondAttribute="bottom" id="tRi-dM-P57"/>
                         <constraint firstItem="Sqo-zL-7u2" firstAttribute="leading" secondItem="P30-AJ-hVR" secondAttribute="trailing" id="vGk-xb-CGP"/>
                         <constraint firstItem="Pnp-he-VrB" firstAttribute="top" secondItem="yhb-iv-JIl" secondAttribute="bottom" id="wdl-xh-UeJ"/>
+                        <constraint firstItem="n3Q-BN-PD1" firstAttribute="top" secondItem="Pnp-he-VrB" secondAttribute="bottom" id="wrX-fq-81l"/>
                         <constraint firstAttribute="trailing" secondItem="Ch4-dV-DAP" secondAttribute="trailing" id="zPK-gV-vY1"/>
                     </constraints>
                 </view>
@@ -128,6 +128,7 @@
                 <outlet property="alertBackView" destination="pzK-nj-yIl" id="TsL-wZ-cR7"/>
                 <outlet property="cancelButton" destination="P30-AJ-hVR" id="Ugt-MD-xDx"/>
                 <outlet property="centerLine" destination="Sqo-zL-7u2" id="M9l-IB-Nhg"/>
+                <outlet property="centerLineHeight" destination="nPd-pk-hM5" id="8Dd-pO-mRA"/>
                 <outlet property="confirmButton" destination="Ch4-dV-DAP" id="WoJ-9o-wVO"/>
                 <outlet property="sureButton" destination="n3Q-BN-PD1" id="UAI-jr-wiE"/>
                 <outlet property="title" destination="yRm-IT-71q" id="qLI-4P-6Yv"/>

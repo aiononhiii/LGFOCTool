@@ -34,6 +34,7 @@
 #import "LGFFPSLabel.h"
 // 自定义提示框
 #import "LGFAlertView.h"
+#import "LGFImageAlertView.h"
 // 自定义菜单
 #import "LGFPopMenu.h"
 // 自定义tabbar

@@ -63,4 +63,7 @@
 #pragma mark - 返回可用系统内存容量
 + (CGFloat)lgf_GetDiskFreeSize;
 
+#pragma mark - 切换第一响应者
++ (id)lgf_CurrentFirstResponder;
+
 @end

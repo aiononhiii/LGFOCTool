@@ -24,11 +24,6 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
     return (MJRefreshHeader *)self.mj_header;
 }
 
-- (void)setLgf_BrotherScrollView:(UIScrollView *)lgf_BrotherScrollView {
-    self.mj_header.brotherScrollView = lgf_BrotherScrollView;
-    self.mj_footer.brotherScrollView = lgf_BrotherScrollView;
-}
-
 - (void)setLgf_Header:(MJRefreshHeader *)lgf_Header {
     self.mj_header = lgf_Header;
 }

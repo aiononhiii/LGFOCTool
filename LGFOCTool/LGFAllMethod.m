@@ -328,4 +328,20 @@ static UICollectionViewCell *lgf_MoveCell;
     return diskFreeSize;
 }
 
+#pragma mark - 切换第一响应者
+static __weak id lgf_CurrentFirstResponder;
+
++ (id)lgf_CurrentFirstResponder {
+    lgf_CurrentFirstResponder = nil;
+    [[UIApplication sharedApplication] sendAction:@selector(lgf_FindFirstResponder:)
+                                               to:nil
+                                             from:nil
+                                         forEvent:nil];
+    return lgf_CurrentFirstResponder;
+}
+
+- (void)lgf_FindFirstResponder:(id)sender {
+    lgf_CurrentFirstResponder = self;
+}
+
 @end

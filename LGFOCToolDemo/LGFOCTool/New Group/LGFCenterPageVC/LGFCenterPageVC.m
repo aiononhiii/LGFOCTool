@@ -7,6 +7,7 @@
 //
 
 #import "LGFCenterPageVC.h"
+#import "LGFCenterPageChildVC.h"
 
 @interface LGFCenterPageVC () <LGFPageTitleViewDelegate, LGFCenterPageChildVCDelegate>
 // header view

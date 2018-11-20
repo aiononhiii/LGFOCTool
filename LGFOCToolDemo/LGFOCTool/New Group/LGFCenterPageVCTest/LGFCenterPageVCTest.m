@@ -9,6 +9,7 @@
 #import "LGFCenterPageVCTest.h"
 #import "TestPageCell.h"
 #import "LGFCenterPageVC.h"
+#import "LGFCenterPageChildVC.h"
 
 @interface LGFCenterPageVCTest () <LGFCenterPageVCDelegate>
 @property (strong, nonatomic) IBOutlet UIView *testHeaderView;

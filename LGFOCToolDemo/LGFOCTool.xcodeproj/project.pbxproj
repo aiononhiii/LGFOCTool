@@ -40,6 +40,8 @@
 		183B92F921A3E95100F2EF2B /* LGFCenterPageChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B92F121A3E95000F2EF2B /* LGFCenterPageChildVC.m */; };
 		183B92FA21A3E95100F2EF2B /* LGFCenterPageVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183B92F221A3E95000F2EF2B /* LGFCenterPageVC.storyboard */; };
 		183B92FB21A3E95100F2EF2B /* LGFCenterPageVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B92F721A3E95100F2EF2B /* LGFCenterPageVCTest.m */; };
+		183B92FE21A3F55300F2EF2B /* LGFImageAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B92FD21A3F55200F2EF2B /* LGFImageAlertView.m */; };
+		183B930021A3F59700F2EF2B /* LGFImageAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B92FF21A3F59700F2EF2B /* LGFImageAlertView.xib */; };
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
 		183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */; };
 		183C684A20BC003100F0E243 /* CLLocation+LGFCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684920BC003100F0E243 /* CLLocation+LGFCLLocation.m */; };
@@ -213,6 +215,9 @@
 		183B92F421A3E95000F2EF2B /* LGFCenterPageChildVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFCenterPageChildVC.h; sourceTree = "<group>"; };
 		183B92F621A3E95100F2EF2B /* LGFCenterPageVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFCenterPageVCTest.h; sourceTree = "<group>"; };
 		183B92F721A3E95100F2EF2B /* LGFCenterPageVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFCenterPageVCTest.m; sourceTree = "<group>"; };
+		183B92FC21A3F55200F2EF2B /* LGFImageAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFImageAlertView.h; sourceTree = "<group>"; };
+		183B92FD21A3F55200F2EF2B /* LGFImageAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFImageAlertView.m; sourceTree = "<group>"; };
+		183B92FF21A3F59700F2EF2B /* LGFImageAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LGFImageAlertView.xib; sourceTree = "<group>"; };
 		183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFCornerRadius.h"; sourceTree = "<group>"; };
 		183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFCornerRadius.m"; sourceTree = "<group>"; };
 		183C683F20BBFC6A00F0E243 /* NSObject+LGFRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFRuntime.h"; sourceTree = "<group>"; };
@@ -1027,7 +1032,10 @@
 			children = (
 				18AD218B215A1E1C0031F719 /* LGFAlertView.h */,
 				18AD218C215A1E1C0031F719 /* LGFAlertView.m */,
+				183B92FC21A3F55200F2EF2B /* LGFImageAlertView.h */,
+				183B92FD21A3F55200F2EF2B /* LGFImageAlertView.m */,
 				18AD218E215A1E3E0031F719 /* LGFAlertView.xib */,
+				183B92FF21A3F59700F2EF2B /* LGFImageAlertView.xib */,
 			);
 			path = LGFAlertView;
 			sourceTree = "<group>";
@@ -1224,6 +1232,7 @@
 				185A0BEF216B341E000ED186 /* QTNoDataView.xib in Resources */,
 				18EDD67A2175C1000088A90B /* 1.gif in Resources */,
 				18AD21B7215B7A130031F719 /* LGFTabBarVC.storyboard in Resources */,
+				183B930021A3F59700F2EF2B /* LGFImageAlertView.xib in Resources */,
 				188DEFC32094396C0014E4CA /* LaunchScreen.storyboard in Resources */,
 				185A0C26216C8630000ED186 /* shareView.xib in Resources */,
 				18585E9420ECE7A10084D5C1 /* SBTestViewController.storyboard in Resources */,
@@ -1316,6 +1325,7 @@
 				183DA8CC20CA62C200E09819 /* NSString+LGFEncodeDecode.m in Sources */,
 				184235A120995EBC0006483C /* LGFAllMethod.m in Sources */,
 				18486BBA20A9265000C4F723 /* NSArray+LGFToJSONString.m in Sources */,
+				183B92FE21A3F55300F2EF2B /* LGFImageAlertView.m in Sources */,
 				18AD21C32160953B0031F719 /* homeVCCell.m in Sources */,
 				183DA90120CE617300E09819 /* UIScrollView+LGFScrollView.m in Sources */,
 				183B92EA21A3E3FE00F2EF2B /* UILabel+LGFLable.m in Sources */,

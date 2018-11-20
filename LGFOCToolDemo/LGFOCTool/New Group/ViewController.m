@@ -229,7 +229,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
 }
 
 - (IBAction)showAlert:(UIButton *)sender {
-    int rad = [LGFAllMethod lgf_GetRandomNumber:1 to:2];
+    int rad = [LGFAllMethod lgf_GetRandomNumber:1 to:3];
     if (rad == 1) {
         LGFAlertViewStyle *style = [LGFAlertViewStyle lgf];
 //        style.lgf_SureTitleBackColor = Color_FF5858;
@@ -245,16 +245,20 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
         } confirm:^{
             
         }];
+    } else if (rad == 3) {
+        [[LGFImageAlertView lgf] lgf_ShowImageAlertWithImage:lgf_Image(@"timg16.jpeg") sure:^{
+            
+        }];
     }
-    LGFAlertViewStyle *style = [LGFAlertViewStyle lgf];
-    style.lgf_CancelTitle = @"取消";
-    style.lgf_ConfirmTitle = @"确定";
-//    style.lgf_ConfirmBackColor = Color_7474BF;
-//    style.lgf_ConfirmBackColor = Color_FF5858;
-    [[LGFAlertView lgf] lgf_ShowAlertWithStyle:style message:@"是否确定移除该房管？" cancel:^{
-    } confirm:^{
-        
-    }];
+//    LGFAlertViewStyle *style = [LGFAlertViewStyle lgf];
+//    style.lgf_CancelTitle = @"取消";
+//    style.lgf_ConfirmTitle = @"确定";
+////    style.lgf_ConfirmBackColor = Color_7474BF;
+////    style.lgf_ConfirmBackColor = Color_FF5858;
+//    [[LGFAlertView lgf] lgf_ShowAlertWithStyle:style message:@"是否确定移除该房管？" cancel:^{
+//    } confirm:^{
+//
+//    }];
     
 }
 
