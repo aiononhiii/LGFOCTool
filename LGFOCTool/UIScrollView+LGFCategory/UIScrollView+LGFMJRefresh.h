@@ -1,5 +1,5 @@
 //
-//  UIScrollView+LGFLGFRefresh.h
+//  UIScrollView+LGFMJRefresh.h
 //  OptimalLive
 //
 //  Created by apple on 2018/7/23.
@@ -8,25 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "LGFOCTool.h"
-#import "LGFRefresh.h"
+#import "MJRefresh.h"
 
 #undef LGFMJHeader
-#define LGFMJHeader(Target, SEL) [LGFRefreshNormalHeader headerWithRefreshingTarget:Target refreshingAction:SEL]
+#define LGFMJHeader(Target, SEL) [MJRefreshNormalHeader headerWithRefreshingTarget:Target refreshingAction:SEL]
 #undef LGFMJGifHeader
-#define LGFMJGifHeader(Target, SEL) [LGFRefreshGifHeader headerWithRefreshingTarget:Target refreshingAction:SEL] 
+#define LGFMJGifHeader(Target, SEL) [MJRefreshGifHeader headerWithRefreshingTarget:Target refreshingAction:SEL] 
 #undef LGFMJFooter
-#define LGFMJFooter(Target, SEL) [LGFRefreshAutoNormalFooter footerWithRefreshingTarget:Target refreshingAction:SEL]
+#define LGFMJFooter(Target, SEL) [MJRefreshAutoNormalFooter footerWithRefreshingTarget:Target refreshingAction:SEL]
 
 @interface UIScrollView (LGFMJRefresh)
 // 我是有底线的view
 @property (nonatomic, strong) UIView *lgf_NoMoreView;
-@property (nonatomic, strong) LGFRefreshHeader *lgf_Header;
-@property (nonatomic, strong) LGFRefreshFooter *lgf_Footer;
-@property (strong, nonatomic) UIScrollView *lgf_BrotherScrollView;
+@property (nonatomic, strong) MJRefreshHeader *lgf_Header;
+@property (nonatomic, strong) MJRefreshFooter *lgf_Footer;
 // header 和 footer 同时结束刷新
 - (void)lgf_EndRefreshing;
 // 传入 数据数组count 判断是否要显示 我是有底线的view 并且刷新
 - (void)lgf_ReloadDataAndNoMoreDataView:(UIView *)noMoreDataView isShow:(BOOL)isShow;
 
-- (void)lgf_SetGifHeader:(LGFRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize;
+- (void)lgf_SetGifHeader:(MJRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize;
 @end

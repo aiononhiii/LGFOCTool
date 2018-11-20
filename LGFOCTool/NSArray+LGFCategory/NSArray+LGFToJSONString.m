@@ -33,12 +33,10 @@
 }
 
 #pragma mark - JSON字符串转数组
-+ (NSArray *)lgf_ArrayFromJsonPath:(NSString *)path {
-    if (path == nil) {
++ (NSArray *)lgf_ArrayFromJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
         return nil;
     }
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     NSArray *arr = [NSJSONSerialization JSONObjectWithData:jsonData

@@ -22,9 +22,6 @@
 #import "LGFReqest.h"
 
 //****************************** 自定义控件 *******************************
-// scrollview 中间添加滚动分页view 视图控制器
-#import "LGFCenterPageVC.h"
-#import "LGFCenterPageChildVC.h"
 // 倒计时按钮 用于发送验证码
 #import "LGFCountDownButton.h"
 // 优化后的定时器

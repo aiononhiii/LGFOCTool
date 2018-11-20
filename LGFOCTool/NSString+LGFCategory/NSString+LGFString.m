@@ -335,6 +335,17 @@
     return scale;
 }
 
++ (BOOL)lgf_IsBlank:(NSString *)text {
+    NSCharacterSet *blank = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    for (NSInteger i = 0; i < text.length; ++i) {
+        unichar c = [text characterAtIndex:i];
+        if (![blank characterIsMember:c]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 - (BOOL)lgf_IsBlank {
     NSCharacterSet *blank = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     for (NSInteger i = 0; i < self.length; ++i) {

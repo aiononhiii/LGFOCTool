@@ -195,6 +195,7 @@ typedef NS_ENUM(NSUInteger, lgf_TimeFormatType) {
  nil, @"", @"  ", @"\n" will Returns YES; otherwise Returns NO.
  */
 - (BOOL)lgf_IsBlank;
++ (BOOL)lgf_IsBlank:(NSString *)text;
 
 #pragma mark - 字符串是否包含某个字符串
 /**

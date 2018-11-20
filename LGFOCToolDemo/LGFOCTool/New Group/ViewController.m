@@ -13,7 +13,7 @@
 #import "YDFMFMHistoryCVCell.h"
 #import "UIImageView+WebCache.h"
 #import "YYWebImage.h"
-#import "LGFRefresh.h"
+#import "MJRefresh.h"
 #import "YYCache.h"
 //#import "UINavigationController+FDFullscreenPopGesture.h"
 #import "UINavigationController+LGFAnimatedTransition.h"

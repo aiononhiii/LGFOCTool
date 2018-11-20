@@ -225,7 +225,7 @@ static UICollectionViewCell *lgf_MoveCell;
             [collectionView cancelInteractiveMovement];
             break;
     }
-    #pragma clang diagnostic pop
+#pragma clang diagnostic pop
 }
 
 #pragma mark - 根据PNG图片url获取PNG图片尺寸

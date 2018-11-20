@@ -13,7 +13,7 @@ target 'LGFOCTool' do
     pod 'YYKeyboardManager'
     pod 'YYAsyncLayer'
     pod 'YYCategories'
-#    pod 'LGFRefresh'
+    pod 'MJRefresh'
     pod 'LGFTransition'
     pod 'LGFPageTitle'
 end

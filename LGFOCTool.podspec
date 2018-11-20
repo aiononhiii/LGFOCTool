@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name        = "LGFOCTool"
-s.version     = "1.3.6"
+s.version     = "1.3.4"
 s.summary     = "LGFOCTool"
 s.homepage    = "https://github.com/aiononhiii/LGFOCTool.git"
 s.license     = { :type => 'MIT', :file => 'LICENSE' }
@@ -14,9 +14,10 @@ s.source   = { :git => "https://github.com/aiononhiii/LGFOCTool.git", :tag => s.
 s.framework  = "Foundation", "UIKit", "QuartzCore", "AssetsLibrary", "AVFoundation", "CoreGraphics", "CoreVideo", "CoreMedia", "CoreImage", "CoreLocation", "SystemConfiguration", "Photos", "CoreTelephony", "AddressBook", "Contacts", "HealthKit", "EventKit"
 s.source_files = 'LGFOCTool/**/*.{h,m}'
 s.resource_bundles = {
-  'LGFOCTool' => ['LGFOCTool/**/*.{xib,storyboard}']
+  'LGFOCTool' => ['LGFOCTool/**/**/*.{xib,storyboard}']
 }
 s.dependency 'AFNetworking'
+s.dependency 'MJRefresh'
 s.dependency 'LGFTransition'
 s.dependency 'LGFPageTitle'
 s.dependency 'SDWebImage', '4.4.1'

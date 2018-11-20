@@ -52,7 +52,7 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
     [self.homeCV lgf_ScrollToTop];
     self.headerView.frame = CGRectMake(0, -totalHeight, lgf_ScreenWidth, totalHeight);
     [self.homeCV addSubview:self.headerView];
-    LGFRefreshGifHeader *ref_header = LGFMJGifHeader(self, @selector(loaddata));
+    MJRefreshGifHeader *ref_header = LGFMJGifHeader(self, @selector(loaddata));
     ref_header.ignoredScrollViewContentInsetTop = 1040;
     ref_header.stateLabel.textColor = [UIColor whiteColor];
     ref_header.lastUpdatedTimeLabel.textColor = [UIColor whiteColor];

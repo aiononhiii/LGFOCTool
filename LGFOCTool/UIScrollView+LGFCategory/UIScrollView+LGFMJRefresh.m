@@ -1,5 +1,5 @@
 //
-//  UIScrollView+LGFLGFRefresh.m
+//  UIScrollView+LGFMJRefresh.m
 //  OptimalLive
 //
 //  Created by apple on 2018/7/23.
@@ -13,47 +13,46 @@
 @dynamic lgf_NoMoreView;
 @dynamic lgf_Footer;
 @dynamic lgf_Header;
-@dynamic lgf_BrotherScrollView;
 
 static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
 
-- (LGFRefreshFooter *)lgf_Footer {
-    return (LGFRefreshFooter *)self.lgf_footer;
+- (MJRefreshFooter *)lgf_Footer {
+    return (MJRefreshFooter *)self.mj_footer;
 }
 
-- (LGFRefreshHeader *)lgf_header {
-    return (LGFRefreshHeader *)self.lgf_header;
+- (MJRefreshHeader *)lgf_Header {
+    return (MJRefreshHeader *)self.mj_header;
 }
 
 - (void)setLgf_BrotherScrollView:(UIScrollView *)lgf_BrotherScrollView {
-    self.lgf_header.brotherScrollView = lgf_BrotherScrollView;
-    self.lgf_footer.brotherScrollView = lgf_BrotherScrollView;
+    self.mj_header.brotherScrollView = lgf_BrotherScrollView;
+    self.mj_footer.brotherScrollView = lgf_BrotherScrollView;
 }
 
-- (void)setLgf_Header:(LGFRefreshHeader *)lgf_Header {
-    self.lgf_header = lgf_Header;
+- (void)setLgf_Header:(MJRefreshHeader *)lgf_Header {
+    self.mj_header = lgf_Header;
 }
 
-- (void)setLgf_Footer:(LGFRefreshFooter *)lgf_Footer {
-    LGFRefreshAutoNormalFooter *footer = (LGFRefreshAutoNormalFooter *)lgf_Footer;
+- (void)setLgf_Footer:(MJRefreshFooter *)lgf_Footer {
+    MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)lgf_Footer;
     footer.refreshingTitleHidden = YES;
     footer.stateLabel.textColor = [UIColor clearColor];
-    [footer setTitle:@"" forState:LGFRefreshStateIdle];
-    [footer setTitle:@"" forState:LGFRefreshStateRefreshing];
-    [footer setTitle:@"" forState:LGFRefreshStateNoMoreData];
-    self.lgf_footer = footer;
+    [footer setTitle:@"" forState:MJRefreshStateIdle];
+    [footer setTitle:@"" forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+    self.mj_footer = footer;
 }
 
-- (void)lgf_SetGifHeader:(LGFRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize {
+- (void)lgf_SetGifHeader:(MJRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize {
     gifHeader.stateLabel.textColor = [UIColor whiteColor];
     gifHeader.lastUpdatedTimeLabel.textColor = [UIColor whiteColor];
     // 以后如果要给header加gif动画， 加在这里
     NSMutableArray *images = [NSMutableArray arrayWithArray:[self cdi_imagesWithGif:gifName]];
     if (images.count > 0) {
-        [gifHeader setImages:images forState:LGFRefreshStateIdle];
-        [gifHeader setImages:images forState:LGFRefreshStateWillRefresh];
-        [gifHeader setImages:@[images.firstObject] forState:LGFRefreshStatePulling];
-        [gifHeader setImages:images forState:LGFRefreshStateRefreshing];
+        [gifHeader setImages:images forState:MJRefreshStateIdle];
+        [gifHeader setImages:images forState:MJRefreshStateWillRefresh];
+        [gifHeader setImages:@[images.firstObject] forState:MJRefreshStatePulling];
+        [gifHeader setImages:images forState:MJRefreshStateRefreshing];
         gifHeader.lastUpdatedTimeLabel.hidden = YES;
         gifHeader.stateLabel.hidden = YES;
         gifHeader.lgf_height = gifSize.height;
@@ -86,7 +85,7 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
                                                              multiplier:1.0
                                                                constant:0]];
     }
-    self.lgf_header = gifHeader;
+    self.mj_header = gifHeader;
 }
 
 - (void)setLgf_NoMoreView:(UIView *)lgf_NoMoreView {
@@ -98,22 +97,22 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
 }
 
 - (void)lgf_EndRefreshing {
-    [self.lgf_footer endRefreshing];
-    [self.lgf_header endRefreshing];
+    [self.mj_footer endRefreshing];
+    [self.mj_header endRefreshing];
 }
 
 - (void)lgf_ReloadDataAndNoMoreDataView:(UIView *)noMoreDataView isShow:(BOOL)isShow {
     [self.lgf_NoMoreView removeFromSuperview];
     // 数据数组count小于10 显示我是有底线的view
     if (isShow) {
-        [self.lgf_footer endRefreshingWithNoMoreData];
+        [self.mj_footer endRefreshingWithNoMoreData];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.lgf_NoMoreView = noMoreDataView;
-            self.lgf_NoMoreView.frame = self.lgf_footer.bounds;
-            [self.lgf_footer addSubview:self.lgf_NoMoreView];
+            self.lgf_NoMoreView.frame = self.mj_footer.bounds;
+            [self.mj_footer addSubview:self.lgf_NoMoreView];
         });
     } else {
-        [self.lgf_footer resetNoMoreData];
+        [self.mj_footer resetNoMoreData];
     }
     // 刷新数据源
     if ([self isKindOfClass:[UICollectionView class]]) {
