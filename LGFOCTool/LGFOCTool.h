@@ -21,6 +21,9 @@
 // 基于AFN的网络请求封装
 #import "LGFReqest.h"
 
+// 修改增加兄弟Scrollview 的 MJRefresh
+#import "LGFMJRefresh.h"
+
 //****************************** 自定义控件 *******************************
 // 倒计时按钮 用于发送验证码
 #import "LGFCountDownButton.h"
@@ -40,7 +43,7 @@
 // 自定义tabbar
 #import "LGFTabBarVC.h"
 // LGFRefresh 封装
-#import "UIScrollView+LGFMJRefresh.h"
+#import "UIScrollView+LGFRefresh.h"
 //******************************** 分类 **********************************
 //------------------ NSString 分类集合 -----------------
 #import "NSString+LGFString.h"

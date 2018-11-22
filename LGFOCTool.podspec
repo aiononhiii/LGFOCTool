@@ -17,7 +17,6 @@ s.resource_bundles = {
   'LGFOCTool' => ['LGFOCTool/**/**/*.{xib,storyboard}']
 }
 s.dependency 'AFNetworking'
-s.dependency 'MJRefresh'
 s.dependency 'LGFTransition'
 s.dependency 'LGFPageTitle'
 s.dependency 'SDWebImage', '4.4.1'

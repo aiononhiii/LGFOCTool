@@ -12,8 +12,8 @@
 #define lgf_CenterChildPageCVRealRect ([self.view.superview convertRect:self.view.frame toView:nil])
 
 @interface LGFCenterPageChildVC ()
-@property (strong, nonatomic) MJRefreshHeader *header;
-@property (strong, nonatomic) MJRefreshFooter *footer;
+@property (strong, nonatomic) LGFMJRefreshHeader *header;
+@property (strong, nonatomic) LGFMJRefreshFooter *footer;
 
 @end
 
@@ -47,6 +47,8 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
     self.footer = LGFMJFooter(self, @selector(lgf_ChildLoadMoreData));
     self.lgf_CenterChildPageCV.lgf_Header = self.header;
     self.lgf_CenterChildPageCV.lgf_Header.bscrollView = self.lgf_PanScrollView;
+    self.lgf_CenterChildPageCV.lgf_Footer = self.footer;
+    self.lgf_CenterChildPageCV.lgf_Footer.bscrollView = self.lgf_PanScrollView;
     
     // 代理回调 viewDidLoad
     if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageVCDidLoad:)] && self) {
@@ -124,11 +126,6 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
     if (scrollView == self.lgf_PanScrollView) {
         // 如果 lgf_CenterChildPageCV 滚动被暂停
         if (self.lgf_CenterChildPageCV.tracking) {
-            if (self.lgf_PanScrollView.lgf_Footer) {
-                self.lgf_CenterChildPageCV.lgf_Footer = self.lgf_PanScrollView.lgf_Footer;
-            } else {
-                self.lgf_CenterChildPageCV.lgf_Footer = self.footer;
-            }
             [self showHeaderTapView];
             [self hidePanScrollView];
             // 暂停 lgf_PanScrollView 滚动
@@ -140,11 +137,6 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
     } else {
         // 如果 lgf_PanScrollView 滚动被暂停
         if (self.lgf_PanScrollView.tracking) {
-            if (self.lgf_CenterChildPageCV.lgf_Footer) {
-                self.lgf_PanScrollView.lgf_Footer = self.lgf_CenterChildPageCV.lgf_Footer;
-            } else {
-                self.lgf_PanScrollView.lgf_Footer = self.footer;
-            }
             [self hideHeaderTapView];
             [self showPanScrollView];
             // 暂停 lgf_CenterChildPageCV 滚动
