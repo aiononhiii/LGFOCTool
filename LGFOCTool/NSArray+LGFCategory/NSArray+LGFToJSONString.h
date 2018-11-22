@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - JSON字符串转数组
 + (NSArray *)lgf_ArrayFromJsonString:(NSString *)jsonString;
++ (NSArray *)lgf_ArrayFromJsonPath:(NSString *)path;
 @end
 
 NS_ASSUME_NONNULL_END

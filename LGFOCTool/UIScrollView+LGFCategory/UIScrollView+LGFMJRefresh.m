@@ -42,7 +42,7 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
     gifHeader.stateLabel.textColor = [UIColor whiteColor];
     gifHeader.lastUpdatedTimeLabel.textColor = [UIColor whiteColor];
     // 以后如果要给header加gif动画， 加在这里
-    NSMutableArray *images = [NSMutableArray arrayWithArray:[self cdi_imagesWithGif:gifName]];
+    NSMutableArray *images = [NSMutableArray arrayWithArray:[UIImage lgf_ImagesWithGif:gifName]];
     if (images.count > 0) {
         [gifHeader setImages:images forState:MJRefreshStateIdle];
         [gifHeader setImages:images forState:MJRefreshStateWillRefresh];
@@ -117,20 +117,6 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
         UITableView *cv = (UITableView *)self;
         [cv reloadData];
     }
-}
-
-- (NSArray *)cdi_imagesWithGif:(NSString *)gifNameInBoundle {
-    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:gifNameInBoundle withExtension:@"gif"];
-    CGImageSourceRef gifSource = CGImageSourceCreateWithURL((CFURLRef)fileUrl, NULL);
-    size_t gifCount = CGImageSourceGetCount(gifSource);
-    NSMutableArray *frames = [[NSMutableArray alloc]init];
-    for (size_t i = 0; i< gifCount; i++) {
-        CGImageRef imageRef = CGImageSourceCreateImageAtIndex(gifSource, i, NULL);
-        UIImage *image = [UIImage imageWithCGImage:imageRef];
-        [frames addObject:image];
-        CGImageRelease(imageRef);
-    }
-    return frames;
 }
 
 @end

@@ -77,6 +77,8 @@ lgf_AllocOnceForH;
 
 @interface UIView (LGFToast)
 - (void)lgf_ShowMessage:(NSString *)message
+             completion:(void (^ __nullable)(void))completion;
+- (void)lgf_ShowMessage:(NSString *)message
                animated:(BOOL)animated
              completion:(void (^ __nullable)(void))completion;
 - (void)lgf_ShowMessage:(NSString *)message

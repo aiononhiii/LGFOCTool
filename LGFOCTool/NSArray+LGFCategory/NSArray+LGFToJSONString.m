@@ -49,4 +49,21 @@
     return arr;
 }
 
++ (NSArray *)lgf_ArrayFromJsonPath:(NSString *)path {
+    if (path == nil) {
+        return nil;
+    }
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSArray *arr = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                   options:NSJSONReadingMutableContainers
+                                                     error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return arr;
+}
 @end

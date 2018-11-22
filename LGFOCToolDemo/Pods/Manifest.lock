@@ -17,7 +17,7 @@ PODS:
   - FLAnimatedImage (1.0.12)
   - LGFPageTitle (1.1.7)
   - LGFTransition (0.1.2)
-  - MJRefresh (3.1.15.3)
+  - MJRefresh (3.1.15.7)
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
@@ -72,7 +72,7 @@ SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   LGFPageTitle: f5cf833a3790a95d4d74ad2a32c4f03a62784630
   LGFTransition: c147906887cc5ef9661294aa681d369e5becb923
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   YYAsyncLayer: df6b01ebc695c5f6b4c15dd5c23fa3e081eb25c0
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952

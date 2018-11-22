@@ -40,10 +40,9 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 {
     /** 记录scrollView刚开始的inset */
     UIEdgeInsets _scrollViewOriginalInset;
-
     /** 父控件 */
     __weak UIScrollView *_scrollView;
-    __weak UIScrollView *_brotherScrollView;
+    __weak UIScrollView *_bscrollView;
 }
 #pragma mark - 刷新回调
 /** 正在刷新的回调 */
@@ -79,9 +78,8 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 /** 记录scrollView刚开始的inset */
 @property (assign, nonatomic, readonly) UIEdgeInsets scrollViewOriginalInset;
 /** 父控件 */
-@property (weak, nonatomic, readonly) UIScrollView *scrollView;
-/** 一些特殊情况需要的 父控件兄弟控件 */
-@property (weak, nonatomic) UIScrollView *brotherScrollView;
+@property (weak, nonatomic) UIScrollView *scrollView;
+@property (weak, nonatomic) UIScrollView *bscrollView;
 
 #pragma mark - 交给子类们去实现
 /** 初始化 */
@@ -94,7 +92,7 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
 /** 当scrollView的拖拽状态发生改变的时候调用 */
 - (void)scrollViewPanStateDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
-
+  
 
 #pragma mark - 其他
 /** 拉拽的百分比(交给子类重写) */

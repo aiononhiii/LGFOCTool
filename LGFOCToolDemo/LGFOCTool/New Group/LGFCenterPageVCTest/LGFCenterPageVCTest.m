@@ -82,9 +82,7 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
 }
 
 - (void)lgf_CenterChildPageVCDidLoad:(UIViewController *)centerPageChildVC {
-    LGFCenterPageChildVC *vc = (LGFCenterPageChildVC *)centerPageChildVC;
-    [vc lgf_SetMJMJRefreshHeader];
-    [vc lgf_SetMJMJRefreshFooter];
+    
 }
 
 - (NSInteger)lgf_NumberOfItems:(UIViewController *)centerPageChildVC {
