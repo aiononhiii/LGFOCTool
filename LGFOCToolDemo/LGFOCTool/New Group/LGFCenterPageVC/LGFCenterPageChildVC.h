@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LGFOCTool.h"
 #import "LGFCenterPageVC.h"
+#import "UIScrollView+LGFPageRefresh.h"
 
 typedef NS_ENUM(NSUInteger, lgf_ChildLoadType) {
     lgf_ChildLoadData,
@@ -47,10 +48,13 @@ typedef NS_ENUM(NSUInteger, lgf_ChildLoadType) {
 @property (weak, nonatomic) UIView *lgf_HeaderSuperView;
 @property (weak, nonatomic) UIView *LGFCenterPageView;
 @property (nonatomic, assign) NSInteger lgf_SelectIndex;
+@property (nonatomic, assign) NSInteger lgf_SuperSelectIndex;
 @property (nonatomic, assign) CGFloat lgf_HeaderHeight;
 @property (nonatomic, assign) CGFloat lgf_PageTitleViewHeight;
+@property (assign, nonatomic) CGFloat lgf_OffsetY;
 @property (assign, nonatomic) BOOL lgf_PageTitleViewIsCenter;
 @property (assign, nonatomic) BOOL lgf_IsGreaterFullContentSize;
+@property (assign, nonatomic) BOOL lgf_IsLoadData;
 @property (assign, nonatomic) NSInteger lgf_Page;
 
 lgf_SBViewControllerForH;

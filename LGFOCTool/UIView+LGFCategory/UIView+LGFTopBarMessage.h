@@ -18,6 +18,12 @@ typedef NS_ENUM(NSUInteger, lgf_TopBarMessageMode) {
 
 @interface LGFTopMessageStyle : NSObject
 lgf_ViewForH;
+// 提示框左右边距
+@property (assign, nonatomic) CGFloat lgf_LeftRightSpacing;
+// 提示框上边距
+@property (assign, nonatomic) CGFloat lgf_TopSpacing;
+// 提示框圆角
+@property (assign, nonatomic) CGFloat lgf_CornerRadius;
 // 提示文本
 @property (copy, nonatomic) NSString *lgf_Message;
 // 文本最多显示行数
@@ -30,9 +36,11 @@ lgf_ViewForH;
 @property (strong, nonatomic) UIImage *lgf_MessageIcon;
 // 图片宽度
 @property (assign, nonatomic) CGFloat lgf_IconWidth;
+// 图片宽度
+@property (assign, nonatomic) CGFloat lgf_IconCornerRadius;
 // 图片与文本与边框间距
 @property (assign, nonatomic) CGFloat lgf_BetweenIconAndMessage;
-// 显示滞留时间 设置 0.0 为无限 
+// 显示滞留时间 设置 0.0 为无限
 @property (assign, nonatomic) CGFloat lgf_DimissDelay;
 // 动画时间
 @property (assign, nonatomic) CGFloat lgf_AnimateDuration;

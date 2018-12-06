@@ -41,7 +41,7 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
     vc.lgf_PageTitleStyle = style;
     
     vc.delegate = self;
-    vc.lgf_HeaderHeight = 250 + 50;
+    vc.lgf_HeaderHeight = 850 + 50;
     vc.lgf_PageTitleViewHeight = 50;
     vc.lgf_PageTitleArray = (NSMutableArray *)@[@"淘宝", @"京东", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会"];
     vc.lgf_HeaderView = self.testHeaderView;
@@ -67,9 +67,9 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
             vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[]];
         } else {
             if (vc.lgf_Page == 1) {
-                vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"淘宝", @"京东", @"腾讯", @"网易"]];
+                vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"淘宝"]];
             } else {
-                [vc.lgf_PageChildDataArray addObject:@"淘宝"];
+                [vc.lgf_PageChildDataArray addObjectsFromArray:@[@"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝"]];
 //                [vc.lgf_PageChildDataArray addObject:@"京东"];
 //                [vc.lgf_PageChildDataArray addObject:@"腾讯"];
             }
@@ -91,7 +91,7 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
 }
 
 - (CGSize)lgf_SizeForItemAtIndexPath:(NSIndexPath *)indexPath centerPageChildVC:(UIViewController *)centerPageChildVC {
-    return CGSizeMake(lgf_ScreenWidth / 2, 300);
+    return CGSizeMake(lgf_ScreenWidth / 2, 200);
 }
 
 - (Class)lgf_CenterChildPageCVCellClass:(UIViewController *)centerPageChildVC {

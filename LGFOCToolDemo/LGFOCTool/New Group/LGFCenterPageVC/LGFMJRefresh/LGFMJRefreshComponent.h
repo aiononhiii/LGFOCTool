@@ -92,8 +92,7 @@ typedef void (^LGFMJRefreshComponentEndRefreshingCompletionBlock)(void);
 /** 当scrollView的contentSize发生改变的时候调用 */
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
 /** 当scrollView的拖拽状态发生改变的时候调用 */
-- (void)scrollViewPanStateDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
-  
+- (void)scrollViewPanStateDidChange:(NSDictionary *)change;  
 
 #pragma mark - 其他
 /** 拉拽的百分比(交给子类重写) */

@@ -62,6 +62,7 @@
 		183B937221A6999900F2EF2B /* LGFMJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B935E21A6999900F2EF2B /* LGFMJRefreshBackFooter.m */; };
 		183B937321A6999900F2EF2B /* LGFMJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B935F21A6999900F2EF2B /* LGFMJRefreshComponent.m */; };
 		183B937421A6999900F2EF2B /* LGFMJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B936021A6999900F2EF2B /* LGFMJRefreshNormalHeader.m */; };
+		183B938921A7F3D900F2EF2B /* UIScrollView+LGFPageRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B938721A7F3D800F2EF2B /* UIScrollView+LGFPageRefresh.m */; };
 		183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */; };
 		183C684120BBFC6A00F0E243 /* NSObject+LGFRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684020BBFC6A00F0E243 /* NSObject+LGFRuntime.m */; };
 		183C684A20BC003100F0E243 /* CLLocation+LGFCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C684920BC003100F0E243 /* CLLocation+LGFCLLocation.m */; };
@@ -278,6 +279,8 @@
 		183B935E21A6999900F2EF2B /* LGFMJRefreshBackFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshBackFooter.m; sourceTree = "<group>"; };
 		183B935F21A6999900F2EF2B /* LGFMJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshComponent.m; sourceTree = "<group>"; };
 		183B936021A6999900F2EF2B /* LGFMJRefreshNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshNormalHeader.m; sourceTree = "<group>"; };
+		183B938721A7F3D800F2EF2B /* UIScrollView+LGFPageRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LGFPageRefresh.m"; sourceTree = "<group>"; };
+		183B938821A7F3D800F2EF2B /* UIScrollView+LGFPageRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LGFPageRefresh.h"; sourceTree = "<group>"; };
 		183C65DE20B5097200F0E243 /* UIView+LGFCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFCornerRadius.h"; sourceTree = "<group>"; };
 		183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFCornerRadius.m"; sourceTree = "<group>"; };
 		183C683F20BBFC6A00F0E243 /* NSObject+LGFRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFRuntime.h"; sourceTree = "<group>"; };
@@ -726,6 +729,7 @@
 		183B933821A6997100F2EF2B /* LGFMJRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				183B938621A7F3B400F2EF2B /* UIScrollView+LGFRefresh */,
 				183B933F21A6999500F2EF2B /* LGFMJRefresh.bundle */,
 				183B933E21A6999500F2EF2B /* LGFMJRefresh.h */,
 				183B935B21A6999900F2EF2B /* LGFMJRefreshAutoFooter.h */,
@@ -768,6 +772,15 @@
 				183B934621A6999600F2EF2B /* UIView+LGFMJExtension.m */,
 			);
 			path = LGFMJRefresh;
+			sourceTree = "<group>";
+		};
+		183B938621A7F3B400F2EF2B /* UIScrollView+LGFRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				183B938821A7F3D800F2EF2B /* UIScrollView+LGFPageRefresh.h */,
+				183B938721A7F3D800F2EF2B /* UIScrollView+LGFPageRefresh.m */,
+			);
+			path = "UIScrollView+LGFRefresh";
 			sourceTree = "<group>";
 		};
 		183DA8D020CA6A4200E09819 /* NSNumber+LGFCategory */ = {
@@ -1384,10 +1397,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/LGFPageTitle/LGFPageTitle.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LGFPageTitle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1467,6 +1482,7 @@
 				18297A5F20E1DC9B005DB4B7 /* LGFWeakProxy.m in Sources */,
 				183DA8C020CA22C800E09819 /* NSData+LGFEncodeDecode.m in Sources */,
 				183B92ED21A3E3FE00F2EF2B /* UIImage+LGFImage.m in Sources */,
+				183B938921A7F3D900F2EF2B /* UIScrollView+LGFPageRefresh.m in Sources */,
 				183B936E21A6999900F2EF2B /* LGFMJRefreshAutoFooter.m in Sources */,
 				186AC2CB219180E600A9027F /* TestPageCell.m in Sources */,
 				183B92FB21A3E95100F2EF2B /* LGFCenterPageVCTest.m in Sources */,

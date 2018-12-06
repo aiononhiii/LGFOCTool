@@ -267,10 +267,13 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
     [sender lgf_TimeFailBeginFrom:5];
     
     LGFTopMessageStyle *style = [LGFTopMessageStyle lgf];
-    style.lgf_Message = @"来国锋发的消息息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的消息label发的消息lab发息我发的";
+    style.lgf_Message = @"来国锋发锋发的消息我发的消息label锋发的消息的消息我发的消息label发";
     style.lgf_LabelMaxLine = 10;
     style.lgf_AnimateDuration = 0.4;
     style.lgf_DimissDelay = 2.5;
+    style.lgf_TopSpacing = 10;
+    style.lgf_LeftRightSpacing = 10;
+    style.lgf_CornerRadius = 10;
     style.lgf_IconWidth = 40;
 //    style.lgf_MessageMode = lgf_Resize;
     style.lgf_MessageMode = lgf_Overlay;

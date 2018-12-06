@@ -20,8 +20,9 @@ lgf_AllocOnceForM(LGFTopMessageView);
         self.messageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:self.messageLabel];
         self.messageIcon = [[UIImageView alloc] init];
+        self.messageIcon.clipsToBounds = YES;
+        self.messageIcon.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.messageIcon];
-        
         // 添加轻扫手势
         UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
         swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
@@ -83,6 +84,7 @@ lgf_AllocOnceForM(LGFTopMessageView);
     self.messageLabel.textColor = self.style.lgf_MessageTextColor;
     self.messageIcon.image = self.style.lgf_MessageIcon;
     self.messageLabel.font = self.style.lgf_MessageLabelFont;
+    self.messageIcon.layer.cornerRadius = self.style.lgf_IconCornerRadius;
 }
 
 - (void)layoutSubviews {
@@ -125,10 +127,12 @@ static char TopMessageKey;
         topMessageV = [LGFTopMessageView lgf_Once];
         objc_setAssociatedObject(self, &TopMessageKey, topMessageV, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    topMessageV.layer.shadowColor = [UIColor darkGrayColor].CGColor;
-    topMessageV.layer.shadowRadius = 3;
-    topMessageV.layer.shadowOpacity = 1;
-    topMessageV.frame = CGRectMake(0, -(style.lgf_TopBarSpacingHeight + labelHeight), CGRectGetWidth(self.bounds), style.lgf_TopBarSpacingHeight + labelHeight);
+    topMessageV.layer.cornerRadius = style.lgf_CornerRadius;
+    topMessageV.layer.shadowColor = [UIColor blackColor].CGColor;
+    topMessageV.layer.shadowRadius = 5;
+    topMessageV.layer.shadowOpacity = 0.2;
+    topMessageV.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+    topMessageV.frame = CGRectMake(style.lgf_LeftRightSpacing, -(style.lgf_TopBarSpacingHeight + MAX(labelHeight, style.lgf_IconWidth)), CGRectGetWidth(self.bounds) - style.lgf_LeftRightSpacing * 2, style.lgf_TopBarSpacingHeight + MAX(labelHeight, style.lgf_IconWidth));
     topMessageV.tapHandler = tapHandler;
     topMessageV.style = style;
     [self addSubview:topMessageV];
@@ -144,11 +148,11 @@ static char TopMessageKey;
         for (UIView *view in self.subviews) {
             if (![view isKindOfClass:[LGFTopMessageView class]]) {
                 if (style.lgf_MessageMode == lgf_Resize) {
-                    view.transform = CGAffineTransformMakeTranslation(0, topMessageV.lgf_height);
+                    view.transform = CGAffineTransformMakeTranslation(0, topMessageV.lgf_height + style.lgf_TopSpacing);
                 }
                 view.userInteractionEnabled = NO;
             } else {
-                view.transform = CGAffineTransformMakeTranslation(0, topMessageV.lgf_height);
+                view.transform = CGAffineTransformMakeTranslation(0, topMessageV.lgf_height + style.lgf_TopSpacing);
             }
         }
     }];
@@ -173,6 +177,9 @@ lgf_ViewForM(LGFTopMessageStyle);
 - (instancetype)init {
     self = [super init];
     // 默认配置
+    self.lgf_LeftRightSpacing = 0.0;
+    self.lgf_TopSpacing = 0.0;
+    self.lgf_CornerRadius = 0.0;
     self.lgf_MessageBackColor = [UIColor lgf_ColorWithHexString:@"FBF9FA"];
     self.lgf_MessageTextColor = [UIColor blackColor];
     self.lgf_MessageLabelFont = [UIFont systemFontOfSize:15];
@@ -182,6 +189,7 @@ lgf_ViewForM(LGFTopMessageStyle);
     self.lgf_DimissDelay = 2.0;
     self.lgf_Message = @"";
     self.lgf_IconWidth = 20.0;
+    self.lgf_IconCornerRadius = 0.0;
     self.lgf_BetweenIconAndMessage = 10.0;
     self.lgf_AnimateDuration = 0.5;
     self.lgf_TopBarSpacingHeight = 20.0;

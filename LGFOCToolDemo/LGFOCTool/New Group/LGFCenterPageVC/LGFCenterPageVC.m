@@ -8,6 +8,7 @@
 
 #import "LGFCenterPageVC.h"
 #import "LGFCenterPageChildVC.h"
+#import "UINavigationController+LGFAnimatedTransition.h"
 
 @interface LGFCenterPageVC () <LGFPageTitleViewDelegate, LGFCenterPageChildVCDelegate>
 // header view
@@ -187,22 +188,31 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
     if (vc.lgf_SelectIndex != self.lgf_SelectIndex) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.lgf_HeaderSuperView.transform.ty > -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)) {
-                [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, self.lgf_OffsetY) animated:NO];
+                if (vc.lgf_IsLoadData) {
+                    [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, self.lgf_OffsetY) animated:NO];
+                }
+                vc.lgf_OffsetY = self.lgf_OffsetY;
             } else {
                 if (self.lgf_IsTopScroll) {
-                    [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_HeaderHeight + self.lgf_HeaderSuperView.transform.ty)) animated:NO];
+                    if (vc.lgf_IsLoadData) {
+                        [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_HeaderHeight + self.lgf_HeaderSuperView.transform.ty)) animated:NO];
+                    }
+                    vc.lgf_OffsetY = -(self.lgf_HeaderHeight + self.lgf_HeaderSuperView.transform.ty);
                 } else {
                     if (!vc.lgf_PageChildDataArray || vc.lgf_PageChildDataArray.count == 0) {
-                        [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_PageTitleViewHeight)) animated:NO];
+                        if (vc.lgf_IsLoadData) {
+                            [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_PageTitleViewHeight)) animated:NO];
+                        }
+                        vc.lgf_OffsetY = -(self.lgf_PageTitleViewHeight);
                     } else {
                         if (vc.lgf_CenterChildPageCV.contentOffset.y < -(self.lgf_PageTitleViewHeight)) {
-                            [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_PageTitleViewHeight)) animated:NO];
+                            if (vc.lgf_IsLoadData) {
+                                [vc.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_PageTitleViewHeight)) animated:NO];
+                            }
+                            vc.lgf_OffsetY = -(self.lgf_PageTitleViewHeight);
                         }
                     }
                 }
-            }
-            if (vc.lgf_CenterChildPageCV.contentOffset.y >= -(self.lgf_PageTitleViewHeight)) {
-                vc.lgf_PageTitleViewIsCenter = YES;
             }
         });
     }

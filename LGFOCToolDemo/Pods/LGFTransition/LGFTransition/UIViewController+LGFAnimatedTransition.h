@@ -52,11 +52,13 @@ typedef NS_ENUM(NSUInteger, lgf_PanType) {
 };
 
 UIKIT_EXTERN NSString *const lgf_InteractiveTransitionKey;
+UIKIT_EXTERN NSString *const lgf_ScreenEdgeGestureRecognizerKey;
 UIKIT_EXTERN NSString *const lgf_IsUseLGFAnimatedTransitionKey;
 
 @interface UIViewController (LGFAnimatedTransition) <UIGestureRecognizerDelegate, UIGestureRecognizerDelegate>
-@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *lgf_InteractiveTransition;
-@property (nonatomic, assign) lgf_PanType lgf_PanType;
+@property (strong, nonatomic) UIPercentDrivenInteractiveTransition *lgf_InteractiveTransition;
+@property (assign, nonatomic) lgf_PanType lgf_PanType;
+@property (strong, nonatomic) UIScreenEdgePanGestureRecognizer *lgf_ScreenEdgeGestureRecognizer;
 #pragma mark - 添加拖动手势 / Add the UIPanGestureRecognizer
 - (void)lgf_AddPopPan:(lgf_PanType)panType;
 #pragma mark - 是否使用了自定义的转场动画 / Whether to use a custom transition animation

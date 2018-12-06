@@ -11,8 +11,6 @@
 #import "LGFMJRefreshConst.h"
 
 @interface LGFMJRefreshComponent()
-@property (strong, nonatomic) UIPanGestureRecognizer *pan;
-@property (strong, nonatomic) UIPanGestureRecognizer *bpan;
 @end
 
 @implementation LGFMJRefreshComponent
@@ -86,8 +84,8 @@
 - (void)setBscrollView:(UIScrollView *)bscrollView {
     _bscrollView = bscrollView;
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
-    self.bpan = self.bscrollView.panGestureRecognizer;
-    [self.bpan addObserver:self forKeyPath:LGFMJRefreshKeyPathPanState options:options context:nil];
+    [self.bscrollView addObserver:self forKeyPath:LGFMJRefreshKeyPathContentSize options:options context:nil];
+    [self.bscrollView.panGestureRecognizer addObserver:self forKeyPath:LGFMJRefreshKeyPathPanState options:options context:nil];
 }
  
 #pragma mark - KVO监听
@@ -96,18 +94,16 @@
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [self.scrollView addObserver:self forKeyPath:LGFMJRefreshKeyPathContentOffset options:options context:nil];
     [self.scrollView addObserver:self forKeyPath:LGFMJRefreshKeyPathContentSize options:options context:nil];
-    self.pan = self.scrollView.panGestureRecognizer;
-    [self.pan addObserver:self forKeyPath:LGFMJRefreshKeyPathPanState options:options context:nil];
+    [self.scrollView.panGestureRecognizer addObserver:self forKeyPath:LGFMJRefreshKeyPathPanState options:options context:nil];
 }
 
 - (void)removeObservers
 {
     [self.scrollView removeObserver:self forKeyPath:LGFMJRefreshKeyPathContentOffset];
     [self.scrollView removeObserver:self forKeyPath:LGFMJRefreshKeyPathContentSize];
-    [self.pan removeObserver:self forKeyPath:LGFMJRefreshKeyPathPanState];
-    self.pan = nil;
-    [self.bpan removeObserver:self forKeyPath:LGFMJRefreshKeyPathPanState];
-    self.bpan = nil;
+    [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:LGFMJRefreshKeyPathPanState];
+    [self.bscrollView removeObserver:self forKeyPath:LGFMJRefreshKeyPathContentSize];
+    [self.bscrollView.panGestureRecognizer removeObserver:self forKeyPath:LGFMJRefreshKeyPathPanState];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

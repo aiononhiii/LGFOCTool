@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name        = "LGFOCTool"
-s.version     = "1.3.8"
+s.version     = "1.3.9"
 s.summary     = "LGFOCTool"
 s.homepage    = "https://github.com/aiononhiii/LGFOCTool.git"
 s.license     = { :type => 'MIT', :file => 'LICENSE' }
@@ -19,6 +19,7 @@ s.resource_bundles = {
 s.dependency 'AFNetworking'
 s.dependency 'LGFTransition'
 s.dependency 'LGFPageTitle'
+s.dependency 'MJRefresh'
 s.dependency 'SDWebImage', '4.4.1'
 s.dependency 'FLAnimatedImage', '~> 1.0'
 

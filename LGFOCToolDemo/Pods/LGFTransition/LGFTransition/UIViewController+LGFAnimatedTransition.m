@@ -11,11 +11,22 @@
 #import <objc/runtime.h>
 
 NSString *const lgf_InteractiveTransitionKey = @"lgf_InteractiveTransitionKey";
+NSString *const lgf_ScreenEdgeGestureRecognizerKey = @"lgf_ScreenEdgeGestureRecognizerKey";
 NSString *const lgf_IsUseLGFAnimatedTransitionKey = @"lgf_IsUseLGFAnimatedTransitionKey";
 
 @implementation UIViewController (LGFAnimatedTransition)
 @dynamic lgf_InteractiveTransition;
+@dynamic lgf_ScreenEdgeGestureRecognizer;
 @dynamic lgf_PanType;
+
+- (void)setLgf_ScreenEdgeGestureRecognizer:(UIScreenEdgePanGestureRecognizer *)lgf_ScreenEdgeGestureRecognizer {
+    objc_setAssociatedObject(self, &lgf_ScreenEdgeGestureRecognizerKey, lgf_ScreenEdgeGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIScreenEdgePanGestureRecognizer *)lgf_ScreenEdgeGestureRecognizer {
+    return objc_getAssociatedObject(self,
+                                    &lgf_ScreenEdgeGestureRecognizerKey);
+}
 
 - (void)setLgf_InteractiveTransition:(UIPercentDrivenInteractiveTransition *)lgf_InteractiveTransition {
     objc_setAssociatedObject(self,
@@ -82,10 +93,28 @@ NSString *const lgf_IsUseLGFAnimatedTransitionKey = @"lgf_IsUseLGFAnimatedTransi
 - (void)lgf_AddPopPan:(lgf_PanType)panType {
     // 添加左侧边缘拖动手势
     // Add the left UIScreenEdgePanGestureRecognizer
-    UIScreenEdgePanGestureRecognizer *recognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(lgf_ScreenEdgePanGestureRecognizer:)];
-    recognizer.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:recognizer];
+    [self.view.gestureRecognizers enumerateObjectsUsingBlock:^(__kindof UIGestureRecognizer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UIScreenEdgePanGestureRecognizer class]]) {
+            [self.view removeGestureRecognizer:obj];
+        }
+    }];
+    self.lgf_ScreenEdgeGestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(lgf_ScreenEdgePanGestureRecognizer:)];
+    self.lgf_ScreenEdgeGestureRecognizer.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:self.lgf_ScreenEdgeGestureRecognizer];
     self.lgf_PanType = panType;
+    [self requireGestureRecognizerToFailWithView:self.view];
+}
+
+-(void)requireGestureRecognizerToFailWithView:(UIView*)view {
+    for (UIView *subView in view.subviews) {
+        if ([subView isKindOfClass:[UIScrollView class]]) {
+            UIScrollView *sv = (UIScrollView *)subView;
+            if (self.lgf_ScreenEdgeGestureRecognizer) {
+                [sv.panGestureRecognizer requireGestureRecognizerToFail:self.lgf_ScreenEdgeGestureRecognizer];
+            }
+        }
+        [self requireGestureRecognizerToFailWithView:subView];
+    }
 }
 
 - (void)lgf_ScreenEdgePanGestureRecognizer:(UIScreenEdgePanGestureRecognizer *)recognizer {

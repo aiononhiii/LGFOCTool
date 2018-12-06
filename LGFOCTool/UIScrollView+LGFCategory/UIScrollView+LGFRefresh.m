@@ -1,5 +1,5 @@
 //
-//  UIScrollView+LGFLGFMJRefresh.m
+//  UIScrollView+LGFRefresh.m
 //  OptimalLive
 //
 //  Created by apple on 2018/7/23.
@@ -16,38 +16,38 @@
 
 static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
 
-- (LGFMJRefreshFooter *)lgf_Footer {
-    return (LGFMJRefreshFooter *)self.lgfmj_footer;
+- (MJRefreshFooter *)lgf_Footer {
+    return (MJRefreshFooter *)self.mj_footer;
 }
 
-- (LGFMJRefreshHeader *)lgf_Header {
-    return (LGFMJRefreshHeader *)self.lgfmj_header;
+- (MJRefreshHeader *)lgf_Header {
+    return (MJRefreshHeader *)self.mj_header;
 }
 
-- (void)setLgf_Header:(LGFMJRefreshHeader *)lgf_Header {
-    self.lgfmj_header = lgf_Header;
+- (void)setLgf_Header:(MJRefreshHeader *)lgf_Header {
+    self.mj_header = lgf_Header;
 }
 
-- (void)setLgf_Footer:(LGFMJRefreshFooter *)lgf_Footer {
-    LGFMJRefreshAutoNormalFooter *footer = (LGFMJRefreshAutoNormalFooter *)lgf_Footer;
+- (void)setLgf_Footer:(MJRefreshFooter *)lgf_Footer {
+    MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)lgf_Footer;
     footer.refreshingTitleHidden = YES;
     footer.stateLabel.textColor = [UIColor clearColor];
-    [footer setTitle:@"" forState:LGFMJRefreshStateIdle];
-    [footer setTitle:@"" forState:LGFMJRefreshStateRefreshing];
-    [footer setTitle:@"" forState:LGFMJRefreshStateNoMoreData];
-    self.lgfmj_footer = footer;
+    [footer setTitle:@"" forState:MJRefreshStateIdle];
+    [footer setTitle:@"" forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+    self.mj_footer = footer;
 }
 
-- (void)lgf_SetGifHeader:(LGFMJRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize {
+- (void)lgf_SetGifHeader:(MJRefreshGifHeader *)gifHeader gifName:(NSString *)gifName gifSize:(CGSize)gifSize {
     gifHeader.stateLabel.textColor = [UIColor whiteColor];
     gifHeader.lastUpdatedTimeLabel.textColor = [UIColor whiteColor];
     // 以后如果要给header加gif动画， 加在这里
     NSMutableArray *images = [NSMutableArray arrayWithArray:[UIImage lgf_ImagesWithGif:gifName]];
     if (images.count > 0) {
-        [gifHeader setImages:images forState:LGFMJRefreshStateIdle];
-        [gifHeader setImages:images forState:LGFMJRefreshStateWillRefresh];
-        [gifHeader setImages:@[images.firstObject] forState:LGFMJRefreshStatePulling];
-        [gifHeader setImages:images forState:LGFMJRefreshStateRefreshing];
+        [gifHeader setImages:images forState:MJRefreshStateIdle];
+        [gifHeader setImages:images forState:MJRefreshStateWillRefresh];
+        [gifHeader setImages:@[images.firstObject] forState:MJRefreshStatePulling];
+        [gifHeader setImages:images forState:MJRefreshStateRefreshing];
         gifHeader.lastUpdatedTimeLabel.hidden = YES;
         gifHeader.stateLabel.hidden = YES;
         gifHeader.lgf_height = gifSize.height;
@@ -80,7 +80,7 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
                                                              multiplier:1.0
                                                                constant:0]];
     }
-    self.lgfmj_header = gifHeader;
+    self.mj_header = gifHeader;
 }
 
 - (void)setLgf_NoMoreView:(UIView *)lgf_NoMoreView {
@@ -92,22 +92,22 @@ static const char *lgf_NoMoreViewKey = "lgf_NoMoreViewKey";
 }
 
 - (void)lgf_EndRefreshing {
-    [self.lgfmj_footer endRefreshing];
-    [self.lgfmj_header endRefreshing];
+    [self.mj_footer endRefreshing];
+    [self.mj_header endRefreshing];
 }
 
 - (void)lgf_ReloadDataAndNoMoreDataView:(UIView *)noMoreDataView isShow:(BOOL)isShow {
     [self.lgf_NoMoreView removeFromSuperview];
     // 数据数组count小于10 显示我是有底线的view
     if (isShow) {
-        [self.lgfmj_footer endRefreshingWithNoMoreData];
+        [self.mj_footer endRefreshingWithNoMoreData];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.lgf_NoMoreView = noMoreDataView;
-            self.lgf_NoMoreView.frame = self.lgfmj_footer.bounds;
-            [self.lgfmj_footer addSubview:self.lgf_NoMoreView];
+            self.lgf_NoMoreView.frame = self.mj_footer.bounds;
+            [self.mj_footer addSubview:self.lgf_NoMoreView];
         });
     } else {
-        [self.lgfmj_footer resetNoMoreData];
+        [self.mj_footer resetNoMoreData];
     }
     // 刷新数据源
     if ([self isKindOfClass:[UICollectionView class]]) {

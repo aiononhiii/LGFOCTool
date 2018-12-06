@@ -106,6 +106,19 @@
     
     UIGestureRecognizerState panState = _scrollView.panGestureRecognizer.state;
     UIGestureRecognizerState bpanState = _bscrollView.panGestureRecognizer.state;
+    
+    CGPoint translation = [_scrollView.panGestureRecognizer translationInView:self];
+    CGPoint btranslation = [_bscrollView.panGestureRecognizer translationInView:self];
+    CGFloat absX = fabs(translation.x);
+    CGFloat absY = fabs(translation.y);
+    CGFloat babsX = fabs(btranslation.x);
+    CGFloat babsY = fabs(btranslation.y);
+    if ((absY > absX) || babsY > babsX) {
+        if (translation.y >= 0) {
+            return;
+        }
+    }
+    
     if ((panState == UIGestureRecognizerStateEnded) || (bpanState == UIGestureRecognizerStateEnded)) {// 手松开
         if ((_scrollView.lgfmj_insetT + _scrollView.lgfmj_contentH <= _scrollView.lgfmj_h) || (_bscrollView.lgfmj_insetT + _bscrollView.lgfmj_contentH <= _bscrollView.lgfmj_h)) {  // 不够一个屏幕
             if ((_scrollView.lgfmj_offsetY >= - _scrollView.lgfmj_insetT) || (_bscrollView.lgfmj_offsetY >= - _bscrollView.lgfmj_insetT)) { // 向上拽

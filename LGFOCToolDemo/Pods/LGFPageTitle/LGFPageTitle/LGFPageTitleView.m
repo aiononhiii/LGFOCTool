@@ -7,6 +7,7 @@
 //
 
 #import "LGFPageTitleView.h"
+#import "UIViewController+LGFAnimatedTransition.h"
 
 @interface LGFPageTitleView () <UIScrollViewDelegate>
 
@@ -93,9 +94,7 @@
     self.un_select_index = 0;
     self.select_index = 0;
     self.style.page_title_view = self;
-    if (super_vc.navigationController.interactivePopGestureRecognizer) {
-        [self.page_view.panGestureRecognizer requireGestureRecognizerToFail:super_vc.navigationController.interactivePopGestureRecognizer];
-    }
+    
     if (super_view) {
         if (CGRectEqualToRect(self.style.page_title_view_frame, CGRectZero)) {
             self.frame = super_view.bounds;

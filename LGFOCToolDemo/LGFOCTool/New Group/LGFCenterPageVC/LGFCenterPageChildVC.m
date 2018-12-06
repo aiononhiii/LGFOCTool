@@ -29,26 +29,28 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
         [self.lgf_CenterChildPageCV setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, 0, 0)];
         [self.lgf_PanScrollView setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, 0, 0)];
     }
+    
     // 外部 cell 注册
     if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageCVCellClass:)]) {
         lgf_RegisterNibCollectionViewCell(self.lgf_CenterChildPageCV, [self.delegate lgf_CenterChildPageCVCellClass:self], NSStringFromClass([self.delegate lgf_CenterChildPageCVCellClass:self]))
     }
     
-    if (self.lgf_SelectIndex == 0) {
-        [self.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -self.lgf_HeaderHeight) animated:NO];
-    }
     // 判断 数据源是否足以支撑全屏 ContentSize
     self.lgf_IsGreaterFullContentSize = self.lgf_CenterChildPageCV.contentSize.height > lgf_ScreenHeight - lgf_CenterChildPageCVRealRect.origin.y;
     
     self.lgf_Page = 1;
     
-    self.header = LGFMJHeader(self, @selector(lgf_ChildLoadData));
+    if (self.lgf_SelectIndex == 0) {
+        [self.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -self.lgf_HeaderHeight) animated:NO];
+        [self.lgf_PanScrollView setContentOffset:CGPointMake(0, -self.lgf_HeaderHeight) animated:NO];
+    }
+    
+    self.header = LGFPageMJHeader(self, @selector(lgf_ChildLoadData));
     self.header.ignoredScrollViewContentInsetTop = self.lgf_HeaderHeight;
-    self.footer = LGFMJFooter(self, @selector(lgf_ChildLoadMoreData));
-    self.lgf_CenterChildPageCV.lgf_Header = self.header;
-    self.lgf_CenterChildPageCV.lgf_Header.bscrollView = self.lgf_PanScrollView;
-    self.lgf_CenterChildPageCV.lgf_Footer = self.footer;
-    self.lgf_CenterChildPageCV.lgf_Footer.bscrollView = self.lgf_PanScrollView;
+    self.footer = LGFPageMJFooter(self, @selector(lgf_ChildLoadMoreData));
+    self.lgf_CenterChildPageCV.lgf_PageHeader = self.header;
+    self.lgf_CenterChildPageCV.lgf_PageHeader.bscrollView = self.lgf_PanScrollView;
+    self.lgf_CenterChildPageCV.lgf_PageFooter = self.footer;
     
     // 代理回调 viewDidLoad
     if ([self.delegate respondsToSelector:@selector(lgf_CenterChildPageVCDidLoad:)] && self) {
@@ -76,14 +78,24 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
 - (void)lgf_SynContentSize {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.lgf_PanScrollView setContentSize:self.lgf_CenterChildPageCV.contentSize];
-        if (self.lgf_CenterChildPageCV.contentSize.height < lgf_ScreenHeight - lgf_CenterChildPageCVRealRect.origin.y - self.lgf_PageTitleViewHeight) {
+        NSLog(@"%f", lgf_CenterChildPageCVRealRect.origin.y);
+        if (self.lgf_CenterChildPageCV.contentSize.height < (lgf_ScreenHeight - lgf_CenterChildPageCVRealRect.origin.y - self.lgf_PageTitleViewHeight)) {
             [self.lgf_CenterChildPageCV setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, lgf_ScreenHeight - lgf_CenterChildPageCVRealRect.origin.y - self.lgf_PageTitleViewHeight - self.lgf_CenterChildPageCV.contentSize.height, 0)];
-            [self.lgf_PanScrollView setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, lgf_ScreenHeight - lgf_CenterChildPageCVRealRect.origin.y - self.lgf_PageTitleViewHeight - self.lgf_PanScrollView.contentSize.height, 0)];
-            if (self.lgf_PageTitleViewIsCenter) {
-                [self.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -(self.lgf_PageTitleViewHeight)) animated:NO];
-                [self.lgf_PanScrollView setContentOffset:CGPointMake(0, -(self.lgf_PageTitleViewHeight)) animated:NO];
+            [self.lgf_PanScrollView setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, lgf_ScreenHeight - lgf_CenterChildPageCVRealRect.origin.y - self.lgf_PageTitleViewHeight - self.lgf_CenterChildPageCV.contentSize.height, 0)];
+        } else {
+            [self.lgf_CenterChildPageCV setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, self.header.lgf_height, 0)];
+            [self.lgf_PanScrollView setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight, 0, self.header.lgf_height, 0)];
+        }
+        if (!self.lgf_IsLoadData) {
+            if (self.lgf_SelectIndex == 0) {
+                [self.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -self.lgf_HeaderHeight) animated:NO];
+                [self.lgf_PanScrollView setContentOffset:CGPointMake(0, -self.lgf_HeaderHeight) animated:NO];
+            } else {
+                [self.lgf_CenterChildPageCV setContentOffset:CGPointMake(0.0, self.lgf_OffsetY) animated:NO];
+                [self.lgf_PanScrollView setContentOffset:CGPointMake(0.0, self.lgf_OffsetY) animated:NO];
             }
         }
+        self.lgf_IsLoadData = YES;
     });
 }
 
