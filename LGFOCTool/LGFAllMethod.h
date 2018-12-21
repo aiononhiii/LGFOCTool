@@ -24,6 +24,9 @@
 + (void)lgf_ToTransformScreenView:(UIView *)view;
 + (void)lgf_ToTransformUnScreenView:(UIView *)view;
 
+#pragma mark - 版本更新提示
++ (void)lgf_AppNewVersionUpdate:(NSString *)appID success:(void(^)(NSDictionary *appData))success failure:(void(^)(NSError *error))failure;
+
 #pragma mark - 根据网址字符串获取二维码图片
 + (UIImage *)lgf_GetCodeImageWithUrl:(NSString *)urlString imgWidth:(float)imgWidth;
 
@@ -40,7 +43,7 @@
 /**
  @param skuArr 返回的数组
  @param result 单个规格数组
- @param data 选中规格字典
+ @param data 选中规格字典 data: @[@[@{@"key":@"尺码",@"name",@"L"},@{@"key":@"尺码",@"name",@"M"}], @[@{@"key":@"颜色",@"name",@"黑色"},@{@"key":@"颜色",@"name",@"红色"}]]
  @param getSKUArray 返回 skuArr
  */
 + (void)SKU:(NSMutableArray *)skuArr result:(NSMutableArray *)result data:(NSArray *)data curr:(int)currIndex getSKUArray:(void(^)(NSMutableArray *array))getSKUArray;

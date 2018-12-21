@@ -103,7 +103,7 @@ lgf_SBViewControllerForM(LGFTabBarVC, @"LGFTabBarVC", @"LGFOCTool");
     if (indexPath.item == self.lgf_DefultSelectIndex) {
         cell.lgf_Bartitle.textColor = self.lgf_SelectBarItemColor;
         cell.lgf_BarIcon.image = [UIImage imageNamed:self.lgf_SelectBarItemIcons[indexPath.item]];
-        [_lgf_ChildVCCV scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        [_lgf_ChildVCCV scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         cell.lgf_BarIcon.transform = CGAffineTransformMakeScale(0.85, 0.85);
         [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             cell.lgf_BarIcon.transform = CGAffineTransformMakeScale(1.1, 1.1);

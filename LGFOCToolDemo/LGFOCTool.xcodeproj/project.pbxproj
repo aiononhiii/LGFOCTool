@@ -44,7 +44,6 @@
 		183B930021A3F59700F2EF2B /* LGFImageAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B92FF21A3F59700F2EF2B /* LGFImageAlertView.xib */; };
 		183B936121A6999900F2EF2B /* UIScrollView+LGFMJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B933921A6999400F2EF2B /* UIScrollView+LGFMJExtension.m */; };
 		183B936221A6999900F2EF2B /* LGFMJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B933C21A6999500F2EF2B /* LGFMJRefreshGifHeader.m */; };
-		183B936321A6999900F2EF2B /* LGFMJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 183B933F21A6999500F2EF2B /* LGFMJRefresh.bundle */; };
 		183B936421A6999900F2EF2B /* LGFMJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B934021A6999500F2EF2B /* LGFMJRefreshBackStateFooter.m */; };
 		183B936521A6999900F2EF2B /* LGFMJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B934121A6999500F2EF2B /* LGFMJRefreshConst.m */; };
 		183B936621A6999900F2EF2B /* NSBundle+LGFMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B934221A6999500F2EF2B /* NSBundle+LGFMJRefresh.m */; };
@@ -126,6 +125,7 @@
 		185A0C29216C8D2D000ED186 /* shareImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C28216C8D2D000ED186 /* shareImageVC.m */; };
 		186AC2CB219180E600A9027F /* TestPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AC2C9219180E600A9027F /* TestPageCell.m */; };
 		186AC2CC219180E600A9027F /* TestPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AC2CA219180E600A9027F /* TestPageCell.xib */; };
+		187F578B21C391E8007ED6E3 /* LGFMJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 187F578A21C391E7007ED6E3 /* LGFMJRefresh.bundle */; };
 		188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225EB20EDB3BE0004DBC6 /* OneViewController.m */; };
 		188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */; };
 		188225F120EDB5120004DBC6 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225F020EDB5120004DBC6 /* TwoViewController.m */; };
@@ -245,7 +245,6 @@
 		183B933C21A6999500F2EF2B /* LGFMJRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshGifHeader.m; sourceTree = "<group>"; };
 		183B933D21A6999500F2EF2B /* LGFMJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshFooter.h; sourceTree = "<group>"; };
 		183B933E21A6999500F2EF2B /* LGFMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefresh.h; sourceTree = "<group>"; };
-		183B933F21A6999500F2EF2B /* LGFMJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGFMJRefresh.bundle; sourceTree = "<group>"; };
 		183B934021A6999500F2EF2B /* LGFMJRefreshBackStateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshBackStateFooter.m; sourceTree = "<group>"; };
 		183B934121A6999500F2EF2B /* LGFMJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshConst.m; sourceTree = "<group>"; };
 		183B934221A6999500F2EF2B /* NSBundle+LGFMJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+LGFMJRefresh.m"; sourceTree = "<group>"; };
@@ -405,6 +404,7 @@
 		186AC2C8219180E600A9027F /* TestPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestPageCell.h; sourceTree = "<group>"; };
 		186AC2C9219180E600A9027F /* TestPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestPageCell.m; sourceTree = "<group>"; };
 		186AC2CA219180E600A9027F /* TestPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestPageCell.xib; sourceTree = "<group>"; };
+		187F578A21C391E7007ED6E3 /* LGFMJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGFMJRefresh.bundle; sourceTree = "<group>"; };
 		188225EA20EDB3BE0004DBC6 /* OneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
 		188225EB20EDB3BE0004DBC6 /* OneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OneViewController.storyboard; sourceTree = "<group>"; };
@@ -729,8 +729,8 @@
 		183B933821A6997100F2EF2B /* LGFMJRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				187F578A21C391E7007ED6E3 /* LGFMJRefresh.bundle */,
 				183B938621A7F3B400F2EF2B /* UIScrollView+LGFRefresh */,
-				183B933F21A6999500F2EF2B /* LGFMJRefresh.bundle */,
 				183B933E21A6999500F2EF2B /* LGFMJRefresh.h */,
 				183B935B21A6999900F2EF2B /* LGFMJRefreshAutoFooter.h */,
 				183B935021A6999700F2EF2B /* LGFMJRefreshAutoFooter.m */,
@@ -1350,7 +1350,6 @@
 			files = (
 				182B7FE62177086B007AB627 /* timg16.jpeg in Resources */,
 				18EDD630216EEE590088A90B /* LGFPlayerView.xib in Resources */,
-				183B936321A6999900F2EF2B /* LGFMJRefresh.bundle in Resources */,
 				185A0BEF216B341E000ED186 /* QTNoDataView.xib in Resources */,
 				18EDD67A2175C1000088A90B /* 1.gif in Resources */,
 				18AD21B7215B7A130031F719 /* LGFTabBarVC.storyboard in Resources */,
@@ -1361,6 +1360,7 @@
 				188DEFC02094396C0014E4CA /* Assets.xcassets in Resources */,
 				188225F320EDB5190004DBC6 /* TwoViewController.storyboard in Resources */,
 				188DEFBE2094396C0014E4CA /* Main.storyboard in Resources */,
+				187F578B21C391E8007ED6E3 /* LGFMJRefresh.bundle in Resources */,
 				188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */,
 				188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */,
 				18EDD64F217486320088A90B /* lgf_lock.png in Resources */,

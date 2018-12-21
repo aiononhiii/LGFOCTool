@@ -41,7 +41,7 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
     vc.lgf_PageTitleStyle = style;
     
     vc.delegate = self;
-    vc.lgf_HeaderHeight = 850 + 50;
+    vc.lgf_HeaderHeight = 800 + 50;
     vc.lgf_PageTitleViewHeight = 50;
     vc.lgf_PageTitleArray = (NSMutableArray *)@[@"淘宝", @"京东", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会"];
     vc.lgf_HeaderView = self.testHeaderView;
@@ -58,8 +58,8 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
 - (void)lgf_CenterPageChildVCLoadData:(UIViewController *)centerPageChildVC selectIndex:(NSInteger)selectIndex loadType:(lgf_LoadType)loadType {
     LGFCenterPageChildVC *vc = (LGFCenterPageChildVC *)centerPageChildVC;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [vc.lgf_CenterChildPageCV lgf_EndRefreshing];
-        [vc.lgf_PanScrollView lgf_EndRefreshing];
+        [vc.lgf_CenterChildPageCV lgf_PageEndRefreshing];
+        [vc.lgf_PanScrollView lgf_PageEndRefreshing];
         // 加载数据
         if (selectIndex == 4) {
             vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"水杯", @"笔记本", @"汽车"]];
@@ -67,11 +67,11 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
             vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[]];
         } else {
             if (vc.lgf_Page == 1) {
-                vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"淘宝"]];
+                vc.lgf_PageChildDataArray = [NSMutableArray arrayWithArray:@[@"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝"]];
             } else {
-                [vc.lgf_PageChildDataArray addObjectsFromArray:@[@"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝", @"淘宝"]];
-//                [vc.lgf_PageChildDataArray addObject:@"京东"];
-//                [vc.lgf_PageChildDataArray addObject:@"腾讯"];
+                [vc.lgf_PageChildDataArray addObjectsFromArray:@[@"淘宝"]];
+                [vc.lgf_PageChildDataArray addObject:@"京东"];
+                [vc.lgf_PageChildDataArray addObject:@"腾讯"];
             }
         }
         vc.lgf_Page++;
@@ -91,7 +91,7 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
 }
 
 - (CGSize)lgf_SizeForItemAtIndexPath:(NSIndexPath *)indexPath centerPageChildVC:(UIViewController *)centerPageChildVC {
-    return CGSizeMake(lgf_ScreenWidth / 2, 200);
+    return CGSizeMake(lgf_ScreenWidth / 2, 250);
 }
 
 - (Class)lgf_CenterChildPageCVCellClass:(UIViewController *)centerPageChildVC {

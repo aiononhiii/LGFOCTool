@@ -186,17 +186,24 @@
 #define lgf_DictIsEmpty(dic) (dic == nil || [dic isKindOfClass:[NSNull class]] || dic.allKeys == 0)
 
 //---------------------- 注册 Nib CollectionViewCell ----------------------
-#undef lgf_RegisterNibCollectionViewCell
-#define lgf_RegisterNibCollectionViewCell(collectionView, cellClass, bundleStr)\
-[collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([cellClass class]) bundle:lgf_Bundle(bundleStr)] forCellWithReuseIdentifier:NSStringFromClass([cellClass class])];
+#undef lgf_RegisterNibCVCell
+#define lgf_RegisterNibCVCell(collectionView, cellClass, bundleStr)\
+[collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([cellClass class]) bundle:lgf_Bundle(bundleStr)] forCellWithReuseIdentifier:NSStringFromClass([cellClass class])]
 
 //---------------------- 初始化 CollectionViewCell ----------------------
 #undef lgf_CVGetCell
 #define lgf_CVGetCell(collectionView, cellClass, indexPath)\
-[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cellClass class]) forIndexPath:indexPath];
+[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cellClass class]) forIndexPath:indexPath]
+
+//---------------------- 注册 Nib CollectionViewReusableView ----------------------
+#undef lgf_RegisterNibCVReusableView
+#define lgf_RegisterNibCVReusableView(collectionView, cellClass, UICollectionElementKindSection, bundleStr)\
+[collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([cellClass class]) bundle:lgf_Bundle(bundleStr)] forSupplementaryViewOfKind:UICollectionElementKindSection withReuseIdentifier:NSStringFromClass([cellClass class])]
+
+//---------------------- 初始化 CollectionReusableView ----------------------
 #undef lgf_CVGetReusableView
-#define lgf_CVGetReusableView(collectionView, kind, identifier, indexPath)\
-[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+#define lgf_CVGetReusableView(collectionView, kind, cellClass, indexPath)\
+[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([cellClass class]) forIndexPath:indexPath]
 
 
 //---------------------- Block 引用控制 ----------------------

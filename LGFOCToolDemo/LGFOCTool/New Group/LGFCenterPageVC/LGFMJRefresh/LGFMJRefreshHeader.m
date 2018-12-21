@@ -11,6 +11,7 @@
 
 @interface LGFMJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
+@property (strong, nonatomic) UIScrollView *draggingSV;
 @end
 
 @implementation LGFMJRefreshHeader
@@ -52,25 +53,31 @@
 {
     [super scrollViewContentOffsetDidChange:change];
     
+    if (self.scrollView.tracking) {
+        self.draggingSV = _scrollView;
+    } else {
+        self.draggingSV = _bscrollView;
+    }
+    
     // 在刷新的refreshing状态
     if (self.state == LGFMJRefreshStateRefreshing) {
         // 暂时保留
         if (self.window == nil) return;
         
         // sectionheader停留解决
-        CGFloat insetT = - self.scrollView.lgfmj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.lgfmj_offsetY : _scrollViewOriginalInset.top;
+        CGFloat insetT = - self.draggingSV.lgfmj_offsetY > _scrollViewOriginalInset.top ? - self.draggingSV.lgfmj_offsetY : _scrollViewOriginalInset.top;
         insetT = insetT > self.lgfmj_h + _scrollViewOriginalInset.top ? self.lgfmj_h + _scrollViewOriginalInset.top : insetT;
-        self.scrollView.lgfmj_insetT = insetT;
-        self.bscrollView.lgfmj_insetT = insetT;
+        _scrollView.lgfmj_insetT = insetT;
+        _bscrollView.lgfmj_insetT = insetT;
         self.insetTDelta = _scrollViewOriginalInset.top - insetT;
         return;
     }
     
     // 跳转到下一个控制器时，contentInset可能会变
-    _scrollViewOriginalInset = self.scrollView.lgfmj_inset;
+    _scrollViewOriginalInset = self.draggingSV.lgfmj_inset;
     
     // 当前的contentOffset
-    CGFloat offsetY = self.scrollView.lgfmj_offsetY;
+    CGFloat offsetY = self.draggingSV.lgfmj_offsetY;
     // 头部控件刚好出现的offsetY
     CGFloat happenOffsetY = - self.scrollViewOriginalInset.top;
     
@@ -82,7 +89,7 @@
     CGFloat normal2pullingOffsetY = happenOffsetY - self.lgfmj_h;
     CGFloat pullingPercent = (happenOffsetY - offsetY) / self.lgfmj_h;
     
-    if (self.scrollView.isDragging || self.bscrollView.isDragging) { // 如果正在拖拽
+    if (self.draggingSV.isDragging) { // 如果正在拖拽
         self.pullingPercent = pullingPercent;
         if (self.state == LGFMJRefreshStateIdle && offsetY < normal2pullingOffsetY) {
             // 转为即将刷新状态
@@ -127,18 +134,15 @@
     } else if (state == LGFMJRefreshStateRefreshing) {
         LGFMJRefreshDispatchAsyncOnMainQueue({
             [UIView animateWithDuration:LGFMJRefreshFastAnimationDuration animations:^{
-                if (self.scrollView.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
+                if (self.draggingSV.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
                     CGFloat top = self.scrollViewOriginalInset.top + self.lgfmj_h;
                     // 增加滚动区域top
                     self.scrollView.lgfmj_insetT = top;
                     self.bscrollView.lgfmj_insetT = top;
                     // 设置滚动位置
-                    CGPoint offset = self.scrollView.contentOffset;
+                    CGPoint offset = self.draggingSV.contentOffset;
                     offset.y = -top;
-                    [self.scrollView setContentOffset:offset animated:NO];
-                    CGPoint boffset = self.bscrollView.contentOffset;
-                    boffset.y = -top;
-                    [self.bscrollView setContentOffset:boffset animated:NO];
+                    [self.draggingSV setContentOffset:offset animated:NO];
                 }
             } completion:^(BOOL finished) {
                 [self executeRefreshingCallback];

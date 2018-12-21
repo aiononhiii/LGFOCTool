@@ -165,6 +165,7 @@ static CGFloat heightConstant;
     }];
 }
 
+// data: @[@[@{@"key":@"尺码",@"name",@"L"},@{@"key":@"尺码",@"name",@"M"}], @[@{@"key":@"颜色",@"name",@"黑色"},@{@"key":@"颜色",@"name",@"红色"}]]
 + (void)SKU:(NSMutableArray *)skuArr result:(NSMutableArray *)result data:(NSArray *)data curr:(int)currIndex getSKUArray:(void(^)(NSMutableArray *array))getSKUArray {
     if (currIndex == data.count) {
         [skuArr addObject:[result mutableCopy]];
@@ -342,6 +343,55 @@ static __weak id lgf_CurrentFirstResponder;
 
 - (void)lgf_FindFirstResponder:(id)sender {
     lgf_CurrentFirstResponder = self;
+}
+
+#pragma mark - 版本更新提示
++ (void)lgf_AppNewVersionUpdate:(NSString *)appID success:(void(^)(NSDictionary *appData))success failure:(void(^)(NSError *error))failure {
+    if(![LGFAllMethod lgf_JudgeNeedVersionUpdate]) return;
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = infoDict[@"CFBundleShortVersionString"];
+    NSString *urlString = [NSString stringWithFormat:@"https://itunes.apple.com/CN/lookup?id=%@", appID];
+    [[LGFNetwork lgf_Once] lgf_GET:urlString parameters:@{} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        NSDictionary *resultsDict = [NSDictionary dictionaryWithDictionary:responseObject];
+        NSArray *sourceArray = resultsDict[@"results"];
+        if (sourceArray.count >= 1) {
+            //AppStore内最新App的版本信息
+            NSDictionary *sourceDict = sourceArray[0];
+            NSString *newVersion = sourceDict[@"version"];
+            if ([LGFAllMethod lgf_JudgeNewVersion:newVersion withOldVersion:appVersion]) {
+                // 提示更新版本
+                lgf_HaveBlock(success, sourceDict);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+        lgf_HaveBlock(failure, error);
+    }];
+}
+//每天进行一次版本判断
++ (BOOL)lgf_JudgeNeedVersionUpdate {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.timeZone = [NSTimeZone systemTimeZone];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+    NSString *currentDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentDate"];
+    if ([currentDate isEqualToString:dateString]) {
+        return NO;
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:dateString forKey:@"currentDate"];
+    return YES;
+}
+//判断当前app版本和AppStore最新app版本大小
++ (BOOL)lgf_JudgeNewVersion:(NSString *)newVersion withOldVersion:(NSString *)oldVersion {
+    NSArray *newArray = [newVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+    NSArray *oldArray = [oldVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+    for (NSInteger i = 0; i < newArray.count; i ++) {
+        if ([newArray[i] integerValue] > [oldArray[i] integerValue]) {
+            return YES;
+        } else if ([newArray[i] integerValue] < [oldArray[i] integerValue]) {
+            return NO;
+        }
+    }
+    return NO;
 }
 
 @end

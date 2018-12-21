@@ -16,4 +16,5 @@ target 'LGFOCTool' do
     pod 'MJRefresh'
     pod 'LGFTransition'
     pod 'LGFPageTitle'
+    pod 'ZFPlayer'
 end

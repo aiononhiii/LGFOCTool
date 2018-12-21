@@ -21,13 +21,13 @@ lgf_ViewForM(LGFToastStyle);
         self.lgf_ToastMessage = @"";
         self.lgf_ToastPosition = lgf_ToastCenter;
         self.lgf_ToastImagePosition = lgf_ToastImageTop;
-        self.lgf_ToastMessageFont = [UIFont boldSystemFontOfSize:15];
+        self.lgf_ToastMessageFont = [UIFont boldSystemFontOfSize:20];
         self.lgf_ToastMessageTextColor = [UIColor whiteColor];
         self.lgf_ToastBackColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
         self.lgf_ToastCornerRadius = 10.0;
-        self.lgf_DismissDuration = 0.2;
+        self.lgf_DismissDuration = 0.13;
         self.lgf_Duration = 0.5;
-        self.lgf_SuperEnabled = NO;
+        self.lgf_DismissDuration = NO;
         self.lgf_BackBtnEnabled = YES;
         self.lgf_MessageImageSpacing = 5.0;
         self.lgf_ToastSpacing = 10.0;
@@ -325,7 +325,7 @@ static char lgf_ToastActivityKey;
     [toastView setNeedsLayout];
     [toastView layoutIfNeeded];
     [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.lgf_ViewName isEqualToString:@"我不被Toast盖住"]) {
+        if ([obj.lgf_ViewName isEqualToString:@"LGFVIP"]) {
             obj.userInteractionEnabled = style.lgf_BackBtnEnabled;
         } else {
             obj.userInteractionEnabled = style.lgf_SuperEnabled;
@@ -366,16 +366,16 @@ static char lgf_ToastActivityKey;
     [self addSubview:activityBackView];
     activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
     objc_setAssociatedObject(self, &lgf_ToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeRight multiplier:1.0 constant:Insets.right];
-    [self.superview ?: self addConstraint:rightConstraint];
-    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:Insets.left];
-    [self.superview ?: self addConstraint:leftConstraint];
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeTop multiplier:1.0 constant:Insets.top];
-    [self.superview ?: self addConstraint:topConstraint];
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.superview ?: self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:Insets.bottom];
-    [self.superview ?: self addConstraint:bottomConstraint];
-    [self.superview ?: self setNeedsLayout];
-    [self.superview ?: self layoutIfNeeded];
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:Insets.right];
+    [self addConstraint:rightConstraint];
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:Insets.left];
+    [self addConstraint:leftConstraint];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:Insets.top];
+    [self addConstraint:topConstraint];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:activityBackView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:Insets.bottom];
+    [self addConstraint:bottomConstraint];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
     UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] init];
     activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     [UIView animateWithDuration:0.1 animations:^{

@@ -20,6 +20,7 @@ s.dependency 'AFNetworking'
 s.dependency 'LGFTransition'
 s.dependency 'LGFPageTitle'
 s.dependency 'MJRefresh'
+s.dependency 'ZFPlayer'
 s.dependency 'SDWebImage', '4.4.1'
 s.dependency 'FLAnimatedImage', '~> 1.0'
 

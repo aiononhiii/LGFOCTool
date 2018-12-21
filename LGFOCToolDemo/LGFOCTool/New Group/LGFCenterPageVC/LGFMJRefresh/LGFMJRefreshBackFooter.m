@@ -90,7 +90,7 @@
         if (LGFMJRefreshStateRefreshing == oldState) {
             [UIView animateWithDuration:LGFMJRefreshSlowAnimationDuration animations:^{
                 self.scrollView.lgfmj_insetB -= self.lastBottomDelta;
-                
+                self.bscrollView.lgfmj_insetB -= self.lastBottomDelta;
                 // 自动调整透明度
                 if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
             } completion:^(BOOL finished) {
@@ -120,6 +120,8 @@
             self.lastBottomDelta = bottom - self.scrollView.lgfmj_insetB;
             self.scrollView.lgfmj_insetB = bottom;
             self.scrollView.lgfmj_offsetY = [self happenOffsetY] + self.lgfmj_h;
+            self.bscrollView.lgfmj_insetB = bottom;
+            self.bscrollView.lgfmj_offsetY = [self happenOffsetY] + self.lgfmj_h;
         } completion:^(BOOL finished) {
             [self executeRefreshingCallback];
         }];

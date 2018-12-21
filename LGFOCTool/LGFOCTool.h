@@ -12,6 +12,9 @@
 // 宏集合
 #import "LGFPch.h"
 
+// ZFPlayer 播放器
+#import "ZFPlayer.h"
+
 // 所有特殊方法
 #import "LGFAllMethod.h"
 

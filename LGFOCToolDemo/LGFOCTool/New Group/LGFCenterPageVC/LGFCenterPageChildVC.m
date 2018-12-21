@@ -47,9 +47,10 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
     
     self.header = LGFPageMJHeader(self, @selector(lgf_ChildLoadData));
     self.header.ignoredScrollViewContentInsetTop = self.lgf_HeaderHeight;
+    self.header.bscrollView = self.lgf_PanScrollView;
     self.footer = LGFPageMJFooter(self, @selector(lgf_ChildLoadMoreData));
+    self.footer.bscrollView = self.lgf_PanScrollView;
     self.lgf_CenterChildPageCV.lgf_PageHeader = self.header;
-    self.lgf_CenterChildPageCV.lgf_PageHeader.bscrollView = self.lgf_PanScrollView;
     self.lgf_CenterChildPageCV.lgf_PageFooter = self.footer;
     
     // 代理回调 viewDidLoad
@@ -142,10 +143,9 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
             [self hidePanScrollView];
             // 暂停 lgf_PanScrollView 滚动
             [self.lgf_PanScrollView setContentOffset:self.lgf_PanScrollView.contentOffset animated:NO];
-        } else {
-            // 让 lgf_CenterChildPageCV 与 lgf_PanScrollView 联动
-            [self.lgf_CenterChildPageCV setContentOffset:self.lgf_PanScrollView.contentOffset];
         }
+        // 让 lgf_CenterChildPageCV 与 lgf_PanScrollView 联动
+        [self.lgf_CenterChildPageCV setContentOffset:self.lgf_PanScrollView.contentOffset];
     } else {
         // 如果 lgf_PanScrollView 滚动被暂停
         if (self.lgf_PanScrollView.tracking) {
@@ -153,11 +153,10 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
             [self showPanScrollView];
             // 暂停 lgf_CenterChildPageCV 滚动
             [self.lgf_CenterChildPageCV setContentOffset:self.lgf_CenterChildPageCV.contentOffset animated:NO];
-        } else {
-            // 让 lgf_PanScrollView 与 lgf_CenterChildPageCV 联动
-            if (self.lgf_CenterChildPageCV.contentOffset.y > -(self.lgf_HeaderHeight + self.header.lgf_height)) {
-                [self.lgf_PanScrollView setContentOffset:self.lgf_CenterChildPageCV.contentOffset];
-            }
+        }
+        // 让 lgf_PanScrollView 与 lgf_CenterChildPageCV 联动
+        if (self.lgf_CenterChildPageCV.contentOffset.y > -(self.lgf_HeaderHeight + LGFMJRefreshHeaderHeight)) {
+            [self.lgf_PanScrollView setContentOffset:self.lgf_CenterChildPageCV.contentOffset];
         }
         [lgf_NCenter postNotificationName:@"childScroll" object:@[@(scrollView.contentOffset.y), @(self.lgf_SelectIndex)]];
     }

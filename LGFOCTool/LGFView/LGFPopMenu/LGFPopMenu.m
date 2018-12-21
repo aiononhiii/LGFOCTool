@@ -131,9 +131,9 @@ lgf_ViewForM(LGFPopMenu);
         self.lgf_MenuBackView.frame = CGRectMake(self.style.lgf_PopAbsoluteRect.origin.x - ((self.style.lgf_PopMenuSize.width - self.style.lgf_PopAbsoluteRect.size.width) / 2) + self.style.lgf_PopMenuCenter,
                                                  self.style.lgf_PopAbsoluteRect.origin.y - self.style.lgf_PopArrowSize.height - self.style.lgf_PopMenuSize.height - self.style.lgf_PopArrowOffset, self.style.lgf_PopMenuSize.width, self.style.lgf_PopMenuSize.height + self.style.lgf_PopArrowSize.height);
         self.style.lgf_PopMenuView.frame = CGRectMake(0.0,
-                                                  0.0,
-                                                  self.style.lgf_PopMenuSize.width,
-                                                  self.style.lgf_PopMenuSize.height);
+                                                      0.0,
+                                                      self.style.lgf_PopMenuSize.width,
+                                                      self.style.lgf_PopMenuSize.height);
         self.lgf_ArrowView.frame = CGRectMake((self.style.lgf_PopMenuView.lgf_width / 2) - (self.style.lgf_PopArrowSize.width / 2) - self.style.lgf_PopArrowCenter,
                                               self.style.lgf_PopMenuSize.height - 0.5,
                                               self.style.lgf_PopArrowSize.width,
@@ -144,9 +144,9 @@ lgf_ViewForM(LGFPopMenu);
                                                  self.style.lgf_PopMenuSize.width,
                                                  self.style.lgf_PopMenuSize.height + self.style.lgf_PopArrowSize.height);
         self.style.lgf_PopMenuView.frame = CGRectMake(0.0,
-                                                  self.style.lgf_PopArrowSize.height,
-                                                  self.style.lgf_PopMenuSize.width,
-                                                  self.style.lgf_PopMenuSize.height);
+                                                      self.style.lgf_PopArrowSize.height,
+                                                      self.style.lgf_PopMenuSize.width,
+                                                      self.style.lgf_PopMenuSize.height);
         self.lgf_ArrowView.frame = CGRectMake((self.style.lgf_PopMenuView.lgf_width / 2) - (self.style.lgf_PopArrowSize.width / 2) + self.style.lgf_PopArrowCenter,
                                               0.0,
                                               self.style.lgf_PopArrowSize.width,
@@ -157,9 +157,9 @@ lgf_ViewForM(LGFPopMenu);
                                                  self.style.lgf_PopMenuSize.width + self.style.lgf_PopArrowSize.height,
                                                  self.style.lgf_PopMenuSize.height);
         self.style.lgf_PopMenuView.frame = CGRectMake(0.0,
-                                                  0.0,
-                                                  self.style.lgf_PopMenuSize.width,
-                                                  self.style.lgf_PopMenuSize.height);
+                                                      0.0,
+                                                      self.style.lgf_PopMenuSize.width,
+                                                      self.style.lgf_PopMenuSize.height);
         self.lgf_ArrowView.frame = CGRectMake(self.style.lgf_PopMenuSize.width - 0.5,
                                               (self.style.lgf_PopMenuView.lgf_height / 2) - (self.style.lgf_PopArrowSize.width / 2) + self.style.lgf_PopArrowCenter,
                                               self.style.lgf_PopArrowSize.height,
@@ -170,9 +170,9 @@ lgf_ViewForM(LGFPopMenu);
                                                  self.style.lgf_PopMenuSize.width + self.style.lgf_PopMenuSize.height,
                                                  self.style.lgf_PopMenuSize.height);
         self.style.lgf_PopMenuView.frame = CGRectMake(self.style.lgf_PopArrowOffset + self.style.lgf_PopArrowSize.height,
-                                                  0.0,
-                                                  self.style.lgf_PopMenuSize.width,
-                                                  self.style.lgf_PopMenuSize.height);
+                                                      0.0,
+                                                      self.style.lgf_PopMenuSize.width,
+                                                      self.style.lgf_PopMenuSize.height);
         self.lgf_ArrowView.frame = CGRectMake(self.style.lgf_PopArrowOffset,
                                               (self.style.lgf_PopMenuView.lgf_height / 2) - (self.style.lgf_PopArrowSize.width / 2) + self.style.lgf_PopArrowCenter,
                                               self.style.lgf_PopArrowSize.height + 0.5,
@@ -192,7 +192,9 @@ lgf_ViewForM(LGFPopMenu);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self lgf_Dismiss:nil];
+    if ([touches anyObject].view == self) {
+        [self lgf_Dismiss:nil];
+    }
 }
 
 - (void)lgf_Dismiss {

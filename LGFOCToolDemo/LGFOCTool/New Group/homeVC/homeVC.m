@@ -104,7 +104,7 @@ lgf_SBViewControllerForM(homeVC, @"Main", @"FirstViewController");
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     homeVCCell *cell = lgf_CVGetCell(collectionView, homeVCCell, indexPath);
-    lgf_SDImage(cell.testImageView, @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538283659307&di=688a984505bec8496768a4d2d647b574&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F10748501_141114297000_2.jpg");
+    lgf_SDImage(cell.testImageView, self.dataArray[indexPath.item]);
     cell.index = indexPath;
     return cell;
 }

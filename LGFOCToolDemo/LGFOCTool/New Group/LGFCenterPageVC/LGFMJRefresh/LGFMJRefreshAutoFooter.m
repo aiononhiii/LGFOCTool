@@ -11,6 +11,7 @@
 @interface LGFMJRefreshAutoFooter()
 /** 一个新的拖拽 */
 @property (assign, nonatomic, getter=isOneNewPan) BOOL oneNewPan;
+@property (strong, nonatomic) UIScrollView *draggingSV;
 @end
 
 @implementation LGFMJRefreshAutoFooter
@@ -23,6 +24,7 @@
     if (newSuperview) { // 新的父控件
         if (self.hidden == NO) {
             self.scrollView.lgfmj_insetB += self.lgfmj_h;
+            self.bscrollView.lgfmj_insetB += self.lgfmj_h;
         }
         
         // 设置位置
@@ -30,18 +32,9 @@
     } else { // 被移除了
         if (self.hidden == NO) {
             self.scrollView.lgfmj_insetB -= self.lgfmj_h;
+            self.bscrollView.lgfmj_insetB -= self.lgfmj_h;
         }
     }
-}
-
-- (void)setBscrollView:(UIScrollView *)bscrollView {
-    _bscrollView = bscrollView;
-    if (self.hidden == NO) {
-        self.bscrollView.lgfmj_insetB += self.lgfmj_h;
-    }
-    
-    // 设置位置
-    self.lgfmj_y = _bscrollView.lgfmj_contentH;
 }
 
 #pragma mark - 过期方法
@@ -82,11 +75,17 @@
 {
     [super scrollViewContentOffsetDidChange:change];
     
+    if (self.scrollView.tracking) {
+        self.draggingSV = _scrollView;
+    } else {
+        self.draggingSV = _bscrollView;
+    }
+    
     if (self.state != LGFMJRefreshStateIdle || !self.automaticallyRefresh || self.lgfmj_y == 0) return;
     
-    if (_scrollView.lgfmj_insetT + _scrollView.lgfmj_contentH > _scrollView.lgfmj_h) { // 内容超过一个屏幕
+    if (self.draggingSV.lgfmj_insetT + self.draggingSV.lgfmj_contentH > self.draggingSV.lgfmj_h) { // 内容超过一个屏幕
         // 这里的_scrollView.lgfmj_contentH替换掉self.lgfmj_y更为合理
-        if (_scrollView.lgfmj_offsetY >= _scrollView.lgfmj_contentH - _scrollView.lgfmj_h + self.lgfmj_h * self.triggerAutomaticallyRefreshPercent + _scrollView.lgfmj_insetB - self.lgfmj_h) {
+        if (self.draggingSV.lgfmj_offsetY >= self.draggingSV.lgfmj_contentH - self.draggingSV.lgfmj_h + self.lgfmj_h * self.triggerAutomaticallyRefreshPercent + self.draggingSV.lgfmj_insetB - self.lgfmj_h) {
             // 防止手松开时连续调用
             CGPoint old = [change[@"old"] CGPointValue];
             CGPoint new = [change[@"new"] CGPointValue];
@@ -104,32 +103,31 @@
     
     if (self.state != LGFMJRefreshStateIdle) return;
     
-    UIGestureRecognizerState panState = _scrollView.panGestureRecognizer.state;
-    UIGestureRecognizerState bpanState = _bscrollView.panGestureRecognizer.state;
+    if (!self.draggingSV) {
+        return;
+    }
     
-    CGPoint translation = [_scrollView.panGestureRecognizer translationInView:self];
-    CGPoint btranslation = [_bscrollView.panGestureRecognizer translationInView:self];
+    UIGestureRecognizerState panState = self.draggingSV.panGestureRecognizer.state;
+    CGPoint translation = [self.draggingSV.panGestureRecognizer translationInView:self];
     CGFloat absX = fabs(translation.x);
     CGFloat absY = fabs(translation.y);
-    CGFloat babsX = fabs(btranslation.x);
-    CGFloat babsY = fabs(btranslation.y);
-    if ((absY > absX) || babsY > babsX) {
-        if (translation.y >= 0) {
+    if ((absY > absX)) {
+        if (translation.y >= 0 ) {
             return;
         }
     }
     
-    if ((panState == UIGestureRecognizerStateEnded) || (bpanState == UIGestureRecognizerStateEnded)) {// 手松开
-        if ((_scrollView.lgfmj_insetT + _scrollView.lgfmj_contentH <= _scrollView.lgfmj_h) || (_bscrollView.lgfmj_insetT + _bscrollView.lgfmj_contentH <= _bscrollView.lgfmj_h)) {  // 不够一个屏幕
-            if ((_scrollView.lgfmj_offsetY >= - _scrollView.lgfmj_insetT) || (_bscrollView.lgfmj_offsetY >= - _bscrollView.lgfmj_insetT)) { // 向上拽
+    if (panState == UIGestureRecognizerStateEnded) {// 手松开
+        if ((self.draggingSV.lgfmj_insetT + self.draggingSV.lgfmj_contentH <= self.draggingSV.lgfmj_h)) {  // 不够一个屏幕
+            if ((self.draggingSV.lgfmj_offsetY >= - self.draggingSV.lgfmj_insetT)) { // 向上拽
                 [self beginRefreshing];
             }
         } else { // 超出一个屏幕
-            if ((_scrollView.lgfmj_offsetY >= _scrollView.lgfmj_contentH + _scrollView.lgfmj_insetB - _scrollView.lgfmj_h) || (_bscrollView.lgfmj_offsetY >= _bscrollView.lgfmj_contentH + _bscrollView.lgfmj_insetB - _bscrollView.lgfmj_h)) {
+            if (self.draggingSV.lgfmj_offsetY >= self.draggingSV.lgfmj_contentH + self.draggingSV.lgfmj_insetB - self.draggingSV.lgfmj_h) {
                 [self beginRefreshing];
             }
         }
-    } else if ((panState == UIGestureRecognizerStateBegan) || (bpanState == UIGestureRecognizerStateBegan)) {
+    } else if (panState == UIGestureRecognizerStateBegan) {
         self.oneNewPan = YES;
     }
 }
@@ -168,8 +166,10 @@
         self.state = LGFMJRefreshStateIdle;
         
         self.scrollView.lgfmj_insetB -= self.lgfmj_h;
+        self.bscrollView.lgfmj_insetB -= self.lgfmj_h;
     } else if (lastHidden && !hidden) {
         self.scrollView.lgfmj_insetB += self.lgfmj_h;
+        self.bscrollView.lgfmj_insetB += self.lgfmj_h;
         
         // 设置位置
         self.lgfmj_y = _scrollView.lgfmj_contentH;

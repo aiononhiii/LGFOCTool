@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:LGFOCTool/New Group/LGFCenterPageVC/LGFMJRefresh/LGFMJRefresh.bundle">
-   </FileRef>
-   <FileRef
       location = "group:LGFOCTool.xcodeproj">
    </FileRef>
    <FileRef
