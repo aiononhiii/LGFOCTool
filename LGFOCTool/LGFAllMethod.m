@@ -70,6 +70,66 @@ static CGFloat heightConstant;
     }
 }
 
++ (BOOL)lgf_IntegerInputSpecificationWithTextField:(UITextField *)textField String:(NSString *)string Range:(NSRange)range {
+    if (string.length > 0) {
+        unichar single = [string characterAtIndex:0];
+        if ([textField.text isEqualToString:@"0"]) {
+            textField.text = string;
+            return NO;
+        }
+        if (!((single >= '0' && single <= '9') || single == '.')){
+            return NO;
+        }
+    }
+    return YES;
+}
+
++ (BOOL)lgf_DecimalPointInputSpecificationWithTextField:(UITextField *)textField String:(NSString *)string Range:(NSRange)range {
+    BOOL isHaveDian;
+    if ([textField.text containsString:@"."]) {
+        isHaveDian = YES;
+    }else{
+        isHaveDian = NO;
+    }
+    if (string.length > 0) {
+        unichar single = [string characterAtIndex:0];
+        if (!((single >= '0' && single <= '9') || single == '.')){
+            return NO;
+        }
+        // 只能有一个小数点
+        if (isHaveDian && single == '.') {
+            return NO;
+        }
+        // 如果第一位是.则前面加上0.
+        if ((textField.text.length == 0) && (single == '.')) {
+            textField.text = @"0";
+        }
+        // 如果第一位是0则后面必须输入点，否则不能输入。
+        if ([textField.text hasPrefix:@"0"]) {
+            if (textField.text.length > 1) {
+                NSString *secondStr = [textField.text substringWithRange:NSMakeRange(1, 1)];
+                if (![secondStr isEqualToString:@"."]) {
+                    return NO;
+                }
+            }else{
+                if (![string isEqualToString:@"."]) {
+                    return NO;
+                }
+            }
+        }
+        // 小数点后最多能输入两位
+        if (isHaveDian) {
+            NSRange ran = [textField.text rangeOfString:@"."];
+            if (range.location > ran.location) {
+                if ([textField.text pathExtension].length > 1) {
+                    return NO;
+                }
+            }
+        }
+    }
+    return YES;
+}
+
 + (UIImage *)lgf_GetCodeImageWithUrl:(NSString *)urlString imgWidth:(float)imgWidth {
     //创建过滤器
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
@@ -346,12 +406,16 @@ static __weak id lgf_CurrentFirstResponder;
 }
 
 #pragma mark - 版本更新提示
-+ (void)lgf_AppNewVersionUpdate:(NSString *)appID success:(void(^)(NSDictionary *appData))success failure:(void(^)(NSError *error))failure {
-    if(![LGFAllMethod lgf_JudgeNeedVersionUpdate]) return;
++ (void)lgf_AppNewVersionUpdate:(NSString *)appID success:(void(^)(NSDictionary *appData))success failure:(void(^)(NSString *error))failure {
+    if (![lgf_Defaults boolForKey:@"QTIsShowVersionView"]) {
+        if(![LGFAllMethod lgf_JudgeNeedVersionUpdate]) {
+            return;
+        }
+    }
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = infoDict[@"CFBundleShortVersionString"];
     NSString *urlString = [NSString stringWithFormat:@"https://itunes.apple.com/CN/lookup?id=%@", appID];
-    [[LGFNetwork lgf_Once] lgf_GET:urlString parameters:@{} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [[LGFNetwork lgf_Once] lgf_POST:urlString parameters:@{} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSDictionary *resultsDict = [NSDictionary dictionaryWithDictionary:responseObject];
         NSArray *sourceArray = resultsDict[@"results"];
         if (sourceArray.count >= 1) {
@@ -360,11 +424,14 @@ static __weak id lgf_CurrentFirstResponder;
             NSString *newVersion = sourceDict[@"version"];
             if ([LGFAllMethod lgf_JudgeNewVersion:newVersion withOldVersion:appVersion]) {
                 // 提示更新版本
+                [lgf_Defaults setBool:NO forKey:@"QTIsShowVersionView"];
                 lgf_HaveBlock(success, sourceDict);
+            } else {
+                lgf_HaveBlock(failure, @"当前为最新版本");
             }
         }
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-        lgf_HaveBlock(failure, error);
+        lgf_HaveBlock(failure, error.domain);
     }];
 }
 //每天进行一次版本判断
@@ -373,25 +440,26 @@ static __weak id lgf_CurrentFirstResponder;
     formatter.timeZone = [NSTimeZone systemTimeZone];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateString = [formatter stringFromDate:[NSDate date]];
-    NSString *currentDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentDate"];
+    NSString *currentDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"QTCurrentDate"];
     if ([currentDate isEqualToString:dateString]) {
         return NO;
     }
-    [[NSUserDefaults standardUserDefaults] setObject:dateString forKey:@"currentDate"];
+    [[NSUserDefaults standardUserDefaults] setObject:dateString forKey:@"QTCurrentDate"];
+    [lgf_Defaults setBool:YES forKey:@"QTIsShowVersionView"];
     return YES;
 }
 //判断当前app版本和AppStore最新app版本大小
 + (BOOL)lgf_JudgeNewVersion:(NSString *)newVersion withOldVersion:(NSString *)oldVersion {
-    NSArray *newArray = [newVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
-    NSArray *oldArray = [oldVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
-    for (NSInteger i = 0; i < newArray.count; i ++) {
-        if ([newArray[i] integerValue] > [oldArray[i] integerValue]) {
-            return YES;
-        } else if ([newArray[i] integerValue] < [oldArray[i] integerValue]) {
-            return NO;
-        }
+    if ([newVersion isEqualToString:@"1.6.1"]) {
+        return YES;
     }
-    return NO;
+    NSString *newArrayVersion = [[newVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]] componentsJoinedByString:@""];
+    NSString *oldArrayVersion = [[oldVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]] componentsJoinedByString:@""];
+    if ([newArrayVersion integerValue] > [oldArrayVersion integerValue]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end

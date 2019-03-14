@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, lgf_ChildLoadType) {
 // 外部分页滚动 UICollectionView
 @property (weak, nonatomic) UICollectionView *lgf_CenterPageCV;
 @property (strong, nonatomic) NSMutableArray *lgf_PageChildDataArray;
+@property (strong, nonatomic) NSMutableArray *lgf_PageChildDataHeightArray;
 // 父控制器传进来的
 @property (weak, nonatomic) UIView *lgf_HeaderTapView;
 @property (weak, nonatomic) UIView *lgf_HeaderSuperView;
@@ -56,8 +57,9 @@ typedef NS_ENUM(NSUInteger, lgf_ChildLoadType) {
 @property (assign, nonatomic) BOOL lgf_IsGreaterFullContentSize;
 @property (assign, nonatomic) BOOL lgf_IsLoadData;
 @property (assign, nonatomic) NSInteger lgf_Page;
-
+@property (assign, nonatomic) CGFloat lgf_PageCVTop;
 lgf_SBViewControllerForH;
 // 同步 lgf_PanScrollView 和 lgf_CenterChildPageCV 的 ContentSize
 - (void)lgf_SynContentSize;
+- (void)lgf_ChildLoadData;
 @end

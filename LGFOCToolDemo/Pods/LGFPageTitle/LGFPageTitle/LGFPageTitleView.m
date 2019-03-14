@@ -7,7 +7,7 @@
 //
 
 #import "LGFPageTitleView.h"
-#import "UIViewController+LGFAnimatedTransition.h"
+#import "LGFPageTitleLayout.h"
 
 @interface LGFPageTitleView () <UIScrollViewDelegate>
 
@@ -59,10 +59,8 @@
 - (void)setPage_view:(UICollectionView *)page_view {
     // 默认强制横向滚动 + 分页滚动
     page_view.pagingEnabled = YES;
-    UICollectionViewFlowLayout *newLayout = [[UICollectionViewFlowLayout alloc] init];
-    newLayout.minimumLineSpacing = 0.0;
-    newLayout.minimumInteritemSpacing = 0.0;
-    newLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    LGFPageTitleLayout *newLayout = [[LGFPageTitleLayout alloc] init];
+    newLayout.page_view_animation_type = self.style.page_view_animation_type;
     [page_view setCollectionViewLayout:newLayout];
     [page_view addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     _page_view = page_view;
@@ -94,7 +92,9 @@
     self.un_select_index = 0;
     self.select_index = 0;
     self.style.page_title_view = self;
-    
+    if (super_vc.navigationController.interactivePopGestureRecognizer) {
+        [self.page_view.panGestureRecognizer requireGestureRecognizerToFail:super_vc.navigationController.interactivePopGestureRecognizer];
+    }
     if (super_view) {
         if (CGRectEqualToRect(self.style.page_title_view_frame, CGRectZero)) {
             self.frame = super_view.bounds;
@@ -119,13 +119,14 @@
 #pragma mark - 添加所有标
 
 - (void)reloadAllTitles {
-    [self reloadAllTitlesSelectIndex:0];
+    [self reloadAllTitlesSelectIndex:self.select_index];
 }
 
 - (void)reloadAllTitlesSelectIndex:(NSInteger)index {
     if (self.style.titles.count == 0 || !self.style.titles) {
         return;
     }
+    [self.page_view reloadData];
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.title_line removeFromSuperview];
     [self.title_buttons removeAllObjects];
@@ -147,16 +148,19 @@
             self.x = 0.0;
         }
     }
+    self.select_index = index;
     // 添加底部滚动线
     [self addScrollLine];
     // 默认选中
-    [self adjustUIWhenBtnOnClickWithAnimate:YES taped:YES];
-    dispatch_async(dispatch_get_main_queue(), ^{
+    [self adjustUIWhenBtnOnClickWithAnimate:NO taped:YES];
+    if (self.select_index == 0) {
         if (self.lgf_PageTitleViewDelegate && [self.lgf_PageTitleViewDelegate respondsToSelector:@selector(lgf_SelectPageTitle:)]) {
             LGFLog(@"当前选中:%@", self.style.titles[self.select_index]);
-            [self.lgf_PageTitleViewDelegate lgf_SelectPageTitle:self.select_index];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.lgf_PageTitleViewDelegate lgf_SelectPageTitle:self.select_index];
+            });
         }
-    });
+    }
 }
 
 #pragma mark - 标点击事件 滚动到指定tag位置

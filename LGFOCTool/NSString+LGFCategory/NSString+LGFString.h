@@ -32,6 +32,12 @@ typedef NS_ENUM(NSUInteger, lgf_TimeFormatType) {
 
 @interface NSString (LGFString)
 
+#pragma mark - 判断字符串类型 只包含中文/大写字母/小写字母/数字
+- (BOOL)lgf_IsOnlyHaveChinese;
+- (BOOL)lgf_IsOnlyHaveNumber;
+- (BOOL)lgf_IsOnlyHaveSmallLetters;
+- (BOOL)lgf_IsOnlyHaveCapitalLetters;
+
 #pragma mark - string是否不为真
 + (BOOL)lgf_IsNull:(NSString *)string;
 

@@ -30,9 +30,10 @@ lgf_ViewForM(LGFImageAlertViewStyle);
 
 lgf_XibViewForM(LGFImageAlertView, @"LGFOCTool");
 
-- (void)lgf_ShowImageAlertWithImage:(UIImage *)image sure:(LGFImageSureBlock)sure {
+- (void)lgf_ShowImageAlertWithImage:(UIImage *)image message:(NSString *)message sure:(LGFImageSureBlock)sure {
     LGFImageAlertViewStyle *style = [LGFImageAlertViewStyle lgf];
     style.lgf_AlertImage = image;
+    style.lgf_Message = message;
     [self lgf_ShowImageAlertWithStyle:style sure:sure];
 }
 
@@ -57,6 +58,7 @@ lgf_XibViewForM(LGFImageAlertView, @"LGFOCTool");
         [self.sureButton setTitleColor:style.lgf_SureTitleColor forState:UIControlStateNormal];
         [self.sureButton setBackgroundColor:style.lgf_SureTitleBackColor];
         self.sureButton.titleLabel.font = style.lgf_SureTitleFont;
+        self.message.text = style.lgf_Message;
     }
     
     self.sureBlock = sure;

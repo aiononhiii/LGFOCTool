@@ -196,6 +196,36 @@
     return str;
 }
 
+#pragma mark - 判断字符串类型 只包含中文/大写字母/小写字母/数字
+- (BOOL)lgf_IsOnlyHaveChinese {
+    return YES;
+}
+- (BOOL)lgf_IsOnlyHaveNumber; {
+    return YES;
+}
+- (BOOL)lgf_IsOnlyHaveSmallLetters {
+    NSInteger alength = [self length];
+    for (int i = 0; i<alength; i++) {
+        char commitChar = [self characterAtIndex:i];
+        if ((commitChar > 64) && (commitChar < 91)) {
+            NSLog(@"字符串中含有大写英文字母");
+            return NO;
+        }
+    }
+    return YES;
+}
+- (BOOL)lgf_IsOnlyHaveCapitalLetters {
+    NSInteger alength = [self length];
+    for (int i = 0; i<alength; i++) {
+        char commitChar = [self characterAtIndex:i];
+        if ((commitChar > 96) && (commitChar < 123)) {
+            NSLog(@"字符串中含有小写英文字母");
+            return NO;
+        }
+    }
+    return YES;
+}
+
 #pragma mark - 字符串如果前面有0，保留去掉0之后的字符串
 - (NSString *)lgf_GetTheCorrectNum {
     NSString *CorrectNumStr = self;

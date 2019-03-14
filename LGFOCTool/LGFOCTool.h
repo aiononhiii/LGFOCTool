@@ -12,9 +12,6 @@
 // 宏集合
 #import "LGFPch.h"
 
-// ZFPlayer 播放器
-#import "ZFPlayer.h"
-
 // 所有特殊方法
 #import "LGFAllMethod.h"
 
@@ -24,7 +21,18 @@
 // 基于AFN的网络请求封装
 #import "LGFReqest.h"
 
+// SDWebImage
+#import "UIImageView+WebCache.h"
+
 //****************************** 自定义控件 *******************************
+// webview 顶部加载条（一半欺骗版）
+#import "LGFWebProgress.h"
+// 纯图片 CollectionviewCell
+#import "LGFImageCell.h"
+// 图片和文字组合的 CollectionviewCell
+#import "LGFImageTitleCell.h"
+// 点击出现果冻效果的 UIButton
+#import "LGFClickJumpButton.h"
 // 倒计时按钮 用于发送验证码
 #import "LGFCountDownButton.h"
 // 优化后的定时器
@@ -79,6 +87,8 @@
 #import "UIColor+LGFColor.h"
 // 获取渐变色
 #import "UIColor+LGFGradient.h"
+//------------------ UILabel 分类集合 ----------------
+#import "UILabel+LGFLable.h"
 //------------------ UITextView 分类集合 ----------------
 #import "UITextView+LGFTextView.h"
 //------------------ UITextField 分类集合 ---------------

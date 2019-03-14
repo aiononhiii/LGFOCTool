@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, lgf_ToastImagePosition) {
     lgf_ToastImageBottom,
     lgf_ToastImageLeft,
     lgf_ToastImageRight,
+    lgf_ToastOnlyImage
 };
 
 @interface LGFToastStyle : NSObject
@@ -89,9 +90,12 @@ lgf_AllocOnceForH;
                     animated:(BOOL)animated
                   completion:(void (^ __nullable)(void))completion;
 - (void)lgf_HideMessage:(void (^ __nullable)(void))completion;
-- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets cr:(CGFloat)cr;
+- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets isClearBack:(BOOL)isClearBack cornerRadius:(CGFloat)cornerRadius style:(UIActivityIndicatorViewStyle)style;
 - (void)lgf_HideToastActivity;
 
+#pragma mark - 覆盖全view的遮罩文字
+- (void)lgf_ShowScreenMessage:(NSString *)message fontSize:(CGFloat)fontSize cr:(CGFloat)cr;
+- (void)lgf_HideScreenMessage;
 @end
 
 

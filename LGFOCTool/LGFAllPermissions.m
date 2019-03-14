@@ -120,40 +120,6 @@ lgf_AllocOnceForM(LGFAllPermissions);
     }
 }
 
-#pragma mark - HealthKit 运动数据权限
-
-+ (void)lgf_GetHealthKitPermission:(lgf_HealthKitPermissionType)HealthKitPermissionType HKQuantityTypeIdentifier:(HKQuantityTypeIdentifier)HKQuantityTypeIdentifier block:(void (^)(BOOL isHave))block {
-    BOOL isSupport = [HKHealthStore isHealthDataAvailable];
-    if (isSupport) {
-        HKHealthStore *healthStore = [[HKHealthStore alloc] init];
-        NSSet *shareType;
-        NSSet *readType;
-        if (HealthKitPermissionType == lgf_ReadAndShare) {
-            readType = [NSSet setWithObject:[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifier]];
-            shareType = [NSSet setWithObject:[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifier]];
-        } else {
-            readType = [NSSet setWithObject:[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifier]];
-            shareType = [NSSet new];
-        }
-        [healthStore requestAuthorizationToShareTypes:shareType readTypes:readType completion:^(BOOL success, NSError * _Nullable error) {
-            if (success) {
-                lgf_HaveBlock(block, YES);
-            } else {
-                lgf_HaveBlock(block, NO);
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (success) {
-                    lgf_HaveBlock(block, YES);
-                } else {
-                    lgf_HaveBlock(block, NO);
-                }
-            });
-        }];
-    } else {
-        lgf_HaveBlock(block, NO);
-    }
-}
-
 #pragma mark - 推送权限
 
 + (void)lgf_GetUserNotificationPermission:(void (^)(BOOL isHave))block {

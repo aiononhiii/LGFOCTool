@@ -440,8 +440,8 @@ static inline CGFloat lgf_DegreesToRadians(CGFloat degrees) {
     return [self lgf_ImageByBlurRadius:40 tintColor:[UIColor colorWithWhite:0.97 alpha:0.82] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
 }
 
-- (UIImage *)lgf_ImageByBlurDark {
-    return [self lgf_ImageByBlurRadius:40 tintColor:[UIColor colorWithWhite:0.11 alpha:0.73] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
+- (UIImage *)lgf_ImageByBlurDark:(CGFloat)Radius {
+    return [self lgf_ImageByBlurRadius:Radius tintColor:[UIColor colorWithWhite:0.11 alpha:0.73] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
 }
 
 - (UIImage *)lgf_ImageByBlurWithTint:(UIColor *)tintColor {

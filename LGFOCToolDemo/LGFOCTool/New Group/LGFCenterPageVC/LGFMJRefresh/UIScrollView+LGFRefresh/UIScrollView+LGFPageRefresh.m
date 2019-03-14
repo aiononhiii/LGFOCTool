@@ -96,15 +96,15 @@ static const char *lgf_PageNoMoreViewKey = "lgf_PageNoMoreViewKey";
     [self.lgfmj_header endRefreshing];
 }
 
-- (void)lgf_ReloadDataAndNoMoreDataView:(UIView *)noMoreDataView isShow:(BOOL)isShow {
-    [self.lgf_NoMoreView removeFromSuperview];
+- (void)lgf_PageReloadDataAndNoMoreDataView:(UIView *)noMoreDataView isShow:(BOOL)isShow {
+    [self.lgf_PageNoMoreView removeFromSuperview];
     // 数据数组count小于10 显示我是有底线的view
     if (isShow) {
         [self.lgfmj_footer endRefreshingWithNoMoreData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.lgf_NoMoreView = noMoreDataView;
-            self.lgf_NoMoreView.frame = self.lgfmj_footer.bounds;
-            [self.lgfmj_footer addSubview:self.lgf_NoMoreView];
+            self.lgf_PageNoMoreView = noMoreDataView;
+            self.lgf_PageNoMoreView.frame = self.lgfmj_footer.bounds;
+            [self.lgfmj_footer addSubview:self.lgf_PageNoMoreView];
         });
     } else {
         [self.lgfmj_footer resetNoMoreData];
@@ -116,6 +116,41 @@ static const char *lgf_PageNoMoreViewKey = "lgf_PageNoMoreViewKey";
     } else if ([self isKindOfClass:[UITableView class]]) {
         UITableView *cv = (UITableView *)self;
         [cv reloadData];
+    }
+}
+
+- (void)lgf_PageReloadData:(NSInteger)count dataArrayCount:(NSInteger)dataArrayCount {
+    [self lgf_PageReloadData:count noDataViewType:1 limitCount:10 dataArrayCount:dataArrayCount];
+}
+
+- (void)lgf_PageReloadData:(NSInteger)count noDataViewType:(NSInteger)noDataViewType dataArrayCount:(NSInteger)dataArrayCount {
+    [self lgf_PageReloadData:count noDataViewType:0 limitCount:10 dataArrayCount:dataArrayCount];
+}
+
+- (void)lgf_PageReloadData:(NSInteger)count limitCount:(NSInteger)limit dataArrayCount:(NSInteger)dataArrayCount {
+    [self lgf_PageReloadData:count noDataViewType:1 limitCount:limit dataArrayCount:dataArrayCount];
+}
+
+- (void)lgf_PageReloadData:(NSInteger)count noDataViewType:(NSInteger)noDataViewType limitCount:(NSInteger)limit dataArrayCount:(NSInteger)dataArrayCount {
+    if (count == 0 && dataArrayCount == 0) {
+//        [self.lgfmj_footer.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if ([obj isKindOfClass:[QTNoDataView class]]) {
+//                [obj removeFromSuperview];
+//            }
+//        }];
+        [self.lgfmj_footer endRefreshingWithNoMoreData];
+        // 刷新数据源
+        if ([self isKindOfClass:[UICollectionView class]]) {
+            UICollectionView *cv = (UICollectionView *)self;
+            [cv reloadData];
+        } else if ([self isKindOfClass:[UITableView class]]) {
+            UITableView *cv = (UITableView *)self;
+            [cv reloadData];
+        }
+    } else {
+//        QTNoDataView *view = [QTNoDataView lgf];
+//        view.noDataViewType = noDataViewType;
+//        [self lgf_PageReloadDataAndNoMoreDataView:view isShow:dataArrayCount == 0 ? NO : count < limit];
     }
 }
 

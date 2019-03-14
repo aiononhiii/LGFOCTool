@@ -20,11 +20,13 @@
 @property (assign, nonatomic) CGFloat lgf_AlertWidth;
 @property (assign, nonatomic) CGFloat lgf_AlertHeight;
 @property (assign, nonatomic) CGFloat lgf_CenterLineHeight;
+@property (copy, nonatomic) NSString *lgf_Message;
 lgf_ViewForH;
 @end
 
 @interface LGFImageAlertView : UIView
 typedef void(^LGFImageSureBlock) (void);
+@property (weak, nonatomic) IBOutlet UILabel *message;
 @property (weak, nonatomic) IBOutlet UIView *alertBackView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *alertWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *alertHeight;
@@ -36,6 +38,6 @@ typedef void(^LGFImageSureBlock) (void);
 @property (nonatomic, copy) LGFImageSureBlock sureBlock;
 @property (nonatomic, strong) LGFImageAlertViewStyle *style;
 lgf_XibViewForH;
-- (void)lgf_ShowImageAlertWithImage:(UIImage *)image sure:(LGFImageSureBlock)sure;
+- (void)lgf_ShowImageAlertWithImage:(UIImage *)image message:(NSString *)message sure:(LGFImageSureBlock)sure;
 - (void)lgf_ShowImageAlertWithStyle:(LGFImageAlertViewStyle *)style sure:(LGFImageSureBlock)sure;
 @end

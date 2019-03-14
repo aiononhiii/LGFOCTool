@@ -68,9 +68,9 @@ lgf_AllocOnceForM(LGFGetPhoto);
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     lgf_HaveBlock(self.lgf_ReturnImage, image);
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

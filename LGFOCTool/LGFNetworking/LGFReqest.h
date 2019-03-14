@@ -16,14 +16,19 @@ typedef NS_ENUM(NSUInteger, lgf_RequestMethod) {
 
 @interface LGFReqest : NSObject
 
++ (NSMutableDictionary *)lgf_AllTasks;
++ (void)lgf_AllTasksRemoveFromVC:(id)target;
++ (void)lgf_AllTasksRemove:(id)target task:(NSURLSessionDataTask *)task;
++ (void)lgf_AllTasksAdd:(id)target task:(NSURLSessionDataTask *)task;
+
 #pragma mark - 网络请求
 /**
  @param method 请求方法：GET/POST 目前只支持这两中
  @param url 地址
- @param param 参数
+ @param paramt 参数
  @param completed 回调
  */
-+ (void)lgf_Request:(lgf_RequestMethod)method url:(NSString *)url param:(NSDictionary *)param completed:(void(^)(NSDictionary *data, NSError *error))completed;
++ (NSURLSessionDataTask *)lgf_Request:(id)target method:(lgf_RequestMethod)method url:(NSString *)url paramt:(NSDictionary *)paramt completed:(void(^)(NSDictionary *data, NSError *error))completed;
 
 #pragma mark - 下载文请求
 /**

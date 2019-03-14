@@ -21,16 +21,16 @@ lgf_ViewForM(LGFToastStyle);
         self.lgf_ToastMessage = @"";
         self.lgf_ToastPosition = lgf_ToastCenter;
         self.lgf_ToastImagePosition = lgf_ToastImageTop;
-        self.lgf_ToastMessageFont = [UIFont boldSystemFontOfSize:20];
+        self.lgf_ToastMessageFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];;
         self.lgf_ToastMessageTextColor = [UIColor whiteColor];
         self.lgf_ToastBackColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
         self.lgf_ToastCornerRadius = 10.0;
-        self.lgf_DismissDuration = 0.13;
-        self.lgf_Duration = 0.5;
-        self.lgf_DismissDuration = NO;
+        self.lgf_DismissDuration = 0.0;
+        self.lgf_Duration = 1.0;
+        self.lgf_SuperEnabled = NO;
         self.lgf_BackBtnEnabled = YES;
         self.lgf_MessageImageSpacing = 5.0;
-        self.lgf_ToastSpacing = 10.0;
+        self.lgf_ToastSpacing = 13.0;
         self.lgf_ToastImageSize = CGSizeMake(50.0, 50.0);
         self.lgf_MaxWidth = [UIScreen mainScreen].bounds.size.width * 0.8;
         self.lgf_MaxHeight = [UIScreen mainScreen].bounds.size.height * 0.8;
@@ -111,10 +111,12 @@ lgf_AllocOnceForM(LGFToastView);
         if (image) {
             [self.image setImage:image];
         } else {
-            NSString *path = [[NSBundle mainBundle] pathForResource:style.lgf_ToastImageName ofType:@"gif"];
-            NSData *data = [NSData dataWithContentsOfFile:path];
-            UIImage *image = [UIImage sd_animatedGIFWithData:data];
-            [self.image setImage:image];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSString *path = [[NSBundle mainBundle] pathForResource:style.lgf_ToastImageName ofType:@"gif"];
+                NSData *data = [NSData dataWithContentsOfFile:path];
+                UIImage *image = [UIImage sd_animatedGIFWithData:data];
+                [self.image setImage:image];
+            });
         }
     } else {
         [self.image setImage:nil];
@@ -175,6 +177,16 @@ lgf_AllocOnceForM(LGFToastView);
                                                 self.frame.size.width - (self.style.lgf_ToastSpacing * 2) - self.image.frame.size.width - self.style.lgf_MessageImageSpacing,
                                                 self.frame.size.height - (self.style.lgf_ToastSpacing * 2));
                 break;
+            case lgf_ToastOnlyImage:
+                self.image.frame = CGRectMake(self.style.lgf_MessageImageSpacing,
+                                              self.style.lgf_MessageImageSpacing,
+                                              self.style.lgf_ToastImageSize.width,
+                                              self.style.lgf_ToastImageSize.height);
+                self.message.frame = CGRectMake(0,
+                                                0,
+                                                0,
+                                                0);
+                break;
             default:
                 break;
         }
@@ -184,13 +196,7 @@ lgf_AllocOnceForM(LGFToastView);
 }
 
 - (void)dismiss {
-    [UIView animateWithDuration:self.style.lgf_DismissDuration animations:^{
-        self.alpha = 0.0;
-        self.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    } completion:^(BOOL finished) {
-        self.transform = CGAffineTransformIdentity;
-        [self removeFromSuperview];
-    }];
+    [self removeFromSuperview];
 }
 
 @end
@@ -199,22 +205,21 @@ lgf_AllocOnceForM(LGFToastView);
 
 static char lgf_ToastViewKey;
 static char lgf_ToastActivityKey;
+static char lgf_ToastScreenMessageKey;
 
 - (void)lgf_HideMessage:(void (^ __nullable)(void))completion {
-    LGFToastView *toastView = objc_getAssociatedObject(self, &lgf_ToastViewKey);
-    [UIView animateWithDuration:toastView.style.lgf_DismissDuration animations:^{
-        toastView.alpha = 0.0;
-        toastView.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    } completion:^(BOOL finished) {
-        toastView.transform = CGAffineTransformIdentity;
-        [toastView removeFromSuperview];
+    if ([self isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)self;
+        btn.enabled = YES;
+    } else {
         [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj.userInteractionEnabled = YES;
+            if ([obj isKindOfClass:[LGFToastView class]]) {
+                [obj removeFromSuperview];
+            }
         }];
-        if (completion) {
-            completion();
-        }
-    }];
+    }
+    lgf_HaveBlock(completion);
 }
 
 - (void)lgf_ShowMessage:(NSString *)message
@@ -257,30 +262,47 @@ static char lgf_ToastActivityKey;
 - (void)lgf_ShowMessageStyle:(LGFToastStyle *)style
                     animated:(BOOL)animated
                   completion:(void (^ __nullable)(void))completion {
-    if (style.lgf_ToastMessage.length == 0 && !(style.lgf_ToastImageName.length == 0)) {
+    if (style.lgf_ToastMessage.length == 0 && style.lgf_ToastImagePosition != lgf_ToastOnlyImage && !(style.lgf_ToastImageName.length == 0)) {
         return;
     }
-    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:[LGFToastView class]]) {
-            [obj removeFromSuperview];
-        }
-    }];
+    
+    if ([self isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)self;
+        btn.enabled = style.lgf_SuperEnabled;
+    } else {
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.lgf_ViewName isEqualToString:@"LGFVIP"]) {
+                obj.userInteractionEnabled = style.lgf_BackBtnEnabled;
+            } else {
+                obj.userInteractionEnabled = style.lgf_SuperEnabled;
+            }
+            if ([obj isKindOfClass:[LGFToastView class]]) {
+                [obj removeFromSuperview];
+            }
+        }];
+    }
+    
     // 动态加载 lgf_ToastView
     LGFToastView *toastView = objc_getAssociatedObject(self, &lgf_ToastViewKey);
     toastView.style = style;
     toastView = [LGFToastView lgf_Once];
     objc_setAssociatedObject(self, &lgf_ToastViewKey, toastView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    CGFloat lgf_ToastViewHeight = [style lgf_HeightWithText:@"" font:style.lgf_ToastMessageFont width:style.lgf_MaxWidth];
-    CGFloat lgf_ToastViewWidth = [style lgf_WidthWithText:style.lgf_ToastMessage font:style.lgf_ToastMessageFont height:lgf_ToastViewHeight];
-    if (lgf_ToastViewWidth >= style.lgf_MaxWidth) {
-        CGFloat realHeight = [style lgf_HeightWithText:style.lgf_ToastMessage font:style.lgf_ToastMessageFont width:style.lgf_MaxWidth];
-        if (lgf_ToastViewHeight < realHeight) {
-            lgf_ToastViewHeight = MIN(realHeight, style.lgf_MaxHeight);
+    CGFloat lgf_ToastViewHeight = 0.0;
+    CGFloat lgf_ToastViewWidth = 0.0;
+    CGFloat lgf_ToastViewY = 0.0;
+    CGFloat lgf_ToastViewX = 0.0;
+    
+    if (style.lgf_ToastImagePosition != lgf_ToastOnlyImage) {
+        lgf_ToastViewHeight = [style lgf_HeightWithText:@"" font:style.lgf_ToastMessageFont width:style.lgf_MaxWidth];
+        lgf_ToastViewWidth = [style lgf_WidthWithText:style.lgf_ToastMessage font:style.lgf_ToastMessageFont height:lgf_ToastViewHeight];
+        if (lgf_ToastViewWidth >= style.lgf_MaxWidth) {
+            CGFloat realHeight = [style lgf_HeightWithText:style.lgf_ToastMessage font:style.lgf_ToastMessageFont width:style.lgf_MaxWidth];
+            if (lgf_ToastViewHeight < realHeight) {
+                lgf_ToastViewHeight = MIN(realHeight, style.lgf_MaxHeight);
+            }
         }
     }
-    CGFloat lgf_ToastViewY;
-    CGFloat lgf_ToastViewX;
     
     if (style.lgf_ToastHaveIamge) {
         switch (style.lgf_ToastImagePosition) {
@@ -295,6 +317,10 @@ static char lgf_ToastActivityKey;
                 break;
             case lgf_ToastImageRight:
                 lgf_ToastViewWidth += style.lgf_ToastImageSize.width + style.lgf_MessageImageSpacing;
+                break;
+            case lgf_ToastOnlyImage:
+                lgf_ToastViewHeight += style.lgf_ToastImageSize.height + style.lgf_MessageImageSpacing * 2;
+                lgf_ToastViewWidth += style.lgf_ToastImageSize.width + style.lgf_MessageImageSpacing * 2;
                 break;
             default:
                 break;
@@ -315,54 +341,92 @@ static char lgf_ToastActivityKey;
             break;
     }
     
-    lgf_ToastViewWidth = MIN(lgf_ToastViewWidth, style.lgf_MaxWidth) + style.lgf_ToastSpacing * 2;
-    lgf_ToastViewHeight = lgf_ToastViewHeight + style.lgf_ToastSpacing * 2;
+    if (style.lgf_ToastImagePosition != lgf_ToastOnlyImage) {
+        lgf_ToastViewWidth = MIN(lgf_ToastViewWidth, style.lgf_MaxWidth) + style.lgf_ToastSpacing * 2;
+        lgf_ToastViewHeight = lgf_ToastViewHeight + style.lgf_ToastSpacing * 2;
+    }
+    
     lgf_ToastViewX = (self.frame.size.width / 2) - (lgf_ToastViewWidth / 2);
     
     toastView.frame = CGRectMake(lgf_ToastViewX, lgf_ToastViewY, lgf_ToastViewWidth, lgf_ToastViewHeight);
     toastView.style = style;
     [self addSubview:toastView];
-    [toastView setNeedsLayout];
-    [toastView layoutIfNeeded];
-    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.lgf_ViewName isEqualToString:@"LGFVIP"]) {
-            obj.userInteractionEnabled = style.lgf_BackBtnEnabled;
-        } else {
-            obj.userInteractionEnabled = style.lgf_SuperEnabled;
-        }
-    }];
     
     // 动画
-    [NSObject cancelPreviousPerformRequestsWithTarget:toastView];
-    if (animated) toastView.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    [UIView animateWithDuration:animated ? 0.4 : 0.0 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        toastView.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        [toastView performSelector:@selector(dismiss) withObject:nil afterDelay:style.lgf_Duration];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((style.lgf_Duration + style.lgf_DismissDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [NSObject cancelPreviousPerformRequestsWithTarget:toastView selector:@selector(dismiss) object:nil];
+    [toastView performSelector:@selector(dismiss) withObject:nil afterDelay:style.lgf_Duration];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((style.lgf_Duration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.userInteractionEnabled = YES;
+        }];
+        lgf_HaveBlock(completion);
+    });
+}
+
+#pragma mark - 覆盖全view的遮罩文字
+
+- (void)lgf_ShowScreenMessage:(NSString *)message fontSize:(CGFloat)fontSize cr:(CGFloat)cr {
+    UILabel *screenMessage = (UILabel *)objc_getAssociatedObject(self, &lgf_ToastScreenMessageKey);
+    [screenMessage removeFromSuperview];
+    screenMessage = nil;
+    if (!screenMessage) {
+        screenMessage = [[UILabel alloc] initWithFrame:self.bounds];
+        screenMessage.text = message;
+        screenMessage.font = [UIFont boldSystemFontOfSize:fontSize];
+        screenMessage.textAlignment = NSTextAlignmentCenter;
+        screenMessage.textColor = [UIColor whiteColor];
+        screenMessage.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    }
+    [self addSubview:screenMessage];
+    objc_setAssociatedObject(self, &lgf_ToastScreenMessageKey, screenMessage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    if ([self isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)self;
+        btn.enabled = NO;
+    } else {
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.lgf_ViewName isEqualToString:@"LGFVIP"]) {
                 obj.userInteractionEnabled = YES;
-            }];
-            if (completion) {
-                completion();
+                [self bringSubviewToFront:obj];
+            } else {
+                obj.userInteractionEnabled = NO;
             }
-        });
-    }];
+        }];
+    }
+}
+
+- (void)lgf_HideScreenMessage {
+    if ([self isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)self;
+        btn.enabled = YES;
+    } else {
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.userInteractionEnabled = YES;
+        }];
+    }
+    UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastScreenMessageKey);
+    if (activityBackView) {
+        [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [activityBackView removeFromSuperview];
+    }
 }
 
 #pragma mark - 菊花
 
-- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets cr:(CGFloat)cr {
-    self.userInteractionEnabled = NO;
+- (void)lgf_ShowToastActivity:(UIEdgeInsets)Insets isClearBack:(BOOL)isClearBack cornerRadius:(CGFloat)cornerRadius style:(UIActivityIndicatorViewStyle)style {
     UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastActivityKey);
     [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [activityBackView removeFromSuperview];
     if (!activityBackView) {
         activityBackView = [[UIView alloc] init];
-        activityBackView.layer.cornerRadius = cr;
-        activityBackView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
+        if (cornerRadius > 0) {
+            activityBackView.layer.cornerRadius = cornerRadius;
+            activityBackView.layer.borderWidth = 0.5;
+            activityBackView.layer.borderColor = lgf_HexColor(@"F0F0F0").CGColor;
+        }
+        activityBackView.alpha = 1.0;
+        activityBackView.backgroundColor = isClearBack ? [UIColor clearColor] : [UIColor whiteColor];
     }
-    activityBackView.alpha = 1.0;
     [self addSubview:activityBackView];
     activityBackView.translatesAutoresizingMaskIntoConstraints = NO;
     objc_setAssociatedObject(self, &lgf_ToastActivityKey, activityBackView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -377,24 +441,41 @@ static char lgf_ToastActivityKey;
     [self setNeedsLayout];
     [self layoutIfNeeded];
     UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] init];
-    activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    activityView.activityIndicatorViewStyle = style;
     [UIView animateWithDuration:0.1 animations:^{
         [activityView startAnimating];
     }];
     activityView.center = CGPointMake(activityBackView.bounds.size.width / 2, activityBackView.bounds.size.height / 2);
     [activityBackView addSubview:activityView];
+    
+    if ([self isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)self;
+        btn.enabled = NO;
+    } else {
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.lgf_ViewName isEqualToString:@"LGFVIP"]) {
+                obj.userInteractionEnabled = YES;
+                [self bringSubviewToFront:obj];
+            } else {
+                obj.userInteractionEnabled = NO;
+            }
+        }];
+    }
 }
 
 - (void)lgf_HideToastActivity {
-    self.userInteractionEnabled = YES;
+    if ([self isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)self;
+        btn.enabled = YES;
+    } else {
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.userInteractionEnabled = YES;
+        }];
+    }
     UIView *activityBackView = (UIView *)objc_getAssociatedObject(self, &lgf_ToastActivityKey);
     if (activityBackView) {
-        [UIView animateWithDuration:0.25 animations:^{
-            activityBackView.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-            [activityBackView removeFromSuperview];
-        }];
+        [activityBackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [activityBackView removeFromSuperview];
     }
 }
 

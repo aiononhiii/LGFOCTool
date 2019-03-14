@@ -41,12 +41,12 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
     vc.lgf_PageTitleStyle = style;
     
     vc.delegate = self;
-    vc.lgf_HeaderHeight = 800 + 50;
+    vc.lgf_HeaderHeight = 110 + 50;
     vc.lgf_PageTitleViewHeight = 50;
-    vc.lgf_PageTitleArray = (NSMutableArray *)@[@"淘宝", @"京东", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会"];
     vc.lgf_HeaderView = self.testHeaderView;
     [vc lgf_ShowInVC:self view:self.testView];
     self.dataArray = [NSMutableArray arrayWithArray:@[@"淘宝", @"京东", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会"]];
+    [vc reloadPageTitleWidthArray:(NSMutableArray *)@[@"淘宝", @"京东", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会", @"腾讯", @"网易", @"尚衣会"]];
 }
 
 #pragma mark - LGFCenterPageChildVC Delegate
@@ -74,6 +74,11 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
                 [vc.lgf_PageChildDataArray addObject:@"腾讯"];
             }
         }
+        [vc.lgf_PageChildDataHeightArray removeAllObjects];
+        [vc.lgf_PageChildDataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [vc.lgf_PageChildDataHeightArray addObject:@(250)];
+        }];
+        
         vc.lgf_Page++;
         // 加载数据完毕
         [vc.lgf_CenterChildPageCV reloadData];
@@ -91,7 +96,8 @@ lgf_SBViewControllerForM(LGFCenterPageVCTest, @"Main", @"LGFCenterPageVCTest");
 }
 
 - (CGSize)lgf_SizeForItemAtIndexPath:(NSIndexPath *)indexPath centerPageChildVC:(UIViewController *)centerPageChildVC {
-    return CGSizeMake(lgf_ScreenWidth / 2, 250);
+    LGFCenterPageChildVC *vc = (LGFCenterPageChildVC *)centerPageChildVC;
+    return CGSizeMake(lgf_ScreenWidth, [vc.lgf_PageChildDataHeightArray[indexPath.item] floatValue]);
 }
 
 - (Class)lgf_CenterChildPageCVCellClass:(UIViewController *)centerPageChildVC {

@@ -7,8 +7,30 @@
 //
 
 #import "UITextField+LGFTextField.h"
+#import <objc/runtime.h>
+
+static const char *lgf_LeftSpaceKey = "lgf_LeftSpaceKey";
 
 @implementation UITextField (LGFTextField)
+
+@dynamic lgf_LeftSpace;
+
+#pragma mark - 左侧距离
+- (void)setLgf_LeftSpace:(CGFloat)lgf_LeftSpace {
+    objc_setAssociatedObject(self, &lgf_LeftSpaceKey, [NSNumber numberWithFloat:lgf_LeftSpace], OBJC_ASSOCIATION_ASSIGN);
+    if (lgf_LeftSpace && lgf_LeftSpace > 0) {
+        [self.leftView removeFromSuperview];
+        self.leftView = nil;
+        UILabel *leftView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, lgf_LeftSpace, self.frame.size.height)];
+        leftView.backgroundColor = [UIColor clearColor];
+        self.leftView = leftView;
+        self.leftViewMode = UITextFieldViewModeAlways;
+    }
+}
+
+- (CGFloat)lgf_LeftSpace {
+    return [objc_getAssociatedObject(self, &lgf_LeftSpaceKey) floatValue];
+}
 
 #pragma mark - UITextField输入长度限制
 /**

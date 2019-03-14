@@ -10,37 +10,73 @@
 
 @implementation LGFReqest
 
+#pragma mark - 缓存所有请求的数组
+/**
+ @{
+    @"ClassName" : @[task, task, task],
+    @"ClassName" : @[task, task, task],
+    @"ClassName" : @[task, task, task]
+ },
+ */
+static NSMutableDictionary *lgf_AllTasks;
++ (NSMutableDictionary *)lgf_AllTasks {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (lgf_AllTasks == nil) {
+            lgf_AllTasks = [[NSMutableDictionary alloc] init];
+        }
+    });
+    return lgf_AllTasks;
+}
+
++ (void)lgf_AllTasksRemoveFromVC:(id)target {
+    if (target) {
+        if ([target isKindOfClass:[UIViewController class]]) {
+            [[[LGFReqest lgf_AllTasks] valueForKey:NSStringFromClass([target class])] makeObjectsPerformSelector:@selector(cancel)];
+            [[LGFReqest lgf_AllTasks] removeObjectForKey:NSStringFromClass([target class])];
+        }
+    }
+}
+
++ (void)lgf_AllTasksRemove:(id)target task:(NSURLSessionDataTask *)task {
+    if (target) {
+        if ([target isKindOfClass:[UIViewController class]]) {
+            NSMutableArray *tasks = [NSMutableArray arrayWithArray:[[LGFReqest lgf_AllTasks] valueForKey:NSStringFromClass([target class])]];
+            [tasks enumerateObjectsUsingBlock:^(NSURLSessionDataTask *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj.response.URL.absoluteString isEqualToString:task.response.URL.absoluteString]) {
+                    [obj cancel];
+                    [tasks removeObject:obj];
+                }
+            }];
+            [[LGFReqest lgf_AllTasks] setObject:tasks forKey:NSStringFromClass([target class])];
+        }
+    }
+}
+
++ (void)lgf_AllTasksAdd:(id)target task:(NSURLSessionDataTask *)task {
+    if (target) {
+        if ([target isKindOfClass:[UIViewController class]]) {
+            NSMutableArray *tasks = [NSMutableArray arrayWithArray:[[LGFReqest lgf_AllTasks] valueForKey:NSStringFromClass([target class])]];
+            [tasks addObject:task];
+            [[LGFReqest lgf_AllTasks] setObject:tasks forKey:NSStringFromClass([target class])];
+        }
+    }
+}
+
 #pragma mark - 网络请求
 /**
  @param method 请求方法：GET/POST 目前只支持这两中
  @param url 地址
- @param param 参数
+ @param paramt 参数
  @param completed 回调
  */
-+ (void)lgf_Request:(lgf_RequestMethod)method url:(NSString *)url param:(NSDictionary *)param completed:(void(^)(NSDictionary *data, NSError *error))completed {
++ (NSURLSessionDataTask *)lgf_Request:(id)target method:(lgf_RequestMethod)method url:(NSString *)url paramt:(NSDictionary *)paramt completed:(void(^)(NSDictionary *data, NSError *error))completed {
+    NSURLSessionDataTask *task = nil;
     if (method == lgf_GET) {
         // GET
-        [[LGFNetwork lgf_Once] lgf_GET:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            //            NSDictionary *json_dic = (NSDictionary*)responseObject;
-            //            NSData *data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
-            //            NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            //            NSLog(@"\n<<-----------返回--------------------\n Url == %@\n Response == %@\n", url, dataStr);
-            if ((!responseObject[@"errorCode"] || [responseObject[@"errorCode"] integerValue] != 200 )) {
-                // 无返回参数, 但返回code不等于200
-                NSString *errorMessage = responseObject[@"errorMessage"] ?: @"请求出了点问题哦, 请稍后重试";
-                NSInteger code = responseObject[@"errorCode"] ? [responseObject[@"errorCode"] integerValue] : task.error.code;
-                NSError * err = [NSError errorWithDomain:@"LGF" code: code userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
-                completed([NSDictionary dictionary], err);
-            } else if (responseObject[@"code"] && [responseObject[@"code"] integerValue] != 200) {
-                // 有返回参数, 但返回code不等于200
-                NSString *errorMessage = responseObject[@"message"] ?: @"请求出了点问题哦, 请稍后重试";
-                NSInteger code = responseObject[@"code"]? [responseObject[@"code"] integerValue] : task.error.code;
-                NSError * err = [NSError errorWithDomain:@"LGF" code: code userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
-                completed([NSDictionary dictionary], err);
-            } else {
-                // 请求成功 有返回参数, 返回code等于200
-                completed(responseObject[@"data"], nil);
-            }
+        task = [[LGFNetwork lgf_Once] lgf_GET:url parameters:paramt success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            lgf_HaveBlock(completed, responseObject, nil);
+            [LGFReqest lgf_AllTasksRemove:target task:task];
         } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
             NSLog(@"%@", error);
             // 网络欠佳的情况
@@ -57,31 +93,14 @@
                 NSError *err = [NSError errorWithDomain:@"LGF" code: 500 userInfo:@{NSLocalizedDescriptionKey:@"当前服务不可用，请稍后再试"}];
                 error = err;
             }
-            completed(nil, error);
+            lgf_HaveBlock(completed, nil , error);
+            [LGFReqest lgf_AllTasksRemove:target task:task];
         }];
     } else if (method == lgf_POST) {
         // POST
-        [[LGFNetwork lgf_Once] lgf_POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            //            NSDictionary *json_dic = (NSDictionary*)responseObject;
-            //            NSData *data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
-            //            NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            //            NSLog(@"\n<<-----------返回--------------------\n Url == %@\n Response == %@\n", url, dataStr);
-            if ((!responseObject[@"errorCode"] || [responseObject[@"errorCode"] integerValue] != 200 )) {
-                // 无返回参数, 但返回code不等于200
-                NSString *errorMessage = responseObject[@"errorMessage"] ?: @"请求出了点问题哦, 请稍后重试";
-                NSInteger code = responseObject[@"errorCode"] ? [responseObject[@"errorCode"] integerValue] : task.error.code;
-                NSError * err = [NSError errorWithDomain:@"LGF" code: code userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
-                completed([NSDictionary dictionary],err);
-            } else if (( responseObject[@"code"] && [responseObject[@"code"] integerValue] != 200 )) {
-                // 有返回参数, 但返回code不等于200
-                NSString *errorMessage = responseObject[@"message"] ?: @"请求出了点问题哦, 请稍后重试";
-                NSInteger code = responseObject[@"code"]? [responseObject[@"code"] integerValue] : task.error.code;
-                NSError * err = [NSError errorWithDomain:@"LGF" code: code userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
-                completed([NSDictionary dictionary],err);
-            } else {
-                // 请求成功 有返回参数, 返回code等于200
-                completed(responseObject[@"data"],nil);
-            }
+        task = [[LGFNetwork lgf_Once] lgf_POST:url parameters:paramt success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            [LGFReqest lgf_AllTasksRemove:target task:task];
+            lgf_HaveBlock(completed, responseObject, nil);
         } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
             NSLog(@"%@", error);
             // 网络欠佳的情况
@@ -98,9 +117,12 @@
                 NSError *err = [NSError errorWithDomain:@"LGF" code: 500 userInfo:@{NSLocalizedDescriptionKey:@"当前服务不可用，请稍后再试"}];
                 error = err;
             }
-            completed(nil, error);
+            [LGFReqest lgf_AllTasksRemove:target task:task];
+            lgf_HaveBlock(completed, nil , error);
         }];
     }
+    [LGFReqest lgf_AllTasksAdd:target task:task];
+    return task;
 }
 
 #pragma mark - 下载文请求

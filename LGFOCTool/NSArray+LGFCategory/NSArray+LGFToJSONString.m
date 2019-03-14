@@ -15,7 +15,7 @@
 - (NSString *)lgf_ArrayToJson {
     if ([NSJSONSerialization isValidJSONObject:self]) {
         NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONReadingMutableLeaves | NSJSONReadingAllowFragments error:&error];
         NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         return json;
     }

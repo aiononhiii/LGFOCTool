@@ -187,7 +187,7 @@ LGFSYNTH_DYNAMIC_PROPERTY_OBJECT(networkActivityInfo, setNetworkActivityInfo, RE
 
 - (void)_changeNetworkActivityCount:(NSInteger)delta {
     @synchronized(self){
-        dispatch_async_on_main_queue(^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             LGFUIApplicationNetworkIndicatorInfo *info = [self networkActivityInfo];
             if (!info) {
                 info = [LGFUIApplicationNetworkIndicatorInfo new];

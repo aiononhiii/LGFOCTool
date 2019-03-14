@@ -7,8 +7,27 @@
 //
 
 #import "UITextView+LGFTextView.h"
+#import <objc/runtime.h>
+
+static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
 
 @implementation UITextView (LGFTextView)
+
+@dynamic lgf_IsZeroInset;
+
+#pragma mark - 是否取消默认边距离
+
+- (BOOL)lgf_IsZeroInset {
+    return [objc_getAssociatedObject(self, &lgf_IsZeroInsetKey) boolValue];
+}
+
+- (void)setLgf_IsZeroInset:(BOOL)lgf_IsZeroInset {
+    objc_setAssociatedObject(self, &lgf_IsZeroInsetKey, [NSNumber numberWithBool:lgf_IsZeroInset], OBJC_ASSOCIATION_ASSIGN);
+    if (lgf_IsZeroInset) {
+        self.textContainer.lineFragmentPadding = 0;
+        self.textContainerInset = UIEdgeInsetsZero;
+    }
+}
 
 #pragma mark - UITextView输入长度限制
 /**

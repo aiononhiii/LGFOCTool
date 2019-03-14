@@ -40,11 +40,6 @@ typedef NS_ENUM(NSUInteger, lgf_LocationPermissionType) {
     lgf_WhenInUse,// 应用开启时
 };
 
-typedef NS_ENUM(NSUInteger, lgf_HealthKitPermissionType) {
-    lgf_ReadAndShare,// 读写数据权限
-    lgf_Read,// 读数据权限
-};
-
 @interface LGFAllPermissions : NSObject
 
 lgf_AllocOnceForH;
@@ -78,13 +73,6 @@ lgf_AllocOnceForH;
 #pragma mark - 推送权限
 
 + (void)lgf_GetUserNotificationPermission:(void (^)(BOOL isHave))block;
-
-#pragma mark - HealthKit 运动数据权限
-/**
- @param HealthKitPermissionType 读或写权限配置
- @param HKQuantityTypeIdentifier 权限类型
- */
-+ (void)lgf_GetHealthKitPermission:(lgf_HealthKitPermissionType)HealthKitPermissionType HKQuantityTypeIdentifier:(HKQuantityTypeIdentifier)HKQuantityTypeIdentifier block:(void (^)(BOOL isHave))block;
 
 #pragma mark - 定位权限
 /**

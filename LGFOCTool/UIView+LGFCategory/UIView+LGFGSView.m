@@ -61,7 +61,7 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 }
 
 - (void)setLgf_CornerRadius:(CGFloat)lgf_CornerRadius {
-    objc_setAssociatedObject(self, &lgf_CornerRadiusKey, [NSNumber numberWithFloat:lgf_CornerRadius], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_CornerRadiusKey, [NSNumber numberWithFloat:lgf_CornerRadius], OBJC_ASSOCIATION_ASSIGN);
     self.layer.cornerRadius = lgf_CornerRadius;
 }
 
@@ -83,7 +83,7 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 }
 
 - (void)setLgf_BorderWidth:(CGFloat)lgf_BorderWidth {
-    objc_setAssociatedObject(self, &lgf_BorderWidthKey, [NSNumber numberWithFloat:lgf_BorderWidth], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_BorderWidthKey, [NSNumber numberWithFloat:lgf_BorderWidth], OBJC_ASSOCIATION_ASSIGN);
     self.layer.borderWidth = lgf_BorderWidth;
 }
 
@@ -105,7 +105,7 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 }
 
 - (void)setLgf_ShadowRadius:(CGFloat)lgf_ShadowRadius {
-    objc_setAssociatedObject(self, &lgf_ShadowRadiusKey, [NSNumber numberWithFloat:lgf_ShadowRadius], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_ShadowRadiusKey, [NSNumber numberWithFloat:lgf_ShadowRadius], OBJC_ASSOCIATION_ASSIGN);
     self.layer.shadowRadius = lgf_ShadowRadius;
 }
 
@@ -116,7 +116,7 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 }
 
 - (void)setLgf_ShadowOffset:(CGSize)lgf_ShadowOffset {
-    objc_setAssociatedObject(self, &lgf_ShadowOffsetKey, [NSValue valueWithCGSize:lgf_ShadowOffset], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_ShadowOffsetKey, [NSValue valueWithCGSize:lgf_ShadowOffset], OBJC_ASSOCIATION_ASSIGN);
     self.layer.shadowOffset = lgf_ShadowOffset;
 }
 
@@ -127,7 +127,7 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 }
 
 - (void)setLgf_ShadowOpacity:(float)lgf_ShadowOpacity {
-    objc_setAssociatedObject(self, &lgf_ShadowOpacityKey, [NSNumber numberWithFloat:lgf_ShadowOpacity], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_ShadowOpacityKey, [NSNumber numberWithFloat:lgf_ShadowOpacity], OBJC_ASSOCIATION_ASSIGN);
     self.layer.shadowOpacity = lgf_ShadowOpacity;
 }
 
@@ -138,7 +138,7 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 }
 
 - (void)setLgf_IsRandomBackColor:(BOOL)lgf_IsRandomBackColor {
-    objc_setAssociatedObject(self, &lgf_IsRandomBackColorKey, [NSNumber numberWithBool:lgf_IsRandomBackColor], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_IsRandomBackColorKey, [NSNumber numberWithBool:lgf_IsRandomBackColor], OBJC_ASSOCIATION_ASSIGN);
     if (lgf_IsRandomBackColor) {
         self.backgroundColor = lgf_RandomColor;
     }
@@ -169,7 +169,7 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 }
 
 - (void)setLgf_GWidth:(CGFloat)lgf_GWidth {
-    objc_setAssociatedObject(self, &lgf_GWidthKey, [NSNumber numberWithFloat:lgf_GWidth], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_GWidthKey, [NSNumber numberWithFloat:lgf_GWidth], OBJC_ASSOCIATION_ASSIGN);
     [self goGradient];
 }
 
@@ -178,7 +178,7 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 }
 
 - (void)setLgf_GHeight:(CGFloat)lgf_GHeight {
-    objc_setAssociatedObject(self, &lgf_GHeightKey, [NSNumber numberWithFloat:lgf_GHeight], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &lgf_GHeightKey, [NSNumber numberWithFloat:lgf_GHeight], OBJC_ASSOCIATION_ASSIGN);
     [self goGradient];
 }
 
@@ -196,7 +196,6 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 
 - (void)setLgf_GStartPoint:(CGPoint)lgf_GStartPoint {
     objc_setAssociatedObject(self, &lgf_GStartPointKey, [NSValue valueWithCGPoint:lgf_GStartPoint], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self changeAlpha];
 }
 
 - (CGPoint)lgf_GEndPoint {
@@ -205,7 +204,6 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 
 - (void)setLgf_GEndPoint:(CGPoint)lgf_GEndPoint {
     objc_setAssociatedObject(self, &lgf_GEndPointKey, [NSValue valueWithCGPoint:lgf_GEndPoint], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self changeAlpha];
 }
 
 - (void)changeAlpha{
@@ -222,7 +220,26 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
         [gradLayer setFrame:self.bounds];
         [self.layer setMask:gradLayer];
     }
-    
+}
+
+- (void)lgf_LayoutSubviews {
+    [self goGradient];
+    [self changeAlpha];
+}
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        // 如果是实例方法:
+        Class class = [self class];
+        // 如果是类方法
+        // Class class = object_getClass((id)self);
+        
+        // 替换 viewDidLoad
+        SEL layoutSubviews = @selector(layoutSubviews);
+        SEL lgf_LayoutSubviews = @selector(lgf_LayoutSubviews);
+        [class lgf_SwizzleMethod:layoutSubviews withMethod:lgf_LayoutSubviews];
+    });
 }
 
 @end

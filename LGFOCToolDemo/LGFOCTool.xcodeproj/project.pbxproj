@@ -151,6 +151,13 @@
 		18EDD64E217486320088A90B /* lgf_unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD64C217486310088A90B /* lgf_unlock.png */; };
 		18EDD64F217486320088A90B /* lgf_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD64D217486310088A90B /* lgf_lock.png */; };
 		18EDD67A2175C1000088A90B /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 18EDD6792175C0FF0088A90B /* 1.gif */; };
+		18F7D5B1223A1B6C001619C7 /* LGFImageTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F7D5AB223A1B6C001619C7 /* LGFImageTitleCell.m */; };
+		18F7D5B2223A1B6C001619C7 /* LGFImageTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F7D5AC223A1B6C001619C7 /* LGFImageTitleCell.xib */; };
+		18F7D5B3223A1B6C001619C7 /* LGFImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F7D5AE223A1B6C001619C7 /* LGFImageCell.m */; };
+		18F7D5B4223A1B6C001619C7 /* LGFImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F7D5AF223A1B6C001619C7 /* LGFImageCell.xib */; };
+		18F7D5B8223A1BB7001619C7 /* LGFClickJumpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F7D5B6223A1BB7001619C7 /* LGFClickJumpButton.m */; };
+		18F7D5BD223A1C54001619C7 /* LGFWebProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F7D5BA223A1C54001619C7 /* LGFWebProgress.xib */; };
+		18F7D5BE223A1C54001619C7 /* LGFWebProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F7D5BB223A1C54001619C7 /* LGFWebProgress.m */; };
 		EC6896CDD46AEDCC2E374A8F /* libPods-LGFOCTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 074678BA67CE112506AD20E4 /* libPods-LGFOCTool.a */; };
 /* End PBXBuildFile section */
 
@@ -448,6 +455,17 @@
 		18EDD64C217486310088A90B /* lgf_unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lgf_unlock.png; sourceTree = "<group>"; };
 		18EDD64D217486310088A90B /* lgf_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lgf_lock.png; sourceTree = "<group>"; };
 		18EDD6792175C0FF0088A90B /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
+		18F7D5AA223A1B6C001619C7 /* LGFImageTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFImageTitleCell.h; sourceTree = "<group>"; };
+		18F7D5AB223A1B6C001619C7 /* LGFImageTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFImageTitleCell.m; sourceTree = "<group>"; };
+		18F7D5AC223A1B6C001619C7 /* LGFImageTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFImageTitleCell.xib; sourceTree = "<group>"; };
+		18F7D5AE223A1B6C001619C7 /* LGFImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFImageCell.m; sourceTree = "<group>"; };
+		18F7D5AF223A1B6C001619C7 /* LGFImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFImageCell.xib; sourceTree = "<group>"; };
+		18F7D5B0223A1B6C001619C7 /* LGFImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFImageCell.h; sourceTree = "<group>"; };
+		18F7D5B6223A1BB7001619C7 /* LGFClickJumpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFClickJumpButton.m; sourceTree = "<group>"; };
+		18F7D5B7223A1BB7001619C7 /* LGFClickJumpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFClickJumpButton.h; sourceTree = "<group>"; };
+		18F7D5BA223A1C54001619C7 /* LGFWebProgress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFWebProgress.xib; sourceTree = "<group>"; };
+		18F7D5BB223A1C54001619C7 /* LGFWebProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFWebProgress.m; sourceTree = "<group>"; };
+		18F7D5BC223A1C54001619C7 /* LGFWebProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFWebProgress.h; sourceTree = "<group>"; };
 		19E77F694E9E2EDB3CE6DED2 /* Pods-LGFOCTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFOCTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool.release.xcconfig"; sourceTree = "<group>"; };
 		DED3068F201CEC3DB21EA974 /* Pods-LGFOCTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFOCTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGFOCTool/Pods-LGFOCTool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -885,6 +903,10 @@
 		1845E4CA20A3F62E00882152 /* LGFView */ = {
 			isa = PBXGroup;
 			children = (
+				18F7D5B9223A1C54001619C7 /* LGFWebProgress */,
+				18F7D5B5223A1BB7001619C7 /* LGFClickJumpButton */,
+				18F7D5AD223A1B6C001619C7 /* LGFImageCell */,
+				18F7D5A9223A1B6C001619C7 /* LGFImageTitleCell */,
 				185A0C19216C5AC9000ED186 /* LGFLightTextLabel */,
 				18AD21B2215B79FE0031F719 /* LGFTabBarVC */,
 				18AD218A215A1DFB0031F719 /* LGFAlertView */,
@@ -1226,6 +1248,45 @@
 			path = LGFPlayerView;
 			sourceTree = "<group>";
 		};
+		18F7D5A9223A1B6C001619C7 /* LGFImageTitleCell */ = {
+			isa = PBXGroup;
+			children = (
+				18F7D5AA223A1B6C001619C7 /* LGFImageTitleCell.h */,
+				18F7D5AB223A1B6C001619C7 /* LGFImageTitleCell.m */,
+				18F7D5AC223A1B6C001619C7 /* LGFImageTitleCell.xib */,
+			);
+			path = LGFImageTitleCell;
+			sourceTree = "<group>";
+		};
+		18F7D5AD223A1B6C001619C7 /* LGFImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				18F7D5B0223A1B6C001619C7 /* LGFImageCell.h */,
+				18F7D5AE223A1B6C001619C7 /* LGFImageCell.m */,
+				18F7D5AF223A1B6C001619C7 /* LGFImageCell.xib */,
+			);
+			path = LGFImageCell;
+			sourceTree = "<group>";
+		};
+		18F7D5B5223A1BB7001619C7 /* LGFClickJumpButton */ = {
+			isa = PBXGroup;
+			children = (
+				18F7D5B7223A1BB7001619C7 /* LGFClickJumpButton.h */,
+				18F7D5B6223A1BB7001619C7 /* LGFClickJumpButton.m */,
+			);
+			path = LGFClickJumpButton;
+			sourceTree = "<group>";
+		};
+		18F7D5B9223A1C54001619C7 /* LGFWebProgress */ = {
+			isa = PBXGroup;
+			children = (
+				18F7D5BC223A1C54001619C7 /* LGFWebProgress.h */,
+				18F7D5BB223A1C54001619C7 /* LGFWebProgress.m */,
+				18F7D5BA223A1C54001619C7 /* LGFWebProgress.xib */,
+			);
+			path = LGFWebProgress;
+			sourceTree = "<group>";
+		};
 		826795C97548B8A5183DE73F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1351,9 +1412,11 @@
 				182B7FE62177086B007AB627 /* timg16.jpeg in Resources */,
 				18EDD630216EEE590088A90B /* LGFPlayerView.xib in Resources */,
 				185A0BEF216B341E000ED186 /* QTNoDataView.xib in Resources */,
+				18F7D5B4223A1B6C001619C7 /* LGFImageCell.xib in Resources */,
 				18EDD67A2175C1000088A90B /* 1.gif in Resources */,
 				18AD21B7215B7A130031F719 /* LGFTabBarVC.storyboard in Resources */,
 				183B930021A3F59700F2EF2B /* LGFImageAlertView.xib in Resources */,
+				18F7D5BD223A1C54001619C7 /* LGFWebProgress.xib in Resources */,
 				188DEFC32094396C0014E4CA /* LaunchScreen.storyboard in Resources */,
 				185A0C26216C8630000ED186 /* shareView.xib in Resources */,
 				18585E9420ECE7A10084D5C1 /* SBTestViewController.storyboard in Resources */,
@@ -1364,6 +1427,7 @@
 				188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */,
 				188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */,
 				18EDD64F217486320088A90B /* lgf_lock.png in Resources */,
+				18F7D5B2223A1B6C001619C7 /* LGFImageTitleCell.xib in Resources */,
 				18EDD64E217486320088A90B /* lgf_unlock.png in Resources */,
 				186AC2CC219180E600A9027F /* TestPageCell.xib in Resources */,
 				183B92FA21A3E95100F2EF2B /* LGFCenterPageVC.storyboard in Resources */,
@@ -1500,6 +1564,7 @@
 				1829CAA6209FE2C900573974 /* LGFCountDownButton.m in Sources */,
 				183DA8B720CA1CC200E09819 /* NSData+LGFData.m in Sources */,
 				183B936121A6999900F2EF2B /* UIScrollView+LGFMJExtension.m in Sources */,
+				18F7D5B8223A1BB7001619C7 /* LGFClickJumpButton.m in Sources */,
 				183B92EC21A3E3FE00F2EF2B /* UIImage+LGFColorImage.m in Sources */,
 				183B937421A6999900F2EF2B /* LGFMJRefreshNormalHeader.m in Sources */,
 				183B936C21A6999900F2EF2B /* LGFMJRefreshBackGifFooter.m in Sources */,
@@ -1516,6 +1581,7 @@
 				184235BD2099B4120006483C /* NSString+LGFTrims.m in Sources */,
 				183B936D21A6999900F2EF2B /* LGFMJRefreshAutoGifFooter.m in Sources */,
 				184235A72099825D0006483C /* UITextView+LGFTextView.m in Sources */,
+				18F7D5BE223A1C54001619C7 /* LGFWebProgress.m in Sources */,
 				183DA8B420CA1B1800E09819 /* NSArray+LGFArray.m in Sources */,
 				183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */,
 				1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */,
@@ -1523,6 +1589,7 @@
 				18AD21BA215B7B260031F719 /* TabBarVC.m in Sources */,
 				18AD2177215A09C40031F719 /* LGFPopMenu.m in Sources */,
 				182979C620D39545005DB4B7 /* homeVC.m in Sources */,
+				18F7D5B3223A1B6C001619C7 /* LGFImageCell.m in Sources */,
 				18AD218D215A1E1C0031F719 /* LGFAlertView.m in Sources */,
 				183DA8FD20CE59D900E09819 /* UITableView+LGFTableView.m in Sources */,
 				183B92F821A3E95100F2EF2B /* LGFCenterPageVC.m in Sources */,
@@ -1534,6 +1601,7 @@
 				183DA8D720CA7B4D00E09819 /* NSKeyedUnarchiver+LGFKeyedUnarchiver.m in Sources */,
 				184235AA209982780006483C /* UITextField+LGFTextField.m in Sources */,
 				184235AD209994D70006483C /* NSString+LGFHash.m in Sources */,
+				18F7D5B1223A1B6C001619C7 /* LGFImageTitleCell.m in Sources */,
 				183DA8F920CE525300E09819 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m in Sources */,
 				183DA8BD20CA22B500E09819 /* NSData+LGFInflateDeflate.m in Sources */,
 				1829CA7F2099B8C000573974 /* NSDate+LGFDate.m in Sources */,
@@ -1723,9 +1791,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96RN4L9K39;
+				DEVELOPMENT_TEAM = HLNNLAB64S;
 				INFOPLIST_FILE = LGFOCTool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lgf.LGFOCTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1739,9 +1807,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96RN4L9K39;
+				DEVELOPMENT_TEAM = HLNNLAB64S;
 				INFOPLIST_FILE = LGFOCTool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lgf.LGFOCTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";

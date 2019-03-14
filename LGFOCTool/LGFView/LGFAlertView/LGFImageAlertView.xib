@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -41,13 +41,24 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lGT-Ih-V5J">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="99.5"/>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioc-Ds-u0M">
+                            <rect key="frame" x="10" y="32.5" width="220" height="34.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <color key="shadowColor" white="0.0" alpha="0.17330545774647887" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <size key="shadowOffset" width="1" height="1"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="ioc-Ds-u0M" firstAttribute="centerY" secondItem="lGT-Ih-V5J" secondAttribute="centerY" id="16s-cH-Bqn"/>
                         <constraint firstItem="lGT-Ih-V5J" firstAttribute="leading" secondItem="Off-oe-n0d" secondAttribute="leading" id="3z3-Z1-a9I"/>
+                        <constraint firstAttribute="trailing" secondItem="ioc-Ds-u0M" secondAttribute="trailing" constant="10" id="667-iz-YpY"/>
                         <constraint firstAttribute="width" constant="240" id="6bM-LC-8sJ"/>
                         <constraint firstAttribute="trailing" secondItem="kSt-v6-hzo" secondAttribute="trailing" id="Bfy-ZW-wkv"/>
                         <constraint firstItem="lGT-Ih-V5J" firstAttribute="top" secondItem="Off-oe-n0d" secondAttribute="top" id="GJM-iI-ZEE"/>
+                        <constraint firstItem="ioc-Ds-u0M" firstAttribute="leading" secondItem="Off-oe-n0d" secondAttribute="leading" constant="10" id="HFs-tX-bMJ"/>
                         <constraint firstItem="MC1-q9-Nyg" firstAttribute="leading" secondItem="Off-oe-n0d" secondAttribute="leading" id="O2p-sE-BhV"/>
                         <constraint firstItem="kSt-v6-hzo" firstAttribute="leading" secondItem="Off-oe-n0d" secondAttribute="leading" id="OA6-VC-u6i"/>
                         <constraint firstAttribute="height" constant="150" id="Opq-S3-YRn"/>
@@ -56,6 +67,7 @@
                         <constraint firstItem="MC1-q9-Nyg" firstAttribute="top" secondItem="kSt-v6-hzo" secondAttribute="bottom" id="aNA-6i-VFp"/>
                         <constraint firstAttribute="trailing" secondItem="lGT-Ih-V5J" secondAttribute="trailing" id="dnD-k1-Ehe"/>
                         <constraint firstItem="kSt-v6-hzo" firstAttribute="top" secondItem="lGT-Ih-V5J" secondAttribute="bottom" id="ghF-JR-Csr"/>
+                        <constraint firstItem="ioc-Ds-u0M" firstAttribute="centerX" secondItem="lGT-Ih-V5J" secondAttribute="centerX" id="vNO-S7-x95"/>
                     </constraints>
                 </view>
             </subviews>
@@ -71,6 +83,7 @@
                 <outlet property="alertWidth" destination="6bM-LC-8sJ" id="mAa-so-FBG"/>
                 <outlet property="centerLine" destination="kSt-v6-hzo" id="kRX-xZ-OZQ"/>
                 <outlet property="centerLineHeight" destination="QiA-Fe-fij" id="KHO-3B-I5W"/>
+                <outlet property="message" destination="ioc-Ds-u0M" id="DZ5-nj-ePY"/>
                 <outlet property="sureButton" destination="MC1-q9-Nyg" id="RTx-ZG-k8t"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="113.5"/>

@@ -125,42 +125,42 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
 #pragma mark 读取步数 查询数据
 - (void)readStepCount {
     //查询采样信息
-    HKSampleType *sampleType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-    //NSSortDescriptor来告诉healthStore怎么样将结果排序
-    NSSortDescriptor *start = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:NO];
-    NSSortDescriptor *end = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierEndDate ascending:NO];
-    //获取当前时间
-    NSDate *now = [NSDate date];
-    NSCalendar *calender = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-    NSDateComponents *dateComponent = [calender components:unitFlags fromDate:now];
-    int hour = (int)[dateComponent hour];
-    int minute = (int)[dateComponent minute];
-    int second = (int)[dateComponent second];
-    NSDate *nowDay = [NSDate dateWithTimeIntervalSinceNow:  - (hour*3600 + minute * 60 + second) ];
-    //时间结果与想象中不同是因为它显示的是0区
-    NSDate *nextDay = [NSDate dateWithTimeIntervalSinceNow:  - (hour*3600 + minute * 60 + second)  + 86400];
-    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:nowDay endDate:nextDay options:(HKQueryOptionNone)];
-    HKSampleQuery *sampleQuery = [[HKSampleQuery alloc]initWithSampleType:sampleType predicate:predicate limit:0 sortDescriptors:@[start,end] resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
-        //设置一个int型变量来作为步数统计
-        int allStepCount = 0;
-        for (int i = 0; i < results.count; i ++) {
-            //把结果转换为字符串类型
-            HKQuantitySample *result = results[i];
-            HKQuantity *quantity = result.quantity;
-            NSMutableString *stepCount = (NSMutableString *)quantity;
-            NSString *stepStr =[ NSString stringWithFormat:@"%@",stepCount];
-            //获取51 count此类字符串前面的数字
-            NSString *str = [stepStr componentsSeparatedByString:@" "][0];
-            int stepNum = [str intValue];
-            //把一天中所有时间段中的步数加到一起
-            allStepCount = allStepCount + stepNum;
-        }
-        NSLog(@"今天的总步数＝＝＝＝%d",allStepCount);
-    }];
-    //执行查询
-    HKHealthStore *healthStore = [[HKHealthStore alloc] init];
-    [healthStore executeQuery:sampleQuery];
+//    HKSampleType *sampleType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+//    //NSSortDescriptor来告诉healthStore怎么样将结果排序
+//    NSSortDescriptor *start = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:NO];
+//    NSSortDescriptor *end = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierEndDate ascending:NO];
+//    //获取当前时间
+//    NSDate *now = [NSDate date];
+//    NSCalendar *calender = [NSCalendar currentCalendar];
+//    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+//    NSDateComponents *dateComponent = [calender components:unitFlags fromDate:now];
+//    int hour = (int)[dateComponent hour];
+//    int minute = (int)[dateComponent minute];
+//    int second = (int)[dateComponent second];
+//    NSDate *nowDay = [NSDate dateWithTimeIntervalSinceNow:  - (hour*3600 + minute * 60 + second) ];
+//    //时间结果与想象中不同是因为它显示的是0区
+//    NSDate *nextDay = [NSDate dateWithTimeIntervalSinceNow:  - (hour*3600 + minute * 60 + second)  + 86400];
+//    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:nowDay endDate:nextDay options:(HKQueryOptionNone)];
+//    HKSampleQuery *sampleQuery = [[HKSampleQuery alloc]initWithSampleType:sampleType predicate:predicate limit:0 sortDescriptors:@[start,end] resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
+//        //设置一个int型变量来作为步数统计
+//        int allStepCount = 0;
+//        for (int i = 0; i < results.count; i ++) {
+//            //把结果转换为字符串类型
+//            HKQuantitySample *result = results[i];
+//            HKQuantity *quantity = result.quantity;
+//            NSMutableString *stepCount = (NSMutableString *)quantity;
+//            NSString *stepStr =[ NSString stringWithFormat:@"%@",stepCount];
+//            //获取51 count此类字符串前面的数字
+//            NSString *str = [stepStr componentsSeparatedByString:@" "][0];
+//            int stepNum = [str intValue];
+//            //把一天中所有时间段中的步数加到一起
+//            allStepCount = allStepCount + stepNum;
+//        }
+//        NSLog(@"今天的总步数＝＝＝＝%d",allStepCount);
+//    }];
+//    //执行查询
+//    HKHealthStore *healthStore = [[HKHealthStore alloc] init];
+//    [healthStore executeQuery:sampleQuery];
 }
 
 - (IBAction)showGrayIndicator:(UIButton *)sender {
@@ -188,7 +188,6 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
         });
     } else if (rad == 2) {
         [self.view lgf_ShowMessage:@"测试测试测试测试测试测试测试测试测试测试测试测试" maxDuration:YES animated:YES completion:^{
-
         }];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -246,7 +245,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
             
         }];
     } else if (rad == 3) {
-        [[LGFImageAlertView lgf] lgf_ShowImageAlertWithImage:lgf_Image(@"timg16.jpeg") sure:^{
+        [[LGFImageAlertView lgf] lgf_ShowImageAlertWithImage:lgf_Image(@"timg16.jpeg") message:@"123" sure:^{
             
         }];
     }
@@ -271,9 +270,9 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
     style.lgf_LabelMaxLine = 10;
     style.lgf_AnimateDuration = 0.4;
     style.lgf_DimissDelay = 2.5;
-    style.lgf_TopSpacing = 10;
-    style.lgf_LeftRightSpacing = 10;
-    style.lgf_CornerRadius = 10;
+//    style.lgf_TopSpacing = 10;
+//    style.lgf_LeftRightSpacing = 10;
+//    style.lgf_CornerRadius = 10;
     style.lgf_IconWidth = 40;
 //    style.lgf_MessageMode = lgf_Resize;
     style.lgf_MessageMode = lgf_Overlay;
@@ -300,6 +299,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"FirstViewController")
         }];
     } else if (buttonIndex == 1) {// 相册
         [[LGFGetPhoto lgf_Once] lgf_GetPhoto:self type:LGFPhoto returnImage:^(UIImage *image) {
+            
         }];
     }
 }

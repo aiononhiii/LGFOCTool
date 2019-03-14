@@ -21,7 +21,8 @@ lgf_AllocOnceForM(LGFNetwork);
                           success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
                           failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
     NSString *url = [self lgf_UrlConfig:URLString];
-    NSLog(@"\n<<-----------请求-------------------\n Url == %@\n Params == %@\n------------------------------->>", url, parameters);
+    NSLog(@"请求的地址>>>>>>>>>>>>>>>>>%@", url);
+    NSLog(@"请求的参数>>>>>>>>>>>>>>>>>%@", parameters);
     return [self.lgf_SessionManager GET:url parameters:parameters progress:nil success:success failure:failure];
 }
 
@@ -31,7 +32,8 @@ lgf_AllocOnceForM(LGFNetwork);
                            success:(void (^)(NSURLSessionDataTask * task, id responseObject))success
                            failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
     NSString *url = [self lgf_UrlConfig:URLString];
-    NSLog(@"\n<<-----------请求-------------------\n Url == %@\n Params == %@\n------------------------------->>", url, parameters);
+    NSLog(@"请求的地址>>>>>>>>>>>>>>>>>%@", url);
+    NSLog(@"请求的参数>>>>>>>>>>>>>>>>>%@", parameters);
     return [self.lgf_SessionManager POST:url parameters:parameters progress:nil success:success failure:failure];
 }
 
@@ -62,6 +64,7 @@ lgf_AllocOnceForM(LGFNetwork);
     if (_lgf_SessionManager == nil) {
         _lgf_SessionManager = [AFHTTPSessionManager manager];
         _lgf_SessionManager.requestSerializer.timeoutInterval = 10;
+        _lgf_SessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", nil];
         [_lgf_SessionManager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         [_lgf_SessionManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     }
@@ -119,11 +122,15 @@ lgf_AllocOnceForM(LGFNetwork);
 
 #pragma mark - HOST拼接
 - (NSString *)lgf_UrlConfig:(NSString *)URLString {
-    if (![URLString containsString:self.lgf_Host]) {
-        if ([[URLString substringToIndex:1] isEqualToString:@"/"]) {
-            return [NSString stringWithFormat:@"%@%@",self.lgf_Host,URLString];
+    if (self.lgf_Host) {
+        if (![URLString containsString:self.lgf_Host]) {
+            if ([[URLString substringToIndex:1] isEqualToString:@"/"]) {
+                return [NSString stringWithFormat:@"%@%@",self.lgf_Host,URLString];
+            } else {
+                return [NSString stringWithFormat:@"%@/%@",self.lgf_Host,URLString];
+            }
         } else {
-            return [NSString stringWithFormat:@"%@/%@",self.lgf_Host,URLString];
+            return URLString;
         }
     } else {
         return URLString;

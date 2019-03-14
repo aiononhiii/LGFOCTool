@@ -123,7 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable UIImage *)lgf_ImageByBlurExtraLight;
 
 #pragma mark - 对此图像应用模糊效果, 适合显示白色文本, （与iOS通知中心相同）
-- (nullable UIImage *)lgf_ImageByBlurDark;
+- (UIImage *)lgf_ImageByBlurDark:(CGFloat)Radius;
 
 #pragma mark - 为此图像应用模糊和色调颜色
 /**

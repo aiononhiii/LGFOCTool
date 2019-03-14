@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, lgf_LoadType) {
 @property (nonatomic, weak, nullable) id <LGFCenterPageVCDelegate> delegate;
 @property (strong, nonatomic) LGFPageTitleStyle *lgf_PageTitleStyle;
 // header view
-@property (strong, nonatomic) UIView *lgf_HeaderView;
+@property (weak, nonatomic) UIView *lgf_HeaderView;
 // lgf_PageTitleView 父控件(superview)
 @property (strong, nonatomic) UIView *lgf_PageTitleSuperView;
 // header view 高度
@@ -46,8 +46,9 @@ typedef NS_ENUM(NSUInteger, lgf_LoadType) {
 @property (assign, nonatomic) CGFloat lgf_PageTitleViewHeight;
 // 分页滚动 UICollectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *lgf_CenterPageCV;
-// page title 数组
-@property (nonatomic, strong) NSMutableArray *lgf_PageTitleArray;
+// 子控制器数组
+@property (nonatomic, strong) NSMutableArray *lgf_ChildVCArray;
 lgf_SBViewControllerForH;
+- (void)reloadPageTitleWidthArray:(NSMutableArray *)dataArray;
 - (void)lgf_ShowInVC:(UIViewController *)VC view:(UIView *)view;
 @end

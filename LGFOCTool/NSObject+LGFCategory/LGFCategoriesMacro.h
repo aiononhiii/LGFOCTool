@@ -172,7 +172,7 @@ return cValue; \
  Convert CFRange to NSRange
  @param range CFRange @return NSRange
  */
-static inline NSRange LGFNSRangeFromCFRange(CFRange range) {
+UIKIT_STATIC_INLINE NSRange LGFNSRangeFromCFRange(CFRange range) {
     return NSMakeRange(range.location, range.length);
 }
 
@@ -180,7 +180,7 @@ static inline NSRange LGFNSRangeFromCFRange(CFRange range) {
  Convert NSRange to CFRange
  @param range NSRange @return CFRange
  */
-static inline CFRange LGFCFRangeFromNSRange(NSRange range) {
+UIKIT_STATIC_INLINE CFRange LGFCFRangeFromNSRange(NSRange range) {
     return CFRangeMake(range.location, range.length);
 }
 
@@ -188,7 +188,7 @@ static inline CFRange LGFCFRangeFromNSRange(NSRange range) {
  Same as CFAutorelease(), compatible for iOS6
  @param arg CFObject @return same as input
  */
-static inline CFTypeRef LGFCFAutorelease(CFTypeRef CF_RELEASES_ARGUMENT arg) {
+UIKIT_STATIC_INLINE CFTypeRef LGFCFAutorelease(CFTypeRef CF_RELEASES_ARGUMENT arg) {
     if (((long)CFAutorelease + 1) != 1) {
         return CFAutorelease(arg);
     } else {
@@ -210,7 +210,7 @@ static inline CFTypeRef LGFCFAutorelease(CFTypeRef CF_RELEASES_ARGUMENT arg) {
  });
  
  */
-static inline void LGFBenchmark(void (^block)(void), void (^complete)(double ms)) {
+UIKIT_STATIC_INLINE void LGFBenchmark(void (^block)(void), void (^complete)(double ms)) {
     // <QuartzCore/QuartzCore.h> version
     /*
      extern double CACurrentMediaTime (void);
@@ -231,7 +231,7 @@ static inline void LGFBenchmark(void (^block)(void), void (^complete)(double ms)
     complete(ms);
 }
 
-static inline NSDate *_LGFCompileTime(const char *data, const char *time) {
+UIKIT_STATIC_INLINE NSDate *_LGFCompileTime(const char *data, const char *time) {
     NSString *timeStr = [NSString stringWithFormat:@"%s %s",data,time];
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -252,21 +252,21 @@ static inline NSDate *_LGFCompileTime(const char *data, const char *time) {
 /**
  Returns a dispatch_time delay from now.
  */
-static inline dispatch_time_t dispatch_time_delay(NSTimeInterval second) {
+UIKIT_STATIC_INLINE dispatch_time_t dispatch_time_delay(NSTimeInterval second) {
     return dispatch_time(DISPATCH_TIME_NOW, (int64_t)(second * NSEC_PER_SEC));
 }
 
 /**
  Returns a dispatch_wall_time delay from now.
  */
-static inline dispatch_time_t dispatch_walltime_delay(NSTimeInterval second) {
+UIKIT_STATIC_INLINE dispatch_time_t dispatch_walltime_delay(NSTimeInterval second) {
     return dispatch_walltime(DISPATCH_TIME_NOW, (int64_t)(second * NSEC_PER_SEC));
 }
 
 /**
  Returns a dispatch_wall_time from NSDate.
  */
-static inline dispatch_time_t dispatch_walltime_date(NSDate *date) {
+UIKIT_STATIC_INLINE dispatch_time_t dispatch_walltime_date(NSDate *date) {
     NSTimeInterval interval;
     double second, subsecond;
     struct timespec time;
@@ -283,14 +283,14 @@ static inline dispatch_time_t dispatch_walltime_date(NSDate *date) {
 /**
  Whether in main queue/thread.
  */
-static inline bool dispatch_is_main_queue() {
+UIKIT_STATIC_INLINE bool dispatch_is_main_queue() {
     return pthread_main_np() != 0;
 }
 
 /**
  Submits a block for asynchronous execution on a main queue and returns immediately.
  */
-static inline void dispatch_async_on_main_queue(void (^block)(void)) {
+UIKIT_STATIC_INLINE void lgf_AsyncMainQueue(void (^block)(void)) {
     if (pthread_main_np()) {
         block();
     } else {
@@ -301,7 +301,7 @@ static inline void dispatch_async_on_main_queue(void (^block)(void)) {
 /**
  Submits a block for execution on a main queue and waits until the block completes.
  */
-static inline void dispatch_sync_on_main_queue(void (^block)(void)) {
+UIKIT_STATIC_INLINE void lgf_SyncMainQueue(void (^block)(void)) {
     if (pthread_main_np()) {
         block();
     } else {
@@ -312,7 +312,7 @@ static inline void dispatch_sync_on_main_queue(void (^block)(void)) {
 /**
  Initialize a pthread mutex.
  */
-static inline void pthread_mutex_init_recursive(pthread_mutex_t *mutex, bool recursive) {
+UIKIT_STATIC_INLINE void pthread_mutex_init_recursive(pthread_mutex_t *mutex, bool recursive) {
 #define LGFMUTEX_ASSERT_ON_ERROR(x_) do { \
 __unused volatile int res = (x_); \
 assert(res == 0); \

@@ -19,6 +19,16 @@
 #undef GKeyPath
 #define GKeyPath(objc,keyPath) @(((void)objc.keyPath,#keyPath))
 
+#undef lgf_UUID
+#define lgf_UUID [[[UIDevice currentDevice] identifierForVendor] UUIDString]
+
+#undef lgf_IOS11SV
+#define lgf_IOS11SV(sv) if (@available(iOS 11.0, *)) {\
+    sv.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;\
+} else {\
+    self.automaticallyAdjustsScrollViewInsets = NO;\
+}
+
 // IPhone4
 #undef lgf_IPhone4
 #define lgf_IPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -46,6 +56,18 @@
 // IPhoneXR
 #undef lgf_IPhoneXR
 #define lgf_IPhoneXR ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// IPhoneX 或 IPhoneXS 或 IPhoneXR
+#undef lgf_IPhoneXSR
+#define lgf_IPhoneXSR (lgf_IPhoneX || lgf_IPhoneXS || lgf_IPhoneXR)
+
+// IPhoneX 导航栏高度
+#undef IPhoneX_NAVIGATION_BAR_HEIGHT
+#define IPhoneX_NAVIGATION_BAR_HEIGHT (lgf_IPhoneXSR ? 88 : 64)
+
+// 获取真实 Rect
+#undef lgf_RectReal
+#define lgf_RectReal(view, superview) [view convertRect:view.bounds toView:superview]
 
 // 是否大于某个系统版本
 #undef lgf_IOSSystemVersion
@@ -170,7 +192,6 @@
 #import <CoreTelephony/CTCellularData.h>
 #import <AddressBook/AddressBook.h>
 #import <Contacts/Contacts.h>
-#import <HealthKit/HealthKit.h>
 #import <EventKit/EventKit.h>
 #endif
 
@@ -278,12 +299,12 @@ return [[className alloc] init];\
 
 // 添加到 .h 文件
 #undef lgf_XibAllocOnceForH
-#define lgf_XibAllocOnceForH + (instancetype)lgf_XibOnce
+#define lgf_XibAllocOnceForH + (instancetype)lgf
 // 添加到 .m 文件
 #undef lgf_XibAllocOnceForM
 #define lgf_XibAllocOnceForM(className, bundleStr)\
 static className *xibView;\
-+ (instancetype)lgf_XibOnce\
++ (instancetype)lgf\
 {\
 static dispatch_once_t onceToken;\
 dispatch_once(&onceToken, ^{\

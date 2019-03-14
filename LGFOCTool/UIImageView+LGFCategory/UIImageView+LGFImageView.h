@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 
 @interface UIImageView (LGFImageView)
+
+#pragma mark - 网络加载切图名字
+
+@property (copy, nonatomic) IBInspectable NSString *lgf_NetImageName;
 
 #pragma mark - 创建imageview动画
 /**

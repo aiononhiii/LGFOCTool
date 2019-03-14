@@ -8,7 +8,21 @@
 
 #import "UIImageView+LGFImageView.h"
 
+static const char *lgf_NetImageNameKey = "lgf_NetImageNameKey";
+
 @implementation UIImageView (LGFImageView)
+
+@dynamic lgf_NetImageName;
+
+#pragma mark - 控件唯一名字(通常用于确定某一个特殊的view)
+
+- (NSString *)lgf_NetImageName {
+    return objc_getAssociatedObject(self, &lgf_NetImageNameKey);
+}
+
+- (void)setLgf_NetImageName:(NSString *)lgf_NetImageName {
+    objc_setAssociatedObject(self, &lgf_NetImageNameKey, lgf_NetImageName, OBJC_ASSOCIATION_COPY);
+}
 
 #pragma mark - 创建imageview动画
 /**

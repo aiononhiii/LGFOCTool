@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabvc = [LGFTabBarVC lgf];
+    self.tabvc.view.backgroundColor = lgf_RandomColor;
     FirstViewController *vc = [FirstViewController lgf];
     homeVC *twovc = [homeVC lgf];
     //    ThreeViewController *threevc = [ThreeViewController lgf_SBViewController];

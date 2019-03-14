@@ -10,6 +10,10 @@
 
 @interface UITextView (LGFTextView)
 
+#pragma mark - 是否取消默认边距离
+
+@property (assign , nonatomic) IBInspectable BOOL lgf_IsZeroInset;
+
 #pragma mark - UITextView输入长度限制
 /**
  @param maxLength 限制的长度
