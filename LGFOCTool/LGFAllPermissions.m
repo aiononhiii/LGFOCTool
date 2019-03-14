@@ -150,37 +150,37 @@ lgf_AllocOnceForM(LGFAllPermissions);
 #pragma mark - 通讯录权限
 
 + (void)lgf_GetAddressBookPermission:(void (^)(BOOL isHave))block {
-    ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
-    if (authStatus == kABAuthorizationStatusAuthorized) {
-        lgf_HaveBlock(block, YES);
-    } else {
-        if (lgf_IOSSystemVersion(9.0)) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
-            CNContactStore *store = [[CNContactStore alloc] init];
-            [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (granted) {
-                        lgf_HaveBlock(block, YES);
-                    }else{
-                        lgf_HaveBlock(block, NO);
-                    }
-                });
-            }];
-#pragma clang diagnostic pop
-        } else {
-            ABAddressBookRef addBook = ABAddressBookCreateWithOptions(NULL, NULL);
-            ABAddressBookRequestAccessWithCompletion(addBook, ^(bool granted, CFErrorRef error){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (granted) {
-                        lgf_HaveBlock(block, YES);
-                    }else{
-                        lgf_HaveBlock(block, NO);
-                    }
-                });
-            });
-        }
-    }
+//    ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
+//    if (authStatus == kABAuthorizationStatusAuthorized) {
+//        lgf_HaveBlock(block, YES);
+//    } else {
+//        if (lgf_IOSSystemVersion(9.0)) {
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wunguarded-availability"
+//            CNContactStore *store = [[CNContactStore alloc] init];
+//            [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    if (granted) {
+//                        lgf_HaveBlock(block, YES);
+//                    }else{
+//                        lgf_HaveBlock(block, NO);
+//                    }
+//                });
+//            }];
+//#pragma clang diagnostic pop
+//        } else {
+//            ABAddressBookRef addBook = ABAddressBookCreateWithOptions(NULL, NULL);
+//            ABAddressBookRequestAccessWithCompletion(addBook, ^(bool granted, CFErrorRef error){
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    if (granted) {
+//                        lgf_HaveBlock(block, YES);
+//                    }else{
+//                        lgf_HaveBlock(block, NO);
+//                    }
+//                });
+//            });
+//        }
+//    }
 }
 
 #pragma mark - IOS10 网络权限
