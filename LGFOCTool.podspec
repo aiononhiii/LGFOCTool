@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name        = "LGFOCTool"
-s.version     = "1.4.3"
+s.version     = "1.4.4"
 s.summary     = "LGFOCTool"
 s.homepage    = "https://github.com/aiononhiii/LGFOCTool.git"
 s.license     = { :type => 'MIT', :file => 'LICENSE' }
@@ -11,7 +11,7 @@ s.authors     = { "aiononhiii" => "452354033@qq.com" }
 s.requires_arc = true
 s.platform     = :ios, "9.0"
 s.source   = { :git => "https://github.com/aiononhiii/LGFOCTool.git", :tag => s.version }
-s.framework  = "Foundation", "UIKit", "QuartzCore", "AssetsLibrary", "AVFoundation", "CoreGraphics", "CoreVideo", "CoreMedia", "CoreImage", "CoreLocation", "SystemConfiguration", "Photos", "CoreTelephony", "AddressBook", "Contacts", "HealthKit", "EventKit"
+s.framework  = "Foundation", "UIKit", "QuartzCore", "AssetsLibrary", "AVFoundation", "CoreGraphics", "CoreVideo", "CoreMedia", "CoreImage", "CoreLocation", "SystemConfiguration", "Photos", "CoreTelephony", "AddressBook", "Contacts", "EventKit"
 s.source_files = 'LGFOCTool/**/*.{h,m}'
 s.resource_bundles = {
   'LGFOCTool' => ['LGFOCTool/**/**/*.{xib,storyboard}']
