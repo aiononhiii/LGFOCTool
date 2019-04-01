@@ -40,8 +40,7 @@
 #import "LGFImageAlertView.h"
 // 自定义菜单
 #import "LGFPopMenu.h"
-// 自定义tabbar
-#import "LGFTabBarVC.h"
+
 // LGFRefresh 封装
 #import "UIScrollView+LGFRefresh.h"
 //******************************** 分类 **********************************
