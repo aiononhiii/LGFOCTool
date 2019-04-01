@@ -34,7 +34,7 @@
 
 #pragma mark - JSON字符串转数组
 + (NSArray *)lgf_ArrayFromJsonString:(NSString *)jsonString {
-    if (jsonString == nil) {
+    if (jsonString == nil || jsonString.length == 0) {
         return nil;
     }
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];

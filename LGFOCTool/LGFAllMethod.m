@@ -406,8 +406,8 @@ static __weak id lgf_CurrentFirstResponder;
 }
 
 #pragma mark - 版本更新提示
-+ (void)lgf_AppNewVersionUpdate:(NSString *)appID success:(void(^)(NSDictionary *appData))success failure:(void(^)(NSString *error))failure {
-    if (![lgf_Defaults boolForKey:@"QTIsShowVersionView"]) {
++ (void)lgf_AppNewVersionUpdate:(NSString *)appID isMandatory:(BOOL)isMandatory success:(void(^)(NSDictionary *appData, BOOL isMandatory))success failure:(void(^)(NSString *error))failure {
+    if (!isMandatory) {
         if(![LGFAllMethod lgf_JudgeNeedVersionUpdate]) {
             return;
         }
@@ -424,8 +424,7 @@ static __weak id lgf_CurrentFirstResponder;
             NSString *newVersion = sourceDict[@"version"];
             if ([LGFAllMethod lgf_JudgeNewVersion:newVersion withOldVersion:appVersion]) {
                 // 提示更新版本
-                [lgf_Defaults setBool:NO forKey:@"QTIsShowVersionView"];
-                lgf_HaveBlock(success, sourceDict);
+                lgf_HaveBlock(success, sourceDict, isMandatory);
             } else {
                 lgf_HaveBlock(failure, @"当前为最新版本");
             }
@@ -434,7 +433,8 @@ static __weak id lgf_CurrentFirstResponder;
         lgf_HaveBlock(failure, error.domain);
     }];
 }
-//每天进行一次版本判断
+
+//每天进行一次版本判断(非强制更新时)
 + (BOOL)lgf_JudgeNeedVersionUpdate {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.timeZone = [NSTimeZone systemTimeZone];
@@ -445,20 +445,21 @@ static __weak id lgf_CurrentFirstResponder;
         return NO;
     }
     [[NSUserDefaults standardUserDefaults] setObject:dateString forKey:@"QTCurrentDate"];
-    [lgf_Defaults setBool:YES forKey:@"QTIsShowVersionView"];
     return YES;
 }
+
 //判断当前app版本和AppStore最新app版本大小
 + (BOOL)lgf_JudgeNewVersion:(NSString *)newVersion withOldVersion:(NSString *)oldVersion {
-    if ([newVersion isEqualToString:@"1.6.1"]) {
-        return YES;
-    }
     NSString *newArrayVersion = [[newVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]] componentsJoinedByString:@""];
     NSString *oldArrayVersion = [[oldVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]] componentsJoinedByString:@""];
-    if ([newArrayVersion integerValue] > [oldArrayVersion integerValue]) {
-        return YES;
+    if (newArrayVersion.length == oldArrayVersion.length) {
+        if ([newArrayVersion integerValue] > [oldArrayVersion integerValue]) {
+            return YES;
+        } else {
+            return NO;
+        }
     } else {
-        return NO;
+        return YES;
     }
 }
 

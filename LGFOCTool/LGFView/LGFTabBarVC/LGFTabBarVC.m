@@ -64,7 +64,7 @@ lgf_SBViewControllerForM(LGFTabBarVC, @"LGFTabBarVC", @"LGFOCTool");
 
 - (void)lgf_ShowTabBar {
     if (self.lgf_TabBarBackView.transform.ty == self.lgf_TabBarBackViewHeight.constant + 10) {
-        [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.lgf_TabBarBackView.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
         }];
@@ -73,7 +73,7 @@ lgf_SBViewControllerForM(LGFTabBarVC, @"LGFTabBarVC", @"LGFOCTool");
 
 - (void)lgf_HideTabBar {
     if (CGAffineTransformEqualToTransform(self.lgf_TabBarBackView.transform, CGAffineTransformIdentity)) {
-        [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.lgf_TabBarBackView.transform = CGAffineTransformMakeTranslation(0.0, self.lgf_TabBarBackViewHeight.constant + 10);
         } completion:^(BOOL finished) {
         }];
@@ -127,8 +127,8 @@ lgf_SBViewControllerForM(LGFTabBarVC, @"LGFTabBarVC", @"LGFOCTool");
             cell.lgf_BarIcon.image = [UIImage imageNamed:self.lgf_SelectBarItemIcons[indexPath.item]];
         }
         [self.lgf_ChildVCCV scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-        cell.lgf_BarIcon.transform = CGAffineTransformMakeScale(0.85, 0.85);
-        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        cell.lgf_BarIcon.transform = CGAffineTransformMakeScale(0.8, 0.8);
+        [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             cell.lgf_BarIcon.transform = CGAffineTransformMakeScale(1.1, 1.1);
         } completion:nil];
     } else {

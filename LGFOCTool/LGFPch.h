@@ -11,7 +11,7 @@
 
 // 自动 NSLog
 #ifdef DEBUG
-#define NSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#define NSLog(FORMAT, ...) fprintf(stderr,"[文件名:%s][行号:%d] [%s]\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 #else
 #define NSLog(FORMAT, ...) nil
 #endif
@@ -28,6 +28,10 @@
 } else {\
     self.automaticallyAdjustsScrollViewInsets = NO;\
 }
+
+// 获取相对 cell 高度
+#undef lgf_RealCellHeight
+#define lgf_RealCellHeight(h) ((lgf_ScreenWidth / 375) * h)
 
 // IPhone4
 #undef lgf_IPhone4
@@ -229,6 +233,7 @@
 
 //---------------------- Block 引用控制 ----------------------
 // 判断 block 是否被引用
+#undef lgf_HaveBlock
 #define lgf_HaveBlock(block, ...) if (block) { block(__VA_ARGS__); };
 // block 防止强引用
 #ifndef lgf_Weak

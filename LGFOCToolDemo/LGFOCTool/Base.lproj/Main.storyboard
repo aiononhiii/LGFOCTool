@@ -279,6 +279,13 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzh-mR-LDf" customClass="LGFSeeMoreView">
+                                        <rect key="frame" x="0.0" y="347" width="375" height="150"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="adV-rR-yOK"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -303,7 +310,9 @@
                                     <constraint firstItem="P0B-Po-fB5" firstAttribute="leading" secondItem="zJH-9c-Y8t" secondAttribute="trailing" id="TRv-uh-JGY"/>
                                     <constraint firstItem="zJH-9c-Y8t" firstAttribute="width" secondItem="GdY-UT-qwr" secondAttribute="width" multiplier="0.25" id="UTY-th-vbB"/>
                                     <constraint firstItem="Nf7-C7-IYr" firstAttribute="bottom" secondItem="BKf-m0-xJF" secondAttribute="bottom" id="VOT-fH-dFg"/>
+                                    <constraint firstItem="Kzh-mR-LDf" firstAttribute="centerX" secondItem="GdY-UT-qwr" secondAttribute="centerX" id="VeD-ZR-2fm"/>
                                     <constraint firstItem="Nf7-C7-IYr" firstAttribute="leading" secondItem="BKf-m0-xJF" secondAttribute="trailing" id="Ye0-sp-Sbk"/>
+                                    <constraint firstItem="Kzh-mR-LDf" firstAttribute="width" secondItem="GdY-UT-qwr" secondAttribute="width" id="Zub-40-b4g"/>
                                     <constraint firstItem="LxE-ND-cet" firstAttribute="leading" secondItem="GdY-UT-qwr" secondAttribute="leading" id="btQ-ef-KdY"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LxE-ND-cet" secondAttribute="trailing" constant="20" symbolic="YES" id="cZJ-AY-rRA"/>
                                     <constraint firstAttribute="trailing" secondItem="w2P-nf-f99" secondAttribute="trailing" id="dNg-lA-Hwm"/>
@@ -314,6 +323,7 @@
                                     <constraint firstItem="P0B-Po-fB5" firstAttribute="top" secondItem="GdY-UT-qwr" secondAttribute="top" id="iPa-Ng-vti"/>
                                     <constraint firstItem="R2X-NM-Xzy" firstAttribute="leading" secondItem="ckY-Jb-F0f" secondAttribute="trailing" id="jg0-BN-zzl"/>
                                     <constraint firstItem="kho-He-6Wi" firstAttribute="height" secondItem="LxE-ND-cet" secondAttribute="height" id="nGc-dB-Lpb"/>
+                                    <constraint firstItem="Kzh-mR-LDf" firstAttribute="centerY" secondItem="GdY-UT-qwr" secondAttribute="centerY" multiplier="1.4" id="nL1-wx-xGi"/>
                                     <constraint firstItem="ckY-Jb-F0f" firstAttribute="width" secondItem="zJH-9c-Y8t" secondAttribute="width" id="oYC-Qz-twS"/>
                                     <constraint firstItem="R2X-NM-Xzy" firstAttribute="width" secondItem="ckY-Jb-F0f" secondAttribute="width" id="rM8-jr-EqZ"/>
                                     <constraint firstItem="JdY-Q6-b6C" firstAttribute="top" secondItem="GdY-UT-qwr" secondAttribute="top" id="sFo-gT-Vba"/>

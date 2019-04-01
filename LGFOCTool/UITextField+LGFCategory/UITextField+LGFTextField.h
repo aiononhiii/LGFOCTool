@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 左侧距离
 @property (assign , nonatomic) IBInspectable CGFloat lgf_LeftSpace;
 
+@property (assign , nonatomic) IBInspectable CGFloat lgf_RightSpace;
+
 #pragma mark - UITextField输入长度限制
 /**
  @param maxLength 限制的长度

@@ -80,14 +80,14 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EYS-Yb-NzM">
-                                                            <rect key="frame" x="15" y="7" width="20" height="20"/>
+                                                            <rect key="frame" x="15" y="7.5" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="7Gb-gV-V3q"/>
                                                                 <constraint firstAttribute="width" secondItem="EYS-Yb-NzM" secondAttribute="height" multiplier="1:1" id="isT-ac-Ce0"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ig-IG-2Lq">
-                                                            <rect key="frame" x="5" y="30" width="40" height="14"/>
+                                                            <rect key="frame" x="5" y="32" width="40" height="12"/>
                                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="10"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -97,11 +97,9 @@
                                                 <constraints>
                                                     <constraint firstItem="1Ig-IG-2Lq" firstAttribute="leading" secondItem="Vq2-LO-dcM" secondAttribute="leading" constant="5" id="C80-g3-TXM"/>
                                                     <constraint firstItem="EYS-Yb-NzM" firstAttribute="centerX" secondItem="Vq2-LO-dcM" secondAttribute="centerX" id="ENj-Ul-HI3"/>
-                                                    <constraint firstItem="EYS-Yb-NzM" firstAttribute="top" secondItem="Vq2-LO-dcM" secondAttribute="top" constant="7" id="FiX-qt-Hvw"/>
-                                                    <constraint firstItem="EYS-Yb-NzM" firstAttribute="centerX" secondItem="Vq2-LO-dcM" secondAttribute="centerX" id="SnM-UW-Rb5"/>
+                                                    <constraint firstItem="EYS-Yb-NzM" firstAttribute="centerY" secondItem="Vq2-LO-dcM" secondAttribute="centerY" constant="-7" id="Wfq-Lp-nNJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="1Ig-IG-2Lq" secondAttribute="trailing" constant="5" id="Xay-QW-cdx"/>
                                                     <constraint firstAttribute="bottom" secondItem="1Ig-IG-2Lq" secondAttribute="bottom" constant="5" id="cGx-mm-E6G"/>
-                                                    <constraint firstItem="1Ig-IG-2Lq" firstAttribute="top" secondItem="EYS-Yb-NzM" secondAttribute="bottom" constant="3" id="qws-gE-Tvn"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="lgf_BarIcon" destination="EYS-Yb-NzM" id="Msj-cT-RRW"/>

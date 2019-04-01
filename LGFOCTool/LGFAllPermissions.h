@@ -27,10 +27,6 @@
 
 // 运动与健身         NSMotionUsageDescription
 
-// 健康更新           NSHealthUpdateUsageDescription
-
-// 健康分享           NSHealthShareUsageDescription
-
 // 蓝牙              NSBluetoothPeripheralUsageDescription
 
 // 媒体资料库         NSAppleMusicUsageDescription

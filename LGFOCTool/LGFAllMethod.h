@@ -25,7 +25,7 @@
 + (void)lgf_ToTransformUnScreenView:(UIView *)view;
 
 #pragma mark - 版本更新提示
-+ (void)lgf_AppNewVersionUpdate:(NSString *)appID success:(void(^)(NSDictionary *appData))success failure:(void(^)(NSString *error))failure;
++ (void)lgf_AppNewVersionUpdate:(NSString *)appID isMandatory:(BOOL)isMandatory success:(void(^)(NSDictionary *appData, BOOL isMandatory))success failure:(void(^)(NSString *error))failure;
 
 #pragma mark - 限制小数点后两位
 /**

@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 
 static const char *lgf_LeftSpaceKey = "lgf_LeftSpaceKey";
+static const char *lgf_RightSpaceKey = "lgf_RightSpaceKey";
 
 @implementation UITextField (LGFTextField)
 
@@ -30,6 +31,22 @@ static const char *lgf_LeftSpaceKey = "lgf_LeftSpaceKey";
 
 - (CGFloat)lgf_LeftSpace {
     return [objc_getAssociatedObject(self, &lgf_LeftSpaceKey) floatValue];
+}
+
+- (void)setLgf_RightSpace:(CGFloat)lgf_RightSpace {
+    objc_setAssociatedObject(self, &lgf_RightSpaceKey, [NSNumber numberWithFloat:lgf_RightSpace], OBJC_ASSOCIATION_ASSIGN);
+    if (lgf_RightSpace && lgf_RightSpace > 0) {
+        [self.rightView removeFromSuperview];
+        self.rightView = nil;
+        UILabel *rightView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, lgf_RightSpace, self.frame.size.height)];
+        rightView.backgroundColor = [UIColor clearColor];
+        self.rightView = rightView;
+        self.rightViewMode = UITextFieldViewModeAlways;
+    }
+}
+
+- (CGFloat)lgf_RightSpace {
+    return [objc_getAssociatedObject(self, &lgf_RightSpaceKey) floatValue];
 }
 
 #pragma mark - UITextField输入长度限制

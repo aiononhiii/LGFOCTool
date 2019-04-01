@@ -20,14 +20,6 @@
  */
 - (void)lgf_TimeFailBeginFrom:(NSInteger)timeCount;
 
-#pragma mark - 点击后是否变灰 默认 YES
-
-@property(assign,nonatomic) IBInspectable BOOL lgf_IsGray;
-
-#pragma mark - 未点击背景色 默认等于按钮的背景色
-
-@property (nonatomic , strong) UIColor *lgf_DefaultColor;
-
 #pragma mark - 点击后的背景色 默认 [UIColor lightGrayColor]
 
 @property (nonatomic , strong) IBInspectable UIColor *lgf_SelectColor;

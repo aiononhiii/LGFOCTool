@@ -139,6 +139,7 @@
 		188DEFD02094396C0014E4CA /* LGFOCToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFCF2094396C0014E4CA /* LGFOCToolTests.m */; };
 		188DEFDB2094396C0014E4CA /* LGFOCToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DEFDA2094396C0014E4CA /* LGFOCToolUITests.m */; };
 		188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */ = {isa = PBXBuildFile; fileRef = 188DF030209444F00014E4CA /* pullToRefresh.gif */; };
+		189AB44E223CF4C5009D9606 /* LGFSeeMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB44D223CF4C5009D9606 /* LGFSeeMoreView.m */; };
 		18AD2177215A09C40031F719 /* LGFPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD2174215A09C40031F719 /* LGFPopMenu.m */; };
 		18AD218D215A1E1C0031F719 /* LGFAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD218C215A1E1C0031F719 /* LGFAlertView.m */; };
 		18AD218F215A1E3E0031F719 /* LGFAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD218E215A1E3E0031F719 /* LGFAlertView.xib */; };
@@ -437,6 +438,8 @@
 		188DEFE920943A500014E4CA /* LGFOCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFOCTool.h; sourceTree = "<group>"; };
 		188DF030209444F00014E4CA /* pullToRefresh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pullToRefresh.gif; sourceTree = "<group>"; };
 		188DF032209446020014E4CA /* LGFPch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFPch.h; sourceTree = "<group>"; };
+		189AB44C223CF4C5009D9606 /* LGFSeeMoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFSeeMoreView.h; sourceTree = "<group>"; };
+		189AB44D223CF4C5009D9606 /* LGFSeeMoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFSeeMoreView.m; sourceTree = "<group>"; };
 		18AD2172215A09C40031F719 /* LGFPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFPopMenu.h; sourceTree = "<group>"; };
 		18AD2174215A09C40031F719 /* LGFPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFPopMenu.m; sourceTree = "<group>"; };
 		18AD218B215A1E1C0031F719 /* LGFAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAlertView.h; sourceTree = "<group>"; };
@@ -1161,6 +1164,15 @@
 			path = ../../LGFOCTool;
 			sourceTree = "<group>";
 		};
+		189AB44B223CF4A4009D9606 /* LGFSeeMoreView */ = {
+			isa = PBXGroup;
+			children = (
+				189AB44C223CF4C5009D9606 /* LGFSeeMoreView.h */,
+				189AB44D223CF4C5009D9606 /* LGFSeeMoreView.m */,
+			);
+			path = LGFSeeMoreView;
+			sourceTree = "<group>";
+		};
 		18AD216F215A09C40031F719 /* LGFPopMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1196,6 +1208,7 @@
 		18AD21BF216094E00031F719 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				189AB44B223CF4A4009D9606 /* LGFSeeMoreView */,
 				183B92EF21A3E95000F2EF2B /* LGFCenterPageVC */,
 				183B92F521A3E95100F2EF2B /* LGFCenterPageVCTest */,
 				186AC2C12191778100A9027F /* TestPageVC */,
@@ -1571,6 +1584,7 @@
 				184235B72099A6240006483C /* NSString+LGFRemoveEmoji.m in Sources */,
 				183B936521A6999900F2EF2B /* LGFMJRefreshConst.m in Sources */,
 				185A0C29216C8D2D000ED186 /* shareImageVC.m in Sources */,
+				189AB44E223CF4C5009D9606 /* LGFSeeMoreView.m in Sources */,
 				1829CA9F209AD62000573974 /* UIView+LGFTopBarMessage.m in Sources */,
 				18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */,
 				1829CA9C209AD34D00573974 /* UIViewController+LGFVCLog.m in Sources */,
@@ -1727,7 +1741,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1778,7 +1792,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

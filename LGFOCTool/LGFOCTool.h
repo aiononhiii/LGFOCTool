@@ -23,16 +23,8 @@
 
 // SDWebImage
 #import "UIImageView+WebCache.h"
-
+ 
 //****************************** 自定义控件 *******************************
-// webview 顶部加载条（一半欺骗版）
-#import "LGFWebProgress.h"
-// 纯图片 CollectionviewCell
-#import "LGFImageCell.h"
-// 图片和文字组合的 CollectionviewCell
-#import "LGFImageTitleCell.h"
-// 点击出现果冻效果的 UIButton
-#import "LGFClickJumpButton.h"
 // 倒计时按钮 用于发送验证码
 #import "LGFCountDownButton.h"
 // 优化后的定时器
