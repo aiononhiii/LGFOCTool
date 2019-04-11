@@ -14,7 +14,7 @@
 @end
 @implementation LGFWebProgress
 
-lgf_XibViewForM(LGFWebProgress, @"LGFWebProgress");
+lgf_XibViewForM(LGFWebProgress, @"LGFOCTool");
 
 - (void)lgf_ShowLGFWebProgress:(UIView *)SV top:(CGFloat)top height:(CGFloat)height color:(UIColor *)color {
     [self.progressLine removeFromSuperview];

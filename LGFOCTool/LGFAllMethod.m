@@ -421,8 +421,8 @@ static __weak id lgf_CurrentFirstResponder;
         if (sourceArray.count >= 1) {
             //AppStore内最新App的版本信息
             NSDictionary *sourceDict = sourceArray[0];
-            NSString *newVersion = sourceDict[@"version"];
-            if ([LGFAllMethod lgf_JudgeNewVersion:newVersion withOldVersion:appVersion]) {
+            NSString *storeVersion = sourceDict[@"version"];
+            if ([LGFAllMethod lgf_JudgeStoreVersion:storeVersion withAppVersion:appVersion]) {
                 // 提示更新版本
                 lgf_HaveBlock(success, sourceDict, isMandatory);
             } else {
@@ -449,17 +449,13 @@ static __weak id lgf_CurrentFirstResponder;
 }
 
 //判断当前app版本和AppStore最新app版本大小
-+ (BOOL)lgf_JudgeNewVersion:(NSString *)newVersion withOldVersion:(NSString *)oldVersion {
-    NSString *newArrayVersion = [[newVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]] componentsJoinedByString:@""];
-    NSString *oldArrayVersion = [[oldVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]] componentsJoinedByString:@""];
-    if (newArrayVersion.length == oldArrayVersion.length) {
-        if ([newArrayVersion integerValue] > [oldArrayVersion integerValue]) {
-            return YES;
-        } else {
-            return NO;
-        }
-    } else {
++ (BOOL)lgf_JudgeStoreVersion:(NSString *)storeVersion withAppVersion:(NSString *)appVersion {
+    NSString *storeArrayVersion = [[storeVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]] componentsJoinedByString:@""];
+    NSString *appArrayVersion = [[appVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]] componentsJoinedByString:@""];
+    if ([storeArrayVersion integerValue] > [appArrayVersion integerValue]) {
         return YES;
+    } else {
+        return NO;
     }
 }
 
