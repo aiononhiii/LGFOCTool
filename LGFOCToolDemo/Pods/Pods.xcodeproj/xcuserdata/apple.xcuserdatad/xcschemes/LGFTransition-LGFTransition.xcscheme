@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5D1A7299A976183DDDA4EECD563C6B90"
-               BuildableName = "LGFPageTitle.bundle"
-               BlueprintName = "LGFPageTitle-LGFPageTitle"
+               BlueprintIdentifier = "C94B15C140C160FE84FB7D6442B20B86"
+               BuildableName = "LGFTransition.bundle"
+               BlueprintName = "LGFTransition-LGFTransition"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5D1A7299A976183DDDA4EECD563C6B90"
-            BuildableName = "LGFPageTitle.bundle"
-            BlueprintName = "LGFPageTitle-LGFPageTitle"
+            BlueprintIdentifier = "C94B15C140C160FE84FB7D6442B20B86"
+            BuildableName = "LGFTransition.bundle"
+            BlueprintName = "LGFTransition-LGFTransition"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

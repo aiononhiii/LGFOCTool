@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LGFTransition.h"
 #import "UIViewController+LGFAnimatedTransition.h"
 
 @interface LGFModalTransition : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>

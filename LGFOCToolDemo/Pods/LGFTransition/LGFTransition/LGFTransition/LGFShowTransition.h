@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UINavigationController+LGFAnimatedTransition.h"
 #import "UIViewController+LGFAnimatedTransition.h"
+#import "LGFTransition.h"
 
 @interface LGFShowTransition : NSObject <UIViewControllerAnimatedTransitioning, UINavigationControllerDelegate>
 // 自定义动画的时长

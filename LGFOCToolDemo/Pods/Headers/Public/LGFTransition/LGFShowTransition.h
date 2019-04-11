@@ -1,1 +1,1 @@
-../../../LGFTransition/LGFTransition/LGFShowTransition.h
+../../../LGFTransition/LGFTransition/LGFTransition/LGFShowTransition.h

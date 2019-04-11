@@ -12,6 +12,7 @@
 #import "homeVC.h"
 #import "resViewController.h"
 #import "ViewController.h"
+#import "UINavigationController+LGFAnimatedTransition.h"
 
 @interface TabBarVC ()
 @property (nonatomic, strong) LGFTabBarVC *tabvc;

@@ -1,1 +1,1 @@
-../../../LGFTransition/LGFTransition/UINavigationController+LGFAnimatedTransition.h
+../../../LGFTransition/LGFTransition/LGFTransition/UINavigationController+LGFAnimatedTransition.h

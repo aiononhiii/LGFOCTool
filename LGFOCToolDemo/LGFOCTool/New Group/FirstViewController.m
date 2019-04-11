@@ -58,7 +58,7 @@ lgf_SBViewControllerForM(FirstViewController, @"Main", @"FirstViewController")
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ViewController *vc = [ViewController lgf];
-    [self.navigationController pushViewController:vc animated:NO];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

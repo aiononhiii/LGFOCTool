@@ -16,7 +16,8 @@ PODS:
     - AFNetworking/NSURLSession
   - FLAnimatedImage (1.0.12)
   - LGFPageTitle (1.2.5)
-  - LGFTransition (0.1.2)
+  - LGFTransition (0.1.9):
+    - SDWebImage (= 4.4.1)
   - MJRefresh (3.1.15.7)
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
@@ -76,7 +77,7 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   LGFPageTitle: 69a5d9b7f14c716e8b8ce62505eb7dcc8b3c6e2a
-  LGFTransition: c147906887cc5ef9661294aa681d369e5becb923
+  LGFTransition: 1fc47ca196694a90b1b6180badd7146d3eacfea5
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   YYAsyncLayer: df6b01ebc695c5f6b4c15dd5c23fa3e081eb25c0
@@ -91,4 +92,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b14b1bcf0432ae2f23bf927f9341c906c35323f5
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.6.1

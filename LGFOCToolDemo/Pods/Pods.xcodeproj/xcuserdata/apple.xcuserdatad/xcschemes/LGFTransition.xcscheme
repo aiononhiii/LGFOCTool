@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AAB4CC457FC43EF6C3A8964EAAAF4F4"
+               BlueprintIdentifier = "E32E77C53BBC3410215C3388F696EFC0"
+               BuildableName = "libLGFTransition.a"
                BlueprintName = "LGFTransition"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libLGFTransition.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
