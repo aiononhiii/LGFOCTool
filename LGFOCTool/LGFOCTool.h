@@ -49,6 +49,8 @@
 #import "LGFWebProgress.h"
 // LGFRefresh 封装
 #import "UIScrollView+LGFRefresh.h"
+// 返回按钮
+#import "LGFBackButton.h"
 //******************************** 分类 **********************************
 //------------------ NSString 分类集合 -----------------
 #import "NSString+LGFString.h"
@@ -115,6 +117,8 @@
 #import "UIView+LGFToast.h"
 // 设置任意圆角
 #import "UIView+LGFCornerRadius.h"
+// 简易添加手势
+#import "UIView+LGFAddGestureRecognizer.h"
 //------------------ UIButton 分类集合 ------------------
 // 设置按钮图片的位置
 #import "UIButton+LGFImagePosition.h"

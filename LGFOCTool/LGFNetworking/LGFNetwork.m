@@ -64,7 +64,7 @@ lgf_AllocOnceForM(LGFNetwork);
     if (_lgf_SessionManager == nil) {
         _lgf_SessionManager = [AFHTTPSessionManager manager];
         _lgf_SessionManager.requestSerializer.timeoutInterval = 10;
-        _lgf_SessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", nil];
+        _lgf_SessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/javascript", nil];
         [_lgf_SessionManager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         [_lgf_SessionManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     }

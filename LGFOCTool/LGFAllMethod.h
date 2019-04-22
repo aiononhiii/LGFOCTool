@@ -27,6 +27,9 @@
 #pragma mark - 版本更新提示
 + (void)lgf_AppNewVersionUpdate:(NSString *)appID isMandatory:(BOOL)isMandatory success:(void(^)(NSDictionary *appData, BOOL isMandatory))success failure:(void(^)(NSString *error))failure;
 
+#pragma mark - 电话拨打
++ (void)lgf_CallPhoneWithPhoneNumber:(NSString *)phonestring;
+
 #pragma mark - 限制小数点后两位
 /**
  - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -36,6 +39,8 @@
 + (BOOL)lgf_DecimalPointInputSpecificationWithTextField:(UITextField *)textField String:(NSString *)string Range:(NSRange)range;
 + (BOOL)lgf_IntegerInputSpecificationWithTextField:(UITextField *)textField String:(NSString *)string Range:(NSRange)range;
 
+#pragma mark - 保存图片到系统相册
++ (void)lgf_SaveImageToPhoto:(UIImage *)image saveSuccess:(void(^)(void))saveSuccess saveFailure:(void(^)(NSString *error))saveFailure;
 
 #pragma mark - 根据网址字符串获取二维码图片
 + (UIImage *)lgf_GetCodeImageWithUrl:(NSString *)urlString imgWidth:(float)imgWidth;

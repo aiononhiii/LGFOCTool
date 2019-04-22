@@ -70,6 +70,25 @@ static CGFloat heightConstant;
     }
 }
 
++ (void)lgf_CallPhoneWithPhoneNumber:(NSString *)phonestring {
+    if (lgf_IOSSystemVersion(10.0)) {
+        NSMutableString * str= [[NSMutableString alloc] initWithFormat:@"tel:%@", phonestring];
+        UIApplication *application = [UIApplication sharedApplication];
+        NSURL *URL = [NSURL URLWithString:str];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
+        [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+            //OpenSuccess=选择 呼叫 为 1  选择 取消 为0
+            NSLog(@"OpenSuccess=%d",success);
+        }];
+#pragma clang diagnostic pop
+    } else {
+        NSString *telephoneNumber = phonestring;
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@", telephoneNumber];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
+}
+
 + (BOOL)lgf_IntegerInputSpecificationWithTextField:(UITextField *)textField String:(NSString *)string Range:(NSRange)range {
     if (string.length > 0) {
         unichar single = [string characterAtIndex:0];
@@ -129,6 +148,94 @@ static CGFloat heightConstant;
     }
     return YES;
 }
+
++ (void)lgf_SaveImageToPhoto:(UIImage *)image saveSuccess:(void(^)(void))saveSuccess saveFailure:(void(^)(NSString *error))saveFailure {
+    [LGFAllPermissions lgf_GetPhotoAutoPermission:^(BOOL isHave) {
+        if (isHave) {
+            // PHAsset : 一个资源, 比如一张图片\一段视频
+            // PHAssetCollection : 一个相簿
+            // PHAsset的标识, 利用这个标识可以找到对应的PHAsset对象(图片对象)
+            __block NSString *assetLocalIdentifier = nil;
+            // 如果想对"相册"进行修改(增删改), 那么修改代码必须放在[PHPhotoLibrary sharedPhotoLibrary]的performChanges方法的block中
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                // 1.保存图片A到"相机胶卷"中
+                // 创建图片的请求
+                if (@available(iOS 9.0, *)) {
+                    assetLocalIdentifier = [PHAssetCreationRequest creationRequestForAssetFromImage:image].placeholderForCreatedAsset.localIdentifier;
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        lgf_HaveBlock(saveFailure, @"保存失败，系统版本过低");
+                    });
+                }
+            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                if (success == NO) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        lgf_HaveBlock(saveFailure, @"因为系统原因, 无法访问相册");
+                    });
+                    return;
+                }
+                // 2.获得相簿
+                PHAssetCollection *createdAssetCollection = [self createdAssetCollection];
+                if (createdAssetCollection == nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        lgf_HaveBlock(saveFailure, @"因为系统原因, 无法访问相册");
+                    });
+                    return;
+                }
+                [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                    // 3.添加"相机胶卷"中的图片A到"相簿"D中
+                    // 获得图片
+                    PHAsset *asset = [PHAsset fetchAssetsWithLocalIdentifiers:@[assetLocalIdentifier] options:nil].lastObject;
+                    // 添加图片到相簿中的请求
+                    PHAssetCollectionChangeRequest *request = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:createdAssetCollection];
+                    // 添加图片到相簿
+                    [request addAssets:@[asset]];
+                } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                    if (success == NO) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            lgf_HaveBlock(saveFailure, @"保存失败");
+                        });
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            lgf_HaveBlock(saveSuccess);
+                        });
+                    }
+                }];
+            }];
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                lgf_HaveBlock(saveFailure, @"请进入手机设置，为我们打开保存相册的权限");
+            });
+        }
+    }];
+}
+
++ (PHAssetCollection *)createdAssetCollection{
+    // 从已存在相簿中查找这个应用对应的相簿
+    PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    for (PHAssetCollection *assetCollection in assetCollections) {
+        if ([assetCollection.localizedTitle isEqualToString:@"我的相册"]) {
+            return assetCollection;
+        }
+    }
+    // 没有找到对应的相簿, 得创建新的相簿
+    // 错误信息
+    NSError *error = nil;
+    
+    // PHAssetCollection的标识, 利用这个标识可以找到对应的PHAssetCollection对象(相簿对象)
+    __block NSString *assetCollectionLocalIdentifier = nil;
+    [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
+        // 创建相簿的请求
+        assetCollectionLocalIdentifier = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:@"我的相册"].placeholderForCreatedAssetCollection.localIdentifier;
+    } error:&error];
+    
+    // 如果有错误信息
+    if (error) return nil;
+    
+    // 获得刚才创建的相簿
+    return [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[assetCollectionLocalIdentifier] options:nil].lastObject;
+}
+
 
 + (UIImage *)lgf_GetCodeImageWithUrl:(NSString *)urlString imgWidth:(float)imgWidth {
     //创建过滤器

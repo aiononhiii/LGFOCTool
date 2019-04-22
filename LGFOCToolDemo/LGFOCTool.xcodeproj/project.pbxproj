@@ -132,6 +132,8 @@
 		185A0C29216C8D2D000ED186 /* shareImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A0C28216C8D2D000ED186 /* shareImageVC.m */; };
 		186AC2CB219180E600A9027F /* TestPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AC2C9219180E600A9027F /* TestPageCell.m */; };
 		186AC2CC219180E600A9027F /* TestPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AC2CA219180E600A9027F /* TestPageCell.xib */; };
+		18712B2D226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18712B2C226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.m */; };
+		18712B35226D97320023ED9C /* LGFBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18712B34226D97320023ED9C /* LGFBackButton.m */; };
 		187F578B21C391E8007ED6E3 /* LGFMJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 187F578A21C391E7007ED6E3 /* LGFMJRefresh.bundle */; };
 		188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225EB20EDB3BE0004DBC6 /* OneViewController.m */; };
 		188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */; };
@@ -421,6 +423,10 @@
 		186AC2C8219180E600A9027F /* TestPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestPageCell.h; sourceTree = "<group>"; };
 		186AC2C9219180E600A9027F /* TestPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestPageCell.m; sourceTree = "<group>"; };
 		186AC2CA219180E600A9027F /* TestPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestPageCell.xib; sourceTree = "<group>"; };
+		18712B2B226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFAddGestureRecognizer.h"; sourceTree = "<group>"; };
+		18712B2C226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFAddGestureRecognizer.m"; sourceTree = "<group>"; };
+		18712B33226D97320023ED9C /* LGFBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFBackButton.h; sourceTree = "<group>"; };
+		18712B34226D97320023ED9C /* LGFBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFBackButton.m; sourceTree = "<group>"; };
 		187F578A21C391E7007ED6E3 /* LGFMJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGFMJRefresh.bundle; sourceTree = "<group>"; };
 		188225EA20EDB3BE0004DBC6 /* OneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
 		188225EB20EDB3BE0004DBC6 /* OneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
@@ -638,6 +644,8 @@
 				183C65DF20B5097200F0E243 /* UIView+LGFCornerRadius.m */,
 				1829CA9E209AD62000573974 /* UIView+LGFTopBarMessage.h */,
 				1829CA9D209AD62000573974 /* UIView+LGFTopBarMessage.m */,
+				18712B2B226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.h */,
+				18712B2C226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.m */,
 			);
 			path = "UIView+LGFCategory";
 			sourceTree = "<group>";
@@ -940,6 +948,7 @@
 		1845E4CA20A3F62E00882152 /* LGFView */ = {
 			isa = PBXGroup;
 			children = (
+				18712B32226D97320023ED9C /* LGFBackButton */,
 				183EF4512251CC490057A9B6 /* LGFClickJumpButton */,
 				183EF4542251CC490057A9B6 /* LGFImageCell */,
 				183EF44D2251CC480057A9B6 /* LGFImageTitleCell */,
@@ -1074,6 +1083,15 @@
 				186AC2CA219180E600A9027F /* TestPageCell.xib */,
 			);
 			path = TestPageVC;
+			sourceTree = "<group>";
+		};
+		18712B32226D97320023ED9C /* LGFBackButton */ = {
+			isa = PBXGroup;
+			children = (
+				18712B33226D97320023ED9C /* LGFBackButton.h */,
+				18712B34226D97320023ED9C /* LGFBackButton.m */,
+			);
+			path = LGFBackButton;
 			sourceTree = "<group>";
 		};
 		188DEFAA2094396B0014E4CA = {
@@ -1502,6 +1520,7 @@
 				18486BD420A993A600C4F723 /* UIView+LGFRotateAnimation.m in Sources */,
 				1829CADF20A1703F00573974 /* UIView+LGFGSView.m in Sources */,
 				18EDD633216EEE640088A90B /* LGFPlayerView.m in Sources */,
+				18712B35226D97320023ED9C /* LGFBackButton.m in Sources */,
 				1829CA89209A98A500573974 /* UIColor+LGFColor.m in Sources */,
 				183B92EE21A3E3FE00F2EF2B /* UIApplication+LGFApplication.m in Sources */,
 				183B937121A6999900F2EF2B /* LGFMJRefreshAutoStateFooter.m in Sources */,
@@ -1586,6 +1605,7 @@
 				183EF4622251CC490057A9B6 /* LGFWebProgress.m in Sources */,
 				183C65E020B5097200F0E243 /* UIView+LGFCornerRadius.m in Sources */,
 				1829CAD220A144C100573974 /* UIDevice+LGFDevice.m in Sources */,
+				18712B2D226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.m in Sources */,
 				183B936721A6999900F2EF2B /* LGFMJRefreshHeader.m in Sources */,
 				18AD21BA215B7B260031F719 /* TabBarVC.m in Sources */,
 				18AD2177215A09C40031F719 /* LGFPopMenu.m in Sources */,
