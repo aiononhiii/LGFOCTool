@@ -134,6 +134,11 @@
 		186AC2CC219180E600A9027F /* TestPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AC2CA219180E600A9027F /* TestPageCell.xib */; };
 		18712B2D226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18712B2C226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.m */; };
 		18712B35226D97320023ED9C /* LGFBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18712B34226D97320023ED9C /* LGFBackButton.m */; };
+		18712B3E226DBC490023ED9C /* LGFEmoji.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18712B37226DBC480023ED9C /* LGFEmoji.xib */; };
+		18712B3F226DBC490023ED9C /* LGFEmojiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18712B39226DBC480023ED9C /* LGFEmojiCell.m */; };
+		18712B40226DBC490023ED9C /* LGFEmojiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18712B3A226DBC480023ED9C /* LGFEmojiCell.xib */; };
+		18712B41226DBC490023ED9C /* lgf_emoji_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 18712B3C226DBC490023ED9C /* lgf_emoji_delete.png */; };
+		18712B42226DBC490023ED9C /* LGFEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 18712B3D226DBC490023ED9C /* LGFEmoji.m */; };
 		187F578B21C391E8007ED6E3 /* LGFMJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 187F578A21C391E7007ED6E3 /* LGFMJRefresh.bundle */; };
 		188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188225EB20EDB3BE0004DBC6 /* OneViewController.m */; };
 		188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188225ED20EDB3C90004DBC6 /* OneViewController.storyboard */; };
@@ -427,6 +432,13 @@
 		18712B2C226D92E80023ED9C /* UIView+LGFAddGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFAddGestureRecognizer.m"; sourceTree = "<group>"; };
 		18712B33226D97320023ED9C /* LGFBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFBackButton.h; sourceTree = "<group>"; };
 		18712B34226D97320023ED9C /* LGFBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFBackButton.m; sourceTree = "<group>"; };
+		18712B37226DBC480023ED9C /* LGFEmoji.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFEmoji.xib; sourceTree = "<group>"; };
+		18712B38226DBC480023ED9C /* LGFEmojiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFEmojiCell.h; sourceTree = "<group>"; };
+		18712B39226DBC480023ED9C /* LGFEmojiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFEmojiCell.m; sourceTree = "<group>"; };
+		18712B3A226DBC480023ED9C /* LGFEmojiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFEmojiCell.xib; sourceTree = "<group>"; };
+		18712B3B226DBC480023ED9C /* LGFEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFEmoji.h; sourceTree = "<group>"; };
+		18712B3C226DBC490023ED9C /* lgf_emoji_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lgf_emoji_delete.png; sourceTree = "<group>"; };
+		18712B3D226DBC490023ED9C /* LGFEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFEmoji.m; sourceTree = "<group>"; };
 		187F578A21C391E7007ED6E3 /* LGFMJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGFMJRefresh.bundle; sourceTree = "<group>"; };
 		188225EA20EDB3BE0004DBC6 /* OneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
 		188225EB20EDB3BE0004DBC6 /* OneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
@@ -948,6 +960,7 @@
 		1845E4CA20A3F62E00882152 /* LGFView */ = {
 			isa = PBXGroup;
 			children = (
+				18712B36226DBC1C0023ED9C /* LGFEmoji */,
 				18712B32226D97320023ED9C /* LGFBackButton */,
 				183EF4512251CC490057A9B6 /* LGFClickJumpButton */,
 				183EF4542251CC490057A9B6 /* LGFImageCell */,
@@ -1092,6 +1105,20 @@
 				18712B34226D97320023ED9C /* LGFBackButton.m */,
 			);
 			path = LGFBackButton;
+			sourceTree = "<group>";
+		};
+		18712B36226DBC1C0023ED9C /* LGFEmoji */ = {
+			isa = PBXGroup;
+			children = (
+				18712B3C226DBC490023ED9C /* lgf_emoji_delete.png */,
+				18712B3B226DBC480023ED9C /* LGFEmoji.h */,
+				18712B3D226DBC490023ED9C /* LGFEmoji.m */,
+				18712B37226DBC480023ED9C /* LGFEmoji.xib */,
+				18712B38226DBC480023ED9C /* LGFEmojiCell.h */,
+				18712B39226DBC480023ED9C /* LGFEmojiCell.m */,
+				18712B3A226DBC480023ED9C /* LGFEmojiCell.xib */,
+			);
+			path = LGFEmoji;
 			sourceTree = "<group>";
 		};
 		188DEFAA2094396B0014E4CA = {
@@ -1435,13 +1462,16 @@
 				185A0C26216C8630000ED186 /* shareView.xib in Resources */,
 				18585E9420ECE7A10084D5C1 /* SBTestViewController.storyboard in Resources */,
 				188DEFC02094396C0014E4CA /* Assets.xcassets in Resources */,
+				18712B41226DBC490023ED9C /* lgf_emoji_delete.png in Resources */,
 				188225F320EDB5190004DBC6 /* TwoViewController.storyboard in Resources */,
 				188DEFBE2094396C0014E4CA /* Main.storyboard in Resources */,
 				187F578B21C391E8007ED6E3 /* LGFMJRefresh.bundle in Resources */,
 				188DF031209444F00014E4CA /* pullToRefresh.gif in Resources */,
 				188225EE20EDB3C90004DBC6 /* OneViewController.storyboard in Resources */,
+				18712B40226DBC490023ED9C /* LGFEmojiCell.xib in Resources */,
 				18EDD64F217486320088A90B /* lgf_lock.png in Resources */,
 				183EF45D2251CC490057A9B6 /* LGFImageTitleCell.xib in Resources */,
+				18712B3E226DBC490023ED9C /* LGFEmoji.xib in Resources */,
 				18EDD64E217486320088A90B /* lgf_unlock.png in Resources */,
 				186AC2CC219180E600A9027F /* TestPageCell.xib in Resources */,
 				183B92FA21A3E95100F2EF2B /* LGFCenterPageVC.storyboard in Resources */,
@@ -1565,6 +1595,7 @@
 				183DA8C020CA22C800E09819 /* NSData+LGFEncodeDecode.m in Sources */,
 				183B92ED21A3E3FE00F2EF2B /* UIImage+LGFImage.m in Sources */,
 				183B938921A7F3D900F2EF2B /* UIScrollView+LGFPageRefresh.m in Sources */,
+				18712B42226DBC490023ED9C /* LGFEmoji.m in Sources */,
 				183B936E21A6999900F2EF2B /* LGFMJRefreshAutoFooter.m in Sources */,
 				186AC2CB219180E600A9027F /* TestPageCell.m in Sources */,
 				183B92FB21A3E95100F2EF2B /* LGFCenterPageVCTest.m in Sources */,
@@ -1632,6 +1663,7 @@
 				183B92EB21A3E3FE00F2EF2B /* UIImage+LGFPDFImage.m in Sources */,
 				188225EC20EDB3BE0004DBC6 /* OneViewController.m in Sources */,
 				1829796020D0CA26005DB4B7 /* LGFGetPhoto.m in Sources */,
+				18712B3F226DBC490023ED9C /* LGFEmojiCell.m in Sources */,
 				18486C2820AD60EF00C4F723 /* UIView+LGFToast.m in Sources */,
 				183DA8D320CA6A6300E09819 /* NSNumber+LGFNumber.m in Sources */,
 				18490C1320C8E17A000243DD /* LGFReqest.m in Sources */,
