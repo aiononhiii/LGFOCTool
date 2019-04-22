@@ -51,6 +51,8 @@
 #import "UIScrollView+LGFRefresh.h"
 // 返回按钮
 #import "LGFBackButton.h"
+// 表情键盘
+#import "LGFEmoji.h"
 //******************************** 分类 **********************************
 //------------------ NSString 分类集合 -----------------
 #import "NSString+LGFString.h"
