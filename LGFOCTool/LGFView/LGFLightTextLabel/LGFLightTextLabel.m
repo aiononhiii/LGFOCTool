@@ -10,8 +10,6 @@
 
 @implementation LGFLightTextLabel
 
-lgf_XibViewForM(LGFLightTextLabel, @"LGFLightTextLabel");
-
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     self.lgf_LightTextDuration = 2.5;

@@ -11,17 +11,12 @@
 #import "UIImage+ForceDecode.h"
 #import "LGFOCTool.h"
 
-#define leftRightSpacing 20
-#define topBottomSpacing 15
-#define vNum 4
-#define hNum 8
-#define LGFEmojiWidth ((self.emojiSV.lgf_width - leftRightSpacing * 2) / hNum)
-#define LGFEmojiHeight ((self.emojiSV.lgf_height - topBottomSpacing * 2) / vNum)
-
 @interface LGFEmoji () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *emojiSV;
 @property (weak, nonatomic) IBOutlet UIView *emojiSVView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *emojiSVViewWidth;
+@property (assign, nonatomic) CGFloat lgf_EmojiWidth;
+@property (assign, nonatomic) CGFloat lgf_EmojiHeight;
 @end
 @implementation LGFEmoji
 
@@ -31,6 +26,10 @@ static LGFEmoji *lgf_Emoji = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         lgf_Emoji = [lgf_Bundle(@"LGFOCTool") loadNibNamed:NSStringFromClass([LGFEmoji class]) owner:lgf_Emoji options:nil].firstObject;
+        lgf_Emoji.lgf_VNum = 4;
+        lgf_Emoji.lgf_HNum = 8;
+        lgf_Emoji.lgf_LeftRightSpacing = 20;
+        lgf_Emoji.lgf_TopBottomSpacing = 15;
     });
     return lgf_Emoji;
 }
@@ -40,13 +39,13 @@ static LGFEmoji *lgf_Emoji = nil;
     dispatch_once(&onceToken, ^{
         [lgf_NCenter addObserver:lgf_Emoji selector:@selector(textViewTextDidChange:)name:UITextViewTextDidChangeNotification object:nil];
         [lgf_Emoji.lgf_EmojiArray.mutableCopy enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ((idx + 2) % (vNum * hNum) == 0) {
+            if ((idx + 2) % (lgf_Emoji.lgf_VNum * lgf_Emoji.lgf_HNum) == 0) {
                 [lgf_Emoji.lgf_EmojiArray insertObject:@"" atIndex:idx + 1];
                 [lgf_Emoji.lgf_EmojiStrArray insertObject:@"" atIndex:idx + 1];
             }
         }];
         if (lgf_Emoji.emojiSVView.subviews.count == 0) {
-            lgf_Emoji.lgf_EmojiPage.numberOfPages = ceilf(lgf_Emoji.lgf_EmojiArray.count / (vNum * hNum * 1.0));
+            lgf_Emoji.lgf_EmojiPage.numberOfPages = ceilf(lgf_Emoji.lgf_EmojiArray.count / (lgf_Emoji.lgf_VNum * lgf_Emoji.lgf_HNum * 1.0));
             lgf_Emoji.emojiSVViewWidth.constant = lgf_ScreenWidth * lgf_Emoji.lgf_EmojiPage.numberOfPages;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [lgf_Emoji.lgf_EmojiArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull imageName, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -61,9 +60,9 @@ static LGFEmoji *lgf_Emoji = nil;
                                 [emojiCell.lgf_EmojiImage setImage:img];
                             });
                         });
-                        CGFloat emojiX = leftRightSpacing + LGFEmojiWidth * (idx % hNum) + lgf_Emoji.emojiSV.lgf_width * (ceilf((idx + 1.0) / (vNum * hNum)) - 1);
-                        CGFloat emgjiY = topBottomSpacing + LGFEmojiHeight * (ceilf((idx + 1.0) / hNum - 1)) - LGFEmojiHeight * vNum * (ceilf((idx + 1.0) / (vNum * hNum)) - 1);
-                        emojiCell.frame = CGRectMake(emojiX, emgjiY, LGFEmojiWidth, LGFEmojiHeight);
+                        CGFloat emojiX = lgf_Emoji.lgf_LeftRightSpacing + lgf_Emoji.lgf_EmojiWidth * (idx % lgf_Emoji.lgf_HNum) + lgf_Emoji.emojiSV.lgf_width * (ceilf((idx + 1.0) / (lgf_Emoji.lgf_VNum * lgf_Emoji.lgf_HNum)) - 1);
+                        CGFloat emgjiY = lgf_Emoji.lgf_TopBottomSpacing + lgf_Emoji.lgf_EmojiHeight * (ceilf((idx + 1.0) / lgf_Emoji.lgf_HNum - 1)) - lgf_Emoji.lgf_EmojiHeight * lgf_Emoji.lgf_VNum * (ceilf((idx + 1.0) / (lgf_Emoji.lgf_VNum * lgf_Emoji.lgf_HNum)) - 1);
+                        emojiCell.frame = CGRectMake(emojiX, emgjiY, lgf_Emoji.lgf_EmojiWidth, lgf_Emoji.lgf_EmojiHeight);
                         [lgf_Emoji.emojiSVView addSubview:emojiCell];
                     }
                 }];
@@ -126,6 +125,14 @@ static LGFEmoji *lgf_Emoji = nil;
     return _lgf_EmojiStrArray;
 }
 
+- (CGFloat)lgf_EmojiWidth {
+    return ((self.emojiSV.lgf_width - self.lgf_LeftRightSpacing * 2) / self.lgf_HNum);
+}
+
+- (CGFloat)lgf_EmojiHeight {
+    return ((self.emojiSV.lgf_height - _lgf_TopBottomSpacing * 2) / self.lgf_VNum);
+}
+
 - (void)setLgf_EmojiSendBtnSelect:(BOOL)lgf_EmojiSendBtnSelect {
     _lgf_EmojiSendBtnSelect = lgf_EmojiSendBtnSelect;
     if (lgf_EmojiSendBtnSelect) {
@@ -147,7 +154,7 @@ static LGFEmoji *lgf_Emoji = nil;
         NSString *deleteText = [textView.text substringWithRange:range];
         NSUInteger location = range.location;
         NSUInteger length = range.length;
-        if ([deleteText isEqualToString:@"]"]){
+        if ([deleteText isEqualToString:@"]"]) {
             NSString *subText;
             while (YES) {
                 if (location == 0) {
@@ -177,7 +184,7 @@ static LGFEmoji *lgf_Emoji = nil;
     NSMutableArray *emotions = [NSMutableArray array];
     NSArray *imageNameArray = [LGFEmoji lgf].lgf_EmojiArray;
     NSArray *faceNameArray = [LGFEmoji lgf].lgf_EmojiStrArray;
-    for (int i = 0; i < imageNameArray.count; i++){
+    for (int i = 0; i < imageNameArray.count; i++) {
         NSDictionary *emotion = @{@"strName" : faceNameArray[i], @"imageName" : imageNameArray[i]};
         [emotions addObject:emotion];
     }
@@ -194,7 +201,7 @@ static LGFEmoji *lgf_Emoji = nil;
             NSDictionary *emotion = emotions[i];
             if ([emotion[@"strName"] isEqualToString:subStr]) {
                 NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-                //这个-3 需要自己调整。。
+                //这个 Y 需要自己调整
                 textAttachment.bounds = CGRectMake(0, Y, 20, 20);
                 NSString *emojiString = [NSString stringWithFormat:@"%@", emotion[@"imageName"]];
                 textAttachment.image = [UIImage imageNamed:emojiString];

@@ -10,7 +10,6 @@
 #import "LGFOCTool.h"
 
 @interface LGFLightTextLabel : UILabel
-lgf_XibViewForH;
 @property (strong, nonatomic) IBInspectable UIColor *lgf_LightTextColor;
 @property (nonatomic, assign) IBInspectable CGFloat lgf_LightTextDuration;
 @property (nonatomic, strong) CAGradientLayer *gradientLayer;

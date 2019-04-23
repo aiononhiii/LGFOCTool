@@ -10,7 +10,7 @@
 
 @implementation LGFEmojiCell
 
-lgf_XibViewForM(LGFEmojiCell, @"LGFEmojiCell");
+lgf_XibViewForM(LGFEmojiCell, @"LGFOCTool");
 - (void)setLgf_EmojiSpacing:(CGFloat)lgf_EmojiSpacing {
     _lgf_EmojiSpacing = lgf_EmojiSpacing;
     self.lgf_EmojiLeft.constant = lgf_EmojiSpacing;
