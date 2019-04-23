@@ -28,7 +28,6 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="emojiImage" destination="003-UJ-rXu" id="ORx-lW-o3Y"/>
                 <outlet property="lgf_EmojiBottom" destination="Eha-Yt-vQn" id="mK3-ZX-s8P"/>
                 <outlet property="lgf_EmojiImage" destination="003-UJ-rXu" id="eWb-Tm-FGM"/>
                 <outlet property="lgf_EmojiLeft" destination="kI5-Hw-AUU" id="FOZ-r8-rAC"/>
