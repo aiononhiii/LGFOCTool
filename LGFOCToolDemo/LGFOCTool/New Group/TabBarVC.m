@@ -32,8 +32,8 @@
     
     self.tabvc.lgf_BarChildVCs = @[vc, twovc, fourvc, fivevc];
     self.tabvc.lgf_BarItemTitles = @[@"首页", @"微淘", @"购物车", @"我的淘宝"];
-    self.tabvc.lgf_SelectBarItemIcons = @[@"select", @"select", @"select", @"select"];
-    self.tabvc.lgf_UnSelectBarItemIcons = @[@"unselect", @"unselect", @"unselect", @"unselect"];
+    self.tabvc.lgf_SelectBarItemIcons = @[@"select", @"select", @"select", @"select"].mutableCopy;
+    self.tabvc.lgf_UnSelectBarItemIcons = @[@"unselect", @"unselect", @"unselect", @"unselect"].mutableCopy;
     self.tabvc.lgf_SelectBarItemColor = [UIColor redColor];
     self.tabvc.lgf_UnSelectBarItemColor = [UIColor darkGrayColor];
     self.tabvc.lgf_DefultSelectIndex = 2;

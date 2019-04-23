@@ -16,8 +16,8 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    float x = rect.origin.x;
-    float y = rect.origin.y;
+    // float x = rect.origin.x;
+    // float y = rect.origin.y;
     float w = rect.size.width;
     float h = rect.size.height;
     // 一个不透明类型的Quartz 2D绘画环境,相当于一个画布,你可以在上面任意绘画
