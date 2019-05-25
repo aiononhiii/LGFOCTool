@@ -124,6 +124,8 @@
 #pragma mark - 工商税号有效性
 - (BOOL)lgf_IsValidTaxNo;
 
+#pragma mark - 仅数字和字母
+- (BOOL)lgf_DeptIdInputShouldAlphaNum:(NSInteger)length;
 #pragma mark - 账号特殊判断 是否符合最小长度、最长长度，是否包含中文,首字母是否可以为数字
 /**
  @brief     是否符合最小长度、最长长度，是否包含中文,首字母是否可以为数字
@@ -134,9 +136,9 @@
  @return    正则验证成功返回YES, 否则返回NO
  */
 - (BOOL)lgf_IsValidWithMinLenth:(NSInteger)minLenth
-                   maxLenth:(NSInteger)maxLenth
-             containChinese:(BOOL)containChinese
-        firstCannotBeDigtal:(BOOL)firstCannotBeDigtal;
+                       maxLenth:(NSInteger)maxLenth
+                 containChinese:(BOOL)containChinese
+            firstCannotBeDigtal:(BOOL)firstCannotBeDigtal;
 
 #pragma mark - 账号特殊判断 是否符合最小长度、最长长度，是否包含中文,数字，字母，其他字符，首字母是否可以为数字
 /**
@@ -151,12 +153,12 @@
  @return    正则验证成功返回YES, 否则返回NO
  */
 - (BOOL)lgf_IsValidWithMinLenth:(NSInteger)minLenth
-                   maxLenth:(NSInteger)maxLenth
-             containChinese:(BOOL)containChinese
-              containDigtal:(BOOL)containDigtal
-              containLetter:(BOOL)containLetter
-      containOtherCharacter:(NSString *)containOtherCharacter
-        firstCannotBeDigtal:(BOOL)firstCannotBeDigtal;
+                       maxLenth:(NSInteger)maxLenth
+                 containChinese:(BOOL)containChinese
+                  containDigtal:(BOOL)containDigtal
+                  containLetter:(BOOL)containLetter
+          containOtherCharacter:(NSString *)containOtherCharacter
+            firstCannotBeDigtal:(BOOL)firstCannotBeDigtal;
 
 #pragma mark - 是否是整型
 - (BOOL)lgf_IsPureInt;
@@ -186,8 +188,8 @@
    这个布尔值在块内为YES.
  */
 - (void)lgf_EnumerateRegexMatches:(NSString *)regex
-                      options:(NSRegularExpressionOptions)options
-                   usingBlock:(void (^)(NSString *match, NSRange matchRange, BOOL *stop))block;
+                          options:(NSRegularExpressionOptions)options
+                       usingBlock:(void (^)(NSString *match, NSRange matchRange, BOOL *stop))block;
 
 #pragma mark - 返回一个新的字符串，其中包含用模板字符串替换的正则表达式
 /**
@@ -197,7 +199,7 @@
  @return 匹配正则表达式的字符串，由模板字符串替换
  */
 - (NSString *)lgf_StringByReplacingRegex:(NSString *)regex
-                             options:(NSRegularExpressionOptions)options
-                          withString:(NSString *)replacement;
+                                 options:(NSRegularExpressionOptions)options
+                              withString:(NSString *)replacement;
 
 @end

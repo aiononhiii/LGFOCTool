@@ -90,6 +90,19 @@
     return [self lgf_IsValidateByRegex:taxNoRegex];
 }
 
+#pragma mark - 仅数字和字母
+- (BOOL)lgf_DeptIdInputShouldAlphaNum:(NSInteger)length {
+    if (self.length > length) {
+        return YES;
+    }
+    NSString *regex =@"[a-zA-Z0-9]*";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    if (![pred evaluateWithObject:self]) {
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - 账号特殊判断
 /**
  @brief     是否符合最小长度、最长长度，是否包含中文,首字母是否可以为数字
@@ -100,9 +113,9 @@
  @return    正则验证成功返回YES, 否则返回NO
  */
 - (BOOL)lgf_IsValidWithMinLenth:(NSInteger)minLenth
-                   maxLenth:(NSInteger)maxLenth
-             containChinese:(BOOL)containChinese
-        firstCannotBeDigtal:(BOOL)firstCannotBeDigtal {
+                       maxLenth:(NSInteger)maxLenth
+                 containChinese:(BOOL)containChinese
+            firstCannotBeDigtal:(BOOL)firstCannotBeDigtal {
     //  [\u4e00-\u9fa5A-Za-z0-9_]{4,20}
     NSString *hanzi = containChinese ? @"\u4e00-\u9fa5" : @"";
     NSString *first = firstCannotBeDigtal ? @"^[a-zA-Z_]" : @"";
@@ -124,12 +137,12 @@
  @return    正则验证成功返回YES, 否则返回NO
  */
 - (BOOL)lgf_IsValidWithMinLenth:(NSInteger)minLenth
-                   maxLenth:(NSInteger)maxLenth
-             containChinese:(BOOL)containChinese
-              containDigtal:(BOOL)containDigtal
-              containLetter:(BOOL)containLetter
-      containOtherCharacter:(NSString *)containOtherCharacter
-        firstCannotBeDigtal:(BOOL)firstCannotBeDigtal {
+                       maxLenth:(NSInteger)maxLenth
+                 containChinese:(BOOL)containChinese
+                  containDigtal:(BOOL)containDigtal
+                  containLetter:(BOOL)containLetter
+          containOtherCharacter:(NSString *)containOtherCharacter
+            firstCannotBeDigtal:(BOOL)firstCannotBeDigtal {
     NSString *hanzi = containChinese ? @"\u4e00-\u9fa5" : @"";
     NSString *first = firstCannotBeDigtal ? @"^[a-zA-Z_]" : @"";
     NSString *lengthRegex = [NSString stringWithFormat:@"(?=^.{%@,%@}$)", @(minLenth), @(maxLenth)];
@@ -347,8 +360,8 @@
 }
 
 - (void)lgf_EnumerateRegexMatches:(NSString *)regex
-                      options:(NSRegularExpressionOptions)options
-                   usingBlock:(void (^)(NSString *match, NSRange matchRange, BOOL *stop))block {
+                          options:(NSRegularExpressionOptions)options
+                       usingBlock:(void (^)(NSString *match, NSRange matchRange, BOOL *stop))block {
     if (regex.length == 0 || !block) return;
     NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:regex options:options error:nil];
     if (!regex) return;
@@ -358,8 +371,8 @@
 }
 
 - (NSString *)lgf_StringByReplacingRegex:(NSString *)regex
-                             options:(NSRegularExpressionOptions)options
-                          withString:(NSString *)replacement; {
+                                 options:(NSRegularExpressionOptions)options
+                              withString:(NSString *)replacement; {
     NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:regex options:options error:nil];
     if (!pattern) return self;
     return [pattern stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, [self length]) withTemplate:replacement];

@@ -104,6 +104,7 @@
 		184235B72099A6240006483C /* NSString+LGFRemoveEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235B62099A6240006483C /* NSString+LGFRemoveEmoji.m */; };
 		184235BA2099A9E50006483C /* NSString+LGFTextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235B92099A9E50006483C /* NSString+LGFTextSize.m */; };
 		184235BD2099B4120006483C /* NSString+LGFTrims.m in Sources */ = {isa = PBXBuildFile; fileRef = 184235BC2099B4120006483C /* NSString+LGFTrims.m */; };
+		18458FC22275A2E6001F1CCC /* NSObject+LGFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FC12275A2E6001F1CCC /* NSObject+LGFObject.m */; };
 		1845E4D120A4296500882152 /* LGFAllPermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845E4D020A4296500882152 /* LGFAllPermissions.m */; };
 		18486BA720A58EB100C4F723 /* NSObject+LGFReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA620A58EB100C4F723 /* NSObject+LGFReflection.m */; };
 		18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 18486BA920A5917E00C4F723 /* NSObject+LGFKVOBlocks.m */; };
@@ -375,6 +376,8 @@
 		184235B92099A9E50006483C /* NSString+LGFTextSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFTextSize.m"; sourceTree = "<group>"; };
 		184235BB2099B4120006483C /* NSString+LGFTrims.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGFTrims.h"; sourceTree = "<group>"; };
 		184235BC2099B4120006483C /* NSString+LGFTrims.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGFTrims.m"; sourceTree = "<group>"; };
+		18458FC02275A2E6001F1CCC /* NSObject+LGFObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFObject.h"; sourceTree = "<group>"; };
+		18458FC12275A2E6001F1CCC /* NSObject+LGFObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGFObject.m"; sourceTree = "<group>"; };
 		1845E4CF20A4296500882152 /* LGFAllPermissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFAllPermissions.h; sourceTree = "<group>"; };
 		1845E4D020A4296500882152 /* LGFAllPermissions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFAllPermissions.m; sourceTree = "<group>"; };
 		18486BA520A58EB100C4F723 /* NSObject+LGFReflection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGFReflection.h"; sourceTree = "<group>"; };
@@ -992,6 +995,8 @@
 				183DA8DD20CE0F2300E09819 /* NSObject+LGFAssociateValue.m */,
 				183DA8DF20CE112100E09819 /* NSObject+LGFPerformSelector.h */,
 				183DA8E020CE112100E09819 /* NSObject+LGFPerformSelector.m */,
+				18458FC02275A2E6001F1CCC /* NSObject+LGFObject.h */,
+				18458FC12275A2E6001F1CCC /* NSObject+LGFObject.m */,
 			);
 			path = "NSObject+LGFCategory";
 			sourceTree = "<group>";
@@ -1626,6 +1631,7 @@
 				18486BAA20A5917E00C4F723 /* NSObject+LGFKVOBlocks.m in Sources */,
 				1829CA9C209AD34D00573974 /* UIViewController+LGFVCLog.m in Sources */,
 				185A0C1F216C7A07000ED186 /* shareVC.m in Sources */,
+				18458FC22275A2E6001F1CCC /* NSObject+LGFObject.m in Sources */,
 				1842359E209956E50006483C /* NSString+LGFString.m in Sources */,
 				188DEFB82094396C0014E4CA /* AppDelegate.m in Sources */,
 				18490C1620C90A91000243DD /* LGFNetworkHeader.m in Sources */,

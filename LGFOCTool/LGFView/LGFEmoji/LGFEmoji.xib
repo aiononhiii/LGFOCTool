@@ -84,6 +84,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nap-1V-qki">
                     <rect key="frame" x="325" y="115" width="50" height="40"/>
+                    <state key="normal" image="lgf_emoji_delete.png"/>
                     <connections>
                         <action selector="emojiDelete:" destination="03w-8w-vhm" eventType="touchUpInside" id="TF8-vI-KGm"/>
                     </connections>
@@ -115,4 +116,7 @@
             <point key="canvasLocation" x="69.599999999999994" y="-136.73163418290855"/>
         </view>
     </objects>
+    <resources>
+        <image name="lgf_emoji_delete.png" width="200" height="160"/>
+    </resources>
 </document>

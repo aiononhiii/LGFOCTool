@@ -62,7 +62,11 @@ static const char *lgf_GEndPointKey = "lgf_GEndPointKey";
 
 - (void)setLgf_CornerRadius:(CGFloat)lgf_CornerRadius {
     objc_setAssociatedObject(self, &lgf_CornerRadiusKey, [NSNumber numberWithFloat:lgf_CornerRadius], OBJC_ASSOCIATION_ASSIGN);
-    self.layer.cornerRadius = lgf_CornerRadius;
+    if (lgf_CornerRadius == 888) {
+        self.layer.cornerRadius = self.lgf_width / 2.0;
+    } else {
+        self.layer.cornerRadius = lgf_CornerRadius;
+    }
 }
 
 #pragma mark - 边框颜色

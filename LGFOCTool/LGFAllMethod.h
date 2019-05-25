@@ -33,9 +33,9 @@
 #pragma mark - 限制小数点后两位
 /**
  - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    return [textField CashKeyboardWithTextField:textField String:string Range:range];
+ return [textField CashKeyboardWithTextField:textField String:string Range:range];
  }
-*/
+ */
 + (BOOL)lgf_DecimalPointInputSpecificationWithTextField:(UITextField *)textField String:(NSString *)string Range:(NSRange)range;
 + (BOOL)lgf_IntegerInputSpecificationWithTextField:(UITextField *)textField String:(NSString *)string Range:(NSRange)range;
 
