@@ -44,11 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
    @param range 文档中选定文本的范围。
  */
 - (void)lgf_SetSelectedRange:(NSRange)range;
-#pragma mark - 多个关键字高亮
-/**
- @param texts 高亮关键字数组
- */
-- (void)lgf_KeywordHighlightTexts:(NSArray *)texts;
+
 @end
 
 NS_ASSUME_NONNULL_END
