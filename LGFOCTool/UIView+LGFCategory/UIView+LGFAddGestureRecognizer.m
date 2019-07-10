@@ -18,21 +18,21 @@
 
 - (void)lgf_AddLongAction:(SEL)longAction target:(id)target duration:(CGFloat)duration {
     self.userInteractionEnabled = YES;
-    UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:longAction];
+    UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:target action:longAction];
     gesture.minimumPressDuration = duration;
     [self addGestureRecognizer:gesture];
 }
 
 - (void)lgf_AddSwipeAction:(SEL)swipeAction target:(id)target direction:(UISwipeGestureRecognizerDirection)direction {
     self.userInteractionEnabled = YES;
-    UISwipeGestureRecognizer *gesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:swipeAction];
+    UISwipeGestureRecognizer *gesture = [[UISwipeGestureRecognizer alloc] initWithTarget:target action:swipeAction];
     gesture.direction = direction;
     [self addGestureRecognizer:gesture];
 }
 
 - (void)lgf_AddPanAction:(SEL)panAction target:(id)target {
     self.userInteractionEnabled = YES;
-    UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:panAction];
+    UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:target action:panAction];
     [self addGestureRecognizer:gesture];
 }
 
